@@ -337,6 +337,7 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 
 /* opt_dead_assignments off keeps the read of k->unk_14 (0.0) into zero where it is written, ahead of the product's
  * loads, which gives retail's float registers */
+/* WARNING: compiler-diff device, not original code: opt_dead_assignments off; removal changes 12 disassembly lines (live_camera/fn_1_DA34.c) */
 #pragma opt_dead_assignments off
 void fn_1_DF74(void) {
     s16 i;
@@ -540,11 +541,13 @@ extern s32 fn_1_40BB4(void);
 extern u8 lbl_1_bss_6F243;
 extern void fn_1_A2D84(u32);
 
+/* WARNING: compiler-diff device, not original code: opt_lifetimes off; removal changes 158 disassembly lines (live_camera/fn_1_E174.c) */
 #pragma opt_lifetimes off
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 50 disassembly lines (live_camera/fn_1_E174.c) */
 #pragma opt_propagation off
 void fn_1_E174(f32 arg0) {
+    /* WARNING: compiler-diff device, not original code: f32 load carrier; reading the member directly changes 12 disassembly lines */
     f32 fzgx_live;
-    s16 fzgx_value;
     struct fn_1_E174_lbl_1_bss_1148 *p_lbl_1_bss_1148;
     struct fn_1_E174_lbl_1_data_43B8 *p_lbl_1_data_43B8;
     struct fn_1_E174_lbl_1_rodata_4E0 *p_lbl_1_rodata_4E0;
@@ -691,8 +694,7 @@ void fn_1_E174(f32 arg0) {
     v9 = (-p_lbl_1_bss_1148->unk_24);
     (p_lbl_1_data_43B8->unk_14C = (60));
     v2 += 1536;
-    fzgx_value = v8;
-    p_lbl_1_bss_1148->unk_2E = fzgx_value;
+    p_lbl_1_bss_1148->unk_2E = v8;
     p_lbl_1_bss_1148->unk_8 = v3;
     p_lbl_1_bss_1148->unk_C = v9;
     fn_1_A2D84(v2);
@@ -903,6 +905,7 @@ __declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
 #pragma section code_type ".text"
 
 /* retail keeps every product separate (fmuls; fadds), with no fused multiply-add */
+/* WARNING: compiler-diff device, not original code: fp_contract off; removal changes 347 disassembly lines (live_camera/fn_1_E688.c) */
 #pragma fp_contract off
 void fn_1_E688(f32 alpha) {
     char text[5][35];
@@ -1376,13 +1379,7 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
 
 /* end game/main_rel/adxt_stop_types.h */
 
-/* begin game/vec3.h (deltawave784/fzgx, CC0) */
-#ifndef GAME_VEC3_H
-#define GAME_VEC3_H
-
-// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
-// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
-// stcoli). Hand-owned (librarian).
+#include "game/vec3.h"
 
 /* Obj_1_data_43B8: from deltawave784/fzgx (CC0) */
 typedef struct {
@@ -1394,20 +1391,6 @@ typedef struct {
     s16 unk_14A;
     s16 unk_14C;
 } Obj_1_data_43B8;
-
-typedef struct Vec3 {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
-
-typedef struct Vec3f {
-    f32 x, y, z;
-} Vec3f;
-
-#endif  // GAME_VEC3_H
-
-/* end game/vec3.h */
 
 typedef struct {
     u32 flags;
@@ -1473,8 +1456,8 @@ struct fn_1_EE44_Arg0 {
     u8 pad_10[2];
     s16 unk_12, unk_14;
     u8 pad_16[6];
-    u32 unk_1C, unk_20, unk_24;
-    u32 unk_28, unk_2C, unk_30;
+    Vec3 unk_1C;
+    Vec3 unk_28;
     u8 pad_34[0x18];
     f32 unk_4C[3];
     f32 unk_58;
@@ -1548,6 +1531,7 @@ static inline void update_mode(struct fn_1_EE44_Arg0 *arg0, u8 *pool) {
     }
 }
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 6 disassembly lines (live_camera/fn_1_EE04.c) */
 #pragma opt_propagation off
 void fn_1_EE44(struct fn_1_EE44_Arg0 *arg0, f32 arg1) {
     Obj_1_data_43B8 *p_lbl_1_data_43B8;
@@ -1557,14 +1541,12 @@ void fn_1_EE44(struct fn_1_EE44_Arg0 *arg0, f32 arg1) {
     u16 v3;
     f64 value;
     s16 rotation;
+    /* WARNING: compiler-diff device, not original code: hand-built int-to-double conversion against the rodata pool base; not rewritten (pool-mapped constants) */
     union { f64 d; struct { u32 hi, lo; } w; } conversion;
     p_lbl_1_data_43B8 = (Obj_1_data_43B8 *)&lbl_1_data_43B8;
     p_lbl_1_rodata_4E0 = (u8 *)&lbl_1_rodata_4E0;
     arg0->unk_C &= 0x7FFFFFFF;
-    {
-        typedef struct { u32 x, y, z; } Copy3;
-        *(Copy3 *)&arg0->unk_28 = *(Copy3 *)&arg0->unk_1C;
-    }
+    arg0->unk_28 = arg0->unk_1C;
     v1 = arg0->unk_64;
     if (v1 != 0)
         arg0->unk_64 = v1 - *(s16 *)((u8 *)p_lbl_1_data_43B8 + 0xCC);
@@ -2049,7 +2031,9 @@ extern u32 lbl_801A6410;
 
 /* Retail rematerialises the __FILE__ string address (dat + 0x68) at each
  * allocation; keep MWCC from hoisting it into a saved register. */
+/* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 322 disassembly lines (live_camera/fn_1_F6A8.c) */
 #pragma opt_common_subs off
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 14 disassembly lines (live_camera/fn_1_F6A8.c) */
 #pragma opt_propagation off
 /* Load the three live-camera data files into freshly allocated buffers. */
 void fn_1_F6A8(void) {
@@ -2304,8 +2288,7 @@ extern void camera_set_result(s16);
 extern void camera_set_selected_value(u8);
 
 void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
-    s16 *fzgx_value__;
-    u32 fzgx_value_;
+    /* WARNING: compiler-diff device, not original code: s16 increment carrier; arg0->unk_6 = v30 + 1 changes 346 disassembly lines */
     s16 fzgx_value;
     u8 v0;
     f64 v1;
@@ -2330,13 +2313,11 @@ void fn_1_FCB0(Sig_fn_1_101D0_Fn_1_101D0_State * arg0, f32 arg1) {
         if (v0 == 0) {
             if ((*(u32 *)((u8 *)arg0 + 12) & 0x80000) == 0) {
                 v3 = (lbl_801A63C0) * 0x676A4B6B + 13259;
-                fzgx_value_ = v3;
-                lbl_801A63C0 = fzgx_value_;
+                lbl_801A63C0 = v3;
                 arg0->unk_12 = ((s32)((v3 >> 16) & 0x7FFF) % 4);
                 v9 = *(s16 *)((u8 *)arg0 + 2);
                 if ((s32)arg0->unk_12 == v9) {
-                    fzgx_value__ = &arg0->unk_12;
-                    *fzgx_value__ = (s16)((v9 + 1) % 4);
+                    arg0->unk_12 = (s16)((v9 + 1) % 4);
                 }
             } else {
                 v3 = ((0x676A4B6B) * lbl_801A63C0) + 13259;
@@ -2700,28 +2681,7 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
 
 /* end game/main_rel/adxt_stop_types.h */
 
-/* begin game/vec3.h (deltawave784/fzgx, CC0) */
-#ifndef GAME_VEC3_H
-#define GAME_VEC3_H
-
-// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
-// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
-// stcoli). Hand-owned (librarian).
-
-
-typedef struct Vec3 {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
-
-typedef struct Vec3f {
-    f32 x, y, z;
-} Vec3f;
-
-#endif  // GAME_VEC3_H
-
-/* end game/vec3.h */
+#include "game/vec3.h"
 
 typedef struct {
     u32 flags;
@@ -2995,11 +2955,7 @@ void fn_1_103B0(LiveCamState *cam) {
 /* fzgx:begin fn_1_107B8 noprologue */
 #include "types.h"
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
+#include "game/vec3.h"
 
 /* one livecam_N.bin record (0x28 bytes); fn_1_F6A8 loads them to lbl_1_bss_17C4+0x4 */
 typedef struct {
@@ -3114,6 +3070,7 @@ extern u32 lbl_801A63C0;
 extern void fn_1_862D4(s16, Vec3 *);
 extern void fn_1_862A8(s16, Vec3 *);
 
+/* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 381 disassembly lines (live_camera/fn_1_107B8.c) */
 #pragma opt_common_subs off
 void fn_1_107B8(Sig_fn_1_101D0_Fn_1_101D0_State *cam) {
     f32 dz;
@@ -3122,7 +3079,9 @@ void fn_1_107B8(Sig_fn_1_101D0_Fn_1_101D0_State *cam) {
     u32 nrec;
     u32 nball;
     Vec3 *ball;
+    /* WARNING: compiler-diff device, not original code: one-field loop counter; a plain u32 changes 16 disassembly lines */
     struct { u32 value; } i;
+    /* WARNING: compiler-diff device, not original code: one-field counter; a plain u32 changes 8 disassembly lines */
     struct { u32 value; } n;
     s32 best;
     s32 *p;
@@ -3130,6 +3089,7 @@ void fn_1_107B8(Sig_fn_1_101D0_Fn_1_101D0_State *cam) {
     f32 dy;
     s32 changed;
     f32 dx;
+    /* WARNING: compiler-diff device, not original code: one-field flag; a plain u8 changes 16 disassembly lines */
     struct { u8 value; } none;
     f32 d;
     f32 bestd;
@@ -3252,11 +3212,7 @@ void fn_1_107B8(Sig_fn_1_101D0_Fn_1_101D0_State *cam) {
 /* fzgx:end fn_1_107B8 */
 
 /* fzgx:begin fn_1_10AF0 */
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
+#include "game/vec3.h"
 
 /* one livecam_N.bin record (0x28 bytes) */
 typedef struct {
@@ -3433,7 +3389,9 @@ void fn_1_10AF0(LiveCamState *cam) {
     u32 nrec;
     u32 nball;
     Vec3 *ball;
+    /* WARNING: compiler-diff device, not original code: one-field loop counter; a plain u32 changes 16 disassembly lines */
     struct { u32 value; } i;
+    /* WARNING: compiler-diff device, not original code: one-field counter; a plain u32 changes 8 disassembly lines */
     struct { u32 value; } n;
     s32 best;
     s32 *p;
@@ -3441,9 +3399,11 @@ void fn_1_10AF0(LiveCamState *cam) {
     f32 dy;
     s32 changed;
     f32 dx;
+    /* WARNING: compiler-diff device, not original code: one-field flag; a plain u8 changes 16 disassembly lines */
     struct { u8 value; } none;
     f32 d;
     f32 bestd;
+    /* WARNING: compiler-diff device, not original code: one-field f32 carrier; a plain f32 changes 20 disassembly lines */
     struct { f32 value; } frames;
     u16 point;
     s32 list[20];
@@ -3665,6 +3625,7 @@ typedef struct {
     u8 unk_7C[0x40];
 } Cam;
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 22 disassembly lines (live_camera/fn_1_1138C.c) */
 #pragma opt_propagation off
 static inline void fn_1_1138C_read_pointer(Cam *c, Obj_1_data_4754 *base, s32 index)
 {
@@ -3679,6 +3640,7 @@ void fn_1_1138C(Cam *c)
     V3 a;
     u32 r;
     u32 state;
+    /* WARNING: compiler-diff device, not original code: one-field f32 carrier; a plain f32 changes 20 disassembly lines */
     struct { f32 value; } t;
     extern const f32 lbl_1_rodata_604;
 
@@ -3719,6 +3681,7 @@ void fn_1_1138C(Cam *c)
 /* fzgx:end fn_1_1138C */
 
 /* fzgx:begin fn_1_11544 */
+/* WARNING: compiler-diff device, not original code: fp_contract off; removal changes 89 disassembly lines (live_camera/fn_1_11544.c) */
 #pragma fp_contract off
 
 
@@ -3735,9 +3698,7 @@ extern void lbl_8006E1B0(void *, void *);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
 
-typedef struct {
-    f32 x, y, z;
-} Vec3f;
+#include "game/vec3.h"
 
 typedef struct LiveCam {
     u8 unk_0;
@@ -3753,12 +3714,14 @@ typedef struct LiveCam {
     Vec3f unk_70;
 } LiveCam;
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 50 disassembly lines (live_camera/fn_1_11544.c) */
 #pragma opt_propagation off
 void fn_1_11544(LiveCam *cam) {
+    /* WARNING: compiler-diff device, not original code: x copy carriers; reading cam->unk_70.x directly changes 30 disassembly lines */
     f32 fzgx_live_;
+    /* WARNING: compiler-diff device, not original code: x copy carriers; reading cam->unk_70.x directly changes 30 disassembly lines */
     f32 fzgx_live;
     Vec3f sp_3c;
-    s16 *fzgx_value;
     f32 sp_48[3][4];
     Vec3f sp_30;
     Vec3f sp_24;
@@ -3767,9 +3730,13 @@ void fn_1_11544(LiveCam *cam) {
     u32 sp_10;
     f32 rate;
     f32 factor;
+    /* WARNING: compiler-diff device, not original code: y/z copy carriers; reading cam->unk_70.y/z directly changes 30 disassembly lines */
     f32 fzgx_y_;
+    /* WARNING: compiler-diff device, not original code: y/z copy carriers; reading cam->unk_70.y/z directly changes 30 disassembly lines */
     f32 fzgx_y;
+    /* WARNING: compiler-diff device, not original code: y/z copy carriers; reading cam->unk_70.y/z directly changes 30 disassembly lines */
     f32 fzgx_z_;
+    /* WARNING: compiler-diff device, not original code: y/z copy carriers; reading cam->unk_70.y/z directly changes 30 disassembly lines */
     f32 fzgx_z;
     f32 z;
     f32 y;
@@ -3787,8 +3754,7 @@ void fn_1_11544(LiveCam *cam) {
             cam->unk_14 = 0;
         }
         if (cam->unk_14 < 0) {
-            fzgx_value = &cam->unk_14;
-            *fzgx_value = 5;
+            cam->unk_14 = 5;
         }
     }
 
@@ -4000,8 +3966,7 @@ extern s32 lbl_8006D24C(f32, f32);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
 
-static inline f32 fn_1_1189C_read_pointer(LcVec * owner) { return owner->z; }
-#pragma opt_propagation off
+#include "mathutil_mtxA_set_translate.h"
 void fn_1_1189C(LcState *state) {
     LcPool *pool;
     LcMtx mtx;
@@ -4011,7 +3976,6 @@ void fn_1_1189C(LcState *state) {
     u32 id;
     u32 buf10;
     f32 v;
-    f32 y, z, x;
 
     pool = &lbl_1_rodata_4E0;
     if (state->mode == 3 && fn_1_40BB4() == 0) {
@@ -4037,12 +4001,7 @@ void fn_1_1189C(LcState *state) {
         fn_1_8636C(state->unk_6, &mtx);
         fn_8006FA24(&state->unk_7C, &mtx, &state->unk_7C, pool->unk_4C);
         lbl_8006DC6C(&state->unk_7C);
-        x = pos.x;
-        y = pos.y;
-        z = fn_1_1189C_read_pointer(&pos);
-        *(f32 *)(0xE0000000 + 0x0C) = x;
-        *(f32 *)(0xE0000000 + 0x1C) = y;
-        *(f32 *)(0xE0000000 + 0x2C) = z;
+        mathutil_mtxA_set_translate((Vec3 *)&pos);
     }
     lbl_8006E1B0(&lbl_1_data_47B4[state->unk_4].a, &state->unk_1C);
     lbl_8006E1B0(&lbl_1_data_47B4[state->unk_4].b, &state->unk_4C);
@@ -4055,18 +4014,13 @@ void fn_1_1189C(LcState *state) {
     fn_1_15578(&state->unk_1C, &target, &buf10, buf18, 0x40005, &id, 1, 0, 0, 0);
     lbl_8006DB30();
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_1189C */
 
 /* fzgx:begin fn_1_11ABC */
 #include "dolphin/hw_regs.h"
 #include "types.h"
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
+#include "game/vec3.h"
 
 typedef struct {
     Vec3 v;              /* 0x00 */
@@ -4098,7 +4052,7 @@ typedef struct {
 extern void fn_1_862D4(s16, Vec3 *);
 extern void fn_8006E2B0(void *, Vec3 *);
 
-#pragma opt_propagation off
+#include "mathutil_mtxA_set_translate.h"
 void fn_1_11ABC(LiveCamera *camera) {
     Vec3 first;
     Vec3 second;
@@ -4120,18 +4074,9 @@ void fn_1_11ABC(LiveCamera *camera) {
     fn_1_8636C(camera->unk_6, &camera->unk_7C);
     fn_1_862A8(camera->unk_6, &camera->unk_70);
 
-    camera->unk_34 = (*(CameraData (*)[])&lbl_1_data_4AA0)[camera->unk_4].v;
+    camera->unk_34 = lbl_1_data_4AA0[camera->unk_4].unk_0;
 
-    {
-        f32 m2, m1, m0;
-        f32 *mtx = (f32 *)(LC_BASE + 0x0);
-        m0 = first.x;
-        m1 = first.y;
-        m2 = first.z;
-        mtx[3] = m0;
-        mtx[7] = m1;
-        mtx[11] = m2;
-    }
+    mathutil_mtxA_set_translate(&first);
 
     lbl_8006DC6C(&camera->unk_7C);
     lbl_8006E1B0(&camera->unk_34, &camera->unk_1C);
@@ -4141,7 +4086,6 @@ void fn_1_11ABC(LiveCamera *camera) {
     camera->unk_5C = (s16)-lbl_8006D24C(second.x, second.y);
     camera->unk_58 = 55.0f;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_11ABC */
 
 /* fzgx:begin fn_1_11C08 */
@@ -4177,8 +4121,8 @@ extern void lbl_8006DB30(void);
 
 /* fp_contract off: retail keeps each product separate (fmuls; fadds). opt_propagation off, with the x/y/z
  * temporaries for the locked-cache stores, gives retail's register colouring (as in fn_1_11544) */
+/* WARNING: compiler-diff device, not original code: fp_contract off; removal changes 200 disassembly lines (live_camera/fn_1_11C08.c) */
 #pragma fp_contract off
-#pragma opt_propagation off
 
 /* moves dst toward src by rate * f of the difference, per component */
 static inline void fn_1_11C08_follow(fn_1_11C08_Vec *dst, f32 *src, f32 rate, f32 f) {
@@ -4186,6 +4130,7 @@ static inline void fn_1_11C08_follow(fn_1_11C08_Vec *dst, f32 *src, f32 rate, f3
     dst->y = dst->y + f * (rate * (src[1] - dst->y));
     dst->z = dst->z + f * (rate * (src[2] - dst->z));
 }
+#include "mathutil_mtxA_set_translate.h"
 
 void fn_1_11C08(fn_1_11C08_Camera *cam) {
     f32 mtx[3][4];
@@ -4195,9 +4140,6 @@ void fn_1_11C08(fn_1_11C08_Camera *cam) {
     fn_1_11C08_Vec hit;
     u32 id;
     u32 buf;
-    f32 z;
-    f32 y;
-    f32 x;
 
     if (cam->unk_0 == 3 && fn_1_40BB4() == 0) {
         if ((lbl_1_bss_9F8.unk_A >> 1) & 1) {
@@ -4219,12 +4161,7 @@ void fn_1_11C08(fn_1_11C08_Camera *cam) {
                       lbl_1_data_4484.unk_0);
     fn_1_862D4(cam->unk_6, &pos);
     lbl_8006DC6C(mtx);
-    x = pos.x;
-    y = pos.y;
-    z = pos.z;
-    ((f32 *)LC_BASE)[3] = x;
-    ((f32 *)LC_BASE)[7] = y;
-    ((f32 *)LC_BASE)[11] = z;
+    mathutil_mtxA_set_translate((Vec3 *)&pos);
     lbl_8006E1B0(&cam->unk_34, &cam->unk_1C);
     cam->unk_4C = pos;
     fn_1_862A8(cam->unk_6, &up);
@@ -4235,7 +4172,6 @@ void fn_1_11C08(fn_1_11C08_Camera *cam) {
     fn_1_15578(&cam->unk_1C, &target, &buf, &hit, 0x40005, &id, 1, 0, 0, 0);
     lbl_8006DB30();
 }
-#pragma opt_propagation reset
 #pragma fp_contract reset
 /* fzgx:end fn_1_11C08 */
 
@@ -4311,7 +4247,7 @@ static inline f32 fn_1_11E98_dist2(Cam11E98Vec *a, Cam11E98Vec *b) {
 // Write a translation into the current (locked-cache) matrix.
 
 // Pick the camera point nearest to the current target point and aim the camera from it.
-#pragma opt_propagation off
+#include "mathutil_mtxA_set_translate.h"
 void fn_1_11E98(Cam11E98 *cam) {
     u8 mtx[0x30];
     Cam11E98Vec target;
@@ -4355,24 +4291,11 @@ void fn_1_11E98(Cam11E98 *cam) {
     lbl_8006DD14(mtx, cam->unk_7C);
     fn_1_862D4(lbl_1_bss_17F8, &point);
     lbl_8006DC6C(mtx);
-    {
-        {
-            f32 fzgx_lc0_z;
-            f32 fzgx_lc0_y;
-            f32 fzgx_lc0_x;
-            fzgx_lc0_x = point.x;
-            fzgx_lc0_y = point.y;
-            fzgx_lc0_z = point.z;
-            *(f32 *)(0xE0000000 + 0x0C) = fzgx_lc0_x;
-            *(f32 *)(0xE0000000 + 0x1C) = fzgx_lc0_y;
-            *(f32 *)(0xE0000000 + 0x2C) = fzgx_lc0_z;
-        }
-    }
+    mathutil_mtxA_set_translate((Vec3 *)&point);
     up = lbl_1_rodata_63C;
     lbl_8006E1B0(&up, &cam->pos);
     cam->unk_4C = target;
 }
-#pragma opt_propagation reset
 /* fzgx:end fn_1_11E98 */
 
 /* fzgx:begin fn_1_1212C noprologue */
@@ -4491,15 +4414,7 @@ extern s32 lbl_8006D24C(f32, f32);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DB30(void);
 
-/* Translation column of the current matrix in the locked cache. */
-static inline void Lc1212C_SetCurMtxTrans(const volatile Lc1212CVec *v) {
-    f32 x = v->x;
-    f32 y = v->y;
-    f32 z = v->z;
-    *(f32 *)(0xE0000000 + 0x0C) = x;
-    *(f32 *)(0xE0000000 + 0x1C) = y;
-    *(f32 *)(0xE0000000 + 0x2C) = z;
-}
+#include "mathutil_mtxA_set_translate.h"
 
 /* Squared distance between two points. */
 static inline f32 Lc1212C_Dist2(Lc1212CVec *a, Lc1212CVec *b) {
@@ -4600,7 +4515,7 @@ void fn_1_1212C(Lc1212C *cam) {
 
     switch (cam->unk_4) {
     case 0:
-        Lc1212C_SetCurMtxTrans(&pt);
+        mathutil_mtxA_set_translate((Vec3 *)&pt);
         lbl_8006DC6C(mtx);
         {
             Lc1212CVec v = {0.0f, 2.5f, 5.0f};
@@ -4612,7 +4527,7 @@ void fn_1_1212C(Lc1212C *cam) {
     case 1:
     case 3:
     case 4:
-        Lc1212C_SetCurMtxTrans(&pt);
+        mathutil_mtxA_set_translate((Vec3 *)&pt);
         lbl_8006DC6C(mtx);
         fn_8006ED0C(&pt, &eye, rot);
         mathutil_mtxA_rotate_y(rot[1]);
@@ -4672,19 +4587,18 @@ extern void fn_1_6DD0(void *);
 extern u32 *fn_1_1289C(u32 *);
 
 // Prints the live-camera status text for the current camera event.
-#pragma opt_common_subs off
 void fn_1_12620(s32 arg0) {
     u8 *base = lbl_1_data_43B8;
     char buf[0x74];
 
     fn_80006E10((base + 0x280));
-    if (*(s16 *)&lbl_1_bss_960 == 0xA) {
+    if (lbl_1_bss_960 == 0xA) {
         sprintf(buf, (const char *)(base + 0x284), arg0);
         if (fn_1_465D0(buf, 1) == -1) {
             sprintf(buf, (const char *)(base + 0x2A0));
             fn_1_465D0(buf, 1);
         }
-    } else if (*(s16 *)&lbl_1_bss_960 == 0xE) {
+    } else if (lbl_1_bss_960 == 0xE) {
         if (lbl_1_bss_525C.unk_191 & 2) {
             switch (lbl_1_bss_525C.unk_192) {
             case 4:
@@ -4727,7 +4641,7 @@ void fn_1_12620(s32 arg0) {
     }
     fn_80006E10((base + 0x350));
 }
-#pragma opt_common_subs reset
+
 /* fzgx:end fn_1_12620 */
 
 /* fzgx:begin fn_1_12850 */
@@ -4961,28 +4875,7 @@ typedef struct Sig_ADXT_Stop_ADXTHandle {
 
 /* end game/main_rel/adxt_stop_types.h */
 
-/* begin game/vec3.h (deltawave784/fzgx, CC0) */
-#ifndef GAME_VEC3_H
-#define GAME_VEC3_H
-
-// Three-float vector shared by the main_rel type headers (camera, car, font, ghost,
-// live_camera each carried an identical private copy); Vec3f likewise (car, screen_effect,
-// stcoli). Hand-owned (librarian).
-
-
-typedef struct Vec3 {
-    f32 x;
-    f32 y;
-    f32 z;
-} Vec3;
-
-typedef struct Vec3f {
-    f32 x, y, z;
-} Vec3f;
-
-#endif  // GAME_VEC3_H
-
-/* end game/vec3.h */
+#include "game/vec3.h"
 
 typedef struct {
     u32 flags;
@@ -5156,6 +5049,7 @@ extern u32 *fn_1_1304C(Obj_1_bss_3B30 *, u32);
 u32 fn_1_12FD4(u32 arg0, u32 arg1, u32 arg2) {
     u32 *t0;
     /* Publish the cleared header before updating the request fields. */
+    /* WARNING: compiler-diff device, not original code: volatile request pointer; a plain pointer changes 45 disassembly lines */
     volatile LiveCameraRequest *obj = (LiveCameraRequest *)&lbl_1_bss_3B30;
     obj->unk_0 = 0;
     obj->unk_80 = arg1;

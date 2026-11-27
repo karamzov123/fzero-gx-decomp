@@ -242,11 +242,9 @@ static void fzgx_bss_layout(void) {
 #pragma section code_type ".text"
 
 void fn_1_9FFD8(void) {
-    u32 fzgx_value;
     f32 f0;
     u32 v0;
     u32 v1;
-    int lab_t1;
     u32 t11;
     u32 t12;
     u32 t17;
@@ -267,8 +265,7 @@ void fn_1_9FFD8(void) {
     fn_8004E59C(0);
     fn_800411F4();
     fn_8004BBA4((u32)fn_1_9FF50, 0);
-    fzgx_value = 0;
-    fzgx_obj_lbl_1_bss_6EAB4 = fzgx_value;
+    fzgx_obj_lbl_1_bss_6EAB4 = 0;
     lbl_1_bss_6EAB4__fzgx_offset_4 = 0;
     fzgx_obj_lbl_1_bss_6EAB4 = 0;
     lbl_1_bss_6EAB4__fzgx_offset_4 = 0;
@@ -283,8 +280,7 @@ void fn_1_9FFD8(void) {
     lbl_1_bss_6EAC6__fzgx_offset_2 = t11;
     t12 = ARAlloc(0x6be000);
     lbl_1_bss_6EAC6__fzgx_offset_6 = t12;
-    lab_t1 = 0;
-    fn_80008BEC((void *)lbl_1_bss_6EAC6__fzgx_offset_2, lab_t1, 0x28000);
+    fn_80008BEC((void *)lbl_1_bss_6EAC6__fzgx_offset_2, 0, 0x28000);
     fn_80068BFC(1, 0x28000, 0x6be000, lbl_1_bss_6EAC6__fzgx_offset_2, lbl_1_bss_6EAC6__fzgx_offset_6);
     fn_800658A8((u32)fn_1_A04AC);
     fn_8006589C((u32)fn_1_9FF54);
@@ -292,8 +288,7 @@ void fn_1_9FFD8(void) {
     fn_80065890(t17);
     t19 = fn_1_45D0(lbl_801A6410, 0x974a0, &lbl_1_data_33F1C, 0x10b);
     fzgx_obj_lbl_1_bss_6EAD0 = t19;
-    lab_t1 = 0;
-    fn_80008BEC((void *)t19, lab_t1, 0x974a0);
+    fn_80008BEC((void *)t19, 0, 0x974a0);
     t21 = fn_8004CD70(2, (fzgx_obj_lbl_1_bss_6EAD0 + 16), 0x4a248);
     v0 = fzgx_obj_lbl_1_bss_6EAD0;
     *(u32 *)((u8 *)v0 + 0) = t21;
@@ -1195,7 +1190,7 @@ void fn_1_A0AA4(void) {
     if (fn_1_D357C() != 0) {
         return;
     }
-    if (*(s16 *)&lbl_1_bss_960 == 1 && lbl_1_bss_962 == 0x10) {
+    if (lbl_1_bss_960 == 1 && lbl_1_bss_962 == 0x10) {
         return;
     }
     if (fzgx_obj_lbl_1_bss_6EAD0[0] != NULL) {
@@ -1512,7 +1507,7 @@ void fn_1_A0D7C(void) {
     void *buffer_44;
     u32 length_8;
     void *buffer_8;
-    switch (*(s16 *)&lbl_1_bss_960) {
+    switch (lbl_1_bss_960) {
     case 7:
         DVDOpen((const char *)lbl_1_data_33F0C.unk_0, &loc_134);
         length_134 = loc_134.length;
@@ -1592,7 +1587,7 @@ void fn_1_A0D7C(void) {
 extern s16 lbl_1_bss_962;
 
 void fn_1_A116C(void) {
-    switch ((*(s16 *)&lbl_1_bss_960)) {
+    switch (lbl_1_bss_960) {
     case 2:
     case 8:
     case 9:
@@ -1854,7 +1849,7 @@ void fn_1_A1364(void) {
     if (fn_1_D357C() != 0) {
         return;
     }
-    if (*(s16 *)&lbl_1_bss_960 == 1 && lbl_1_bss_962 == 0x10) {
+    if (lbl_1_bss_960 == 1 && lbl_1_bss_962 == 0x10) {
         return;
     }
     if (fzgx_obj_lbl_1_bss_6EAD0[0] != NULL) {
@@ -2446,6 +2441,7 @@ static void fzgx_bss_layout(void) {
 #define S_TARGET0 lbl_1_bss_6F31A__fzgx_offset_6
 #define S_TARGET1 lbl_1_bss_6F31A__fzgx_offset_A
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 299 disassembly lines (sound/fn_1_A1964.c) */
 #pragma opt_propagation off
 
 static inline void setup(s32 h, u32 *handles, u8 id) {
@@ -2725,11 +2721,12 @@ static inline void play(u8 track) {
     }
     S_TRACK = track;
 }
+/* WARNING: compiler-diff device, not original code: opt_dead_assignments off; removal changes 112 disassembly lines (sound/fn_1_A1DCC.c) */
 #pragma opt_dead_assignments off
 void fn_1_A1DCC(u8 arg0) {
     s8 track;
     /* All guards share the retail epilogue. */
-    if (*(s16 *)&lbl_1_bss_960 == 10 || !S_HANDLES || (s32)fn_1_F2F34() != 0) goto end;
+    if (lbl_1_bss_960 == 10 || !S_HANDLES || (s32)fn_1_F2F34() != 0) goto end;
     S_TRACK = 255;
     if (arg0 > 45) track = -1;
     else if (lbl_1_bss_8CA24 || lbl_1_bss_8B5F0) track = 44;
@@ -3419,7 +3416,7 @@ void fn_1_A24CC(void) {
     s8 slot;
     u32 flags;
 
-    if (*(s16 *)&lbl_1_bss_960 != 2 && *(s16 *)&lbl_1_bss_960 != 9) {
+    if (lbl_1_bss_960 != 2 && lbl_1_bss_960 != 9) {
         return;
     }
     if (fn_1_3F0C8() != 0x29) {
@@ -3819,6 +3816,7 @@ void fn_1_A266C(void) {
     if (fzgx_obj_lbl_1_bss_6EAC6) {
         for (i = 0; (s32)i < 4; i++) {
             /* fzgx-allow: preserve the signed byte read before the narrowing subtraction. */
+            /* WARNING: compiler-diff device, not original code: volatile s8 read; a plain read changes 125 disassembly lines */
             level = *(volatile s8 *)&fzgx_obj_lbl_1_bss_6F1E4[i].unk_2;
             level -= 2;
             if (level < 0) {
@@ -3879,6 +3877,7 @@ extern const f32 lbl_1_rodata_4474;
 extern s32 fn_800672E4(u32, s32);
 extern u32 fn_8004BED0(void *);
 
+/* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 62 disassembly lines (sound/fn_1_A2A70.c) */
 #pragma opt_common_subs off
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_6EA98;
@@ -3990,11 +3989,13 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
+/* WARNING: compiler-diff device, not original code: opt_dead_assignments off; removal changes 119 disassembly lines (sound/fn_1_A2A70.c) */
 #pragma opt_dead_assignments off
 void fn_1_A2A70(u32 arg0, s32 arg1) {
     s32 v0_2;
     f32 v1;
     s32 v0;
+    /* WARNING: compiler-diff device, not original code: volatile stack slot; a plain s32 changes 178 disassembly lines */
     volatile s32 loc_8;  /* fzgx-allow: S2 retail round-trips the float through a stack slot */
     u8 *v11;
     s32 i;
@@ -4009,17 +4010,17 @@ void fn_1_A2A70(u32 arg0, s32 arg1) {
             lbl_1_bss_6EAB4__fzgx_offset_C = lbl_1_rodata_446C / arg1;
         }
         if (arg0 & 4) {
-            lbl_1_bss_6F31A__fzgx_offset_6 = (s32)fn_8004BED0((*(void ** *)&fzgx_obj_lbl_1_bss_6EAD0)[0]);
-            v1 = lbl_1_rodata_446C + (s32)fn_8004BED0((*(void ** *)&fzgx_obj_lbl_1_bss_6EAD0)[0]);
+            lbl_1_bss_6F31A__fzgx_offset_6 = (s32)fn_8004BED0(((void **)fzgx_obj_lbl_1_bss_6EAD0)[0]);
+            v1 = lbl_1_rodata_446C + (s32)fn_8004BED0(((void **)fzgx_obj_lbl_1_bss_6EAD0)[0]);
             fzgx_obj_lbl_1_bss_6EAB4 &= ~1;
             lbl_1_bss_6EAB4__fzgx_offset_8 = v1 / arg1;
         }
         if (arg0 & 8) {
-            lbl_1_bss_6F31A__fzgx_offset_A = (s32)fn_8004BED0((*(void ** *)&fzgx_obj_lbl_1_bss_6EAD0)[1]);
-            v1 = lbl_1_rodata_446C + (s32)fn_8004BED0((*(void ** *)&fzgx_obj_lbl_1_bss_6EAD0)[1]);
+            lbl_1_bss_6F31A__fzgx_offset_A = (s32)fn_8004BED0(((void **)fzgx_obj_lbl_1_bss_6EAD0)[1]);
+            v1 = lbl_1_rodata_446C + (s32)fn_8004BED0(((void **)fzgx_obj_lbl_1_bss_6EAD0)[1]);
             lbl_1_bss_6EAB4__fzgx_offset_C = v1 / arg1;
             if (arg0 & 0x40) {
-                v0 = (s32)(fn_8004BED0((*(void ** *)&fzgx_obj_lbl_1_bss_6EAD0)[1]) + 600) / arg1;
+                v0 = (s32)(fn_8004BED0(((void **)fzgx_obj_lbl_1_bss_6EAD0)[1]) + 600) / arg1;
                 loc_8 = (lbl_1_bss_6EAB4__fzgx_offset_C = v0);
                 lbl_1_bss_6EAB4__fzgx_offset_C = loc_8;
                 if (lbl_1_bss_6EAB4__fzgx_offset_C < lbl_1_rodata_4470) {
@@ -4267,6 +4268,7 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
+/* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 20 disassembly lines (sound/fn_1_A2FC8.c) */
 #pragma opt_common_subs off
 void fn_1_A2FC8(s32 arg0, f32 arg1, u32 unused2, u32 unused3, u32 unused4) {
     
@@ -4276,6 +4278,7 @@ void fn_1_A2FC8(s32 arg0, f32 arg1, u32 unused2, u32 unused3, u32 unused4) {
     s32 found = 0;
     s32 idx;
     f32 f0;
+    /* WARNING: compiler-diff device, not original code: one-field f32 carrier; a plain f32 changes 22 disassembly lines */
     struct { f32 value; } f1;
 
     for (i = 0; i < lbl_1_bss_6F2C4; i++) {
@@ -4487,6 +4490,7 @@ extern void fn_80067898(u32 arg0);
 extern const f32 lbl_1_rodata_4544;
 extern const f32 lbl_1_rodata_4548;
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 4 disassembly lines (sound/fn_1_A33F0.c) */
 #pragma opt_propagation off
 void fn_1_A33F0(s32 arg0, f32 arg1) {
     SoundState *st = (SoundState *)&lbl_1_bss_6EA98;
@@ -4550,6 +4554,7 @@ extern u32 lbl_1_bss_6EA98;
 extern s32 fn_1_3F864(void);
 extern u32 fn_1_864E8(s32 arg0);
 extern void fn_80067898(u32 arg0);
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 12 disassembly lines (sound/fn_1_A358C.c) */
 #pragma opt_propagation off
 void fn_1_A358C(s32 arg0) {
     u8* base = (u8*)&lbl_1_bss_6EA98;
@@ -4639,6 +4644,7 @@ static void fzgx_bss_layout(void) {
 
 #define ABS(v) __abs(v)
 
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 36 disassembly lines (sound/fn_1_A3654.c) */
 #pragma opt_propagation off
 void fn_1_A3654(void *player, u32 id) {
     f32 speed;
@@ -4724,6 +4730,7 @@ extern f32 fn_1_8652C(s32 arg0);
 extern const f32 lbl_1_rodata_454C;
 extern void fn_80067344(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
 extern void fn_80067898(u32 arg0);
+/* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 38 disassembly lines (sound/fn_1_A3A1C.c) */
 #pragma opt_propagation off /* as the other sound.c blocks */
 void fn_1_A3A1C(void) {
     SoundState *st = (SoundState *)&lbl_1_bss_6EA98;
@@ -5705,11 +5712,13 @@ void fn_1_A5330(u8 value, s16 index) {
 
 extern void fn_80067898(u32 value);
 
+/* WARNING: compiler-diff device, not original code: opt_dead_assignments off; removal changes 62 disassembly lines (sound/fn_1_A4BC8.c) */
 #pragma opt_dead_assignments off
 void fn_1_A5344(u8 value, s16 index) {
     u8 *table;
     s32 i;
 
+    /* WARNING: compiler-diff device, not original code: retail addresses lbl_1_bss_6F41C/6F1D8/6F1DC off the lbl_1_bss_6EA98 section base; naming the objects changes 205 lines (needs the TU-level section layout) */
     table = (*(u8 (*)[])&lbl_1_bss_6EA98) + 0x984;
     if (table[index] > value) {
         for (i = 0; i < (table[index] - value); i++) {
@@ -5913,6 +5922,7 @@ void fn_1_A5594(u32 arg0, Fn183D28Vec3 *pos)
     f32 dy;
     f32 dz;
     f32 scaled;
+    /* WARNING: compiler-diff device, not original code: one-field f32 carrier; a plain f32 changes 14 disassembly lines */
     struct { f32 value; } distance;
     f32 t;
     u8 vol;
@@ -5934,6 +5944,7 @@ void fn_1_A5594(u32 arg0, Fn183D28Vec3 *pos)
     lbl_8006E1B0(pos, &rel);
     fn_8006EF10(&rel, &dist, &angle);
     {
+        /* WARNING: compiler-diff device, not original code: one-field f32 carrier; a plain f32 changes 16 disassembly lines */
         struct { f32 value; } hi;
         hi.value = lbl_1_rodata_4470;
         t = hi.value - distance.value / lbl_1_rodata_48C4;

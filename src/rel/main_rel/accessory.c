@@ -4511,11 +4511,11 @@ void fn_1_107930(fn_1_107930_Object *arg) {
         if (!v7) continue;
         if (!strstr((char *)v7->unk_4, "_vtx")) continue;
         if (strcmp((void *)v7->unk_4, (void *)"DAI_SCARF_vtx") == 0 &&
-            *(s16 *)&lbl_1_bss_960 == 1 && p_lbl_1_bss_8B3A0->unk_4 == 4) continue;
+            lbl_1_bss_960 == 1 && p_lbl_1_bss_8B3A0->unk_4 == 4) continue;
         if (strcmp((void *)v7->unk_4, (void *)"SAN_SCARF_vtx") == 0 &&
-            *(s16 *)&lbl_1_bss_960 == 1 && p_lbl_1_bss_8B3A0->unk_4 == 4) continue;
+            lbl_1_bss_960 == 1 && p_lbl_1_bss_8B3A0->unk_4 == 4) continue;
         if (strcmp((void *)v7->unk_4, (void *)"GEN_SCARF_vtx") == 0 &&
-            *(s16 *)&lbl_1_bss_960 == 1 && p_lbl_1_bss_8B3A0->unk_4 == 4) continue;
+            lbl_1_bss_960 == 1 && p_lbl_1_bss_8B3A0->unk_4 == 4) continue;
         if (arg0->unk_8C == 2) {
             v25 = lbl_1_data_404BC;
             v9 = 0;
@@ -4692,7 +4692,6 @@ void fn_1_107F50(void *arg0) {
 /* fzgx:begin fn_1_107F74 */
 /* VIEWS */
 #define lbl_1_bss_86ED0 (*(Obj_1_bss_86ED0_L *)&lbl_1_bss_86ED0)
-#define lbl_1_bss_960 (*(s16 *)&lbl_1_bss_960)
 /* begin rel/main_rel/globals.h (deltawave784/fzgx@7d73e43f (CC0)) */
 
 #define REL_MAIN_REL_GLOBALS_H
@@ -4768,7 +4767,6 @@ void fn_1_107F74(BgObj *obj, int flag) {
 }
 
 #undef lbl_1_bss_86ED0
-#undef lbl_1_bss_960
 #undef REL_MAIN_REL_GLOBALS_H
 #undef REL_MAIN_REL_BG_COMMON_H
 #undef FZGX_TYPES_LBL_1_BSS_86ED0
@@ -8806,7 +8804,6 @@ void fn_1_111980(Work_111980 *arg0) {
 #define lbl_1_bss_89760 (*(Obj_1_bss_89760_L *)&lbl_1_bss_89760)
 #define lbl_1_bss_89770 (*(Obj_1_bss_89770_L *)&lbl_1_bss_89770)
 #define lbl_1_bss_8B3A0 (*(Obj_1_bss_8B3A0_L *)&lbl_1_bss_8B3A0)
-#define lbl_1_bss_960 (*(s16 *)&lbl_1_bss_960)
 #define lbl_1_bss_9F8 (*(Obj_1_bss_9F8_L *)&lbl_1_bss_9F8)
 #define lbl_1_bss_F68 (*(Obj_1_bss_F68_Target_L * *)&lbl_1_bss_F68)
 #define lbl_1_data_2A7E0 (*(Obj_1_data_2A7E0_L *)&lbl_1_data_2A7E0)
@@ -9195,7 +9192,6 @@ void fn_1_112F40(fn_1_10D2F0_Obj *obj) {
 #undef lbl_1_bss_89760
 #undef lbl_1_bss_89770
 #undef lbl_1_bss_8B3A0
-#undef lbl_1_bss_960
 #undef lbl_1_bss_9F8
 #undef lbl_1_bss_F68
 #undef lbl_1_data_2A7E0
@@ -16773,7 +16769,7 @@ void fn_1_128038(fn_1_128038_AccessoryObject *self) {
             }
         } else if (type == 6) {
             if (strcmp((void *)(fn_1_950E8(self->unk_C->unk_148)), "WIN_1ST") == 0 &&
-                *(s16 *)&lbl_1_bss_960 != 14) {
+                lbl_1_bss_960 != 14) {
                 lbl_8006D758();
                 mathutil_mtxA_rotate_z(0x4000);
                 lbl_8006DB74(mtx);

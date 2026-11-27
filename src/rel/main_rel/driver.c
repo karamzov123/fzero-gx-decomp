@@ -2461,7 +2461,7 @@ void fn_1_A96FC(void) {
     char buffer[0x48];
 
     lbl_1_bss_71670 = fn_1_451C();
-    sprintf(buffer, "fze.%s.rel", lbl_1_data_35A70[*(s16 *)&lbl_1_bss_960]);
+    sprintf(buffer, "fze.%s.rel", lbl_1_data_35A70[lbl_1_bss_960]);
     fn_1_A5AA0(buffer, &lbl_1_bss_71674);
 }
 /* fzgx:end fn_1_A96FC */

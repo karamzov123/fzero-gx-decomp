@@ -131,6 +131,7 @@ void fn_1_F5458(void *arg0, u32 count, f32 value, f32 *samples, void *table) {
     u8 work2[16];
     u8 work1[16];
     u8 work0[16];
+    /* WARNING: compiler-diff device, not original code: f64 argument carrier; the expression as the argument swaps an mr/li pair (4 lines) */
     f64 lab_t3;
 
     index = 0;
@@ -237,6 +238,7 @@ void fn_1_F57A8(f32 *out, f32 *in) {
 /* fzgx:end fn_1_F57A8 */
 
 /* fzgx:begin fn_1_F588C */
+/* WARNING: compiler-diff device, not original code: fp_contract off; removal changes 333 disassembly lines (spline/fn_1_F4F08.c) */
 #pragma fp_contract off
 
 extern const f32 lbl_1_rodata_6D7C;
@@ -1658,7 +1660,7 @@ s32 fn_1_F7BE4(s16 arg0) {
     u64 flags;
     s32 v1;
     t0 = 1ULL << arg0;
-    flags = ((u64)lbl_1_bss_7F0C0.unk_0 << 32) | lbl_1_bss_7F0C0.unk_4;
+    flags = lbl_1_bss_7F0C0.unk_0;
     if ((flags & t0) != 0) {
         v1 = 1;
     } else {
@@ -1673,7 +1675,7 @@ extern u64 __shl2i(u32, u32, s32);
 
 s16 fn_1_F7C48(s16 arg) {
     u64 mask = (u64)1 << arg;
-    u64 bits = ((u64)lbl_1_bss_7F0C0.unk_48 << 32) | lbl_1_bss_7F0C0.unk_4C;
+    u64 bits = lbl_1_bss_7F0C0.unk_48;
     s16 ret;
 
     if (bits & mask) {
@@ -1691,8 +1693,8 @@ extern u64 __shl2i(u32, u32, s32);
 void fn_1_F7CAC(s16 value) {
     u64 mask = (u64)1 << value;
 
-    *(u64 *)&lbl_1_bss_7F0C0.unk_0 |= mask;
-    *(u64 *)&lbl_1_bss_7F0C0.unk_48 &= ~mask;
+    lbl_1_bss_7F0C0.unk_0 |= mask;
+    lbl_1_bss_7F0C0.unk_48 &= ~mask;
 }
 /* fzgx:end fn_1_F7CAC */
 
@@ -1769,7 +1771,7 @@ s32 fn_1_F7EDC(s16 value) {
     u64 mask;
 
     result = (u64)1 << value;
-    mask = *(u64 *)&lbl_1_bss_7F0C0 | *(u64 *)&lbl_1_bss_7F0C0.unk_18;
+    mask = lbl_1_bss_7F0C0.unk_0 | lbl_1_bss_7F0C0.unk_18;
     return (mask & result) != 0;
 }
 /* fzgx:end fn_1_F7EDC */
@@ -1781,28 +1783,28 @@ void fn_1_F7F48(s16 value) {
     Obj_1_bss_7F0C0 *p;
     u64 mask;
     u64 bit;
+    /* WARNING: compiler-diff device, not original code: one-field flag; a plain s32 changes 337 disassembly lines */
     struct { s32 value; } cond;
 
     bit = (u64)1 << value;
     p = (Obj_1_bss_7F0C0 *)&lbl_1_bss_7F0C0;
-    mask = *(u64 *)p | *(u64 *)&p->unk_18;
+    mask = p->unk_0 | p->unk_18;
     cond.value = 0;
     if (mask & bit) {
         cond.value = 1;
     }
     if (((0) == cond.value)) {
         if ((fn_1_8D5F0(value) & 0x20000000) == 0) {
-            *(u64 *)&lbl_1_bss_7F0C0.unk_48 |= bit;
+            lbl_1_bss_7F0C0.unk_48 |= bit;
         }
     }
-    *(u64 *)&p->unk_18 |= bit;
+    p->unk_18 |= bit;
 }
 /* fzgx:end fn_1_F7F48 */
 
 /* fzgx:begin fn_1_F8030 */
 // Clears the spline state counters.
 void fn_1_F8030(void) {
-    lbl_1_bss_7F0C0.unk_4C = 0;
     lbl_1_bss_7F0C0.unk_48 = 0;
 }
 /* fzgx:end fn_1_F8030 */
@@ -1829,13 +1831,13 @@ s32 fn_1_F809C(s32 value) {
     if (index > 63) {
         index = value - 64;
         mask = (u64)1 << index;
-        if (*(u64 *)&lbl_1_bss_7F0C0.unk_10 & mask) {
+        if (lbl_1_bss_7F0C0.unk_10 & mask) {
             return 1;
         }
         result = 0;
     } else {
         mask = (u64)1 << index;
-        if (*(u64 *)&lbl_1_bss_7F0C0.unk_8 & mask) {
+        if (lbl_1_bss_7F0C0.unk_8 & mask) {
             result = 1;
         } else {
             result = 0;
@@ -1850,10 +1852,10 @@ s32 fn_1_F8158(s32 value) {
     u64 mask;
     if ((s16)value > 63) {
         mask = __shl2i(0, 1, (s16)(value - 64));
-        return (*(u64 *)&lbl_1_bss_7F0C0.unk_58 & mask) ? 1 : 0;
+        return (lbl_1_bss_7F0C0.unk_58 & mask) ? 1 : 0;
     }
     mask = __shl2i(0, 1, (s16)value);
-    return (*(u64 *)&lbl_1_bss_7F0C0.unk_50 & mask) ? 1 : 0;
+    return (lbl_1_bss_7F0C0.unk_50 & mask) ? 1 : 0;
 }
 /* fzgx:end fn_1_F8158 */
 
@@ -1862,12 +1864,12 @@ void fn_1_F8214(s16 value) {
     u64 mask;
     if (value > 63) {
         mask = 1ULL << (s16)(value - 64);
-        *(u64 *)&lbl_1_bss_7F0C0.unk_10 |= mask;
-        *(u64 *)&lbl_1_bss_7F0C0.unk_58 &= ~mask;
+        lbl_1_bss_7F0C0.unk_10 |= mask;
+        lbl_1_bss_7F0C0.unk_58 &= ~mask;
     } else {
         mask = 1ULL << value;
-        *(u64 *)&lbl_1_bss_7F0C0.unk_8 |= mask;
-        *(u64 *)&lbl_1_bss_7F0C0.unk_50 &= ~mask;
+        lbl_1_bss_7F0C0.unk_8 |= mask;
+        lbl_1_bss_7F0C0.unk_50 &= ~mask;
     }
 }
 /* fzgx:end fn_1_F8214 */
@@ -1890,11 +1892,11 @@ int fn_1_F8334(s16 value) {
 
     if (value > 0x3f) {
         mask = 1ULL << (s16)(value - 0x40);
-        return (*(u64 *)&lbl_1_bss_7F0C0.unk_28 & mask) != 0 ? 1 : 0;
+        return (lbl_1_bss_7F0C0.unk_28 & mask) != 0 ? 1 : 0;
     }
 
     mask = 1ULL << value;
-    return (*(u64 *)&lbl_1_bss_7F0C0.unk_20 & mask) != 0 ? 1 : 0;
+    return (lbl_1_bss_7F0C0.unk_20 & mask) != 0 ? 1 : 0;
 }
 /* fzgx:end fn_1_F8334 */
 
@@ -1915,10 +1917,10 @@ void fn_1_F83F0(s16 arg0) {
 
     if (arg0 > 63) {
         mask = 1ULL << (s16)(arg0 - 64);
-        v0 = test_bits(*(u64 *)&lbl_1_bss_7F0C0.unk_28 & mask);
+        v0 = test_bits(lbl_1_bss_7F0C0.unk_28 & mask);
     } else {
         mask = 1ULL << arg0;
-        v0 = test_bits(*(u64 *)&lbl_1_bss_7F0C0.unk_20 & mask);
+        v0 = test_bits(lbl_1_bss_7F0C0.unk_20 & mask);
     }
     if (v0 == 0) {
         if ((fn_1_14D6D8(arg0) & 0x20000000) == 0) {
@@ -1927,15 +1929,15 @@ void fn_1_F83F0(s16 arg0) {
     }
     if (arg0 > 63) {
         mask = 1ULL << (s16)(arg0 - 64);
-        *(u64 *)&lbl_1_bss_7F0C0.unk_28 |= mask;
+        lbl_1_bss_7F0C0.unk_28 |= mask;
         if (v5 == 1) {
-            *(u64 *)&lbl_1_bss_7F0C0.unk_58 |= mask;
+            lbl_1_bss_7F0C0.unk_58 |= mask;
         }
     } else {
         mask = 1ULL << arg0;
-        *(u64 *)&lbl_1_bss_7F0C0.unk_20 |= mask;
+        lbl_1_bss_7F0C0.unk_20 |= mask;
         if (v5 == 1) {
-            *(u64 *)&lbl_1_bss_7F0C0.unk_50 |= mask;
+            lbl_1_bss_7F0C0.unk_50 |= mask;
         }
     }
 }
@@ -1943,9 +1945,7 @@ void fn_1_F83F0(s16 arg0) {
 
 /* fzgx:begin fn_1_F8580 */
 void fn_1_F8580(void) {
-    lbl_1_bss_7F0C0.unk_5C = 0;
     lbl_1_bss_7F0C0.unk_58 = 0;
-    lbl_1_bss_7F0C0.unk_54 = 0;
     lbl_1_bss_7F0C0.unk_50 = 0;
 }
 /* fzgx:end fn_1_F8580 */
@@ -2048,6 +2048,7 @@ void fn_1_F89C0(void) {
 /* fzgx:begin fn_1_F89E4 */
 // Returns the selected bit from the rolling flag mask.
 u32 fn_1_F89E4(u8 value) {
+    /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
     return __rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4672], (value + 1) & 0x1f, 31, 31);
 }
 /* fzgx:end fn_1_F89E4 */
@@ -2068,6 +2069,7 @@ void fn_1_F8A18(void) {
 /* fzgx:begin fn_1_F8A38 */
 // Tests the spline flag selected by the low byte of the input.
 u32 fn_1_F8A38(u32 value) {
+    /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
     return __rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4673], ((value & 0xff) + 1) & 0x1f, 31, 31);
 }
 /* fzgx:end fn_1_F8A38 */
@@ -2191,6 +2193,7 @@ u8 fn_1_F8C50(s32 arg0) {
     u32 shift = 32 - (arg0 * 2);
     u32 value = ((struct fn_1_F8C50_lbl_1_bss_7F0C0 *)&lbl_1_bss_7F0C0)->unk_4910;
     shift &= 31;
+    /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
     return __rlwnm(value, shift, 31, 31);
 }
 /* fzgx:end fn_1_F8C50 */
@@ -2226,6 +2229,7 @@ struct Spline_Bss_4914 {
 
 u8 fn_1_F8CF0(s32 shift) {
     u32 val = ((struct Spline_Bss_4914 *)&lbl_1_bss_7F0C0)->val;
+    /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
     return __rlwnm(val, (32 - shift) & 0x1F, 31, 31);
 }
 /* fzgx:end fn_1_F8CF0 */
@@ -2253,16 +2257,17 @@ void fn_1_F8D38(u32 value) {
 /* fzgx:end fn_1_F8D38 */
 
 /* fzgx:begin fn_1_F8D5C */
-struct fn_1_F8D5C_Copy440 { u32 a[110]; };
+typedef struct { s16 unk_0, unk_2, unk_4, unk_6, unk_8; } fn_1_F9028_Element;
+typedef struct { fn_1_F9028_Element elements[44]; } fn_1_F9028_Table;
 
-extern u32 lbl_1_rodata_6E38;
+extern const fn_1_F9028_Table lbl_1_rodata_6E38;
 extern void fn_80008BA8(void *, const void *, u32);
 
-void fn_1_F8D5C(u32 arg0, u32 arg1) {
-    struct fn_1_F8D5C_Copy440 loc_8;
-    /* frame */
-    loc_8 = *(struct fn_1_F8D5C_Copy440 *)&lbl_1_rodata_6E38;
-    fn_80008BA8((void *)arg1, ((u8 *)&loc_8 + ((s16)arg0 * 10)), 10);
+void fn_1_F8D5C(s16 index, fn_1_F9028_Element *dst) {
+    fn_1_F9028_Table loc_8;
+
+    loc_8 = lbl_1_rodata_6E38;
+    fn_80008BA8(dst, &loc_8.elements[index], 10);
 }
 /* fzgx:end fn_1_F8D5C */
 
@@ -2284,10 +2289,6 @@ typedef struct {
     const char *entries[44][6];
 } StringTable;
 
-typedef struct {
-    s16 values[220];
-} ValueTable;
-
 extern const StringTable lbl_1_rodata_7050;
 extern const char *lbl_1_data_2AB54[22];
 extern const char *lbl_1_data_2AA24[22];
@@ -2297,11 +2298,11 @@ extern char *sprintf(char *buffer, const char *format, ...);
 
 char *fn_1_F8E30(s16 index, s16 category, char *buffer) {
     StringTable table_a = lbl_1_rodata_7050;
-    ValueTable table_b = (*(const ValueTable *)&lbl_1_rodata_6E38);
+    fn_1_F9028_Table table_b = lbl_1_rodata_6E38;
     s16 result[5];
     int idx = index;
 
-    fn_80008BA8(result, table_b.values + idx * 5, 10);
+    fn_80008BA8(result, &table_b.elements[idx], 10);
 
     switch (result[1]) {
     case 3:
@@ -2333,17 +2334,8 @@ char *fn_1_F8E30(s16 index, s16 category, char *buffer) {
 /* fzgx:end fn_1_F8E30 */
 
 /* fzgx:begin fn_1_F9028 */
-typedef struct { s16 unk_0, unk_2, unk_4, unk_6, unk_8; } fn_1_F9028_Element;
-typedef struct { fn_1_F9028_Element elements[44]; } fn_1_F9028_Table;
-
 extern s32 fn_1_F9CA0(s32, u8);
 extern s32 fn_1_F21B8(s16);
-
-static inline void fn_1_F9028_get_element(fn_1_F9028_Element *dst, s16 index) {
-    fn_1_F9028_Table table;
-    table = (*(fn_1_F9028_Table *)&lbl_1_rodata_6E38);
-    fn_80008BA8(dst, &table.elements[index], 10);
-}
 
 static inline s16 fn_1_F9028_find_element_by_unk2(s16 unk_2, s16 nth) {
     fn_1_F9028_Element elem;
@@ -2353,7 +2345,7 @@ static inline s16 fn_1_F9028_find_element_by_unk2(s16 unk_2, s16 nth) {
     i = 0;
     count = 0;
     for (; i < 44; i++) {
-        fn_1_F9028_get_element(&elem, i);
+        fn_1_F8D5C(i, &elem);
         if (elem.unk_2 == unk_2) {
             if (count == nth) {
                 return i;
@@ -2368,7 +2360,7 @@ static inline s16 fn_1_F9028_get_element_index_in_unk2_group(s16 index) {
     fn_1_F9028_Element elem;
     s16 i;
 
-    fn_1_F9028_get_element(&elem, index);
+    fn_1_F8D5C(index, &elem);
     for (i = 0; ; i++) {
         if (fn_1_F9028_find_element_by_unk2(elem.unk_2, i) == index) {
             return i;
@@ -2385,7 +2377,7 @@ s32 fn_1_F9028(s16 arg0) {
     fn_1_F9028_Element elem;
     s16 group_idx;
 
-    fn_1_F9028_get_element(&elem, arg0);
+    fn_1_F8D5C(arg0, &elem);
     group_idx = fn_1_F9028_get_element_index_in_unk2_group(arg0);
 
     switch (elem.unk_2) {
@@ -2393,12 +2385,14 @@ s32 fn_1_F9028(s16 arg0) {
         ret = fn_1_F9CA0(0, group_idx);
         break;
     case 1:
+        /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
         ret = __rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4672], ((u8)group_idx + 1) & 0x1F, 31, 31) != 0;
         break;
     case 2:
         ret = check_case2(elem.unk_8);
         break;
     case 3:
+        /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
         ret = (u8)__rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4677], (32 - group_idx) & 0x1F, 31, 31) != 0;
         break;
     }
@@ -2413,62 +2407,27 @@ extern s32 ghost_test_record_flag0(s16 value);
 
 
 
-static inline void fn_1_F9244_get_element(fn_1_F9028_Element *dst, s16 index) {
-    fn_1_F9028_Table table;
-    table = (*(fn_1_F9028_Table *)&lbl_1_rodata_6E38);
-    fn_80008BA8(dst, &table.elements[index], 10);
-}
-
-static inline s16 fn_1_F9244_find_element_by_unk2(s16 unk_2, s16 nth) {
-    fn_1_F9028_Element elem;
-    s16 i;
-    s16 count;
-
-    i = 0;
-    count = 0;
-    for (; i < 44; i++) {
-        fn_1_F9244_get_element(&elem, i);
-        if (elem.unk_2 == unk_2) {
-            if (count == nth) {
-                return i;
-            }
-            count++;
-        }
-    }
-    return -1;
-}
-
-static inline s16 fn_1_F9244_get_element_index_in_unk2_group(s16 index) {
-    fn_1_F9028_Element elem;
-    s16 i;
-
-    fn_1_F9244_get_element(&elem, index);
-    for (i = 0; ; i++) {
-        if (fn_1_F9244_find_element_by_unk2(elem.unk_2, i) == index) {
-            return i;
-        }
-    }
-}
-
 s32 fn_1_F9244(s16 arg0) {
     s32 ret = 0;
     fn_1_F9028_Element elem;
     s16 group_idx;
 
-    fn_1_F9244_get_element(&elem, arg0);
-    group_idx = fn_1_F9244_get_element_index_in_unk2_group(arg0);
+    fn_1_F8D5C(arg0, &elem);
+    group_idx = fn_1_F9028_get_element_index_in_unk2_group(arg0);
 
     switch (elem.unk_2) {
     case 0:
         ret = fn_1_F9D44(group_idx) ? 1 : 0;
         break;
     case 1:
+        /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
         ret = __rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4673], ((u8)group_idx + 1) & 0x1F, 31, 31) != 0;
         break;
     case 2:
         ret = ghost_test_record_flag0(elem.unk_8) ? 1 : 0;
         break;
     case 3:
+        /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
         ret = (u8)__rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4676], (32 - group_idx * 2) & 0x1F, 31, 31) != 0;
         break;
     }
@@ -2484,49 +2443,12 @@ extern void ghost_set_record_flag2(s16 value);
 
 
 
-static inline void fn_1_F946C_get_element(fn_1_F9028_Element *dst, s16 index) {
-    fn_1_F9028_Table table;
-    table = (*(fn_1_F9028_Table *)&lbl_1_rodata_6E38);
-    fn_80008BA8(dst, &table.elements[index], 10);
-}
-
-static inline s16 fn_1_F946C_find_element_by_unk2(s16 unk_2, s16 nth) {
-    fn_1_F9028_Element elem;
-    s16 i;
-    s16 count;
-
-    i = 0;
-    count = 0;
-    for (; i < 44; i++) {
-        fn_1_F946C_get_element(&elem, i);
-        if (elem.unk_2 == unk_2) {
-            if (count == nth) {
-                return i;
-            }
-            count++;
-        }
-    }
-    return -1;
-}
-
-static inline s16 fn_1_F946C_get_element_index_in_unk2_group(s16 index) {
-    fn_1_F9028_Element elem;
-    s16 i;
-
-    fn_1_F946C_get_element(&elem, index);
-    for (i = 0; ; i++) {
-        if (fn_1_F946C_find_element_by_unk2(elem.unk_2, i) == index) {
-            return i;
-        }
-    }
-}
-
 void fn_1_F946C(s16 arg0) {
     fn_1_F9028_Element elem;
     s16 group_idx;
 
-    fn_1_F946C_get_element(&elem, arg0);
-    group_idx = fn_1_F946C_get_element_index_in_unk2_group(arg0);
+    fn_1_F8D5C(arg0, &elem);
+    group_idx = fn_1_F9028_get_element_index_in_unk2_group(arg0);
 
     switch (elem.unk_2) {
     case 0:
@@ -2551,62 +2473,27 @@ extern s32 fn_1_F210C(s16 value);
 
 
 
-static inline void fn_1_F965C_get_element(fn_1_F9028_Element *dst, s16 index) {
-    fn_1_F9028_Table table;
-    table = (*(fn_1_F9028_Table *)&lbl_1_rodata_6E38);
-    fn_80008BA8(dst, &table.elements[index], 10);
-}
-
-static inline s16 fn_1_F965C_find_element_by_unk2(s16 unk_2, s16 nth) {
-    fn_1_F9028_Element elem;
-    s16 i;
-    s16 count;
-
-    i = 0;
-    count = 0;
-    for (; i < 44; i++) {
-        fn_1_F965C_get_element(&elem, i);
-        if (elem.unk_2 == unk_2) {
-            if (count == nth) {
-                return i;
-            }
-            count++;
-        }
-    }
-    return -1;
-}
-
-static inline s16 fn_1_F965C_get_element_index_in_unk2_group(s16 index) {
-    fn_1_F9028_Element elem;
-    s16 i;
-
-    fn_1_F965C_get_element(&elem, index);
-    for (i = 0; ; i++) {
-        if (fn_1_F965C_find_element_by_unk2(elem.unk_2, i) == index) {
-            return i;
-        }
-    }
-}
-
 s32 fn_1_F965C(s16 arg0) {
     s32 ret = 0;
     fn_1_F9028_Element elem;
     s16 group_idx;
 
-    fn_1_F965C_get_element(&elem, arg0);
-    group_idx = fn_1_F965C_get_element_index_in_unk2_group(arg0);
+    fn_1_F8D5C(arg0, &elem);
+    group_idx = fn_1_F9028_get_element_index_in_unk2_group(arg0);
 
     switch (elem.unk_2) {
     case 0:
         ret = fn_1_F9DC4(group_idx) ? 1 : 0;
         break;
     case 1:
+        /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
         ret = (u8)__rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4672], ((u8)group_idx + 0x11) & 0x1F, 31, 31) != 0;
         break;
     case 2:
         ret = !fn_1_F210C(elem.unk_8);
         break;
     case 3:
+        /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
         ret = (u8)__rlwnm(((u32 *)&lbl_1_bss_7F0C0)[4676], (32 - (group_idx * 2 + 1)) & 0x1F, 31, 31) != 0;
         break;
     }
@@ -2622,49 +2509,12 @@ extern void ghost_set_record_flag1(s16 value);
 
 
 
-static inline void fn_1_F9888_get_element(fn_1_F9028_Element *dst, s16 index) {
-    fn_1_F9028_Table table;
-    table = (*(fn_1_F9028_Table *)&lbl_1_rodata_6E38);
-    fn_80008BA8(dst, &table.elements[index], 10);
-}
-
-static inline s16 fn_1_F9888_find_element_by_unk2(s16 unk_2, s16 nth) {
-    fn_1_F9028_Element elem;
-    s16 i;
-    s16 count;
-
-    i = 0;
-    count = 0;
-    for (; i < 44; i++) {
-        fn_1_F9888_get_element(&elem, i);
-        if (elem.unk_2 == unk_2) {
-            if (count == nth) {
-                return i;
-            }
-            count++;
-        }
-    }
-    return -1;
-}
-
-static inline s16 fn_1_F9888_get_element_index_in_unk2_group(s16 index) {
-    fn_1_F9028_Element elem;
-    s16 i;
-
-    fn_1_F9888_get_element(&elem, index);
-    for (i = 0; ; i++) {
-        if (fn_1_F9888_find_element_by_unk2(elem.unk_2, i) == index) {
-            return i;
-        }
-    }
-}
-
 void fn_1_F9888(s16 arg0) {
     fn_1_F9028_Element elem;
     s16 group_idx;
 
-    fn_1_F9888_get_element(&elem, arg0);
-    group_idx = fn_1_F9888_get_element_index_in_unk2_group(arg0);
+    fn_1_F8D5C(arg0, &elem);
+    group_idx = fn_1_F9028_get_element_index_in_unk2_group(arg0);
 
     switch (elem.unk_2) {
     case 0:
@@ -2694,43 +2544,6 @@ extern void fn_1_F9E38(void);
 
 
 
-static inline void fn_1_F9A80_get_element(fn_1_F9028_Element *dst, s16 index) {
-    fn_1_F9028_Table table;
-    table = (*(fn_1_F9028_Table *)&lbl_1_rodata_6E38);
-    fn_80008BA8(dst, &table.elements[index], 10);
-}
-
-static inline s16 fn_1_F9A80_find_element_by_unk2(s16 unk_2, s16 nth) {
-    fn_1_F9028_Element elem;
-    s16 i;
-    s16 count;
-
-    i = 0;
-    count = 0;
-    for (; i < 44; i++) {
-        fn_1_F9A80_get_element(&elem, i);
-        if (elem.unk_2 == unk_2) {
-            if (count == nth) {
-                return i;
-            }
-            count++;
-        }
-    }
-    return -1;
-}
-
-static inline s16 fn_1_F9A80_get_element_index_in_unk2_group(s16 index) {
-    fn_1_F9028_Element elem;
-    s16 i;
-
-    fn_1_F9A80_get_element(&elem, index);
-    for (i = 0; ; i++) {
-        if (fn_1_F9A80_find_element_by_unk2(elem.unk_2, i) == index) {
-            return i;
-        }
-    }
-}
-
 void fn_1_F9A80(void) {
     s16 i;
 
@@ -2748,8 +2561,8 @@ void fn_1_F9A80(void) {
         fn_1_F9028_Element elem;
         s16 group_idx;
 
-        fn_1_F9A80_get_element(&elem, i);
-        group_idx = fn_1_F9A80_get_element_index_in_unk2_group(i);
+        fn_1_F8D5C(i, &elem);
+        group_idx = fn_1_F9028_get_element_index_in_unk2_group(i);
         switch (elem.unk_2) {
         case 0:
             break;
@@ -3050,6 +2863,7 @@ u32 fn_1_FA0BC(s32 mode) {
         s16 i;
 
         for (i = 1; i < 6; i++) {
+            /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
             if (__rlwnm(flags, ((((u8)i) + 1) & 0x1f), 31, 31) == 0) {
                 return 0;
             }
@@ -3060,6 +2874,7 @@ u32 fn_1_FA0BC(s32 mode) {
         s16 i;
 
         for (i = 0; i < 6; i++) {
+            /* WARNING: compiler-diff device, not original code: variable-count rlwnm bit test; no C spelling emits rlwnm (MWCC_IDIOMS dead end); possibly an original intrinsic */
             if (__rlwnm(flags, ((((u8)i) + 1) & 0x1f), 31, 31) != 0) {
                 return 1;
             }
@@ -3282,6 +3097,7 @@ static union { u32 w[10]; char *v[10]; } fzgx_pool_init_lbl_1_data_3EEA4 = {{  /
 }};
 
 
+/* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 312 disassembly lines (spline/fn_1_FA1D8.c) */
 #pragma opt_common_subs off
 void fn_1_FA1D8(u32 arg0, u32 arg1, SplineTimeTable *table) {
     s32 i;
@@ -3367,13 +3183,13 @@ void fn_1_FA1D8(u32 arg0, u32 arg1, SplineTimeTable *table) {
 void fn_1_FA450(u8 value) {
     u8 local[0x14c0];
 
-    if (*(s16 *)&lbl_1_bss_960 == 2) {
+    if (lbl_1_bss_960 == 2) {
         fn_1_3EF14(local);
         if ((*(u32 *)local & 0x800) == 0) {
-            *(u8 *)(*(u32 *)&lbl_1_bss_84420 + 8) = value;
+            *(u8 *)(lbl_1_bss_84420 + 8) = value;
         }
     } else {
-        *(u8 *)(*(u32 *)&lbl_1_bss_84420 + 8) = value;
+        *(u8 *)(lbl_1_bss_84420 + 8) = value;
     }
 }
 /* fzgx:end fn_1_FA450 */

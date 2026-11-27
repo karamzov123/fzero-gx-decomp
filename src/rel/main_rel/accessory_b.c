@@ -4634,7 +4634,7 @@ void fn_1_12999C(void) {
  u8 self;
  u32 j;
  u8 *q;
- if (*(s16 *)&lbl_1_bss_960 != 2 && *(s16 *)&lbl_1_bss_960 != 9) return;
+ if (lbl_1_bss_960 != 2 && lbl_1_bss_960 != 9) return;
  if (fn_1_3F0C8() != 41) {
  switch (fn_1_3F0C8()) {
  case 40: break;
@@ -4647,7 +4647,7 @@ void fn_1_12999C(void) {
  fn_1_3EF14(buf);
  val=fn_1_A71AC();
  n=fn_1_40B20();
- if (*(s16 *)&lbl_1_bss_960 == 9) mode=lbl_1_bss_9C[7];
+ if (lbl_1_bss_960 == 9) mode=lbl_1_bss_9C[7];
  for(i=0;i<buf[9];i++) {
  o=(struct Obj_t *)fn_1_86254(i);
  if(o->unk_0 & 0x8000880) continue;
@@ -4681,7 +4681,7 @@ void fn_1_12999C(void) {
  fn_1_129D9C((void *)o->unk_14C,(void *)&v20,(void *)0,(void *)0,0,self,0,val);
  }
  if(fn_1_F1D60()!=0) {
- if(*(s16 *)&lbl_1_bss_960==9 && lbl_1_bss_9C[6]==-2) {
+ if(lbl_1_bss_960==9 && lbl_1_bss_9C[6]==-2) {
  v14.x=0.0f; v14.y=1.0f; v14.z=0.0f;
  fn_1_129D9C((void *)lbl_1_bss_7CA58,(void *)&v14,(void *)0,(void *)0,1,1,0,val);
  return;

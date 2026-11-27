@@ -2150,7 +2150,7 @@ void fn_1_C3A0C(u32 arg0, f32 arg1) {
 
     lbl_1_bss_7AC8C = (LineEntry *)fn_1_14DC4();
     {
-    s16 mode = *(s16 *)&lbl_1_bss_960;
+    s32 mode = lbl_1_bss_960;
     if (mode == 9) {
         if (lbl_1_bss_8B3A0.unk_8 < 5 || lbl_1_bss_8B3A0.unk_8 > 7) {
             lbl_1_bss_8B3A0.unk_8 = 5;
@@ -2476,7 +2476,7 @@ void fn_1_C40A0(Racer *racer)
 
     lbl_1_data_3D230 = fn_1_F47AC();
     fn_800793D4(lbl_1_bss_7AC50, 0, 0x21C);
-    if (*(s16 *)&lbl_1_bss_960 == 9) {
+    if (lbl_1_bss_960 == 9) {
         return;
     }
     count = (s8)fn_1_86624();

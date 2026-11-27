@@ -171,7 +171,7 @@ void fn_1_9A1E8(void)
     BurnerColor *color;
     s32 i;
     u32 viewports;
-    s16 mode;
+    s32 mode;
 
     fn_80008BEC(&fzgx_obj_lbl_1_data_2A7E0, 0, sizeof(BurnerState));
     fzgx_obj_lbl_1_data_2A7E0.unk_0 = index;
@@ -216,7 +216,7 @@ void fn_1_9A1E8(void)
     }
     fzgx_obj_lbl_1_data_2A7E0.unk_8C = *color;
     fzgx_obj_lbl_1_data_2A7E0.unk_9C = 0.0f;
-    mode = *(s16 *)&lbl_1_bss_960;
+    mode = lbl_1_bss_960;
     if (mode == 9 && lbl_1_bss_84.unk_14 != 0) {
         fzgx_obj_lbl_1_data_2A7E0.unk_9C = *(f32 *)lbl_1_bss_84.unk_14;
         lbl_1_bss_84.unk_14 = 0;
@@ -871,8 +871,7 @@ void fn_1_9A5CC(void) {
         fzgx_obj_lbl_1_data_2A7E0.unk_1C[i] = fzgx_obj_lbl_1_data_2A7E0.unk_C[i];
     }
     fzgx_obj_lbl_1_data_2A7E0.unk_44++;
-    /* retail reads lbl_1_bss_960 signed (lha); globals.h declares it u16 */
-    if (*(s16 *)&lbl_1_bss_960 == 10) {
+    if (lbl_1_bss_960 == 10) {
         fzgx_obj_lbl_1_data_2A7E0.unk_6[1] = 0;
         fzgx_obj_lbl_1_data_2A7E0.unk_C[1] = 6885000;
         fzgx_obj_lbl_1_data_2A7E0.unk_1C[1] = 6885000.0f;
@@ -4828,7 +4827,7 @@ void fn_1_9AF80(fn_1_9AF80_Obj *obj, s32 count, s32 reset) {
         t += anim->start;
         t /= 60.0f;
         if (obj->mode & 0x80) {
-            if (*(s16 *)&lbl_1_bss_960 == 9 && lbl_1_bss_84.unk_14 != 0) {
+            if (lbl_1_bss_960 == 9 && lbl_1_bss_84.unk_14 != 0) {
                 lbl_1_data_2A7E0.unk_9C -= *(f32 *)lbl_1_bss_84.unk_14;
                 lbl_1_bss_84.unk_14 = 0;
             }
@@ -7214,7 +7213,7 @@ void fn_1_9D9E4(void) {
 
     value = lbl_1_rodata_41FC;
     lbl_1_data_2A7E0.unk_74 = 1;
-    if (*(s16 *)&lbl_1_bss_960 == 9) {
+    if (lbl_1_bss_960 == 9) {
         lbl_1_data_2A7E0.unk_70 = fn_1_86624();
     } else {
         lbl_1_data_2A7E0.unk_70 = 0x1e;

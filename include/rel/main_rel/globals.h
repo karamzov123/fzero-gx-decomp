@@ -8,7 +8,7 @@
 // offsets and widths are facts, names are not. Regenerate rather than hand-edit padding.
 
 // lbl_1_bss_960: .bss size 0x2, referenced by 110 functions, shape {'object': 231}
-extern u16 lbl_1_bss_960;
+extern s16 lbl_1_bss_960;
 
 // lbl_1_data_2A7E0: .data size 0xF8, referenced by 99 functions, shape {'object': 160}
 // object reached through lbl_1_data_2A7E0.unk_3C
@@ -496,25 +496,16 @@ extern Obj_1_bss_9F8 lbl_1_bss_9F8;
 
 // lbl_1_bss_7F0C0: .bss size 0x5360, referenced by 66 functions, shape {'object': 191}
 typedef struct {
-    u32 unk_0;  // 4 loads, 1 stores
-    u32 unk_4;  // 4 loads, 1 stores
-    u32 unk_8;  // 2 loads, 1 stores
-    u32 unk_C;  // 2 loads, 1 stores
-    u32 unk_10;  // 2 loads, 1 stores
-    u32 unk_14;  // 2 loads, 1 stores
-    u32 unk_18;  // 3 loads, 1 stores
-    u32 unk_1C;  // 3 loads, 1 stores
-    u32 unk_20;  // 3 loads, 1 stores
-    u32 unk_24;  // 3 loads, 1 stores
-    u32 unk_28;  // 3 loads, 1 stores
-    u32 unk_2C;  // 3 loads, 1 stores
+    u64 unk_0;  // 4 loads, 1 stores
+    u64 unk_8;  // 2 loads, 1 stores
+    u64 unk_10;  // 2 loads, 1 stores
+    u64 unk_18;  // 3 loads, 1 stores
+    u64 unk_20;  // 3 loads, 1 stores
+    u64 unk_28;  // 3 loads, 1 stores
     u8 pad_30[0x18];
-    u32 unk_48;  // 3 loads, 3 stores
-    u32 unk_4C;  // 3 loads, 3 stores
-    u32 unk_50;  // 3 loads, 3 stores
-    u32 unk_54;  // 3 loads, 3 stores
-    u32 unk_58;  // 3 loads, 3 stores
-    u32 unk_5C;  // 3 loads, 3 stores
+    u64 unk_48;  // 3 loads, 3 stores
+    u64 unk_50;  // 3 loads, 3 stores
+    u64 unk_58;  // 3 loads, 3 stores
     u8 pad_60[0x4];
     u16 unk_64;  // 2 loads, 2 stores
     u16 unk_66;  // 2 loads, 2 stores

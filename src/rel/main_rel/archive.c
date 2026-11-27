@@ -3381,7 +3381,7 @@ int fn_1_12E468(struct fn_1_12E468_Arg0 *arg0, void *arg1) {
     int name;
     if ((lbl_1_bss_8B3A0.unk_94 & ~0x7FFFFFFF) == 0) {
         arg0->unk_0 = 2;
-        if (*(s16 *)&lbl_1_bss_960 == 2) {
+        if (lbl_1_bss_960 == 2) {
             v0 = (u32)cars->first;
             *(u32 *)((u8 *)v0 + 24) = (*(u32 *)((u8 *)v0 + 24) | 0x80000000);
             v1 = 0;

@@ -4932,7 +4932,7 @@ void fn_1_13C1A0(u8 *arg0) {
 
     fn_1_133E04((void *)1, 0);
     fn_1_134AD4();
-    if (*(s16 *)&lbl_1_bss_960 == 9) {
+    if (lbl_1_bss_960 == 9) {
         loc_B8 = *(struct Copy200 *)lbl_1_rodata_8CB0;
         tempbyte = lbl_1_bss_9C;
         loc_60 = *(struct Copy88 *)(&lbl_1_rodata_26F8);
@@ -5035,7 +5035,7 @@ void fn_1_13C5EC(u8 arg0) {
     f32 pulse;
 
     sel = 0;
-    if (*(s16 *)&lbl_1_bss_960 != 9) {
+    if (lbl_1_bss_960 != 9) {
         fn_1_141C10(arg0);
     }
     id = arg0;

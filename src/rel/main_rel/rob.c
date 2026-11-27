@@ -6013,7 +6013,7 @@ void fn_1_8E4A4(s32 id, u32 flags, void *arg) {
     fn_1_96664((void *)id, (void *)flags, (void *)arg);
     fn_1_956EC(id, flags);
 
-    if (*(s16 *)&lbl_1_bss_960 == 14 && flags == 0x10000000) {
+    if (lbl_1_bss_960 == 14 && flags == 0x10000000) {
         sprintf(buf, "%s_win.mta", name);
         fn_1_96130((void *)buf);
     } else {
@@ -6078,7 +6078,6 @@ void fn_1_8E728(struct Unk_1_8E728 *p, u8 idx) {
 
 /* fzgx:begin fn_1_8E7D0 */
 /* VIEWS */
-#define lbl_1_bss_960 (*(s16 *)&lbl_1_bss_960)
 static inline char *fn_1_8E7D0_motion(u32 id, u32 slot) {
     u32 k;
 
@@ -6310,7 +6309,6 @@ void fn_1_8E7D0(Fn8E7D0Car *car, s32 idx, u32 mask, u32 mask2) {
         fn_1_12A2B8(0);
     }
 }
-#undef lbl_1_bss_960
 /* fzgx:end fn_1_8E7D0 */
 
 /* fzgx:begin fn_1_8F198 */
@@ -6606,7 +6604,7 @@ void fn_1_8F62C(Fn8F62CCar *car) {
         if (car->unk_4B8 != 0) {
             car->unk_4B8--;
         } else {
-            if (car->unk_488 != 0 || *(s16 *)&lbl_1_bss_960 == 1) {
+            if (car->unk_488 != 0 || lbl_1_bss_960 == 1) {
                 fn_1_42E74((void *)car->unk_1E8.unk_8);
             } else {
                 fn_1_43058(car->unk_1E8.unk_8, car->unk_1E8.unk_8->unk_42, car->unk_1E8.unk_8->unk_44, 0.0f);
@@ -7700,7 +7698,7 @@ void fn_1_92554(Car92554 *car, s32 arg1) {
             } else {
                 model = car->unk_148[3].unk_8;
             }
-            if (*(s16 *)&lbl_1_bss_960 == 1) {
+            if (lbl_1_bss_960 == 1) {
                 b = car->unk_148[5].unk_8;
                 a = NULL;
             } else if (car->unk_488 != 0) {
@@ -8518,7 +8516,6 @@ void fn_1_956EC(s32 id, u32 mask) {
 /* fzgx:end fn_1_956EC */
 
 /* fzgx:begin fn_1_95950 */
-#define lbl_1_bss_960 (*(s16 *)&lbl_1_bss_960)
 
 void fn_1_95950(u32 arg0) {
     Obj_1_bss_8B3A0 *p_lbl_1_bss_8B3A0;
@@ -8611,7 +8608,6 @@ void fn_1_95950(u32 arg0) {
     }
     fn_1_12AB38("..");
 }
-#undef lbl_1_bss_960
 /* fzgx:end fn_1_95950 */
 
 /* fzgx:begin fn_1_95EF0 */

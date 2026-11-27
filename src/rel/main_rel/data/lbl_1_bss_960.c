@@ -3,7 +3,7 @@
 #include "rel/main_rel/accessory.h"
 #include "rel/main_rel/globals.h"
 
-extern u16 lbl_1_bss_960;
+extern s16 lbl_1_bss_960;
 extern s16 lbl_1_bss_962;
 extern s16 lbl_1_bss_964;
 extern s16 lbl_1_bss_966;
@@ -22,4 +22,4 @@ __declspec(section ".data") s16 lbl_1_bss_962 __attribute__((aligned(2)));
 
 
 
-__declspec(section ".data") u16 lbl_1_bss_960 __attribute__((aligned(32)));
+__declspec(section ".data") s16 lbl_1_bss_960 __attribute__((aligned(32)));

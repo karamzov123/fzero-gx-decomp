@@ -1016,7 +1016,7 @@ void fn_1_79654(void) {
     s8 state;
     struct { s32 value; } flag;
 
-    if ((*(s16 *)&lbl_1_bss_960 == 2 || *(s16 *)&lbl_1_bss_960 == 9) && lbl_1_bss_6D778.unk_0 != 0) {
+    if ((lbl_1_bss_960 == 2 || lbl_1_bss_960 == 9) && lbl_1_bss_6D778.unk_0 != 0) {
         mode = 0;
         state = camera_get_state();
         if (state == 0) {

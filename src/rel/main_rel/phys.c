@@ -1280,7 +1280,7 @@ void fn_1_E2DCC(void) {
     if ((s32)lbl_1_bss_3BE0->unk_B4 > 0) {
         story = (Record38 *)lbl_1_bss_3BE0->unk_B8;
         if (fn_1_7B054() == 37) {
-            group = (*(s16 *)&lbl_1_bss_960 == 9) ? (&lbl_1_bss_9C)[1] : 0;
+            group = (lbl_1_bss_960 == 9) ? (&lbl_1_bss_9C)[1] : 0;
             for (j = 0; j < (s32)lbl_1_bss_3BE0->unk_B4; j++, story++) {
                 if ((story->unk_3 & 0xFU) == group) {
                     obj = fn_1_E54A8(1, counts[1]);
@@ -1439,7 +1439,7 @@ static inline s32 fn_1_E3324_count_story_triggers(void) {
     struct { s16 value; } i;
 
     trigger = (u8 *)lbl_1_bss_3BE0->unk_B8;
-    sel = *(s16 *)&lbl_1_bss_960 == 9 ? (&lbl_1_bss_9C)[1] : 0;
+    sel = lbl_1_bss_960 == 9 ? (&lbl_1_bss_9C)[1] : 0;
     count = 0;
     total.value = lbl_1_bss_3BE0->unk_B4;
     for (i.value = 0; i.value < total.value; i.value++, trigger += 0x38) {

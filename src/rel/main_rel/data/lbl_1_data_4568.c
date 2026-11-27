@@ -178,9 +178,7 @@ __declspec(section ".data") Obj_1_data_47B4 lbl_1_data_47B4 __attribute__((align
 #pragma explicit_zero_data on
 __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((aligned(8))) = {
 {
-    0x3F800000U,
-    0x3FC00000U,
-    0x42480000U,
+    {1.0f, 1.5f, 50.0f},
     -1.0f,
     5.0f,
     -5.0f,
@@ -188,9 +186,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0xFFU, 0x00U, 0x00U, 0x00U}
 },
 {
-    0x3F800000U,
-    0x3FC00000U,
-    0xC2480000U,
+    {1.0f, 1.5f, -50.0f},
     1.0f,
     0.5f,
     -5.0f,
@@ -198,9 +194,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0xFFU, 0x00U, 0x00U, 0x00U}
 },
 {
-    0x3F800000U,
-    0x3FC00000U,
-    0xC2480000U,
+    {1.0f, 1.5f, -50.0f},
     -1.0f,
     1.5f,
     5.0f,
@@ -208,9 +202,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0xFFU, 0x00U, 0x00U, 0x00U}
 },
 {
-    0x3F800000U,
-    0x3FC00000U,
-    0x41200000U,
+    {1.0f, 1.5f, 10.0f},
     -2.0f,
     5.0f,
     -5.0f,
@@ -218,9 +210,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0xFFU, 0x00U, 0x00U, 0x00U}
 },
 {
-    0x40A00000U,
-    0x3F000000U,
-    0xC0A00000U,
+    {5.0f, 0.5f, -5.0f},
     -5.0f,
     0.5f,
     -5.0f,
@@ -228,9 +218,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0xFFU, 0x00U, 0x00U, 0x00U}
 },
 {
-    0xC2C80000U,
-    0x41200000U,
-    0x00000000U,
+    {-100.0f, 10.0f, 0.0f},
     -3.0f,
     1.5f,
     1.0f,
@@ -238,9 +226,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0xFFU, 0x00U, 0x00U, 0x00U}
 },
 {
-    0x42C80000U,
-    0x41200000U,
-    0x00000000U,
+    {100.0f, 10.0f, 0.0f},
     3.0f,
     1.5f,
     1.0f,
@@ -248,9 +234,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0xFFU, 0x00U, 0x00U, 0x00U}
 },
 {
-    0x40400000U,
-    0x00000000U,
-    0xC0600000U,
+    {3.0f, 0.0f, -3.5f},
     0.0f,
     3.0f,
     3.5f,
@@ -258,9 +242,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0xFFU, 0x00U, 0x00U, 0x00U}
 },
 {
-    0x00000000U,
-    0x40800000U,
-    0x40600000U,
+    {0.0f, 4.0f, 3.5f},
     -3.0f,
     0.0f,
     -3.5f,
@@ -268,9 +250,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0xFFU, 0x00U, 0x00U, 0x00U}
 },
 {
-    0x40700000U,
-    0xC10CCCCDU,
-    0x43DD8000U,
+    {3.75f, -8.8f, 443.0f},
     3.75f,
     -8.80000019f,
     0.0f,
@@ -278,9 +258,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x40U, 0x70U, 0x00U, 0x00U}
 },
 {
-    0xC10CCCCDU,
-    0x43DD8000U,
-    0x40700000U,
+    {-8.8f, 443.0f, 3.75f},
     -8.80000019f,
     0.0f,
     55.0f,
@@ -288,9 +266,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x30U, 0x00U, 0x00U}
 },
 {
-    0x00000000U,
-    0x00000000U,
-    0x437A0000U,
+    {0.0f, 0.0f, 250.0f},
     0.0f,
     0.0f,
     0.0f,
@@ -298,9 +274,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x00U, 0x00U, 0x00U}
 },
 {
-    0x41D80000U,
-    0x437A0000U,
-    0x00000000U,
+    {27.0f, 250.0f, 0.0f},
     0.0f,
     0.0f,
     55.0f,
@@ -308,9 +282,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x3CU, 0x00U, 0x00U}
 },
 {
-    0xC28C0000U,
-    0x411D999AU,
-    0xC35651ECU,
+    {-70.0f, 9.85f, -214.32f},
     0.0f,
     -17.1800003f,
     -174.729004f,
@@ -318,9 +290,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0xC2U, 0x8CU, 0x00U, 0x00U}
 },
 {
-    0x411D999AU,
-    0xC35651ECU,
-    0x00000000U,
+    {9.85f, -214.32f, 0.0f},
     -17.1800003f,
     -255.0f,
     55.0f,
@@ -328,9 +298,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x6CU, 0x00U, 0x00U}
 },
 {
-    0x45665421U,
-    0x415AF1AAU,
-    0xC48B321DU,
+    {3685.258f, 13.684f, -1113.566f},
     3747.68896f,
     -10.8769999f,
     -1029.70496f,
@@ -338,9 +306,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x45U, 0x66U, 0x54U, 0x21U}
 },
 {
-    0x415AF1AAU,
-    0xC48B321DU,
-    0x4567D12FU,
+    {13.684f, -1113.566f, 3709.074f},
     6.9289999f,
     -1177.06604f,
     55.0f,
@@ -348,9 +314,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x6CU, 0x00U, 0x00U}
 },
 {
-    0x456CFBF4U,
-    0xC1A00000U,
-    0xC4B0C7DFU,
+    {3791.747f, -20.0f, -1414.246f},
     3744.03711f,
     -2.96199989f,
     -1299.47205f,
@@ -358,9 +322,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x45U, 0x6CU, 0xFBU, 0xF4U}
 },
 {
-    0xC1A00000U,
-    0xC4B0C7DFU,
-    0x456BD3E7U,
+    {-20.0f, -1414.246f, 3773.244f},
     -33.5769997f,
     -1543.55103f,
     55.0f,
@@ -368,9 +330,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x54U, 0x00U, 0x00U}
 },
 {
-    0x43BC1396U,
-    0x41BD2F1BU,
-    0xC53B9937U,
+    {376.153f, 23.648f, -3001.576f},
     596.463989f,
     67.3399963f,
     -3240.2041f,
@@ -378,9 +338,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x44U, 0x5DU, 0x00U, 0xD5U}
 },
 {
-    0xC1188F5CU,
-    0xC5460E0CU,
-    0x43FC8D50U,
+    {-9.535f, -3168.878f, 505.104f},
     0.0f,
     -3168.87793f,
     55.0f,
@@ -388,9 +346,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0xBAU, 0x00U, 0x00U}
 },
 {
-    0x45B3B635U,
-    0xC1E8BA5EU,
-    0xC4A245C3U,
+    {5750.776f, -29.091f, -1298.18f},
     5750.77588f,
     -22.7010002f,
     -1266.297f,
@@ -398,9 +354,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x45U, 0xB3U, 0xB6U, 0x35U}
 },
 {
-    0xC1E8BA5EU,
-    0xC4A245C3U,
-    0x45B3B635U,
+    {-29.091f, -1298.18f, 5750.776f},
     -28.1270008f,
     -1265.81201f,
     40.0f,
@@ -408,9 +362,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x96U, 0x00U, 0x00U}
 },
 {
-    0x45B6C2E3U,
-    0x420F8E56U,
-    0xC4053385U,
+    {5848.361f, 35.889f, -532.805f},
     5812.9458f,
     86.4550018f,
     -470.364014f,
@@ -418,9 +370,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x45U, 0xC9U, 0x6DU, 0x46U}
 },
 {
-    0x3F000000U,
-    0xC409BB54U,
-    0x45A563C5U,
+    {0.5f, -550.927f, 5292.471f},
     -66.5400009f,
     -386.067993f,
     55.0f,
@@ -428,9 +378,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x9CU, 0x00U, 0x00U}
 },
 {
-    0xC2744083U,
-    0x43C80000U,
-    0xC47A0000U,
+    {-61.063f, 400.0f, -1000.0f},
     1430.53406f,
     0.0f,
     -800.0f,
@@ -438,9 +386,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x00U, 0x00U, 0x00U}
 },
 {
-    0xC0A00000U,
-    0xC4160000U,
-    0x00000000U,
+    {-5.0f, -600.0f, 0.0f},
     -50.0f,
     -3090.9751f,
     55.0f,
@@ -448,9 +394,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x00U, 0x02U, 0x00U}
 },
 {
-    0x42340000U,
-    0xC1200000U,
-    0xC42F0000U,
+    {45.0f, -10.0f, -700.0f},
     0.0f,
     0.0f,
     -1000.0f,
@@ -458,9 +402,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x41U, 0x5AU, 0x9BU, 0xA6U}
 },
 {
-    0x40A3B646U,
-    0xC4A5DCB4U,
-    0xC18F0000U,
+    {5.116f, -1326.897f, -17.875f},
     5.11600018f,
     -1905.745f,
     55.0f,
@@ -468,9 +410,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x00U, 0x02U, 0x00U}
 },
 {
-    0x41FA353FU,
-    0xC112F1AAU,
-    0xC4D21493U,
+    {31.276f, -9.184f, -1680.643f},
     21.1709995f,
     -2.0769999f,
     -1639.125f,
@@ -478,9 +418,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x41U, 0xFAU, 0x35U, 0x3FU}
 },
 {
-    0xC112F1AAU,
-    0xC4D21493U,
-    0x41A95E35U,
+    {-9.184f, -1680.643f, 21.171f},
     -2.0769999f,
     -1639.125f,
     55.0f,
@@ -488,9 +426,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x78U, 0x00U, 0x00U}
 },
 {
-    0x45EC9DDDU,
-    0x424BD70AU,
-    0x44A4A9FCU,
+    {7571.733f, 50.96f, 1317.312f},
     7400.19189f,
     -90.0f,
     1230.44299f,
@@ -498,9 +434,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x45U, 0xD2U, 0xF2U, 0xBAU}
 },
 {
-    0x3F981062U,
-    0x44B7DAE1U,
-    0x45F04AC3U,
+    {1.188f, 1470.84f, 7689.345f},
     -10.908f,
     1550.15698f,
     55.0f,
@@ -508,9 +442,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0xA2U, 0x00U, 0x00U}
 },
 {
-    0x454E888FU,
-    0xC1100000U,
-    0xC4483C5AU,
+    {3304.535f, -9.0f, -800.943f},
     2090.35205f,
     493.118011f,
     -1621.47998f,
@@ -518,9 +450,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x45U, 0x52U, 0x79U, 0xDBU}
 },
 {
-    0xC10BCED9U,
-    0xC44F3C5AU,
-    0x44FAFC8BU,
+    {-8.738f, -828.943f, 2007.892f},
     445.541992f,
     -1510.625f,
     55.0f,
@@ -528,9 +458,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0xD2U, 0x00U, 0x00U}
 },
 {
-    0xC0A00000U,
-    0x00000000U,
-    0xC436C22DU,
+    {-5.0f, 0.0f, -731.034f},
     0.0f,
     -100.0f,
     -731.033997f,
@@ -538,9 +466,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x40U, 0xA0U, 0x00U, 0x00U}
 },
 {
-    0xC10A51ECU,
-    0xC3960000U,
-    0x00000000U,
+    {-8.645f, -300.0f, 0.0f},
     20.0979996f,
     0.0f,
     55.0f,
@@ -548,9 +474,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x00U, 0x02U, 0x00U}
 },
 {
-    0x456A3E35U,
-    0x418353F8U,
-    0xC489692FU,
+    {3747.888f, 16.416f, -1099.287f},
     3738.5791f,
     1.63100004f,
     -1069.93896f,
@@ -558,9 +482,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x45U, 0x6CU, 0xC7U, 0x3FU}
 },
 {
-    0xC1980000U,
-    0xC4B08A8FU,
-    0x456BF15CU,
+    {-19.0f, -1412.33f, 3775.085f},
     -8.97299957f,
     -1344.21106f,
     55.0f,
@@ -568,9 +490,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x00U, 0x02U, 0x00U}
 },
 {
-    0x45B59000U,
-    0x41A27CEEU,
-    0xC49D1EFAU,
+    {5810.0f, 20.311f, -1256.968f},
     5786.42383f,
     10.5550003f,
     -1300.78296f,
@@ -578,9 +498,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x45U, 0xB3U, 0x64U, 0x77U}
 },
 {
-    0xC22324DDU,
-    0xC4A042C1U,
-    0x45B3E564U,
+    {-40.786f, -1282.086f, 5756.674f},
     -30.7390003f,
     -1229.81494f,
     55.0f,
@@ -588,9 +506,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x00U, 0x02U, 0x00U}
 },
 {
-    0x4141BE77U,
-    0xC1107EFAU,
-    0xC32C5FBEU,
+    {12.109f, -9.031f, -172.374f},
     -89.6930008f,
     50.8170013f,
     -5.26300001f,
@@ -598,9 +514,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x41U, 0x41U, 0xBEU, 0x77U}
 },
 {
-    0xC1107EFAU,
-    0xC32C5FBEU,
-    0xC2B362D1U,
+    {-9.031f, -172.374f, -89.693f},
     50.8170013f,
     -5.26300001f,
     55.0f,
@@ -608,9 +522,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x00U, 0x02U, 0x00U}
 },
 {
-    0xC27F2D0EU,
-    0x414420C5U,
-    0xC2706148U,
+    {-63.794f, 12.258f, -60.095f},
     528.25f,
     -185.169006f,
     10.6490002f,
@@ -618,9 +530,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0xC2U, 0x7FU, 0x2DU, 0x0EU}
 },
 {
-    0x414420C5U,
-    0xC2706148U,
-    0x44041000U,
+    {12.258f, -60.095f, 528.25f},
     -185.169006f,
     10.6490002f,
     10.0f,
@@ -628,9 +538,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0xB4U, 0x00U, 0x00U}
 },
 {
-    0xC0251EB8U,
-    0xC11C1CACU,
-    0xC31EFFBEU,
+    {-2.58f, -9.757f, -158.999f},
     32.4230003f,
     11.1780005f,
     -392.753998f,
@@ -638,9 +546,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0xC0U, 0x25U, 0x1EU, 0xB8U}
 },
 {
-    0xC11C1CACU,
-    0xC31EFFBEU,
-    0x4201B127U,
+    {-9.757f, -158.999f, 32.423f},
     11.1780005f,
     -392.753998f,
     55.0f,
@@ -648,9 +554,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x00U, 0x02U, 0x00U}
 },
 {
-    0x42031DB2U,
-    0x411AC8B4U,
-    0xC3C825E3U,
+    {32.779f, 9.674f, -400.296f},
     31.5359993f,
     8.93599987f,
     -395.766998f,
@@ -658,9 +562,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x42U, 0x03U, 0x1DU, 0xB2U}
 },
 {
-    0x411AC8B4U,
-    0xC3C825E3U,
-    0x41FC49BAU,
+    {9.674f, -400.296f, 31.536f},
     8.93599987f,
     -395.766998f,
     55.0f,
@@ -668,9 +570,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x00U, 0x02U, 0x00U}
 },
 {
-    0xC1243127U,
-    0xC0BD3F7DU,
-    0x42200000U,
+    {-10.262f, -5.914f, 40.0f},
     31.5359993f,
     8.93599987f,
     -395.766998f,
@@ -678,9 +578,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x42U, 0x03U, 0x1DU, 0xB2U}
 },
 {
-    0x411AC8B4U,
-    0xC3C825E3U,
-    0x41FC49BAU,
+    {9.674f, -400.296f, 31.536f},
     8.93599987f,
     -395.766998f,
     55.0f,
@@ -688,9 +586,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x00U, 0x02U, 0x00U}
 },
 {
-    0x454ACEFEU,
-    0x420C53F8U,
-    0xC4476AD1U,
+    {3244.937f, 35.082f, -797.669f},
     3306.698f,
     -8.64799976f,
     -804.075989f,
@@ -698,9 +594,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x45U, 0x4AU, 0xCEU, 0xFEU}
 },
 {
-    0x420C53F8U,
-    0xC4476AD1U,
-    0x454EAB2BU,
+    {35.082f, -797.669f, 3306.698f},
     -8.64799976f,
     -804.075989f,
     4.0f,
@@ -708,9 +602,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x00U, 0x00U, 0x02U, 0x00U}
 },
 {
-    0x45D398E9U,
-    0x410AB439U,
-    0x44B76698U,
+    {6771.114f, 8.669f, 1467.206f},
     6510.3418f,
     1.352f,
     1457.35315f,
@@ -718,9 +610,7 @@ __declspec(section ".data") LiveCameraPreset lbl_1_data_4AA0[55] __attribute__((
     {0x45U, 0xBAU, 0xF6U, 0xAAU}
 },
 {
-    0x410353F8U,
-    0x44B98E5EU,
-    0x45BD5FACU,
+    {8.208f, 1484.449f, 6059.959f},
     1.91799998f,
     1434.55005f,
     20.0f,
