@@ -229,5 +229,505 @@
     "regional_split": [
       "\t.text       start:0x000C23CC end:0x000C24A4 align:4"
     ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_1421D8.c",
+    "symbols": [
+      "fn_1_1421D8"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_92C0",
+      "@34": "lbl_1_rodata_93E8"
+    },
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x001421D8 end:0x001424E8 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_1424E8.c",
+    "symbols": [
+      "fn_1_1424E8"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "pool": {
+      "@22": "lbl_1_rodata_93E8"
+    },
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x001424E8 end:0x0014267C align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_142BDC.c",
+    "symbols": [
+      "fn_1_142BDC"
+    ],
+    "status": "matching",
+    "matching_for": [
+      "GFZP01"
+    ],
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_92C0",
+      "@70": "lbl_1_rodata_946C",
+      "@34": "lbl_1_rodata_93E8"
+    },
+    "regional_split": [
+      "\t.text       start:0x00142BDC end:0x0014328C align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_14328C.c",
+    "symbols": [
+      "fn_1_14328C"
+    ],
+    "status": "matching",
+    "matching_for": [
+      "GFZP01"
+    ],
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "pool": {
+      "@53": "lbl_1_rodata_93E8",
+      "@57": "lbl_1_rodata_9480"
+    },
+    "regional_split": [
+      "\t.text       start:0x0014328C end:0x00143780 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_143780.c",
+    "symbols": [
+      "fn_1_143780"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_92C0",
+      "@4": "lbl_1_rodata_92C0",
+      "@6": "lbl_1_rodata_92C0+0x108",
+      "@7": "lbl_1_rodata_92C0+0x10C",
+      "@8": "lbl_1_rodata_92C0+0x110",
+      "@9": "lbl_1_rodata_92C0+0x114",
+      "@10": "lbl_1_rodata_92C0+0x118",
+      "@11": "lbl_1_rodata_92C0+0x11C",
+      "@12": "lbl_1_rodata_92C0+0x120",
+      "@13": "lbl_1_rodata_92C0+0x128",
+      "@14": "lbl_1_rodata_92C0+0x130",
+      "@15": "lbl_1_rodata_92C0+0x134",
+      "@19": "lbl_1_rodata_92C0+0x138",
+      "@21": "lbl_1_rodata_92C0+0x164",
+      "@22": "lbl_1_rodata_92C0+0x168",
+      "@23": "lbl_1_rodata_92C0+0x16C",
+      "@24": "lbl_1_rodata_92C0+0x170",
+      "@25": "lbl_1_rodata_92C0+0x174",
+      "@26": "lbl_1_rodata_92C0+0x178",
+      "@27": "lbl_1_rodata_92C0+0x17C",
+      "@28": "lbl_1_rodata_92C0+0x180",
+      "@29": "lbl_1_rodata_92C0+0x184",
+      "@30": "lbl_1_rodata_92C0+0x188",
+      "@31": "lbl_1_rodata_92C0+0x18C",
+      "@32": "lbl_1_rodata_92C0+0x190",
+      "@33": "lbl_1_rodata_92C0+0x194",
+      "@34": "lbl_1_rodata_92C0+0x198",
+      "@35": "lbl_1_rodata_92C0+0x19C",
+      "@36": "lbl_1_rodata_92C0+0x1A0",
+      "@37": "lbl_1_rodata_92C0+0x1A4",
+      "@38": "lbl_1_rodata_92C0+0x1A8",
+      "@39": "lbl_1_rodata_92C0+0x1AC",
+      "@40": "lbl_1_rodata_92C0+0x1B0",
+      "@41": "lbl_1_rodata_92C0+0x1B4",
+      "@42": "lbl_1_rodata_92C0+0x1B8",
+      "@43": "lbl_1_rodata_92C0+0x1C0",
+      "@47": "lbl_1_rodata_92C0+0x1C8",
+      "@49": "lbl_1_rodata_92C0+0x1D8",
+      "@50": "lbl_1_rodata_92C0+0x1DC",
+      "@51": "lbl_1_rodata_92C0+0x1E0",
+      "@52": "lbl_1_rodata_92C0+0x1E4",
+      "@63": "lbl_1_rodata_92C0+0x1E8",
+      "@65": "lbl_1_rodata_92C0+0x1EC",
+      "@67": "lbl_1_rodata_92C0+0x1F0",
+      "@69": "lbl_1_rodata_92C0+0x1F4",
+      "@70": "lbl_1_rodata_92C0+0x1F8",
+      "@71": "lbl_1_rodata_92C0+0x208",
+      "@127": "lbl_1_rodata_92C0+0x220",
+      "@128": "lbl_1_rodata_92C0+0x224",
+      "@129": "lbl_1_rodata_92C0+0x228",
+      "@130": "lbl_1_rodata_92C0+0x22C",
+      "@131": "lbl_1_rodata_92C0+0x230",
+      "@132": "lbl_1_rodata_92C0+0x234",
+      "@133": "lbl_1_rodata_92C0+0x238"
+    },
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x00143780 end:0x00143E7C align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_143E7C.c",
+    "symbols": [
+      "fn_1_143E7C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_92C0",
+      "@34": "lbl_1_rodata_93E8"
+    },
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x00143E7C end:0x00143F5C align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_143F5C.c",
+    "symbols": [
+      "fn_1_143F5C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_92C0",
+      "@34": "lbl_1_rodata_93E8"
+    },
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x00143F5C end:0x00144254 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_144A5C.c",
+    "symbols": [
+      "fn_1_144A5C",
+      "fn_1_144E90",
+      "fn_1_144EE8"
+    ],
+    "status": "matching",
+    "matching_for": [
+      "GFZP01"
+    ],
+    "mw_version": "GC/1.3.2",
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_92C0",
+      "@9": "lbl_1_rodata_92C0+0x128",
+      "@23": "lbl_1_rodata_92C0+0x408",
+      "@24": "lbl_1_rodata_92C0+0x40C",
+      "@25": "lbl_1_rodata_92C0+0x410"
+    },
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "regional_split": [
+      "\t.text       start:0x00144A5C end:0x00144F40 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_145B58.c",
+    "symbols": [
+      "fn_1_145B58"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x00145B58 end:0x00145C6C align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_146550.c",
+    "symbols": [
+      "fn_1_146550",
+      "fn_1_146B5C"
+    ],
+    "status": "matching",
+    "matching_for": [
+      "GFZP01"
+    ],
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "pool": {
+      "@55": "lbl_1_rodata_93E8"
+    },
+    "collapsed": true,
+    "regional_split": [
+      "\t.text       start:0x00146550 end:0x00146C88 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_147188.c",
+    "symbols": [
+      "fn_1_147188"
+    ],
+    "status": "matching",
+    "matching_for": [
+      "GFZP01"
+    ],
+    "mw_version": null,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_92C0",
+      "@14": "lbl_1_rodata_93E8",
+      "fzgx_pool_rodata_0": "lbl_1_rodata_92C0"
+    },
+    "regional_split": [
+      "\t.text       start:0x00147188 end:0x00147508 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_147508.c",
+    "symbols": [
+      "fn_1_147508"
+    ],
+    "status": "matching",
+    "matching_for": [
+      "GFZP01"
+    ],
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_92C0",
+      "@10": "lbl_1_rodata_93E8",
+      "@35": "lbl_1_rodata_970C",
+      "@20": "lbl_1_rodata_9480"
+    },
+    "regional_split": [
+      "\t.text       start:0x00147508 end:0x00147A04 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_148444.c",
+    "symbols": [
+      "fn_1_148444"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "pool": {
+      "@66": "lbl_1_rodata_93E8",
+      "@64": "lbl_1_rodata_970C"
+    },
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x00148444 end:0x00148738 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_148738.c",
+    "symbols": [
+      "fn_1_148738"
+    ],
+    "status": "matching",
+    "matching_for": [
+      "GFZP01"
+    ],
+    "mw_version": "GC/2.5",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_92C0",
+      "@14": "lbl_1_rodata_93E8",
+      "@24": "lbl_1_rodata_9480",
+      "fzgx_pool_rodata_0": "lbl_1_rodata_92C0"
+    },
+    "regional_split": [
+      "\t.text       start:0x00148738 end:0x00148950 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_1490FC.c",
+    "symbols": [
+      "fn_1_1490FC"
+    ],
+    "status": "matching",
+    "matching_for": [
+      "GFZP01"
+    ],
+    "mw_version": "GC/2.5",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_92C0",
+      "@14": "lbl_1_rodata_93E8",
+      "fzgx_pool_rodata_0": "lbl_1_rodata_92C0"
+    },
+    "regional_split": [
+      "\t.text       start:0x001490FC end:0x001492E0 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_149B64.c",
+    "symbols": [
+      "fn_1_149B64"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x00149B64 end:0x00149BF4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_149BF4.c",
+    "symbols": [
+      "fn_1_149BF4",
+      "fn_1_149C2C",
+      "fn_1_149C64",
+      "fn_1_149CA4",
+      "fn_1_149DA4",
+      "fn_1_149DE8"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "collapsed": true,
+    "pool": {
+      "@18": "lbl_1_rodata_9480"
+    },
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x00149BF4 end:0x00149E2C align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_b/fn_1_149E2C.c",
+    "symbols": [
+      "fn_1_149E2C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_b_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x00149E2C end:0x00149F04 align:4"
+    ]
   }
 ]
