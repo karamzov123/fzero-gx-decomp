@@ -312,6 +312,11 @@ records and a fourth zero record; each populated row has two buffer addresses,
 three console callbacks and a link to the next row. The structure and callback
 types follow the stream consumers rather than a flattened import. PAL's
 `0x8015D858` table and its targets were checked against the original DOL.
+The three 256-byte console buffers also belong to `ansi_files.c`; their BSS
+extent is bracketed by independent neighboring objects in both USA and PAL.
+The build keeps those neighbors in their previous order and compiles the
+stream table and buffers without pool remapping. Japan retains its previous
+fallback.
 
 The eight-entry decimal powers table at `0x8015AF98` is now private to
 `ansi_fp.c`, its only source consumer. It precedes that object's switch tables

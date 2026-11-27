@@ -16,46 +16,6 @@ extern u8 lbl_8019F200[16416];
 extern u8 lbl_801A3220[96];
 extern u8 __atexit_funcs[256];
 extern u8 lbl_801A3380[56];
-extern u8 lbl_801A33B8[256];
-extern u8 lbl_801A34B8[256];
-extern u8 lbl_801A35B8[256];
-extern u8 lbl_801A36B8[40];
-extern u8 gTRKBigEndian[4];
-extern u8 lbl_801A36E8[6576];
-extern u32 lbl_801A5098[6];
-extern u8 lbl_801A50B0[8];
-
-
-/* Storage extent is known; element/field types are not recovered. */
-__declspec(section ".data") u8 lbl_801A50B0[8] __attribute__((aligned(8)));
-
-
-
-__declspec(section ".data") u32 lbl_801A5098[6] __attribute__((aligned(8)));
-
-
-/* Storage extent is known; element/field types are not recovered. */
-__declspec(section ".data") u8 lbl_801A36E8[6576] __attribute__((aligned(8)));
-
-
-/* Storage extent is known; element/field types are not recovered. */
-__declspec(section ".data") u8 gTRKBigEndian[4] __attribute__((aligned(8)));
-
-
-
-__declspec(section ".data") u8 lbl_801A36B8[40] __attribute__((aligned(8)));
-
-
-/* Storage extent is known; element/field types are not recovered. */
-__declspec(section ".data") u8 lbl_801A35B8[256] __attribute__((aligned(8)));
-
-
-/* Storage extent is known; element/field types are not recovered. */
-__declspec(section ".data") u8 lbl_801A34B8[256] __attribute__((aligned(8)));
-
-
-/* Storage extent is known; element/field types are not recovered. */
-__declspec(section ".data") u8 lbl_801A33B8[256] __attribute__((aligned(8)));
 
 
 /* Storage extent is known; element/field types are not recovered. */
@@ -66,9 +26,7 @@ __declspec(section ".data") u8 lbl_801A3380[56] __attribute__((aligned(8)));
 __declspec(section ".data") u8 __atexit_funcs[256] __attribute__((aligned(8)));
 
 
-
 __declspec(section ".data") u8 lbl_801A3220[96] __attribute__((aligned(8)));
-
 
 
 __declspec(section ".data") u8 lbl_8019F200[16416] __attribute__((aligned(8)));
@@ -80,7 +38,6 @@ __declspec(section ".data") u8 lbl_8019F158[168] __attribute__((aligned(8)));
 
 /* Storage extent is known; element/field types are not recovered. */
 __declspec(section ".data") u8 lbl_8019F14C[12] __attribute__((aligned(4)));
-
 
 
 __declspec(section ".data") f32 lbl_8019F130[7] __attribute__((aligned(4)));

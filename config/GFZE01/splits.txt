@@ -197,6 +197,7 @@ dol/runtime/alloc.c:
 dol/runtime/ansi_files.c:
 	.text       start:0x8007B028 end:0x8007B338 align:4
 	.data       start:0x8015AE58 end:0x8015AF98 align:8
+	.bss        start:0x801A33B8 end:0x801A36B8 align:8
 
 dol/DVDCompareDiskID.c:
 	.text       start:0x8001A1F4 end:0x8001A2EC align:4
@@ -1140,7 +1141,10 @@ dol/data/lbl_8015CF68.c:
 	.bss        start:0x8015D0B0 end:0x80177BA0 align:8
 
 dol/data/lbl_8019E150.c:
-	.bss        start:0x8019E150 end:0x801A50B8 align:8
+	.bss        start:0x8019E150 end:0x801A33B8 align:8
+
+dol/data/lbl_801A36B8.c:
+	.bss        start:0x801A36B8 end:0x801A50B8 align:8
 
 dol/data/gTRKCPUState.c:
 	.bss        start:0x801A5160 end:0x801A5590 align:8

@@ -45,9 +45,9 @@ typedef struct AnsiFile {
     struct AnsiFile *next_file;
 } AnsiFile;
 
-extern u8 lbl_801A33B8[256];
-extern u8 lbl_801A34B8[256];
-extern u8 lbl_801A35B8[256];
+u8 lbl_801A35B8[256] __attribute__((aligned(8)));
+u8 lbl_801A34B8[256] __attribute__((aligned(8)));
+u8 lbl_801A33B8[256] __attribute__((aligned(8)));
 
 /* The retail table contains the three console streams and a zeroed spare. */
 AnsiFile __files[4] __attribute__((aligned(8))) = {

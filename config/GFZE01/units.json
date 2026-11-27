@@ -13481,10 +13481,18 @@
       "lbl_8019F200",
       "lbl_801A3220",
       "__atexit_funcs",
-      "lbl_801A3380",
-      "lbl_801A33B8",
-      "lbl_801A34B8",
-      "lbl_801A35B8",
+      "lbl_801A3380"
+    ],
+    "status": "matching",
+    "matching_for": ["GFZE01"],
+    "data": true,
+    "mw_version": null,
+    "extra_cflags": []
+  },
+  {
+    "module": "main",
+    "source": "dol/data/lbl_801A36B8.c",
+    "symbols": [
       "lbl_801A36B8",
       "gTRKBigEndian",
       "lbl_801A36E8",
@@ -21576,7 +21584,10 @@
       "__close_all",
       "fn_8007B1CC",
       "fn_8007B2A8",
-      "__files"
+      "__files",
+      "lbl_801A33B8",
+      "lbl_801A34B8",
+      "lbl_801A35B8"
     ],
     "status": "matching",
     "matching_for": ["GFZE01", "GFZP01"],
