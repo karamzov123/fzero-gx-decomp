@@ -288,6 +288,22 @@ fallback for the six strings. The loader has the same `.text` and `.data`
 match against fresh regional extraction in all three releases, and is linked
 from the compiler output rather than the extracted object in each release.
 
+### AV display lookup tables and vectors
+
+The USA display-head fragment now defines the two 21-entry lookup tables
+(`0x8015AC68..0x8015AD10`); the material fragment defines three look-at vectors
+(`0x8015AD10..0x8015AD38`) using the shared `Vec3` type. The last vector retains
+its measured trailing word without assigning it a semantic role. The original
+split objects and consumers establish the extents and ordering. These are
+ownership transfers into matching source fragments, not a claim that all of
+`avdisp.c` builds as one TU. Japan and PAL keep their existing build selection.
+
+The adjacent diagnostic span (`0x8015AD38..0x8015AE58`) is still separate. A
+typed aggregate probe matched all 288 data bytes and the display tail, but
+MWCC emitted an extra `addi` in both material warning paths, at `fn_80077B14`
+and `fn_80077B64`. Retail folds the field's `+0x10` into the paired HA/LO
+relocations. Keep the existing layout until those callers match as well.
+
 ## MSL is built with `-inline deferred` (2026-11-24)
 
 MWCC's `-inline auto,deferred` emits a file's functions in reverse source order and can inline a
