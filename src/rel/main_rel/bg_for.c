@@ -1,5 +1,11 @@
 #include "types.h"
 #include "rel/main_rel/globals.h"
+#include "rel/main_rel/bg_for.h"
+#include "psvec.h"
+#include "rel/main_rel/car_test.h"
+#include "game/vec3.h"
+#include "mathutil_vec_dot_prod.h"
+
 
 typedef struct {
     f32 x;
@@ -36,18 +42,254 @@ typedef struct {
     f32 viewMtx[3][4]; /* 0x70 */
 } BgForCamera;
 
+
+
+typedef Vec3 Vec;
+
+struct fn_1_DCE60_lbl_1_rodata_6750 {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1C;
+    u32 unk_20;
+    f32 unk_24;
+    f32 unk_28;
+    f32 unk_2C;
+};
+
+typedef struct fn_1_DD890_Vec3 {
+    f32 x;
+    f32 y;
+    f32 z;
+} fn_1_DD890_Vec3;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} E1408Vec;
+
+typedef struct E1408Object {
+    u8 pad0[0x18];
+    f32 field18;
+    f32 field1C;
+    u8 pad20[0x24];
+    E1408Vec field44;
+    f32 field50;
+    E1408Vec pos;
+    E1408Vec vel;
+    u8 pad6C[0x18];
+    f32 field84;
+    u8 pad88[0x6c];
+    f32 fieldF4;
+    u8 padF8[0x40];
+    union {
+        u64 flags;
+        struct {
+            u32 hi;
+            u32 lo;
+        } w;
+    } f138;
+    u32 mask140;
+    void *other;
+} E1408Object;
+
+typedef struct {
+    u8 pad_0[0x3ba];
+    s16 state;
+    u8 pad_3BC[0x84];
+} CarTestCar;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Fn183D28Vec3;
+
+typedef struct {
+    u8 pad_0[0x14c];
+    Fn183D28Vec3 pos;
+    u8 pad_158[0x200 - 0x158];
+    f32 unk_200;
+} Fn183D28Body;
+
+typedef struct {
+    u8 pad_0[0x8];
+    Fn183D28Vec3 dir;
+    f32 radius;
+} Fn183D28Target;
+
+typedef struct {
+    s16 limit;
+    s16 pad_2;
+    Fn183D28Target **target;
+    u8 pad_8[4];
+} Fn183D28Entry;
+
+typedef struct {
+    u8 pad_0[0x8];
+    Fn183D28Target **target;
+} Fn183D28Slot;
+
+typedef struct {
+    u8 pad_0[0x344];
+    Fn183D28Slot *slots[1];
+} Fn183D28Alt;
+
+typedef struct {
+    u8 pad_0[0x320];
+    s16 index;
+    u8 pad_322[0xa];
+    Fn183D28Body *body;
+    Fn183D28Entry entries[6];
+    u8 pad_378[0x18];
+    u32 flags;
+    u8 pad_394[0xc];
+    Fn183D28Alt *alt;
+} Fn183D28Car;
+
+typedef struct {
+    u32 unk0;
+    f32 value;
+} Sig_fn_1_E5734_E5734Obj;
+
+struct fn_1_DD890_lbl_801A66A0 {
+    u32 unk_0;
+};
+
+typedef struct {
+    f32 x, y, z, w;
+} DE4B0Quat;
+
+typedef Vec3 DE4B0Vec;
+
+typedef struct {
+    u8 pad_0[0x90];
+    s32 *lap;
+} DFBBCLapInfo;
+
+typedef struct {
+    u32 flags;
+    s16 index;
+    u8 pad_6[0x2];
+    f32 mass;
+    u8 pad_C[0x70];
+    Vec pos;
+    Vec prev_pos;
+    Vec vel;
+    u8 pad_A0[0xAC];
+    u8 mtx[0x30];
+    f32 speed;
+    u8 pad_180[0x3C];
+    Vec up;
+    u8 pad_1C8[0x2D4];
+    DFBBCLapInfo *lap_info;
+} DFBBCCar;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} HitPoint;
+extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
+extern const f32 lbl_1_rodata_6780[];
+extern void fn_80008BA8(void *dst, void *src, u32 size);
+extern void fn_1_57714(u8 zMode);
+extern void lbl_8006D758(void);
+extern void lbl_8006E1B0(void *, void *);
+extern void lbl_8006DCA4(void);
+extern void fn_80072558(void);
+extern void fn_1_57810(u32, void *, void *);
+extern void lbl_8006D784(void *);
+extern void lbl_8006DBAC(void *);
+extern void lbl_8006DFE8(const void *);
+extern void fn_1_DDF80(Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side_scale);
+extern void fn_1_56298(f32 r, f32 g, f32 b, f32 a);
+extern f32 lbl_8006D0B4(f32);
+extern void fn_8006EE70(const Vec3 *input, s16 *output);
+extern void mathutil_mtxA_rotate_z(s32);
+extern void mathutil_mtxA_rotate_y(s32);
+extern void mathutil_mtxA_rotate_x(s32);
+extern void lbl_8006E15C(f32, f32, f32);
+extern void fn_1_556B8(void *value);
+extern f64 fabs(f64);
+extern s32 fn_1_E1408(E1408Object *a, E1408Object *b);
+extern void fn_1_E57F4(void *base, f32 value);
+extern void fn_1_DCFA4(u32);
+extern void fn_1_55FF0(f32 scale);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006E14C(f32);
+extern void lbl_8006D7DC(const void *);
+extern s8 fn_1_84408(CarTestCar *);
+extern void fn_1_8E084(CarTestCar *, u32 *, s32);
+extern s8 fn_1_84124(Fn183D28Car *, s8, s8, u8 *);
+extern s8 fn_1_84644(Fn183D28Body *);
+extern f32 fn_1_E5734(Sig_fn_1_E5734_E5734Obj *);
+extern u32 lbl_801A66A0;
+extern void lbl_8006DB74(void *);
+extern void fn_1_9BBE4(void *arg0, u32 arg1, u32 arg2, Fn183D28Vec3 *arg3);
+extern s32 fn_1_54F5C(void *arg0, f32 arg1, f32 arg2);
+extern void fn_1_553C4(void *value, void *arg);
+extern void fn_1_A8DD4(const char *format, ...);
+extern void fn_1_E50F0(void *base, void *arg);
+extern void fn_1_E5164(void *arg0, void *arg1);
+extern void fn_1_E52F8(void *, void (*)(const char *, ...));
+extern f32 lbl_8006D534(Vec *, Vec *);
+extern void lbl_8006D5F0(Vec *, Vec *, f32);
+extern f32 lbl_8006D668(Vec *);
+extern void fn_80008BEC(void *dest, int value, u32 size);
 extern void OSPanic(const char *file, int line, const char *msg, ...);
 extern void lbl_8006DAEC(void);
 extern void lbl_8006DD14(void *, void *);
 extern void fn_1_A7024(f32 fovy, f32 aspect, f32 near, f32 far);
-extern void fn_8006F1F0(BgForVec *pos, BgForVec *up, BgForVec *target);
-extern void lbl_8006DB74(void *);
 extern void lbl_8006DCDC(void);
 extern void lbl_8006DB30(void);
-
-BgForCamera lbl_1_bss_7ADE8;
+extern u32 lbl_801A63C0;
+extern void fn_1_E5840(void *base, const void *value);
+extern void lbl_8006E1C0(void *, void *);
+extern void fn_8006E978(f32 *arg0, Vec3 *arg1, Vec3 *arg2);
+extern void mathutil_mtxA_from_quat(DE4B0Quat *);
+extern void fzgx_pool_sink(const void *, f32);
+extern f32 fn_1_9E14C(u32, void *, f32);
+extern f32 fn_1_9E194(u32, void *, f32);
+extern void fn_1_A5594(u32 arg0, Fn183D28Vec3 *pos);
+extern void *fn_1_86254(int index);
+extern void lbl_8006E0B4(f32, f32, f32);
+extern void fn_8006E2B0(Vec3 *, Vec3 *);
+extern void fn_8006E250(Vec *, Vec *);
+extern f32 lbl_8006D0E8(f32);
+extern void lbl_8006DC34(void *);
+extern void lbl_8006DFC4(void *);
+extern s16 fn_1_DEDC4(Vec3 *a, Vec3 *b, void *mtx, Vec3 *point, Vec3 *normal, Vec3 *hit, Vec3 *out, f32 radius);
+extern void lbl_8006D5A4(Vec3 *a, Vec3 *b, Vec3 *out, f32 t);
+extern void fn_1_A2D84(u32 arg0);
+extern void fn_1_A3BD8(s32 index, u32 value);
+extern void fn_1_DF6AC(Vec *, Vec *, Vec *, Vec *, Vec *, f32, f32, f32, f32, f32, f32);
+extern void fn_1_24F10(DFBBCCar *, f32);
+extern u8 * fn_1_14F04(void);
+extern s32 fn_1_20A5C(Vec3 *pos, f32 *out_t);
+extern s32 fn_1_15578(Vec *, Vec *, f32 *, HitPoint *, s32, s32 *, u32, s32, s32, s32);
+extern s16 fn_1_DF2A4(Vec *, Vec *, Vec *, Vec *, Vec *, Vec *, Vec *, f32, f32);
+extern void fn_1_E57FC(void *object, void *source);
+extern void fn_1_E5884(void *base, void *value);
+extern void fn_1_E58CC(void *base, const void *value);
+extern void fn_1_E5970(void *base, f32 value);
+extern void fn_1_E5978(void *base, f32 value);
+extern void fn_1_E5980(void *base, f32 value);
+extern void fn_1_E5988(void *base, void *value);
+extern void fn_1_E5A0C(void *base, void *value);
+extern void fn_1_E5A50(void *base, void *value);
+extern void fn_1_E5A94(void *base, void *value);
+extern void fn_1_E5AD8(void *, f32);
+extern void fn_8006F1F0(Vec3 *arg0, Vec3 *arg1, Vec3 *arg2);
+extern BgForCamera lbl_1_bss_7ADE8;
 
 /* fzgx:begin fn_1_DCBF4 */
+BgForCamera lbl_1_bss_7ADE8;
 s32 fn_1_DCBF4(s32 type, s32 data) {
     BgForLightList *list = (BgForLightList *)lbl_1_data_2A7E0.unk_3C;
 
@@ -116,7 +358,7 @@ void fn_1_DCED0(BgForCamera *camera) {
     camera->prevPos = camera->pos;
     lbl_8006DD14(camera->viewMtx, camera->projMtx);
     fn_1_A7024(camera->fovy, camera->aspect, camera->near, camera->far);
-    fn_8006F1F0(&camera->pos, &camera->up, &camera->target);
+    fn_8006F1F0( (Vec3 *)(BgForVec *)(&camera->pos), (Vec3 *)(BgForVec *)(&camera->up), (Vec3 *)(BgForVec *)(&camera->target));
     lbl_8006DB74(camera->viewMtx);
     lbl_8006DCDC();
     lbl_8006DB30();
@@ -132,10 +374,6 @@ void fn_1_DCF54(BgForVec *pos, BgForVec *target, BgForVec *up) {
 /* fzgx:end fn_1_DCF54 */
 
 /* fzgx:begin fn_1_DCFA4 */
-#include "rel/main_rel/bg_for.h"
-#include "rel/main_rel/bg_for.h"
-#include "psvec.h"
-
 /* begin game/main_rel/bg_for_types.h (deltawave784/fzgx, CC0) */
 #ifndef GAME_MAIN_REL_BG_FOR_TYPES_H
 #define GAME_MAIN_REL_BG_FOR_TYPES_H
@@ -144,49 +382,13 @@ void fn_1_DCF54(BgForVec *pos, BgForVec *target, BgForVec *up) {
 // a block can compile standalone and under the prologue. Hand-owned (librarian).
 
 
-struct fn_1_DCE60_lbl_1_rodata_6750 {
-    u32 unk_0;
-    u32 unk_4;
-    u32 unk_8;
-    u32 unk_C;
-    u32 unk_10;
-    u32 unk_14;
-    u32 unk_18;
-    u32 unk_1C;
-    u32 unk_20;
-    f32 unk_24;
-    f32 unk_28;
-    f32 unk_2C;
-};
 
-extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
 
 #endif  // GAME_MAIN_REL_BG_FOR_TYPES_H
 
 /* end game/main_rel/bg_for_types.h */
 
 
-extern const f32 lbl_1_rodata_6780[];
-extern void fn_80008BA8(void *, const void *, u32);
-extern void fn_1_57714(u8);
-extern void lbl_8006D758(void);
-extern void lbl_8006E1B0(void *, void *);
-extern void lbl_8006DCA4(void);
-extern void fn_80072558(void);
-extern void fn_1_57810(u32, void *, void *);
-extern void lbl_8006D784(void *);
-extern void lbl_8006DBAC(void *);
-extern void lbl_8006DFE8(const void *);
-extern void fn_1_DDF80(Vec3 *, Vec3 *, Vec3 *, Vec3 *, f32, f32);
-extern void fn_1_56298(f32, f32, f32, f32);
-extern f32 lbl_8006D0B4(f32);
-extern void fn_8006EE70(const Vec3 *, s16 *);
-extern void mathutil_mtxA_rotate_z(s32);
-extern void mathutil_mtxA_rotate_y(s32);
-extern void mathutil_mtxA_rotate_x(s32);
-extern void lbl_8006E15C(f32, f32, f32);
-extern void fn_1_556B8(void *);
-extern f64 fabs(f64);
 
 typedef Vec3 DCFA4Vec;
 typedef struct DCFA4Mtx { f32 m[3][4]; } DCFA4Mtx;
@@ -290,7 +492,7 @@ void fn_1_DCFA4(u32 arg0) {
         lbl_8006DBAC((void *)(arg0+0xc4));
         matrix_translation(&m1);
         lbl_8006DFE8(&m1);
-        fn_1_DDF80((Vec3 *)(arg0+0x44), &delta1, &out1, &out2,
+        fn_1_DDF80( (Vec *)((Vec3 *)(arg0+0x44)), (Vec *)(Vec3 *)(&delta1), (Vec *)(Vec3 *)(&out1), (Vec *)(Vec3 *)(&out2),
                    *(f32 *)(arg0+0x50), *(f32 *)(arg0+0x50));
         lbl_8006DAEC();
         draw_color(p_lbl_1_rodata_6780, 1);
@@ -306,7 +508,7 @@ void fn_1_DCFA4(u32 arg0) {
             lbl_8006DBAC((void *)(v0+0x14c));
             matrix_translation(&m2);
             lbl_8006DFE8(&m2);
-            fn_1_DDF80((Vec3 *)(v0+0x94), &delta2, &out3, &out4, *(f32 *)(v0+0x17c), *(f32 *)(v0+0x17c));
+            fn_1_DDF80( (Vec *)((Vec3 *)(v0+0x94)), (Vec *)(Vec3 *)(&delta2), (Vec *)(Vec3 *)(&out3), (Vec *)(Vec3 *)(&out4), *(f32 *)(v0+0x17c), *(f32 *)(v0+0x17c));
             lbl_8006DAEC();
             draw_color(p_lbl_1_rodata_6780, 1);
             draw_vec(&out3, angles3, p_lbl_1_rodata_6780);
@@ -320,33 +522,9 @@ void fn_1_DCFA4(u32 arg0) {
 /* fzgx:end fn_1_DCFA4 */
 
 /* fzgx:begin fn_1_DD4DC */
-#include "rel/main_rel/bg_for.h"
-#include "rel/main_rel/bg_for.h"
-
-extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
-extern void fn_1_E1408(void *, void *);
 
 
 
-extern const f32 lbl_1_rodata_6780[];
-extern void fn_1_E57F4(void *, f32);
-extern void fn_1_556B8(void *);
-extern void fn_1_56298(f32, f32, f32, f32);
-extern void fn_1_DCFA4(u32);
-extern void fn_1_55FF0(f32);
-extern void lbl_8006D784(void *);
-extern void lbl_8006DBAC(void *);
-extern void lbl_8006DFE8(const void *);
-extern void fn_8006EE70(const Vec3 *, s16 *);
-extern void mathutil_mtxA_rotate_z(s32);
-extern void mathutil_mtxA_rotate_y(s32);
-extern void mathutil_mtxA_rotate_x(s32);
-extern void lbl_8006E15C(f32, f32, f32);
-extern void fn_80072558(void);
-extern f32 lbl_8006D0B4(f32);
-extern void lbl_8006E0A4(void *);
-extern void lbl_8006E14C(f32);
-extern void lbl_8006D7DC(const void *);
 
 
 typedef struct {
@@ -822,13 +1000,7 @@ void fn_1_DD890(DDObj *arg0, f32 arg1) {
 }
 /* fzgx:end fn_1_DD890 */
 
-/* fzgx:begin fn_1_DDF80 noprologue */
-#include "types.h"
-#include "psvec.h"
-#include "game/vec3.h"
-
-typedef Vec3 Vec;
-
+/* fzgx:begin fn_1_DDF80 */
 /* bg_for.c's literal pool: -1.0f at 0x0, 0.0f at 0x20, 1.0f at 0x28 */
 typedef struct {
     f32 neg_one;
@@ -838,12 +1010,6 @@ typedef struct {
     f32 one;
 } Pool;
 
-extern const f32 lbl_1_rodata_6780[];
-extern f32 lbl_8006D534(Vec *, Vec *);
-extern f32 lbl_8006D0B4(f32);
-extern void fn_80008BA8(void *, const void *, u32);
-extern void lbl_8006D5F0(Vec *, Vec *, f32);
-extern f32 lbl_8006D668(Vec *);
 
 /* opt_common_subs off as in fn_1_DE180, which repeats this code; opt_propagation off keeps the pool pointer
  * in one register from the start, as retail does */
@@ -932,11 +1098,7 @@ void fn_1_DDF80(Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_DDF80 */
 
-/* fzgx:begin fn_1_DE180 noprologue */
-#include "types.h"
-#include "psvec.h"
-#include "game/vec3.h"
-
+/* fzgx:begin fn_1_DE180 */
 typedef struct fn_1_DE180_Obj {
     u8 pad_0[0x18];
     f32 unk_18;
@@ -953,12 +1115,6 @@ typedef struct fn_1_DE180_Obj {
 
 typedef Pool fn_1_DE180_Pool;
 
-extern f32 lbl_8006D534(Vec3 *, Vec3 *);
-extern f32 lbl_8006D0B4(f32);
-extern void fn_80008BA8(void *, const void *, u32);
-extern void lbl_8006D5F0(Vec3 *, Vec3 *, f32);
-extern f32 lbl_8006D668(Vec3 *);
-extern void fn_80008BEC(void *, int, u32);
 
 /* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 270 disassembly lines (bg_for/fn_1_DDF80.c) */
 #pragma opt_common_subs off
@@ -1010,7 +1166,7 @@ static inline void fn_1_DE180_perp(const fn_1_DE180_Pool *pool, Vec3 *a, Vec3 *b
     fn_1_DE180_cross(a, b, out);
     fn_1_DE180_cross(out, b, out);
     if (fn_1_DE180_dot(out, out) > pool->zero) {
-        lbl_8006D668(n);
+        lbl_8006D668( (Vec *)(Vec3 *)(n));
     }
 }
 
@@ -1045,7 +1201,7 @@ void fn_1_DE180(fn_1_DE180_Obj *obj, Vec3 *dir, f32 radius) {
     if ((obj->flags & 0x8000) != 0) {
         return;
     }
-    dist = lbl_8006D534(&obj->pos, dir);
+    dist = lbl_8006D534( (Vec *)(Vec3 *)(&obj->pos), (Vec *)(Vec3 *)(dir));
     if (dist > pool->zero) {
         return;
     }
@@ -1053,7 +1209,7 @@ void fn_1_DE180(fn_1_DE180_Obj *obj, Vec3 *dir, f32 radius) {
     k = obj->unk_50;
     scale = k * -obj->unk_18;
     fn_80008BA8(&push, dir, sizeof(Vec3));
-    lbl_8006D5F0(&push, &push, scale * dist);
+    lbl_8006D5F0( (Vec *)(Vec3 *)(&push), (Vec *)(Vec3 *)(&push), scale * dist);
     fn_80008BA8(&pos, &obj->pos, sizeof(Vec3));
 
     fn_1_DE180_perp(pool, &pos, dir, &side);
@@ -1077,38 +1233,9 @@ void fn_1_DE180(fn_1_DE180_Obj *obj, Vec3 *dir, f32 radius) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_DE180 */
 
-/* fzgx:begin fn_1_DE4B0 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_for.h"
-extern void OSPanic(const char *, int, const char *, ...);
-extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DD14(void *, void *);
-extern void fn_1_A7024(f32, f32, f32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DCDC(void);
-extern void lbl_8006DB30(void);
-extern void fn_1_E1408(void *, void *);
-
-#include "psvec.h"
-
-extern void OSPanic(const char *, int, const char *, ...);
-extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DD14(void *, void *);
-extern void fn_1_A7024(f32, f32, f32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DCDC(void);
-extern void lbl_8006DB30(void);
-extern void fn_1_E1408(void *, void *);
+/* fzgx:begin fn_1_DE4B0 */
 
 
-typedef Vec3 DE4B0Vec;
-
-typedef struct {
-    f32 x, y, z, w;
-} DE4B0Quat;
 
 
 typedef struct {
@@ -1126,15 +1253,6 @@ typedef struct {
     u64 flags;
 } DE4B0Obj;
 
-extern u32 lbl_801A63C0;
-extern void fn_1_E5840(void *, const void *);
-extern void lbl_8006DBAC(void *);
-extern void lbl_8006E1C0(void *, void *);
-extern void lbl_8006E1B0(void *, void *);
-extern f32 lbl_8006D668(Vec3 *);
-extern void fn_80008BA8(void *, const void *, u32);
-extern void fn_8006E978(DE4B0Quat *, DE4B0Vec *, DE4B0Vec *);
-extern void mathutil_mtxA_from_quat(DE4B0Quat *);
 
 
 /*
@@ -1142,7 +1260,6 @@ extern void mathutil_mtxA_from_quat(DE4B0Quat *);
  * tables and primers below lay it out so this function's literals land on
  * retail's offsets.
  */
-extern void fzgx_pool_sink(const void *, f32);
 
 #pragma section RX ".fzgxpool"
 
@@ -1265,14 +1382,14 @@ void fn_1_DE4B0(DE4B0Obj *obj, DE4B0Vec *dir) {
             lbl_801A63C0 = seed;
             if ((s32)((seed >> 16) & 0x7FFF) % 2 != 0) {
                 lbl_8006E1C0(&axisA, &axisA);
-                lbl_8006D668(&axisA);
+                lbl_8006D668( (Vec *)(Vec3 *)(&axisA));
                 fn_80008BA8(&out, &axisA, sizeof(DE4B0Vec));
             } else {
                 lbl_8006E1C0(&axisB, &axisB);
-                lbl_8006D668(&axisB);
+                lbl_8006D668( (Vec *)(Vec3 *)(&axisB));
                 fn_80008BA8(&out, &axisB, sizeof(DE4B0Vec));
             }
-            fn_8006E978(&quat, &out, dir);
+            fn_8006E978( (f32 *)(DE4B0Quat *)(&quat), (Vec3 *)(DE4B0Vec *)(&out), (Vec3 *)(DE4B0Vec *)(dir));
             mathutil_mtxA_from_quat(&quat);
             fn_8006F6A8(&angles);
             rot.x = 9.58738e-05f * angles.angle_y;
@@ -1302,7 +1419,7 @@ void fn_1_DE4B0(DE4B0Obj *obj, DE4B0Vec *dir) {
             lbl_8006E1B0(&obj->vel, base);
             lbl_8006E1C0(&obj->vel, velDir);
             lbl_8006E1C0(&up, &up);
-            lbl_8006D668(&up);
+            lbl_8006D668( (Vec *)(Vec3 *)(&up));
             DE4B0_cross(velDir, dir, side);
             DE4B0_cross(side, dir, normal);
             d = -DE4B0_dot(normal, base);
@@ -1313,12 +1430,12 @@ void fn_1_DE4B0(DE4B0Obj *obj, DE4B0Vec *dir) {
                 fn_80008BA8(&out, &up, sizeof(DE4B0Vec));
             } else {
                 DE4B0_cross(side, &up, &out);
-                lbl_8006D668(&out);
+                lbl_8006D668( (Vec *)(Vec3 *)(&out));
             }
             if (DE4B0_dot(dir, &out) < 0.0f) {
                 DE4B0_flip(&out);
             }
-            fn_8006E978(&quat, &out, dir);
+            fn_8006E978( (f32 *)(DE4B0Quat *)(&quat), (Vec3 *)(DE4B0Vec *)(&out), (Vec3 *)(DE4B0Vec *)(dir));
             mathutil_mtxA_from_quat(&quat);
             fn_8006F6A8(&angles);
             rot.x = 9.58738e-05f * angles.angle_y;
@@ -1479,23 +1596,8 @@ void fn_1_DE9C4(struct fn_1_DE9C4_Arg0 *arg0) {
 }
 /* fzgx:end fn_1_DE9C4 */
 
-/* fzgx:begin fn_1_DEDC4 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_for.h"
-extern void OSPanic(const char *, int, const char *, ...);
-extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DD14(void *, void *);
-extern void fn_1_A7024(f32, f32, f32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DCDC(void);
-extern void lbl_8006DB30(void);
-extern void fn_1_E1408(void *, void *);
+/* fzgx:begin fn_1_DEDC4 */
 
-#include "psvec.h"
-#include "game/vec3.h"
-#include "mathutil_vec_dot_prod.h"
 
 /* bg_for.c's literal pool up to the first half of the 0x98 table, so this function's literals and its
  * {0, 1, 0} initializer land at retail's offsets (0xA4-0xBC) */
@@ -1547,15 +1649,6 @@ __declspec(section ".fzgxpool") static void fzgx_pool_keep8(void) { const u32 *v
 #pragma section code_type ".text"
 
 
-extern void lbl_8006DBAC(void *);
-extern void fn_80008BEC(void *, int, u32);
-extern void fn_8006E2B0(Vec3 *, Vec3 *);
-extern f32 lbl_8006D534(Vec3 *, Vec3 *);
-extern void lbl_8006D5F0(Vec3 *, Vec3 *, f32);
-extern void fn_8006E250(Vec3 *, Vec3 *);
-extern f32 lbl_8006D0E8(f32);
-extern f32 lbl_8006D668(Vec3 *);
-extern void lbl_8006E1C0(Vec3 *, Vec3 *);
 
 /* as in fn_1_DFBBC and fn_1_DF2A4: retail reloads every field at each use and keeps the
  * side test's component loads as named values */
@@ -1650,15 +1743,15 @@ s16 fn_1_DEDC4(Vec3 *a, Vec3 *b, void *mtx, Vec3 *point, Vec3 *normal, Vec3 *hit
     dist = plane_dist(b, point, normal);
     lbl_8006DBAC(mtx);
     fn_8006E2B0(normal, &nrm);
-    if (unit_sign(lbl_8006D534(&nrm, &up))) {
+    if (unit_sign(lbl_8006D534( (Vec *)(Vec3 *)(&nrm), (Vec *)(Vec3 *)(&up)))) {
         /* floor or ceiling */
         if (sign > 0) {
             return 0;
         }
-        lbl_8006D5F0(normal, hit, -1.01f * dist);
+        lbl_8006D5F0( (Vec *)(Vec3 *)(normal), (Vec *)(Vec3 *)(hit), -1.01f * dist);
         return 1;
     }
-    fn_8006E250(point, &npt);
+    fn_8006E250( (Vec *)(Vec3 *)(point), (Vec *)(Vec3 *)(&npt));
     if (sign >= 0) {
         if (dist > radius) {
             return 0;
@@ -1669,19 +1762,19 @@ s16 fn_1_DEDC4(Vec3 *a, Vec3 *b, void *mtx, Vec3 *point, Vec3 *normal, Vec3 *hit
             return 0;
         }
         nrm.y = 0.0f;
-        lbl_8006D668(&nrm);
+        lbl_8006D668( (Vec *)(Vec3 *)(&nrm));
         psvec_scale(&nrm, radius, out);
         if (d * ((f32)(nrm.x * out->x) + (f32)(nrm.z * out->z) - d) > 0.0f) {
             flip(out);
         }
-        lbl_8006E1C0(out, &pos);
+        lbl_8006E1C0( (void *)(Vec3 *)(out), (void *)(Vec3 *)(&pos));
         psvec_scale(normal, 0.0001f * plane_dist(&pos, point, normal), hit);
     } else {
         f32 cross_d;
         cross_d = -mathutil_vec_dot_prod(&nrm, &npt);
         reach = __fabs(cross_d) * lbl_8006D0E8(xz_sq(&nrm));
         nrm.y = 0.0f;
-        lbl_8006D668(&nrm);
+        lbl_8006D668( (Vec *)(Vec3 *)(&nrm));
         psvec_scale(&nrm, radius, out);
         if (reach <= radius) {
             if (cross_d * ((f32)(nrm.x * out->x) + (f32)(nrm.z * out->z) - cross_d) <= 0.0f) {
@@ -1690,7 +1783,7 @@ s16 fn_1_DEDC4(Vec3 *a, Vec3 *b, void *mtx, Vec3 *point, Vec3 *normal, Vec3 *hit
         } else {
             flip(out);
         }
-        lbl_8006E1C0(out, &pos);
+        lbl_8006E1C0( (void *)(Vec3 *)(out), (void *)(Vec3 *)(&pos));
         psvec_scale(normal, 0.0001f * plane_dist(&pos, point, normal), hit);
     }
     return 3;
@@ -1913,32 +2006,10 @@ s16 fn_1_DF2A4(DF2A4Vec *pos, DF2A4Vec * __restrict prev, void *mtx, DF2A4Vec *p
 }
 /* fzgx:end fn_1_DF2A4 */
 
-/* fzgx:begin fn_1_DF6AC noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_for.h"
-extern void OSPanic(const char *, int, const char *, ...);
-extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DD14(void *, void *);
-extern void fn_1_A7024(f32, f32, f32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DCDC(void);
-extern void lbl_8006DB30(void);
-extern void fn_1_E1408(void *, void *);
+/* fzgx:begin fn_1_DF6AC */
 
-#include "psvec.h"
 
-typedef Vec3 Vec;
 
-extern f32 lbl_8006D534(Vec *, Vec *);
-extern f32 lbl_8006D0B4(f32);
-extern void fn_80008BA8(void *, const void *, u32);
-extern void fn_80008BEC(void *, int, u32);
-extern void lbl_8006D5F0(Vec *, Vec *, f32);
-extern f32 lbl_8006D668(Vec *);
-
-extern const f32 lbl_1_rodata_6780[];
 
 /* as in fn_1_DDF80 and fn_1_DE180, whose code this repeats: retail reloads each field at every use */
 /* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 100 disassembly lines (bg_for/fn_1_DF6AC.c) */
@@ -2032,9 +2103,7 @@ static inline void split(const f32 *pool, Vec *a, Vec *b, Vec *along, Vec *side,
     psvec_scale(side, side_scale * s, side);
 }
 
-void fn_1_DF6AC(Vec *a, Vec *b, Vec *c, Vec *out_b, Vec *out_c, f32 scale_b, f32 scale_c, f32 k0, f32 k1, f32 k2,
-                f32 unused) {
-    const f32 *const pool = lbl_1_rodata_6780;
+void fn_1_DF6AC(Vec *a, Vec *b, Vec *c, Vec *out_b, Vec *out_c, f32 scale_b, f32 scale_c, f32 k0, f32 k1, f32 k2, f32 unused) { const f32 *const pool = lbl_1_rodata_6780;
     Vec along_b;
     Vec along_c;
     Vec side_b;
@@ -2572,25 +2641,9 @@ s32 fn_1_DFBBC(DFBBCCar *car, DFBBCObj *obj) {
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_DFBBC */
 
-/* fzgx:begin fn_1_E07B8 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_for.h"
-extern void OSPanic(const char *, int, const char *, ...);
-extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DD14(void *, void *);
-extern void fn_1_A7024(f32, f32, f32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DCDC(void);
-extern void lbl_8006DB30(void);
-extern void fn_1_E1408(void *, void *);
+/* fzgx:begin fn_1_E07B8 */
 
-#include "psvec.h"
 
-extern const f32 lbl_1_rodata_6780[];
-
-typedef Vec3 Vec;
 
 typedef struct {
     u8 pad_0[0xC];
@@ -2630,29 +2683,12 @@ typedef struct {
     f32 unk_1A4;
 } Obj;
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} HitPoint;
 
 typedef struct {
     u32 unk_0;
     u8 pad_4[0x8];
 } Entry;
 
-extern u32 lbl_801A66A0;
-extern void *fn_1_14F04(void);
-extern s32 fn_1_20A5C(Vec *, f32 *);
-extern s32 fn_1_15578(Vec *, Vec *, f32 *, HitPoint *, s32, s32 *, u32, s32, s32, s32);
-extern s16 fn_1_DF2A4(Vec *, Vec *, Vec *, Vec *, Vec *, Vec *, Vec *, f32, f32);
-extern void lbl_8006D5A4(Vec *, Vec *, Vec *, f32);
-extern f32 lbl_8006D534(Vec *, Vec *);
-extern f32 lbl_8006D0B4(f32);
-extern void fn_80008BA8(void *, const void *, u32);
-extern void lbl_8006D5F0(Vec *, Vec *, f32);
-extern f32 lbl_8006D668(Vec *);
-extern void fn_80008BEC(void *, int, u32);
 
 /* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 30 disassembly lines (bg_for/fn_1_E07B8.c) */
 #pragma opt_common_subs off
@@ -2808,8 +2844,8 @@ s32 fn_1_E07B8(Obj *obj) {
     psvec_scale(&ofs, -sc, &ofs);
     psvec_add(&cur, &ofs, &cur);
     psvec_add(&prev, &ofs, &prev);
-    p = fn_1_14F04();
-    obj->unk_100 = fn_1_20A5C(&cur, &info);
+    p = ((void *)fn_1_14F04());
+    obj->unk_100 = fn_1_20A5C( (Vec3 *)(Vec *)(&cur), &info);
     obj->unk_104 = obj->unk_108 = obj->unk_10C = obj->unk_100;
     switch (obj->mode) {
     case 1:
@@ -2821,7 +2857,7 @@ s32 fn_1_E07B8(Obj *obj) {
             if ((obj->flags & 0x10000) != 0) {
                 fn_80008BA8(&obj->unk_128, &obj->unk_11C, sizeof(Vec));
             }
-            lbl_8006D5A4(&prev, &cur, &obj->unk_110, t);
+            lbl_8006D5A4( (Vec3 *)(Vec *)(&prev), (Vec3 *)(Vec *)(&cur), (Vec3 *)(Vec *)(&obj->unk_110), t);
         }
         r = fn_1_DF2A4(&obj->unk_60, &obj->unk_54, &obj->unk_C4, &obj->unk_110, &obj->unk_11C, &push, &obj->unk_88,
                        obj->unk_1A0 * obj->unk_F4, obj->unk_1A4 * obj->unk_F8);
@@ -2881,40 +2917,8 @@ s32 fn_1_E07B8(Obj *obj) {
 #pragma opt_common_subs reset
 /* fzgx:end fn_1_E07B8 */
 
-/* fzgx:begin fn_1_E1408 noprologue */
-#include "types.h"
-#include "psvec.h"
+/* fzgx:begin fn_1_E1408 */
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} E1408Vec;
-
-typedef struct E1408Object {
-    u8 pad0[0x18];
-    f32 field18;
-    f32 field1C;
-    u8 pad20[0x24];
-    E1408Vec field44;
-    f32 field50;
-    E1408Vec pos;
-    E1408Vec vel;
-    u8 pad6C[0x18];
-    f32 field84;
-    u8 pad88[0x6c];
-    f32 fieldF4;
-    u8 padF8[0x40];
-    union {
-        u64 flags;
-        struct {
-            u32 hi;
-            u32 lo;
-        } w;
-    } f138;
-    u32 mask140;
-    void *other;
-} E1408Object;
 
 typedef struct {
     f32 unk_0;
@@ -2932,11 +2936,6 @@ typedef struct {
     f32 unk_CC;
 } E1408Pool;
 
-extern const f32 lbl_1_rodata_6780[];
-extern void fn_1_DF6AC(void *, void *, void *, void *, void *, f32, f32, f32, f32, f32, f32);
-extern f32 lbl_8006D0B4(f32);
-extern void lbl_8006D5A4(void *, void *, void *, f32);
-extern void lbl_8006D5F0(void *, f32, void *);
 
 /* Earliest time t at which two moving spheres of combined radius r touch. */
 /* WARNING: compiler-diff device, not original code: opt_lifetimes off; removal changes 38 disassembly lines (bg_for/fn_1_E1408.c) */
@@ -3044,8 +3043,8 @@ s32 fn_1_E1408(E1408Object *a, E1408Object *b) {
         return 0;
     }
 
-    lbl_8006D5A4(&a->vel, &a->pos, &a->pos, t);
-    lbl_8006D5A4(&b->vel, &b->pos, &b->pos, t);
+    lbl_8006D5A4( (Vec3 *)(void *)(&a->vel), (Vec3 *)(void *)(&a->pos), (Vec3 *)(void *)(&a->pos), t);
+    lbl_8006D5A4( (Vec3 *)(void *)(&b->vel), (Vec3 *)(void *)(&b->pos), (Vec3 *)(void *)(&b->pos), t);
     psvec_sub(&b->pos, &a->pos, &n);
 
     fa = E1408_flags(0, 0, b->f138.flags, (u64)(u32)a->f138.flags);
@@ -3053,20 +3052,20 @@ s32 fn_1_E1408(E1408Object *a, E1408Object *b) {
     pushB = fa;
 
     if (pushB == 1) {
-        lbl_8006D5F0(&n, pool->unk_74 * r, &t20);
+        lbl_8006D5F0((Vec *)(&n), (Vec *)(&t20), pool->unk_74 * r);
         psvec_add(&a->pos, &t20, &b->pos);
     } else if (pushA == 1) {
-        lbl_8006D5F0(&n, -(pool->unk_74 * r), &t14);
+        lbl_8006D5F0((Vec *)(&n), (Vec *)(&t14), -(pool->unk_74 * r));
         psvec_add(&b->pos, &t14, &a->pos);
     } else {
-        lbl_8006D5F0(&n, -(pool->unk_B4 * r), &t8);
+        lbl_8006D5F0((Vec *)(&n), (Vec *)(&t8), -(pool->unk_B4 * r));
         E1408_separate(&a->pos, &b->pos, &t8, pool->unk_0);
     }
 
     if ((a->f138.flags & 0x800000) != 0 || (b->f138.flags & 0x800000) != 0) {
         return 0;
     }
-    fn_1_DF6AC(&n, &a->field44, &b->field44, &a->field44, &b->field44, a->field50, b->field50, a->field1C,
+    fn_1_DF6AC( (Vec *)(void *)(&n), (Vec *)(void *)(&a->field44), (Vec *)(void *)(&b->field44), (Vec *)(void *)(&a->field44), (Vec *)(void *)(&b->field44), a->field50, b->field50, a->field1C,
                b->field1C, pool->unk_34 * (a->field18 + b->field18), pool->unk_20);
     a->f138.flags |= 0x20000000;
     b->f138.flags |= 0x20000000;
@@ -3076,20 +3075,8 @@ s32 fn_1_E1408(E1408Object *a, E1408Object *b) {
 }
 /* fzgx:end fn_1_E1408 */
 
-/* fzgx:begin fn_1_E1934 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_for.h"
-extern void OSPanic(const char *, int, const char *, ...);
-extern struct fn_1_DCE60_lbl_1_rodata_6750 lbl_1_rodata_6750;
-extern void lbl_8006DAEC(void);
-extern void lbl_8006DD14(void *, void *);
-extern void fn_1_A7024(f32, f32, f32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DCDC(void);
-extern void lbl_8006DB30(void);
+/* fzgx:begin fn_1_E1934 */
 struct E1408Object;
-extern s32 fn_1_E1408(struct E1408Object *, struct E1408Object *);
 
 typedef struct {
     u8 pad0[0x8];
@@ -3114,7 +3101,7 @@ void fn_1_E1934(Fn1E1934Object *obj, Fn1E1934Object *base, s16 limit) {
     }
 
     while (index < limit) {
-        fn_1_E1408((struct E1408Object *)obj, (struct E1408Object *)&base[index]);
+        fn_1_E1408( (E1408Object *)((struct E1408Object *)obj), (E1408Object *)((struct E1408Object *)&base[index]));
         index++;
     }
 }

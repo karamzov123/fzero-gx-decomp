@@ -519,6 +519,14 @@ The smallest-first sweep also reconciled `sfx_cnv.c`: 16 to 2 isolated blocks wi
 compile units both before and after. The candidate did not collapse to a single object;
 only the declaration sharing is retained, with all three hash and lint gates passing.
 
+Two more declaration-only changes preserve the existing splits. `dct_ac.c` uses the existing
+typed transform and inverse-table declarations and retires two isolated blocks. Its proposed
+three-to-one merge failed the PAL build because the pool retargeter could not empty a private
+section; the original splits remain. `bg_for.c` drops from thirteen to five isolated blocks
+at the original twelve units. Its split-first candidate had fourteen units, and combining
+the original groups still hits the duplicate `Fn183D28Vec3` typedef. The accepted rewrite
+rebinds two renumbered MWCC literals without changing their retail targets.
+
 `tools/consolidate/rel_own_data.py` transfers whole adjacent import units into a specified
 one-unit REL TU. It checks contiguity and matching regional coverage, carries over the existing
 typed definitions in retail order, and verifies the moved symbols against fresh compiled and

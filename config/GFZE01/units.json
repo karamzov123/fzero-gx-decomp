@@ -25028,8 +25028,8 @@
     "pool": {
       "...rodata.0": "lbl_1_rodata_6780",
       "@187": "lbl_1_rodata_6800",
-      "@28": "lbl_1_rodata_6780+0x20",
-      "@23": "lbl_1_rodata_6780"
+      "@31": "lbl_1_rodata_6780+0x20",
+      "@26": "lbl_1_rodata_6780"
     }
   },
   {
