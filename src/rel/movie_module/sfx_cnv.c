@@ -1,9 +1,87 @@
 #include "types.h"
 
-/* fzgx:begin fn_12_8E4 noprologue */
-#include "types.h"
+typedef struct Sig_fn_12_748_MovieModule {
+    u8 pad30[0x30];
+    int value;
+} Sig_fn_12_748_MovieModule;
 
-/* --- rel/movie_module/fn_12_8E4.c --- */
+typedef struct MovieState {
+    int pad0;
+    int value;
+} MovieState;
+
+typedef struct MovieData {
+    int mode;
+    int value;
+    unsigned char pad[0x3c];
+    int field44;
+    int field48;
+} MovieData;
+
+typedef struct Fn12_A5C_3 {
+    s32 f00;
+    s32 f04;
+    s32 f08;
+    s32 f0C;
+    s32 f10;
+    s32 f14;
+    s32 f18;
+} Fn12_A5C_3;
+
+typedef struct Fn12_A5C_2 {
+    u32 f00;
+    s32 f04;
+    s32 f08;
+    s32 f0C;
+    s32 f10;
+    s32 f14;
+} Fn12_A5C_2;
+
+struct fn_12_1578_lbl_12_rodata_60 {
+    u8 pad_0[0xF4];
+    f32 unk_F4;
+    f64 unk_F8;
+};
+
+typedef struct fn_12_D88_Arg1 {
+    s32 unk_0;
+    s32 unk_4;
+    s32 unk_8;
+    s32 unk_C;
+    u8 pad_10[0x4];
+    s32 unk_14;
+    s32 unk_18;
+    u8 pad_1C[0x8];
+    s32 unk_24;
+    s32 unk_28;
+} fn_12_D88_Arg1;
+
+typedef struct Fn12_A5C_0 {
+    u8 pad0[8];
+    s32 field_08;
+    s32 field_0C;
+    u8 pad10[0x10];
+    s32 field_20;
+    u8 pad24[0x10];
+    s32 field_34;
+    s32 field_38;
+} Fn12_A5C_0;
+
+typedef struct Fn12_A5C_1 {
+    u8 pad0[4];
+    s32 field_04;
+    s32 field_08;
+    s32 field_0C;
+    u8 pad10[4];
+    s32 field_14;
+    s32 field_18;
+    u8 pad1C[8];
+    s32 field_24;
+    s32 field_28;
+    u8 pad2C[0x20];
+    s32 field_4C;
+} Fn12_A5C_1;
+
 typedef struct Fn12_8E4_Self {
     u32 unk_00;
     u32 unk_04;
@@ -31,10 +109,252 @@ typedef struct Fn12_8E4_Arg1 {
     u32 unk_4c;
 } Fn12_8E4_Arg1;
 
+typedef struct MovieModule {
+    u8 unk0[4];
+    s32 field4;
+    u8 unk8[0x18];
+    u32 field20;
+} MovieModule;
+
+typedef struct MovieArg {
+    s32 value;
+} MovieArg;
+
+typedef struct {
+    s32 a[10];
+} fn_12_D88_Loc;
+
+struct fn_12_F70_Arg0 {
+    u8 pad_0[0x4];
+    s32 unk_4;
+    s32 unk_8;
+    s32 unk_C;
+    u8 pad_10[0x28];
+    u32 unk_38;
+};
+
+typedef struct Sig_fn_12_740_MovieModule {
+    u8 pad[0x60];
+    int value;
+} Sig_fn_12_740_MovieModule;
+
+typedef struct Sig_fn_12_49D8_MovieState {
+    u8 pad[0x58];
+    s32 value;
+} Sig_fn_12_49D8_MovieState;
+
+struct Sig_fn_12_49AC_fn_12_49AC_Arg0 {
+    u8 pad_0[0x58];
+    u32 unk_58;
+};
+
+struct Sig_fn_12_738_MovieData {
+    u8 pad[0x64];
+    int value;
+};
+
+typedef struct SFXHandle {
+    s32 active;
+    s32 stream_info;
+    s32 field_count;
+    u8 reserved_0c[0x20];
+    void *alpha;
+    u8 reserved_30[4];
+    s32 table_compo;
+    void *work_0;
+} SFXHandle;
+
+struct fn_12_F70_Arg1 {
+    u8 pad_0[0x4];
+    s32 unk_4;
+    s32 unk_8;
+    s32 unk_C;
+    u8 pad_10[0x4];
+    s32 unk_14;
+    s32 unk_18;
+    u8 pad_1C[0x8];
+    s32 unk_24;
+    s32 unk_28;
+    u8 pad_2C[0x18];
+    s32 unk_44;
+    s32 unk_48;
+};
+
+struct fn_12_13D0_Arg1 {
+    u8 pad_0[0x48];
+    u32 unk_48;
+};
+
+typedef struct Sig_fn_12_34DC_MovieModuleObject {
+    int field_0;
+    int field_4;
+} Sig_fn_12_34DC_MovieModuleObject;
+
+typedef struct Sig_fn_12_3508_MovieModuleObject {
+    int field_0;
+    int field_4;
+    void *field_8;
+    void *field_C;
+    void *field_10;
+    int field_14;
+} Sig_fn_12_3508_MovieModuleObject;
+
+typedef struct MovieMatrix {
+    s32 x;
+    s32 y;
+    s32 z;
+    s32 width;
+    s32 height;
+    s32 depth;
+    s32 pad_18;
+} MovieMatrix;
+
+typedef struct MovieSource {
+    s32 object;
+    s32 field_04;
+    s32 field_08;
+    s32 field_0c;
+    s32 pad_10;
+    s32 pad_14;
+} MovieSource;
+
+typedef struct CFTYcc420Planar {
+    void *y;
+    void *cb;
+    void *cr;
+    s32 y_stride;
+    s32 cb_stride;
+    s32 cr_stride;
+    u8 reserved_18[4];
+} CFTYcc420Planar;
+
+typedef struct SFXPlaneBuffer {
+    void *pixels;
+    s32 width;
+    s32 height;
+    s32 pitch;
+} SFXPlaneBuffer;
+
+typedef struct CFTArgb8888Output {
+    SFXPlaneBuffer plane;
+    u8 reserved_10[8];
+} CFTArgb8888Output;
+
+typedef struct MovieArg0 {
+    s32 pad_00;
+    s32 format;
+    s32 count;
+    s32 pad_0c[11];
+    u32 field_38;
+} MovieArg0;
+
+typedef struct MovieArg1 {
+    s32 pad_00;
+    s32 width;
+    s32 height;
+    s32 depth;
+    s32 pad_10;
+    s32 offset_x;
+    s32 offset_y;
+    s32 pad_1c;
+    s32 pad_20;
+    s32 step_x;
+    s32 step_y;
+    s32 pad_2c[6];
+    s32 field_44;
+    s32 field_48;
+    s32 pad_4c[10];
+    s32 field_74;
+} MovieArg1;
+
+typedef struct SFXFrameInfo {
+    s32 format;
+    SFXPlaneBuffer y;
+    SFXPlaneBuffer cb;
+    SFXPlaneBuffer cr;
+    u8 reserved_34[0x10];
+    s32 field_44;
+    s32 field_48;
+    s32 color_adjustment;
+    u8 reserved_50[0x24];
+    s32 field_74;
+} SFXFrameInfo;
+
+typedef struct Sig_fn_12_1578_MovieState {
+    int pad0;
+    int value;
+} Sig_fn_12_1578_MovieState;
+
+typedef struct Sig_fn_12_1578_MovieData {
+    int mode;
+    int value;
+    unsigned char pad[0x3c];
+    int field44;
+    int field48;
+} Sig_fn_12_1578_MovieData;
+
+typedef struct MovieArgs {
+    int a;
+    int b;
+    int c;
+    int pad[3];
+} MovieArgs;
 extern u8 lbl_12_rodata_194[248];
-extern void fn_12_309C(u32, u32, void *);
+extern void fn_12_309C(u32 a, u32 b, u32 c);
 extern void fn_12_3710(u32, u32, u32);
-extern void fn_12_3DBDC(void *, void *, u32);
+extern void fn_12_3DBDC();
+extern void fn_12_3DCEC();
+extern void fn_12_3DBE0(Fn12_A5C_3 *, Fn12_A5C_2 *, s32);
+extern void fn_12_3A64(s32, s32, s32);
+extern f64 lbl_12_rodata_60[12];
+extern int fn_12_3074();
+extern s32 fn_12_3630(const MovieData *movie);
+extern void fn_12_A5C(Fn12_A5C_0 *param0, Fn12_A5C_1 *param1, s32 type, s32 param3);
+extern void fn_12_8E4(Fn12_8E4_Self *self, Fn12_8E4_Arg1 *arg1, s32 arg2, void *arg3);
+extern void fn_12_C60(MovieModule *module, MovieArg *arg1, s32 arg2, void *arg3);
+extern void fn_12_3C17C(fn_12_D88_Loc *, s32, s32, s32, s32);
+extern void fn_12_3C4A8(void *, void *, u32);
+extern void fn_12_3C8CC(void *, void *);
+extern int fn_12_740(MovieModule *self);
+extern int fn_12_49D8(MovieState *state);
+extern int fn_12_49AC(struct fn_12_F70_Arg0 *);
+extern int fn_12_738(struct MovieData *movie);
+extern u32 lbl_12_rodata_28C;
+extern int fn_12_748(Sig_fn_12_748_MovieModule *);
+extern void fn_12_F70();
+extern void fn_12_3D968(void* table);
+extern void fn_12_3D740(void* buffer);
+extern u8 lbl_12_rodata_C0[212];
+extern void fn_12_11A8(Sig_fn_12_748_MovieModule *arg0, u32 arg1, void *arg2);
+extern u8 lbl_12_rodata_2BC[396];
+extern void fn_12_132C(void *arg0, void *arg1, void *arg2);
+extern u32 fn_12_68C(u32, u32);
+extern u32 fn_12_6B8(u32, u32);
+extern void fn_12_8B4(void *, void *, void *);
+extern u32 fn_12_307C(void);
+extern void fn_12_13D0(u32 arg0, struct fn_12_13D0_Arg1 *arg1, u32 arg2);
+extern int fn_12_34DC(void *alpha);
+extern void fn_12_34E4(void *arg0, void *arg1, void *arg2);
+extern void fn_12_3508(void *alpha, s32 adjustment, void *table);
+extern void fn_12_3D730();
+extern void fn_12_3D734();
+extern void fn_12_3D73C();
+extern u32 fn_12_308C(void);
+extern void fn_12_3D144(MovieMatrix *matrix, MovieSource *source);
+extern u32 fn_12_3DCF0(const CFTYcc420Planar *source, const CFTArgb8888Output *destination, const u8 *table);
+extern void fn_12_3DF08(const CFTYcc420Planar *source, const CFTArgb8888Output *destination);
+extern void fn_12_3CB74(CFTYcc420Planar *source, CFTArgb8888Output *destination, void *table);
+extern void fn_12_3E09C(const void *source, void *destination, s32 width, s32 height);
+extern void fn_12_1F84(MovieArg0 *arg0, MovieArg1 *arg1, s32 arg2);
+extern void fn_12_21C8(SFXHandle *handle, SFXFrameInfo *frame, void *output);
+extern void fn_12_1578();
+extern void fn_12_3D738();
+extern void fn_12_2F04();
+
+/* fzgx:begin fn_12_8E4 */
+/* --- rel/movie_module/fn_12_8E4.c --- */
+
+
 
 void fn_12_8E4(Fn12_8E4_Self *self, Fn12_8E4_Arg1 *arg1, s32 arg2, void *arg3) {
     struct { u32 v[6]; } vec_a;
@@ -72,7 +392,7 @@ void fn_12_8E4(Fn12_8E4_Self *self, Fn12_8E4_Arg1 *arg1, s32 arg2, void *arg3) {
         break;
     case 0:
     default:
-        fn_12_309C(0, 0, lbl_12_rodata_194);
+        fn_12_309C(0, 0, (u32)(void *)(lbl_12_rodata_194));
         mode = 0;
         break;
     }
@@ -99,63 +419,14 @@ void fn_12_8E4(Fn12_8E4_Self *self, Fn12_8E4_Arg1 *arg1, s32 arg2, void *arg3) {
 }
 /* fzgx:end fn_12_8E4 */
 
-/* fzgx:begin fn_12_A5C noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_A5C */
 #pragma opt_propagation off
 
-extern u8 lbl_12_rodata_194[248];
-extern void fn_12_309C(u32, u32, u32);
 
-typedef struct Fn12_A5C_0 {
-    u8 pad0[8];
-    s32 field_08;
-    s32 field_0C;
-    u8 pad10[0x10];
-    s32 field_20;
-    u8 pad24[0x10];
-    s32 field_34;
-    s32 field_38;
-} Fn12_A5C_0;
 
-typedef struct Fn12_A5C_1 {
-    u8 pad0[4];
-    s32 field_04;
-    s32 field_08;
-    s32 field_0C;
-    u8 pad10[4];
-    s32 field_14;
-    s32 field_18;
-    u8 pad1C[8];
-    s32 field_24;
-    s32 field_28;
-    u8 pad2C[0x20];
-    s32 field_4C;
-} Fn12_A5C_1;
 
-typedef struct Fn12_A5C_2 {
-    u32 f00;
-    s32 f04;
-    s32 f08;
-    s32 f0C;
-    s32 f10;
-    s32 f14;
-} Fn12_A5C_2;
 
-typedef struct Fn12_A5C_3 {
-    s32 f00;
-    s32 f04;
-    s32 f08;
-    s32 f0C;
-    s32 f10;
-    s32 f14;
-    s32 f18;
-} Fn12_A5C_3;
 
-extern void fn_12_3DCEC(Fn12_A5C_3 *, Fn12_A5C_2 *, s32);
-extern void fn_12_3DBE0(Fn12_A5C_3 *, Fn12_A5C_2 *, s32);
-extern void fn_12_3A64(s32, s32, s32);
-extern void fn_12_3710(s32, s32, s32);
 
 void fn_12_A5C(Fn12_A5C_0 *param0, Fn12_A5C_1 *param1, s32 type, s32 param3) {
     s32 *fzgx_value;
@@ -229,77 +500,53 @@ void fn_12_A5C(Fn12_A5C_0 *param0, Fn12_A5C_1 *param1, s32 type, s32 param3) {
 }
 /* fzgx:end fn_12_A5C */
 
-/* fzgx:begin fn_12_C60 noprologue */
-#include "types.h"
+/* fzgx:begin fn_12_C60 */
 
-typedef struct MovieModule {
-    u8 unk0[4];
-    s32 field4;
-    u8 unk8[0x18];
-    u32 field20;
-} MovieModule;
 
-typedef struct MovieArg {
-    s32 value;
-} MovieArg;
 
-extern u8 lbl_12_rodata_60[];
-
-extern u32 fn_12_3074(void *arg0, const void *arg1);
-extern s32 fn_12_3630(u32 value);
-extern void fn_12_309C(void *arg0, void *arg1, const void *arg2);
-extern void fn_12_A5C(void *arg0, void *arg1, s32 arg2, void *arg3);
-extern void fn_12_8E4(void *arg0, void *arg1, s32 arg2, void *arg3);
 
 void fn_12_C60(MovieModule *module, MovieArg *arg1, s32 arg2, void *arg3) {
-    u8 *table = (u8 *)&lbl_12_rodata_60;
+    u8 *table = (u8 *)((u8 *)&lbl_12_rodata_60);
 
     if (module->field4 == 0) {
-        module->field4 = fn_12_3074(arg1, table + 0x60);
+        module->field4 = ((u32)fn_12_3074(arg1, table + 0x60));
     }
 
-    if (fn_12_3630(module->field20) != 1) {
-        fn_12_309C(module, arg1, table + 0x164);
+    if (fn_12_3630( (const MovieData *)(u32)(module->field20)) != 1) {
+        fn_12_309C( (u32)(void *)(module), (u32)(void *)(arg1), (u32)(const void *)(table + 0x164));
     } else {
         switch (arg1->value) {
         case 3:
-            fn_12_A5C(module, arg1, arg2, arg3);
+            fn_12_A5C( (Fn12_A5C_0 *)(void *)(module), (Fn12_A5C_1 *)(void *)(arg1), arg2, (s32)(void *)(arg3));
             break;
         case 2:
-            fn_12_8E4(module, arg1, arg2, arg3);
+            fn_12_8E4( (Fn12_8E4_Self *)(void *)(module), (Fn12_8E4_Arg1 *)(void *)(arg1), arg2, arg3);
             break;
         case 1:
         default:
-            fn_12_309C(module, arg1, table + 0x194);
+            fn_12_309C( (u32)(void *)(module), (u32)(void *)(arg1), (u32)(const void *)(table + 0x194));
             break;
         }
     }
 }
 /* fzgx:end fn_12_C60 */
 
-/* fzgx:begin fn_12_D38 noprologue */
-#include "types.h"
-
-extern void fn_12_C60(u32, u32, u32, u32);
+/* fzgx:begin fn_12_D38 */
 
 void fn_12_D38(u32 arg0, u32 arg1, u32 arg2) {
-    fn_12_C60(arg0, arg1, 0x20, arg2);
+    fn_12_C60( (MovieModule *)(u32)(arg0), (MovieArg *)(u32)(arg1), 0x20, (void *)(u32)(arg2));
 }
 /* fzgx:end fn_12_D38 */
 
-/* fzgx:begin fn_12_D60 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_D60 */
 /* --- rel/movie_module/fn_12_D60.c --- */
-extern void fn_12_C60(void *arg0, void *arg1, s32 arg2, void *arg3);
 
 void fn_12_D60(void *arg0, void *arg1, void *arg2) {
-    fn_12_C60(arg0, arg1, 16, arg2);
+    fn_12_C60( (MovieModule *)(void *)(arg0), (MovieArg *)(void *)(arg1), 16, arg2);
 }
 /* fzgx:end fn_12_D60 */
 
-/* fzgx:begin fn_12_D88 noprologue */
-
+/* fzgx:begin fn_12_D88 */
 /* --- rel/movie_module/fn_12_D88.c --- */
 #pragma use_lmw_stmw on
 #pragma pool_data on
@@ -312,46 +559,28 @@ typedef struct fn_12_D88_Arg0 {
     s32 unk_C;
 } fn_12_D88_Arg0;
 
-typedef struct fn_12_D88_Arg1 {
-    s32 unk_0;
-    s32 unk_4;
-    s32 unk_8;
-    s32 unk_C;
-    u8 pad_10[0x4];
-    s32 unk_14;
-    s32 unk_18;
-    u8 pad_1C[0x8];
-    s32 unk_24;
-    s32 unk_28;
-} fn_12_D88_Arg1;
 
 /* retail's 0x50 frame holds ten words here; fn_12_D88 fills the first six */
-typedef struct {
-    s32 a[10];
-} fn_12_D88_Loc;
 
-extern int fn_12_3074(fn_12_D88_Arg1 *, const char *);
-extern void fn_12_309C(void *, void *, const char *);
-extern void fn_12_3C17C(fn_12_D88_Loc *, s32, s32, s32, s32);
 
 #pragma force_active on
 #pragma section code_type ".fzgxpool"
 static f32 fzgx_pool_primer_before(s32 value) {
-    fn_12_309C(0, 0, "E201312: sfxcnv_IsCnvUpHalf : compo is invalid.");
-    fn_12_309C(0, 0, "E301282: CnvToRgb888 : compo is not support.");
-    fn_12_309C(0, 0, "COMPO");
-    fn_12_309C(0, 0, "E301281: SFX_CnvFrmRgb888 : frmfmt is not support.");
-    fn_12_309C(0, 0, "E202281: SFX_MakeTblZ32 : zclip is not set.");
-    fn_12_309C(0, 0, "E202282: SFX_MakeTblZ16 : zclip is not set.");
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201312: sfxcnv_IsCnvUpHalf : compo is invalid."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E301282: CnvToRgb888 : compo is not support."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("COMPO"));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E301281: SFX_CnvFrmRgb888 : frmfmt is not support."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E202281: SFX_MakeTblZ32 : zclip is not set."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E202282: SFX_MakeTblZ16 : zclip is not set."));
     return 1.164f * (f32)value;
 }
 #pragma section code_type ".text"
 #pragma section code_type ".fzgxpool"
 static void fzgx_pool_primer_after(void) {
-    fn_12_309C(0, 0, "E201311: sfxcnv_MakeTable : compo is not support.");
-    fn_12_309C(0, 0, "E201313: sfxcnv_CnvZbitToCft : zbit is invalid.");
-    fn_12_309C(0, 0, "E201315: sfxcnv_CnvFrmZcmn : zclip is not set.");
-    fn_12_309C(0, 0, "E201191: SFX_CnvFrmZcmn : frmfmt is not support.");
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201311: sfxcnv_MakeTable : compo is not support."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201313: sfxcnv_CnvZbitToCft : zbit is invalid."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201315: sfxcnv_CnvFrmZcmn : zclip is not set."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201191: SFX_CnvFrmZcmn : frmfmt is not support."));
 }
 #pragma section code_type ".text"
 #pragma force_active off
@@ -389,7 +618,7 @@ static inline void cnv_to(fn_12_D88_Arg0 *arg0, fn_12_D88_Arg1 *arg1, s32 arg2, 
             t = 1;
             break;
         default:
-            fn_12_309C(0, 0, "E201312: sfxcnv_IsCnvUpHalf : compo is invalid.");
+            fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201312: sfxcnv_IsCnvUpHalf : compo is invalid."));
             t = 0;
             break;
         }
@@ -404,7 +633,7 @@ static inline void cnv_to(fn_12_D88_Arg0 *arg0, fn_12_D88_Arg1 *arg1, s32 arg2, 
     case 0xf1:
     case 0x1001:
     default:
-        fn_12_309C(arg0, arg1, "E201192: CnvToY84C44 : compo is not support.");
+        fn_12_309C( (u32)(void *)(arg0), (u32)(void *)(arg1), (u32)(const char *)("E201192: CnvToY84C44 : compo is not support."));
         break;
     }
 }
@@ -424,41 +653,15 @@ void fn_12_D88(fn_12_D88_Arg0 *arg0, fn_12_D88_Arg1 *arg1, s32 arg2, s32 arg3) {
     case 1:
     case 2:
     default:
-        fn_12_309C(arg0, arg1, "E201193: SFX_CnvFrmY84C44 : frmfmt is not support.");
+        fn_12_309C( (u32)(void *)(arg0), (u32)(void *)(arg1), (u32)(const char *)("E201193: SFX_CnvFrmY84C44 : frmfmt is not support."));
         break;
     }
 }
 /* fzgx:end fn_12_D88 */
 
-/* fzgx:begin fn_12_F70 noprologue */
-#include "types.h"
+/* fzgx:begin fn_12_F70 */
 
-extern f64 lbl_12_rodata_60[12];
 
-struct fn_12_F70_Arg0 {
-    u8 pad_0[0x4];
-    s32 unk_4;
-    s32 unk_8;
-    s32 unk_C;
-    u8 pad_10[0x28];
-    u32 unk_38;
-};
-
-struct fn_12_F70_Arg1 {
-    u8 pad_0[0x4];
-    s32 unk_4;
-    s32 unk_8;
-    s32 unk_C;
-    u8 pad_10[0x4];
-    s32 unk_14;
-    s32 unk_18;
-    u8 pad_1C[0x8];
-    s32 unk_24;
-    s32 unk_28;
-    u8 pad_2C[0x18];
-    s32 unk_44;
-    s32 unk_48;
-};
 
 typedef struct {
     u32 a[6];
@@ -468,15 +671,14 @@ typedef struct {
     u32 a[7];
 } fn_12_F70_Loc8;
 
-extern void fn_12_309C(void *, void *, void *);
-extern void fn_12_3C4A8(void *, void *, u32);
-extern void fn_12_3C8CC(void *, void *);
-extern int fn_12_740(struct fn_12_F70_Arg0 *);
-extern int fn_12_49D8(struct fn_12_F70_Arg0 *);
-extern int fn_12_49AC(struct fn_12_F70_Arg0 *);
-extern int fn_12_738(struct fn_12_F70_Arg0 *);
 
-void fn_12_F70(struct fn_12_F70_Arg0 *arg0, struct fn_12_F70_Arg1 *arg1, u32 arg2, s32 arg3, s32 arg4) {
+void fn_12_F70(arg0, arg1, arg2, arg3, arg4)
+struct fn_12_F70_Arg0 *arg0;
+struct fn_12_F70_Arg1 *arg1;
+u32 arg2;
+s32 arg3;
+s32 arg4;
+{
     fn_12_F70_Loc24 loc24;
     fn_12_F70_Loc8 loc8;
     s32 t;
@@ -507,7 +709,7 @@ void fn_12_F70(struct fn_12_F70_Arg0 *arg0, struct fn_12_F70_Arg1 *arg1, u32 arg
         t = 1;
         break;
     default:
-        fn_12_309C(0, 0, lbl_12_rodata_60);
+        fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(void *)(lbl_12_rodata_60));
         t = 0;
         break;
     }
@@ -530,12 +732,12 @@ void fn_12_F70(struct fn_12_F70_Arg0 *arg0, struct fn_12_F70_Arg1 *arg1, u32 arg
         loc8.a[6] = arg0->unk_C;
     }
 
-    switch (fn_12_740(arg0)) {
+    switch (fn_12_740( (MovieModule *)(struct fn_12_F70_Arg0 *)(arg0))) {
     case -1:
         var = 0;
-        if (fn_12_49D8(arg0) == 1) {
+        if (fn_12_49D8( (MovieState *)(struct fn_12_F70_Arg0 *)(arg0)) == 1) {
             if (fn_12_49AC(arg0) == 1) {
-                if (fn_12_738(arg0) == 0) {
+                if (fn_12_738( (struct MovieData *)(struct fn_12_F70_Arg0 *)(arg0)) == 0) {
                     var = 1;
                 }
             }
@@ -571,18 +773,7 @@ void fn_12_F70(struct fn_12_F70_Arg0 *arg0, struct fn_12_F70_Arg1 *arg1, u32 arg
 }
 /* fzgx:end fn_12_F70 */
 
-/* fzgx:begin fn_12_11A8 noprologue */
-#include "types.h"
-typedef struct Sig_fn_12_748_MovieModule {
-    u8 pad30[0x30];
-    int value;
-} Sig_fn_12_748_MovieModule;
-extern u32 lbl_12_rodata_28C;
-extern int fn_12_748(Sig_fn_12_748_MovieModule *);
-extern u32 fn_12_F70(u32, u32, void *, u32);
-extern u32 fn_12_3D968(u32);
-extern u32 fn_12_3D740(u32);
-extern void fn_12_309C(u32, u32, u32);
+/* fzgx:begin fn_12_11A8 */
 
 void fn_12_11A8(Sig_fn_12_748_MovieModule *arg0, u32 arg1, void *arg2) {
     s32 temp_r0;
@@ -607,7 +798,7 @@ void fn_12_11A8(Sig_fn_12_748_MovieModule *arg0, u32 arg1, void *arg2) {
         }
         if (var_r0 == 1) {
             (*(s32 *)((u8 *)(arg0) + 52)) = 0x16;
-            fn_12_3D968((u32)(*(u32 *)((u8 *)(arg0) + 56)));
+            fn_12_3D968( (void*)((u32)(*(u32 *)((u8 *)(arg0) + 56))));
         }
         fn_12_F70((u32)((u32)(arg0)), (u32)(arg1), (void *)(arg2), (u32)(1U));
         return;
@@ -624,7 +815,7 @@ void fn_12_11A8(Sig_fn_12_748_MovieModule *arg0, u32 arg1, void *arg2) {
         }
         if (var_r0_2 == 1) {
             (*(s32 *)((u8 *)(arg0) + 52)) = 0x15;
-            fn_12_3D740((u32)(*(u32 *)((u8 *)(arg0) + 56)));
+            fn_12_3D740( (void*)((u32)(*(u32 *)((u8 *)(arg0) + 56))));
         }
         fn_12_F70((u32)((u32)(arg0)), (u32)(arg1), (void *)(arg2), (u32)(1U));
         return;
@@ -639,45 +830,28 @@ void fn_12_11A8(Sig_fn_12_748_MovieModule *arg0, u32 arg1, void *arg2) {
 }
 /* fzgx:end fn_12_11A8 */
 
-/* fzgx:begin fn_12_132C noprologue */
-#include "types.h"
-
-extern u8 lbl_12_rodata_C0[212];
-extern u32 fn_12_3074(void *arg0, void *arg1);
-extern void fn_12_11A8(void *arg0, void *arg1, void *arg2);
-extern u8 lbl_12_rodata_2BC[396];
-extern void fn_12_309C(void *arg0, void *arg1, void *arg2);
+/* fzgx:begin fn_12_132C */
 
 void fn_12_132C(void *arg0, void *arg1, void *arg2) {
     s32 value;
     value = *(s32 *)arg1;
     if (*(s32 *)((u8 *)arg0 + 4) == 0) {
-        *(u32 *)((u8 *)arg0 + 4) = fn_12_3074(arg1, lbl_12_rodata_C0);
+        *(u32 *)((u8 *)arg0 + 4) = ((u32)fn_12_3074(arg1, lbl_12_rodata_C0));
     }
     switch (value) {
     case 3:
-        fn_12_11A8(arg0, arg1, arg2);
+        fn_12_11A8( (Sig_fn_12_748_MovieModule *)(void *)(arg0), (u32)(void *)(arg1), arg2);
         break;
     case 2:
     default:
-        fn_12_309C(arg0, arg1, lbl_12_rodata_2BC);
+        fn_12_309C( (u32)(void *)(arg0), (u32)(void *)(arg1), (u32)(void *)(lbl_12_rodata_2BC));
         break;
     }
 }
 /* fzgx:end fn_12_132C */
 
-/* fzgx:begin fn_12_13D0 noprologue */
-#include "types.h"
+/* fzgx:begin fn_12_13D0 */
 
-struct fn_12_13D0_Arg1 {
-    u8 pad_0[0x48];
-    u32 unk_48;
-};
-
-extern u32 fn_12_132C(u32, u32, u32);
-extern u32 fn_12_68C(u32, u32);
-extern u32 fn_12_6B8(u32, u32);
-extern void fn_12_8B4(void *, void *, void *);
 
 void fn_12_13D0(u32 arg0, struct fn_12_13D0_Arg1 *arg1, u32 arg2) {
     u32 v0;
@@ -692,10 +866,10 @@ void fn_12_13D0(u32 arg0, struct fn_12_13D0_Arg1 *arg1, u32 arg2) {
     v2 = ((s32)(((u32)v0 >> 31) + v0) >> 1);
     *(u32 *)((u8 *)(u32)arg1 + 72) = ((s32)(((u32)v1 >> 31) + v1) >> 1);
     fn_12_68C((u32)arg1, v2);
-    fn_12_132C(arg0, (u32)arg1, arg2);
+    fn_12_132C( (void *)(u32)(arg0), (void *)((u32)arg1), (void *)(u32)(arg2));
     fn_12_68C((u32)arg1, v0);
     fn_12_6B8((u32)arg1, v2);
-    fn_12_132C(arg0, (u32)arg1, (arg2 + (loc_C[0] << 1)));
+    fn_12_132C( (void *)(u32)(arg0), (void *)((u32)arg1), (void *)(u32)((arg2 + (loc_C[0] << 1))));
 }
 /* fzgx:end fn_12_13D0 */
 
@@ -778,7 +952,6 @@ block_16:
 /* fzgx:end fn_12_147C */
 
 /* fzgx:begin fn_12_1578 noprologue */
-
 /* --- rel/movie_module/fn_12_1578.c --- */
 typedef struct Sig_fn_12_1578_MovieData {
     int mode;
@@ -1237,63 +1410,13 @@ case 257:
 }
 /* fzgx:end fn_12_1578 */
 
-/* fzgx:begin fn_12_1F84 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_1F84 */
 // 0x00001F84..0x000023CC
 
-typedef struct MovieArg0 {
-    s32 pad_00;
-    s32 format;
-    s32 count;
-    s32 pad_0c[11];
-    u32 field_38;
-} MovieArg0;
 
-typedef struct MovieArg1 {
-    s32 pad_00;
-    s32 width;
-    s32 height;
-    s32 depth;
-    s32 pad_10;
-    s32 offset_x;
-    s32 offset_y;
-    s32 pad_1c;
-    s32 pad_20;
-    s32 step_x;
-    s32 step_y;
-    s32 pad_2c[6];
-    s32 field_44;
-    s32 field_48;
-    s32 pad_4c[10];
-    s32 field_74;
-} MovieArg1;
 
-typedef struct MovieMatrix {
-    s32 x;
-    s32 y;
-    s32 z;
-    s32 width;
-    s32 height;
-    s32 depth;
-    s32 pad_18;
-} MovieMatrix;
 
-typedef struct MovieSource {
-    s32 object;
-    s32 field_04;
-    s32 field_08;
-    s32 field_0c;
-    s32 pad_10;
-    s32 pad_14;
-} MovieSource;
 
-extern s32 fn_12_308C(void);
-extern void fn_12_309C(s32 code, s32 line, const char *message);
-extern void fn_12_3D144(MovieMatrix *matrix, MovieSource *source);
-extern void fn_12_3DCF0(MovieMatrix *matrix, MovieSource *source, u32 arg2);
-extern void fn_12_3DF08(MovieMatrix *matrix, MovieSource *source);
-extern const char lbl_12_rodata_60[];
 
 void fn_12_1F84(MovieArg0 *arg0, MovieArg1 *arg1, s32 arg2)
 {
@@ -1329,7 +1452,7 @@ void fn_12_1F84(MovieArg0 *arg0, MovieArg1 *arg1, s32 arg2)
         flag = 1;
         break;
     default:
-        fn_12_309C(0, 0, lbl_12_rodata_60);
+        fn_12_309C(0, 0, (u32)(const char *)((((const char *)&lbl_12_rodata_60))));
         flag = 0;
         break;
     }
@@ -1381,105 +1504,52 @@ void fn_12_1F84(MovieArg0 *arg0, MovieArg1 *arg1, s32 arg2)
         s2.field_0c = arg0->count;
     }
 
-    if (fn_12_308C() == 1) {
-        fn_12_3DCF0(&m2, &s2, arg0->field_38);
+    if (((s32)fn_12_308C()) == 1) {
+        fn_12_3DCF0( (const CFTYcc420Planar *)(MovieMatrix *)(&m2), (const CFTArgb8888Output *)(MovieSource *)(&s2), (const u8 *)(u32)(arg0->field_38));
     }
     else {
-        fn_12_3DF08(&m2, &s2);
+        fn_12_3DF08( (const CFTYcc420Planar *)(MovieMatrix *)(&m2), (const CFTArgb8888Output *)(MovieSource *)(&s2));
     }
 }
-
 /* fzgx:end fn_12_1F84 */
 
-/* fzgx:begin fn_12_21C8 noprologue */
-#include "types.h"
+/* fzgx:begin fn_12_21C8 */
 #pragma use_lmw_stmw on
 #pragma pool_data on
 #pragma readonly_strings on
 
-typedef struct SFXHandle {
-    s32 active;
-    s32 stream_info;
-    s32 field_count;
-    u8 reserved_0c[0x20];
-    void *alpha;
-    u8 reserved_30[4];
-    s32 table_compo;
-    void *work_0;
-} SFXHandle;
 
-typedef struct SFXPlaneBuffer {
-    void *pixels;
-    s32 width;
-    s32 height;
-    s32 pitch;
-} SFXPlaneBuffer;
 
-typedef struct SFXFrameInfo {
-    s32 format;
-    SFXPlaneBuffer y;
-    SFXPlaneBuffer cb;
-    SFXPlaneBuffer cr;
-    u8 reserved_34[0x10];
-    s32 field_44;
-    s32 field_48;
-    s32 color_adjustment;
-    u8 reserved_50[0x24];
-    s32 field_74;
-} SFXFrameInfo;
 
-typedef struct CFTYcc420Planar {
-    void *y;
-    void *cb;
-    void *cr;
-    s32 y_stride;
-    s32 cb_stride;
-    s32 cr_stride;
-    u8 reserved_18[4];
-} CFTYcc420Planar;
 
-typedef struct CFTArgb8888Output {
-    SFXPlaneBuffer plane;
-    u8 reserved_10[8];
-} CFTArgb8888Output;
 
-extern int fn_12_748(SFXHandle *handle);
-extern void fn_12_309C(void *object, void *frame, const char *message);
-extern void fn_12_3D144(CFTYcc420Planar *source, CFTArgb8888Output *destination);
-extern void fn_12_3CB74(CFTYcc420Planar *source, CFTArgb8888Output *destination, void *table);
-extern void fn_12_3D740(void *table);
-extern void fn_12_3E09C(const void *source, void *destination, s32 width, s32 height);
-extern void fn_12_1F84(SFXHandle *handle, SFXFrameInfo *frame, void *output);
-extern int fn_12_34DC(void *alpha);
-extern void fn_12_3508(void *alpha, s32 adjustment, void *table);
-extern void fn_12_34E4(void *alpha, s32 adjustment, void *table);
 
 #pragma force_active on
 #pragma section code_type ".fzgxpool"
 static f32 fzgx_pool_primer_before(s32 value) {
-    fn_12_309C(0, 0, "E201312: sfxcnv_IsCnvUpHalf : compo is invalid.");
-    fn_12_309C(0, 0, "E301282: CnvToRgb888 : compo is not support.");
-    fn_12_309C(0, 0, "COMPO");
-    fn_12_309C(0, 0, "E301281: SFX_CnvFrmRgb888 : frmfmt is not support.");
-    fn_12_309C(0, 0, "E202281: SFX_MakeTblZ32 : zclip is not set.");
-    fn_12_309C(0, 0, "E202282: SFX_MakeTblZ16 : zclip is not set.");
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201312: sfxcnv_IsCnvUpHalf : compo is invalid."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E301282: CnvToRgb888 : compo is not support."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("COMPO"));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E301281: SFX_CnvFrmRgb888 : frmfmt is not support."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E202281: SFX_MakeTblZ32 : zclip is not set."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E202282: SFX_MakeTblZ16 : zclip is not set."));
     return 1.164f * (f32)value;
 }
 #pragma section code_type ".text"
 #pragma section code_type ".fzgxpool"
 static void fzgx_pool_primer_after(void) {
-    fn_12_309C(0, 0, "E201311: sfxcnv_MakeTable : compo is not support.");
-    fn_12_309C(0, 0, "E201313: sfxcnv_CnvZbitToCft : zbit is invalid.");
-    fn_12_309C(0, 0, "E201315: sfxcnv_CnvFrmZcmn : zclip is not set.");
-    fn_12_309C(0, 0, "E201191: SFX_CnvFrmZcmn : frmfmt is not support.");
-    fn_12_309C(0, 0, "E201192: CnvToY84C44 : compo is not support.");
-    fn_12_309C(0, 0, "E201193: SFX_CnvFrmY84C44 : frmfmt is not support.");
-    fn_12_309C(0, 0, "E201182: CnvToYuv422 : compo is not support.");
-    fn_12_309C(0, 0, "E201183: SFX_CnvFrmYUV422 : frmfmt is not support.");
-    fn_12_309C(0, 0, "E212182: CnvToArgb8888mb : compo is not support.");
-    fn_12_309C(0, 0, "E212173: sfxcnv_CnvFrmYcc420mbToArgb8888mb() : compo is not support.");
-    fn_12_309C(0, 0, "E212171: SFX_CnvFrmARGB8888Mb : function is not support.");
-    fn_12_309C(0, 0, "E212172: SFX_CnvFrmMbARGB8888 : frmfmt is not support.");
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201311: sfxcnv_MakeTable : compo is not support."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201313: sfxcnv_CnvZbitToCft : zbit is invalid."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201315: sfxcnv_CnvFrmZcmn : zclip is not set."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201191: SFX_CnvFrmZcmn : frmfmt is not support."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201192: CnvToY84C44 : compo is not support."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201193: SFX_CnvFrmY84C44 : frmfmt is not support."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201182: CnvToYuv422 : compo is not support."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201183: SFX_CnvFrmYUV422 : frmfmt is not support."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E212182: CnvToArgb8888mb : compo is not support."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E212173: sfxcnv_CnvFrmYcc420mbToArgb8888mb() : compo is not support."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E212171: SFX_CnvFrmARGB8888Mb : function is not support."));
+    fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E212172: SFX_CnvFrmMbARGB8888 : frmfmt is not support."));
 }
 #pragma section code_type ".text"
 #pragma force_active off
@@ -1497,7 +1567,7 @@ static inline s32 sfxcnv_IsCnvUpHalf(SFXHandle *handle)
     case 0x101:
         return 1;
     default:
-        fn_12_309C(0, 0, "E201312: sfxcnv_IsCnvUpHalf : compo is invalid.");
+        fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201312: sfxcnv_IsCnvUpHalf : compo is invalid."));
         return 0;
     }
 }
@@ -1534,7 +1604,7 @@ static inline void SFX_MakeTable(SFXHandle *handle, SFXFrameInfo *frame, s32 com
         fn_12_3508(handle->alpha, frame->color_adjustment, handle->work_0);
         break;
     case 3:
-        fn_12_34E4(handle->alpha, frame->color_adjustment, handle->work_0);
+        fn_12_34E4(handle->alpha, (void *)(s32)(frame->color_adjustment), handle->work_0);
         break;
     case 0x15:
         fn_12_3D740(handle->work_0);
@@ -1596,7 +1666,7 @@ static inline void sfxcnv_CnvNormalYcc420plnToArgb8888(SFXHandle *handle, SFXFra
             }
         } else {
             if (err != 1) {
-                fn_12_3D144(&source, &destination);
+                fn_12_3D144( (MovieMatrix *)(CFTYcc420Planar *)(&source), (MovieSource *)(CFTArgb8888Output *)(&destination));
             }
         }
     } else {
@@ -1606,7 +1676,7 @@ static inline void sfxcnv_CnvNormalYcc420plnToArgb8888(SFXHandle *handle, SFXFra
             }
         } else {
             if (err != 1) {
-                fn_12_3D144(&source, &destination);
+                fn_12_3D144( (MovieMatrix *)(CFTYcc420Planar *)(&source), (MovieSource *)(CFTArgb8888Output *)(&destination));
             }
         }
     }
@@ -1616,7 +1686,7 @@ void fn_12_21C8(SFXHandle *handle, SFXFrameInfo *frame, void *output)
 {
     switch (handle->stream_info) {
     case 0x11:
-        if (fn_12_748(handle) != 1) {
+        if (fn_12_748( (Sig_fn_12_748_MovieModule *)(SFXHandle *)(handle)) != 1) {
             sfxcnv_CnvNormalYcc420plnToArgb8888(handle, frame, output, 0);
             break;
         }
@@ -1631,7 +1701,7 @@ void fn_12_21C8(SFXHandle *handle, SFXFrameInfo *frame, void *output)
         break;
     case 0x21:
         SFX_MakeTable(handle, frame, 1);
-        fn_12_1F84(handle, frame, output);
+        fn_12_1F84( (MovieArg0 *)(SFXHandle *)(handle), (MovieArg1 *)(SFXFrameInfo *)(frame), (s32)(void *)(output));
         break;
     case 0x31:
         SFX_MakeTable(handle, frame, 2);
@@ -1646,44 +1716,23 @@ void fn_12_21C8(SFXHandle *handle, SFXFrameInfo *frame, void *output)
         sfxcnv_CnvNormalYcc420plnToArgb8888(handle, frame, output, 1);
         break;
     default:
-        fn_12_309C(handle, frame, "E201182: CnvToArgb8888 : compo is not support.");
+        fn_12_309C( (u32)(void *)(handle), (u32)(void *)(frame), (u32)(const char *)("E201182: CnvToArgb8888 : compo is not support."));
         break;
     }
 }
 /* fzgx:end fn_12_21C8 */
 
-/* fzgx:begin fn_12_2F04 noprologue */
-#include "types.h"
+/* fzgx:begin fn_12_2F04 */
 
-extern f64 lbl_12_rodata_60[12];
 
-typedef struct MovieState {
-    int pad0;
-    int value;
-} MovieState;
 
-typedef struct MovieData {
-    int mode;
-    int value;
-    unsigned char pad[0x3c];
-    int field44;
-    int field48;
-} MovieData;
 
-typedef struct MovieArgs {
-    int a;
-    int b;
-    int c;
-    int pad[3];
-} MovieArgs;
 
-extern int fn_12_3074(MovieData *, void *);
-extern void fn_12_21C8(MovieState *, MovieData *, int);
-extern void fn_12_1578(MovieState *, MovieData *, int);
-extern void fn_12_3D738(MovieArgs *, MovieArgs *);
-extern void fn_12_309C(MovieState *, MovieData *, void *);
-
-void fn_12_2F04(MovieState *state, MovieData *data, int arg) {
+void fn_12_2F04(state, data, arg)
+MovieState *state;
+MovieData *data;
+int arg;
+{
     int value;
     char *pool;
     MovieArgs local1;
@@ -1697,7 +1746,7 @@ void fn_12_2F04(MovieState *state, MovieData *data, int arg) {
 
     switch (value) {
     case 3:
-        fn_12_21C8(state, data, arg);
+        fn_12_21C8( (SFXHandle *)(MovieState *)(state), (SFXFrameInfo *)(MovieData *)(data), (void *)(int)(arg));
         break;
     case 1:
         fn_12_1578(state, data, arg);
@@ -1721,23 +1770,20 @@ void fn_12_2F04(MovieState *state, MovieData *data, int arg) {
         case 0x101:
         case 0x1001:
         default:
-            fn_12_309C(state, data, pool + 0x380);
+            fn_12_309C( (u32)(MovieState *)(state), (u32)(MovieData *)(data), (u32)(void *)(pool + 0x380));
             break;
         }
         break;
     default:
-        fn_12_309C(state, data, pool + 0x3b0);
+        fn_12_309C( (u32)(MovieState *)(state), (u32)(MovieData *)(data), (u32)(void *)(pool + 0x3b0));
         break;
     }
 }
 /* fzgx:end fn_12_2F04 */
 
-/* fzgx:begin fn_12_3054 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_3054 */
 /* --- rel/movie_module/fn_12_3054.c --- */
 /* --- rel/movie_module/fn_12_3054.c --- */
-extern void fn_12_2F04(void);
 
 void fn_12_3054(void) {
     fn_12_2F04();
