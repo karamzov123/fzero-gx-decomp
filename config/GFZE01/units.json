@@ -74910,24 +74910,15 @@
     "module": "movie_module",
     "source": "rel/movie_module/sfd_see/fn_12_2D008.c",
     "symbols": [
-      "fn_12_2D008"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "collapsed": true,
-    "tu": "rel/movie_module/sfd_see.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/sfd_see/fn_12_2D288.c",
-    "symbols": [
+      "fn_12_2D008",
       "fn_12_2D288",
       "fn_12_2D420",
       "fn_12_2D450",
       "fn_12_2D470"
     ],
     "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
     "collapsed": true,
     "tu": "rel/movie_module/sfd_see.c"
   },

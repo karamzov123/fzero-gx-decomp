@@ -572,6 +572,13 @@ retention. A completed sweep is not equivalent to completing R1: 61 of 145 mappe
 source files still build as multiple units. Use the rejected object or compiler diagnostics
 to select the next repair rather than repeating the same split-first pass unchanged.
 
+`movie_module/sfd_see.c` now builds as one unit instead of two. The analysis and
+estimation helpers had duplicate private names despite taking different reconstructed
+views of the handle. Naming the estimation helpers separately removes that collision
+without changing their bodies or compiler settings. The merged USA text range is
+`0x2D008..0x2D500`; all five functions match their freshly extracted retail objects
+in USA, Japan and PAL. No new pool bindings were needed.
+
 `tools/consolidate/rel_own_data.py` transfers whole adjacent import units into a specified
 one-unit REL TU. It checks contiguity and matching regional coverage, carries over the existing
 typed definitions in retail order, and verifies the moved symbols against fresh compiled and

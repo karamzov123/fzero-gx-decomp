@@ -505,12 +505,12 @@ void fn_12_2D008(fn_12_2D008_SfdHandle *handle) {
 /* --- rel/movie_module/fn_12_2D288.c --- */
 
 
-static inline SfdSeeWork *sfsee_GetSource(fn_12_2D288_SfdHandle *handle) {
+static inline SfdSeeWork *sfsee_GetEstimateSource(fn_12_2D288_SfdHandle *handle) {
     return handle->fields.view_seek_state.seek_state.fields.view_work.work;
 }
 
-static inline void sfsee_UpdateByteRate(fn_12_2D288_SfdHandle *handle) {
-    SfdSeeWork *source = sfsee_GetSource(handle);
+static inline void sfsee_UpdateEstimatedByteRate(fn_12_2D288_SfdHandle *handle) {
+    SfdSeeWork *source = sfsee_GetEstimateSource(handle);
     fn_12_2D288_SfdSeeTiming *timing = &source->fields.view_timing.timing;
     int file_size;
     int time_value;
@@ -542,7 +542,7 @@ static inline void sfsee_UpdateByteRate(fn_12_2D288_SfdHandle *handle) {
     if (file_size > 0 && time_value > 0) {
         timing->fields.view_byte_rate.byte_rate = UTY_MulDiv(file_size, time_scale, time_value);
     } else {
-        SfdSeeWork *fallback_source = sfsee_GetSource(handle);
+        SfdSeeWork *fallback_source = sfsee_GetEstimateSource(handle);
         timing->fields.view_byte_rate.byte_rate = fallback_source->fields.view_prefix.prefix.fields
                                                       .view_analyzed_byte_rate.analyzed_byte_rate;
     }
@@ -605,7 +605,7 @@ static inline void sfsee_ExecEstimate(fn_12_2D288_SfdHandle *handle, fn_12_2D288
         }
     }
     if (changed != 0) {
-        sfsee_UpdateByteRate(handle);
+        sfsee_UpdateEstimatedByteRate(handle);
     }
 }
 
