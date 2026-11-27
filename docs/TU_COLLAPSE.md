@@ -522,7 +522,16 @@ only the declaration sharing is retained, with all three hash and lint gates pas
 Two more declaration-only changes preserve the existing splits. `dct_ac.c` uses the existing
 typed transform and inverse-table declarations and retires two isolated blocks. Its proposed
 three-to-one merge failed the PAL build because the pool retargeter could not empty a private
-section; the original splits remain. `bg_for.c` drops from thirteen to five isolated blocks
+section; the original splits remain. A follow-up compiled the same merged source under the
+three production region profiles. All three derived the same two literal bindings and the
+same `.bss` section-base binding. After applying them, `.rodata` and `.fzgxpool` were empty,
+but `.bss` still contained `0x404` bytes: the wrapper now refers directly to the in-object
+definition of `lbl_12_bss_798`, whereas the initializer uses the section base. The actual
+blocker is the local storage that cannot be discarded, not PAL-only literal numbering.
+Replacing the transform's zero literal with an extern changes its relocation layout and
+does not solve this. A later whole-TU attempt needs to prove native ownership of the table
+storage against its existing `0x408` retail split and preserve access from other TUs.
+`bg_for.c` drops from thirteen to five isolated blocks
 at the original twelve units. Its split-first candidate had fourteen units, and combining
 the original groups still hits the duplicate `Fn183D28Vec3` typedef. The accepted rewrite
 rebinds two renumbered MWCC literals without changing their retail targets.
