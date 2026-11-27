@@ -293,6 +293,7 @@ rel/movie_module/fn_12_3B540.c:
 
 rel/movie_module/cftfx/fn_12_3D730.c:
 	.text       start:0x0003D730 end:0x0003E394 align:4
+	.bss        start:0x0001E088 end:0x0001E3DC align:8
 
 rel/movie_module/fn_12_3E394.c:
 	.text       start:0x0003E394 end:0x0003EBEC align:4
@@ -1017,9 +1018,6 @@ rel/movie_module/data/lbl_12_bss_1CC60.c:
 
 rel/movie_module/data/lbl_12_bss_1CC80.c:
 	.bss        start:0x0001CC80 end:0x0001E088 align:8
-
-rel/movie_module/data/lbl_12_bss_1E088.c:
-	.bss        start:0x0001E088 end:0x0001E3DC align:8
 
 rel/movie_module/fn_12_284F8.c:
 	.text       start:0x000284F8 end:0x00028CC4 align:4

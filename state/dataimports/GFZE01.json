@@ -305754,28 +305754,6 @@
     "unit_size": 5128,
     "unit_start": 117888
   },
-  "movie_module:lbl_12_bss_1E088": {
-    "address": 123016,
-    "align": 4,
-    "declarations": [],
-    "definition": "u8 lbl_12_bss_1E088[852]",
-    "method": "opaque-bss",
-    "module": "movie_module",
-    "references": [
-      "fn_12_3D740",
-      "fn_12_3D968"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 852,
-    "sha256": "b3b87c3ad568de5a1f07702392e3bfc76f41a47b2fa1d710198406c3c5172697",
-    "size": 852,
-    "source": "rel/movie_module/data/lbl_12_bss_1E088.c",
-    "symbol": "lbl_12_bss_1E088",
-    "unit_align": 8,
-    "unit_size": 852,
-    "unit_start": 123016
-  },
   "movie_module:lbl_12_bss_4": {
     "address": 4,
     "align": 4,

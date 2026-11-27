@@ -72790,17 +72790,6 @@
   },
   {
     "module": "movie_module",
-    "source": "rel/movie_module/data/lbl_12_bss_1E088.c",
-    "symbols": [
-      "lbl_12_bss_1E088"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "movie_module",
     "source": "rel/movie_module/data/lbl_12_bss_4C0.c",
     "symbols": [
       "lbl_12_bss_4C0"
@@ -76608,7 +76597,6 @@
     "mw_version": "GC/1.3.2",
     "collapsed": true,
     "pool": {
-      "...bss.0": "lbl_12_bss_1E088",
       "@46": "lbl_12_rodata_2E80",
       "@43": "lbl_12_rodata_2E78",
       "@44": "lbl_12_rodata_2E7C",

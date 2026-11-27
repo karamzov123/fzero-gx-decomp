@@ -587,6 +587,15 @@ match fresh retail objects in USA, Japan and PAL. The BSS and constant pool
 still link through existing retail data splits; the merge is not a transfer
 of data ownership.
 
+The subsequent `cftfx.c` ownership transfer assigns `.bss` `0x1E088..0x1E3DC`
+to its existing code unit. In the old split, the `0x354`-byte opaque import
+provided storage for the section-base remap; the conversion routines were its
+only recorded consumers. The source already defines the two matrices, three
+pointers and three conversion tables. Fresh MWCC objects in all three regions
+emit them at offsets `0x0`, `0x24`, `0x48`, `0x4C`, `0x50`, `0x54`, `0x154`
+and `0x254` respectively, filling the whole range. Retire the opaque import and
+BSS retarget only; the constant pool and existing ordering primer remain.
+
 In `movie_module/mpv_hdec.c`, `MPV_MoveChunk` now uses the shared Sofdec
 stream declarations in `sofdec/sj.h`. Removing its obsolete isolation marker
 leaves the existing group intact: both `MPV_MoveChunk` and `fn_12_ABDC` match

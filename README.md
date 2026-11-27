@@ -53,7 +53,7 @@ use the same definitions:
 |---|---|---|
 | TU map | RELs: 14 `tus.json` covering 4,074 functions; DOL: none | Every executable mapped: all RELs (4,905 functions; `movie_module` from the CRI Sofdec link order, `sample` provisional) and the DOL (2,230 functions in 259 TUs, plus a `.init` map); some boundaries and names are inferred and say so |
 | R1: one unit per TU | 3,214 code units; 13 of 69 REL TU files build as one unit; 1,095 `noprologue` blocks | 1,407 code units; 87 of 145 REL TU files and 255 of 259 DOL TUs build as one unit; 603 `noprologue` blocks |
-| R2/R3: data ownership, build independence | 4,565 data units; 1,214 pool-remapped units; `.fzgxpool` primers in 142 files; 8,684 scaffolding names | 3,449 data units; 592 pool-remapped units; primers in 98 files; 4,735 scaffolding names |
+| R2/R3: data ownership, build independence | 4,565 data units; 1,214 pool-remapped units; `.fzgxpool` primers in 142 files; 8,684 scaffolding names | 3,448 data units; 592 pool-remapped units; primers in 98 files; 4,735 scaffolding names |
 | R4: platform boundary (REL source) | 338 hardware-address literals; 675 MWCC intrinsic calls | 250 literals; 634 intrinsic calls |
 | R5: portable game C (REL source) | 404 address-to-integer casts; 274 pointer views of `unk_` fields | 318 casts; 223 views |
 | R6: compiler-diff devices | 92 marked; 816 optimizer-pragma setters | 519 marked; 621 setters. The marked count rose because existing steering was labelled as devices, not added |
@@ -70,7 +70,7 @@ device-free or portable. See the [assembly and device policy](docs/ASM_POLICY.md
    `interview`. The pipeline is `tools/consolidate/rel_unit_split.py` -> `fzgx tutruth` ->
    `tools/consolidate/relmerge.py` (see [TU_COLLAPSE.md](docs/TU_COLLAPSE.md)). Reconciliation
    now checks each matching region and keeps named prologue data with the split that owns it.
-2. **Data ownership** (R2): 3,449 import units remain, mostly small string and table slices.
+2. **Data ownership** (R2): 3,448 import units remain, mostly small string and table slices.
    `tools/consolidate/rel_own_data.py` can move verified adjacent imports into one-unit REL TUs;
    the first transfers are in `sample/_prolog.c` and `main_rel/burner.c`.
 3. **Platform boundary and portable C** (R4, R5): route hardware and intrinsics through SDK
