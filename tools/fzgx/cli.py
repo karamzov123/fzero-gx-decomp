@@ -157,9 +157,10 @@ def cmd_evidence(a, p):
 
 
 def cmd_tutruth(a, p):
-    from . import finish, tutruth
-    r = tutruth.resolve(p, a.tu, finish.Verifier(p), apply=not a.dry_run)
+    from . import tutruth
+    r = tutruth.resolve(p, a.tu, apply=not a.dry_run)
     print(json.dumps({k: v for k, v in r.items() if k not in ('prologue', 'adapted', 'tu_text', 'truth')}, indent=1))
+    return 1 if r['final_failing'] else 0
 
 
 def cmd_uncarve(a, p):

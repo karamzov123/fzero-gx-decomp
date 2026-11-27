@@ -16,7 +16,9 @@ from collections import Counter, OrderedDict
 from typing import Dict, List, Optional, Tuple
 
 from . import oracle, reconcile, tufile, tutidy
+from .original_assembly import masked
 from .project import ROOT, STATE_DIR, Project
+from .tutruth_build import RegionalVerifier
 
 SCALAR = {'void', 'int', 'char', 'short', 'long', 'unsigned', 'signed', 'float', 'double',
           's8', 'u8', 's16', 'u16', 's32', 'u32', 's64', 'u64', 'f32', 'f64', 'BOOL', 'size_t'}
@@ -493,7 +495,44 @@ def drop_leading_args(body: str, name: str, k: int) -> str:
     return out
 
 
-def resolve(p: Project, tu_source: str, v, apply: bool = True,
+def prologue_storage(p: Project, module: str, tf: tufile.TuFile, units: dict) -> Dict[str, str]:
+    """Keep named object definitions with their split owner, not in shared text."""
+    code = masked(tf.prologue)
+    # Do not move storage across a conditional or a scoped pragma.
+    if re.search(r'^\s*#\s*(?:if\w*|pragma)\b', code, re.M):
+        return {}
+    code = re.sub(r'^[ \t]*#[^\n]*', lambda m: ' ' * len(m[0]), code, flags=re.M)
+    objects = p.symbols(module)
+    owners = {u['source']: n for n, u in units.items()}
+    decl = re.compile(r'(?P<head>(?:\w+[ \t]+)+\**[ \t]*(?P<name>\w+)'
+                      r'(?:[ \t]*\[[^\[\]\n]*\])*)[ \t\n]*(?:=|;)')
+    start = depth = 0
+    edits = []
+    storage: Dict[str, str] = {}
+    for m in re.finditer(r'[{};]', code):
+        depth += (m[0] == '{') - (m[0] == '}')
+        if depth or m[0] != ';':
+            continue
+        a = start
+        start = m.end()
+        while a < start and code[a].isspace():
+            a += 1
+        d = decl.match(code, a, start)
+        if not d or set(d['head'].split()) & {'extern', 'typedef', 'static'}:
+            continue
+        sym = objects.get(d['name'])
+        unit = p.unit_of(sym) if sym and sym.kind == 'object' else None
+        owner = owners.get(unit) if unit else None
+        if owner is None:
+            continue
+        storage[owner] = storage.get(owner, '') + tf.prologue[a:start] + '\n'
+        edits.append((a, start, 'extern ' + tf.prologue[a:d.end('head')] + ';'))
+    for a, b, text in reversed(edits):
+        tf.prologue = tf.prologue[:a] + text + tf.prologue[b:]
+    return storage
+
+
+def resolve(p: Project, tu_source: str, apply: bool = True,
             extra_blocks: Optional[Dict[str, str]] = None) -> Dict[str, object]:
     """`extra_blocks` ({name: body}) join the TU as unverified members (unmatched functions'
     best bodies): their declarations are reconciled and adapted like everyone else's, they
@@ -501,6 +540,7 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
     module = tu_source.split('/')[1] if tu_source.startswith('rel/') else 'main'
     units = {u['symbols'][0]: u for u in p.load_units() if u.get('tu') == tu_source}
     tf = tufile.load(p, tu_source)
+    storage = prologue_storage(p, module, tf, units) if len(units) > 1 else {}
     extra_names = set()
     if extra_blocks:
         apply = False
@@ -798,38 +838,26 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
     base_prologue = base_prologue.rstrip('\n') + '\n' + tf.prologue[len(before_hoist):]  # the hoisted types
     original = {b.name: b.body for b in tf.blocks}
 
-    scratch = STATE_DIR / 'work' / 'tutruth' / Path(tu_source).stem
+    scratch = STATE_DIR / 'work' / 'tutruth' / module / Path(tu_source).stem
     scratch.mkdir(parents=True, exist_ok=True)
-
-    memo: Dict[Tuple[str, str], bool] = {}
+    regional = RegionalVerifier(units, scratch)
+    errors: Dict[str, str] = {}
+    roots = {s: n for n, u in units.items() for s in u['symbols']}
 
     def verify(names_: List[str]) -> Dict[str, bool]:
-        """Direct oracle verdicts on the current state: prologue + block per unit, memoised by
-        the generated text within this run (no persistent cache)."""
-        out: Dict[str, bool] = {}
-        items = []
-        for n_ in names_:
-            text = tufile.gen_text(tf, n_)
-            if (n_, text) in memo:
-                out[n_] = memo[(n_, text)]
-                continue
-            path = scratch / f'{n_}.c'
-            path.write_text(text)
-            items.append((f'{module}:{n_}', path, text))
-        if items:
-            res = oracle.check_many(p, [(k, path) for k, path, _ in items], 20)
-            for k, path, text in items:
-                r_ = res.get(k)
-                ok = bool(r_ and r_.ok and (r_.matched or r_.matched_pool) and oracle.unit_fully_matches(r_) is None)
-                n_ = k.split(':', 1)[1]
-                memo[(n_, text)] = ok
-                out[n_] = ok
+        """A change to any block must preserve the entire generated unit."""
+        out = {}
+        for n_ in dict.fromkeys(roots[n] for n in names_ if n in roots):
+            err = regional.check(n_, tufile.units_gen_text(tf, units[n_]['symbols']))
+            if err:
+                errors[n_] = err
+            out[n_] = err is None
         return out
 
     def rebuild() -> None:
         for b in tf.blocks:
             nb = derive(b.name)
-            b.body = nb if nb is not None else original[b.name]
+            b.body = storage.get(b.name, '') + (nb if nb is not None else original[b.name])
         tf.prologue = render_prologue()
 
     rebuild()
@@ -838,11 +866,12 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
     if names and sum(1 for n_ in names if not verdict.get(n_)) > len(names) // 2:
         # the prologue itself is likely broken: keep the first compiler message for the report
         first = next(n_ for n_ in names if not verdict.get(n_))
-        res0 = oracle.check(p, f'{module}:{first}', 20, source=scratch / f'{first}.c')
-        report['first_round_error'] = res0.error[-900:] if not res0.ok else f'{first}: {res0.percent}'
+        report['first_round_error'] = errors[first]
         report['first_round_prologue'] = tf.prologue
     failing = [n for n in names if not verdict.get(n)]
     for bname in list(failing):
+        if verdict.get(bname):
+            continue
         fixed = False
         forced.add(bname)
         rebuild()
@@ -850,8 +879,10 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
             fixed = True
         else:
             forced.discard(bname)
-        differing = [n for n in symbols if not fixed and bname in users[n] and len(candidates[n]) > 1
-                     and (old_decl_for(bname, n) or '').strip() != candidates[n][choice[n]][1].strip()]
+        members = units[bname]['symbols']
+        differing = [n for n in symbols if not fixed and len(candidates[n]) > 1
+                     and any(s in users[n] and (old_decl_for(s, n) or '').strip() !=
+                             candidates[n][choice[n]][1].strip() for s in members)]
         for n in differing:
             prev = choice[n]
             for k in range(len(candidates[n])):
@@ -859,7 +890,7 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
                     continue
                 choice[n] = k
                 rebuild()
-                affected = sorted(set(users[n]) | {bname})
+                affected = sorted({roots[x] for x in users[n] if x in roots} | {bname})
                 vd = verify(affected)
                 if vd.get(bname) and all(vd.get(x) for x in affected if verdict.get(x)):
                     fixed = True  # the block matches and no other user regressed
@@ -879,56 +910,35 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
     pristine = tufile.load(p, tu_source)
 
     def restore(bname: str) -> None:
-        """The committed block, self-contained: under the committed prologue when it was not
-        self-contained before (its declarations are what it matched against)."""
-        b = tf.get(bname)
-        pb = pristine.get(bname)
-        b.flags = list(pb.flags)
-        if 'noprologue' in pb.flags:
-            b.body = pb.body
-        else:
-            # includes and type definitions always; declarations only when the block names them
-            keep = []
-            idents = set(re.findall(r'[A-Za-z_]\w*', pb.body))
-            for ln in pristine.prologue.splitlines():
-                if tutidy.DECL_LINE_RE.match(ln):
-                    n_ = tutidy._decl_name(ln)
-                    if n_ and n_ not in idents:
-                        continue
-                keep.append(ln)
-            b.body = '\n'.join(keep).rstrip('\n') + '\n\n' + pb.body
-            b.flags.append('noprologue')
+        """Restore a whole unit with exactly one copy of its old prologue."""
+        blocks = [pristine.get(s) for s in units[bname]['symbols']]
+        head = pristine.prologue if any('noprologue' not in b.flags for b in blocks) else ''
+        for pb in blocks:
+            b = tf.get(pb.name)
+            b.body = head + ('\n' if head else '') + pb.body
+            b.flags = list(dict.fromkeys(pb.flags + ['noprologue']))
+            head = ''
 
     report['prologue'] = tf.prologue
     for bname in failing:
         report.setdefault('adapted', {})[bname] = tf.get(bname).body
-        res_ = oracle.check(p, f'{module}:{bname}', 12, source=scratch / f'{bname}.c')
-        report.setdefault('why', {})[bname] = (res_.error[-500:] if not res_.ok else
-                                              f'{res_.percent:.2f} ' + ' | '.join(l for l in res_.diff if l[0] in '?<>')[:600])
+        report.setdefault('why', {})[bname] = errors[bname]
         restore(bname)
     final = verify(names)
     for n in [n for n, ok in final.items() if not ok]:
         restore(n)
     final.update(verify([n for n, ok in final.items() if not ok]))
-    # a unit of several blocks compiles them joined: half self-contained, half under the prologue
-    # declares the self-contained block's names twice. Such a unit goes back to its committed
-    # blocks (its matched text); those are not verified one block at a time.
-    for u in units.values():
-        syms = [s for s in u['symbols'] if tf.get(s)]
-        if len(syms) > 1 and any('noprologue' in tf.get(s).flags for s in syms) \
-                and not all('noprologue' in tf.get(s).flags and tf.get(s).body == pristine.get(s).body for s in syms):
-            for s in syms:
-                restore(s)
-                final.pop(s, None)
-            report.setdefault('units_restored', []).append(u['symbols'][0])
     report['final_matching'] = sum(1 for x in final.values() if x)
     report['final_failing'] = [n for n, ok in final.items() if not ok]
+    report['final_errors'] = {n: errors[n] for n in report['final_failing']}
+    report['verified_regions'] = sorted({region for (region, n) in regional.profiles if final.get(n)})
     report['self_contained'] = [b.name for b in tf.blocks if 'noprologue' in b.flags]
     if extra_names:
-        report['extra_verdicts'] = verify(sorted(extra_names))
         compiles = {}
         for n_ in sorted(extra_names):
-            res_ = oracle.check(p, f'{module}:{n_}', 0, source=scratch / f'{n_}.c')
+            path = scratch / f'{n_}.c'
+            path.write_text(tufile.gen_text(tf, n_))
+            res_ = oracle.check(p, f'{module}:{n_}', 0, source=path)
             compiles[n_] = bool(res_.ok)
             if not res_.ok:
                 report.setdefault('extra_errors', {})[n_] = res_.error[-300:]
@@ -937,31 +947,7 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
     if apply and not report['final_failing']:
         tufile._write_atomic(tufile.tu_path(p, tu_source), tf.render())
         for u in units.values():
-            tufile.write_gen(p, u, tf)
-        # a rewritten block may renumber its private literals: keep pool mappings current
-        for u in list(units.values()):
-            if isinstance(u.get('pool'), dict):
-                res = oracle.check(p, f"{module}:{u['symbols'][0]}", 20)
-                new_map = res.pool_map if res.ok and (res.matched or res.matched_pool) else None
-                if not new_map:
-                    # an empty map means the recorded one was already applied: never wipe it (finish.py's
-                    # guard), unless the recorded private names no longer exist in the compiled object
-                    # (a new prologue renumbers the block's @N literals): then bind them again
-                    from . import collapse, poolfix
-                    obj = scratch / f"{u['symbols'][0]}.pool.o"
-                    cp_ = oracle.compile_unit(p, p.objdiff_unit_name(module, u['source']), u['source'], None, output=obj)
-                    if cp_.returncode == 0:
-                        names_ = {s['name'] for s in poolfix.Elf(obj.read_bytes()).symbols()}
-                        if any(k not in names_ for k in u['pool']):
-                            new_map = collapse._pool_map(p, module, u['symbols'], obj)
-                if new_map and new_map != u['pool']:
-                    with oracle.build_lock('units.lock'):
-                        all_units = p.load_units()
-                        for x in all_units:
-                            if x['source'] == u['source']:
-                                x['pool'] = dict(new_map)
-                        p.save_units(all_units)
-                    report.setdefault('pool_remapped', []).append(u['symbols'][0])
-        for u in units.values():
-            tufile.write_gen(p, u, tf)
+            for region, n in regional.profiles:
+                if n == u['symbols'][0]:
+                    tufile.write_gen(Project(region), u, tf)
     return report

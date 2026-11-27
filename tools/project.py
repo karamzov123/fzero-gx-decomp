@@ -1858,13 +1858,15 @@ def generate_objdiff_config(
         else:
             return d
 
-    # Write objdiff.json
-    with open("objdiff.json", "w", encoding="utf-8") as w:
+    def unix_path(input: Any) -> str:
+        return str(input).replace(os.sep, "/") if input else ""
 
-        def unix_path(input: Any) -> str:
-            return str(input).replace(os.sep, "/") if input else ""
-
-        json.dump(cleandict(objdiff_config), w, indent=2, default=unix_path)
+    # Keep each region's production compile profile available when a later configure
+    # selects a different region for the interactive objdiff report.
+    text = json.dumps(cleandict(objdiff_config), indent=2, default=unix_path)
+    Path("objdiff.json").write_text(text, encoding="utf-8")
+    assert config.version is not None
+    (config.build_dir / config.version / "objdiff.json").write_text(text, encoding="utf-8")
 
 
 def generate_compile_commands(
