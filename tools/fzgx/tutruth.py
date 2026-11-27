@@ -894,6 +894,17 @@ def resolve(p: Project, tu_source: str, v, apply: bool = True,
     for n in [n for n, ok in final.items() if not ok]:
         restore(n)
     final.update(verify([n for n, ok in final.items() if not ok]))
+    # a unit of several blocks compiles them joined: half self-contained, half under the prologue
+    # declares the self-contained block's names twice. Such a unit goes back to its committed
+    # blocks (its matched text); those are not verified one block at a time.
+    for u in units.values():
+        syms = [s for s in u['symbols'] if tf.get(s)]
+        if len(syms) > 1 and any('noprologue' in tf.get(s).flags for s in syms) \
+                and not all('noprologue' in tf.get(s).flags and tf.get(s).body == pristine.get(s).body for s in syms):
+            for s in syms:
+                restore(s)
+                final.pop(s, None)
+            report.setdefault('units_restored', []).append(u['symbols'][0])
     report['final_matching'] = sum(1 for x in final.values() if x)
     report['final_failing'] = [n for n, ok in final.items() if not ok]
     report['self_contained'] = [b.name for b in tf.blocks if 'noprologue' in b.flags]
