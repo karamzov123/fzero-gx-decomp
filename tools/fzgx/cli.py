@@ -158,7 +158,9 @@ def cmd_evidence(a, p):
 
 def cmd_tutruth(a, p):
     from . import tutruth
-    r = tutruth.resolve(p, a.tu, apply=not a.dry_run)
+    if a.repair_budget is not None and a.repair_budget < 0:
+        raise SystemExit('--repair-budget must be nonnegative')
+    r = tutruth.resolve(p, a.tu, apply=not a.dry_run, repair_budget=a.repair_budget)
     print(json.dumps({k: v for k, v in r.items() if k not in ('prologue', 'adapted', 'tu_text', 'truth')}, indent=1))
     return 1 if r['final_failing'] else 0
 
@@ -864,6 +866,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument('--unlock', default='')
     s = sub.add_parser("tutruth", help="one truth per symbol for a TU file: candidate search with verified call-site adaptations; blocks that cannot follow stay self-contained"); s.set_defaults(fn=cmd_tutruth)
     s.add_argument("tu", help="e.g. rel/main_rel/font.c"); s.add_argument("--dry-run", action="store_true")
+    s.add_argument('--repair-budget', type=int, help='limit candidate repair trials; still verify the final regional units')
     s = sub.add_parser("uncarve", help="drop units that have no matched code (rejected, or every stub with --stubs); re-splits"); s.set_defaults(fn=cmd_uncarve)
     s.add_argument("sources", nargs="*"); s.add_argument("--stubs", action="store_true")
     s = sub.add_parser("verify", help="relink once for all accepted units, verify hashes, commit; bisect on failure"); s.set_defaults(fn=cmd_verify)

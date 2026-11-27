@@ -536,6 +536,14 @@ profile changes are part of the retained result. All three region builds and has
 units. A whole-file build still rejects the conflicting private declarations of
 `lbl_1_bss_6F648`; the original splits and compiler settings remain in place.
 
+For large TUs, `fzgx tutruth TU --repair-budget N` limits optional declaration-repair trials.
+Zero skips the search after the initial reconciliation; it does not skip the initial or
+final regional object checks. The JSON reports `repair_trials` and `repair_budget_reached`.
+Use this mode for a first sweep and revisit useful failures with a higher budget. The split
+`interview.c` replay finished in 60 seconds at budget zero, with all 60 intermediate units
+verified under their matching regional profiles, but all 79 blocks remained isolated. That
+result is not a merge or a reason to retain the intermediate splits.
+
 `tools/consolidate/rel_own_data.py` transfers whole adjacent import units into a specified
 one-unit REL TU. It checks contiguity and matching regional coverage, carries over the existing
 typed definitions in retail order, and verifies the moved symbols against fresh compiled and

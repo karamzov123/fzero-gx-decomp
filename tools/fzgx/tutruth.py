@@ -50,16 +50,20 @@ def _same(a: str, b: str) -> bool:
     return n(a) == n(b)
 
 
-def project_definition(sources: List[str], name: str) -> Optional[str]:
-    """`extern <signature>;` of the project's matched definition of `name`, if any."""
-    pat = re.compile(r'^((?:[A-Za-z_][\w\s\*]*?)\b' + re.escape(name) + r'\s*\(([^;{}()]*)\))\s*\{', re.M)
+def project_definitions(sources: List[str], names: set) -> Dict[str, str]:
+    """Index the first eligible file-scope signature spelling in source order."""
+    # The return type must fit on the signature's first line. Let parameters
+    # wrap, but never scan through a prototype, nested declarator or body.
+    pat = re.compile(r'^([A-Za-z_][\w \t*]*?[ \t*])([A-Za-z_]\w*)[ \t]*'
+                     r'\([^;{}()]*\)\s*\{', re.M)
+    result: Dict[str, str] = {}
     for text in sources:
-        if name not in text:
-            continue
-        m = pat.search(text)
-        if m and not re.match(r'static\b', m[1]):
-            return 'extern ' + re.sub(r'\s+', ' ', m.group(1)).strip() + ';'
-    return None
+        for m in pat.finditer(text):
+            name = m[2]
+            if name not in names or name in result or re.match(r'(?:static|return|if|while|switch|else)\b', m[1]):
+                continue
+            result[name] = 'extern ' + re.sub(r'\s+', ' ', m[0][:-1]).strip() + ';'
+    return result
 
 
 def split_args(text: str, start: int) -> Optional[Tuple[List[Tuple[int, int]], int]]:
@@ -402,7 +406,7 @@ def adapt(body: str, n: str, old_decl: Optional[str], truth: str, report_bad: Li
     """The block's body under `truth` for symbol n, given the declaration it was written
     against (`old_decl`: its private line, or the old prologue line, or None). Returns None
     when no mechanical adaptation exists (a data view whose declaration cannot be parsed)."""
-    lines = [x for x in body.splitlines() if not (tutidy.DECL_LINE_RE.match(x) and tutidy._decl_name(x) == n)]
+    lines = [x for x in body.splitlines() if not (n in x and tutidy.DECL_LINE_RE.match(x) and tutidy._decl_name(x) == n)]
     body = '\n'.join(lines) + ('\n' if body.endswith('\n') else '')
     if old_decl is None or old_decl.strip() == truth.strip():
         return body
@@ -532,7 +536,8 @@ def prologue_storage(p: Project, module: str, tf: tufile.TuFile, units: dict) ->
 
 
 def resolve(p: Project, tu_source: str, apply: bool = True,
-            extra_blocks: Optional[Dict[str, str]] = None) -> Dict[str, object]:
+            extra_blocks: Optional[Dict[str, str]] = None, *,
+            repair_budget: Optional[int] = None) -> Dict[str, object]:
     """`extra_blocks` ({name: body}) join the TU as unverified members (unmatched functions'
     best bodies): their declarations are reconciled and adapted like everyone else's, they
     are never restored, and the result is only reported, never written."""
@@ -699,12 +704,13 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
         return all(w in known_types or w == '...' for w in words)
 
     candidates: Dict[str, List[Tuple[str, str]]] = {}
-    sources = [f.read_text() for f in sorted((ROOT / 'src').rglob('*.c'))]
+    external_defs = project_definitions([f.read_text() for f in sorted((ROOT / 'src').rglob('*.c'))],
+                                        set(symbols) - definitions.keys())
     for n in symbols:
         c: List[Tuple[str, str]] = []
         if n in hdecl:
             c.append(('header', hdecl[n]))
-        d = definitions.get(n) or project_definition(sources, n)
+        d = definitions.get(n) or external_defs.get(n)
         if d:
             c.append(('definition', d))
         if n in pdecl:
@@ -807,15 +813,16 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
     definer_of = {n: next((bn for bn, ob in original.items() if re.search(r'\b' + re.escape(n) + r'\s*\([^;{}()]*\)\s*\{', ob)), None)
                   for n in symbols if n in definitions}
 
+    block_symbols = {b.name: tuple(n for n in symbols if b.name in users[n]) for b in tf.blocks}
+    derived = {}
+
     def derive(bname: str) -> Optional[str]:
         body = original[bname]
-        for n in symbols:
-            if bname not in users[n]:
-                continue
+        for n in block_symbols[bname]:
             truth = candidates[n][choice[n]][1]
             if n in definitions and bname == definer_of.get(n):
                 # the definer: its own private declaration goes, its signature is the truth
-                body = '\n'.join(x for x in body.splitlines() if not (tutidy.DECL_LINE_RE.match(x) and tutidy._decl_name(x) == n)) + '\n'
+                body = '\n'.join(x for x in body.splitlines() if not (n in x and tutidy.DECL_LINE_RE.match(x) and tutidy._decl_name(x) == n)) + '\n'
                 if n in knr_defs:
                     body = knr_definition(body, n)
                 if candidates[n][choice[n]][0] == 'definition-retyped':
@@ -882,7 +889,12 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
 
     def rebuild() -> None:
         for b in tf.blocks:
-            nb = derive(b.name)
+            key = (b.name in forced, tuple(choice[n] for n in block_symbols[b.name]))
+            prev = derived.get(b.name)
+            if prev is None or prev[0] != key:
+                prev = key, derive(b.name)
+                derived[b.name] = prev
+            nb = prev[1]
             b.body = storage.get(b.name, '') + (nb if nb is not None else original[b.name])
         tf.prologue = render_prologue()
 
@@ -895,10 +907,14 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
         report['first_round_error'] = errors[first]
         report['first_round_prologue'] = tf.prologue
     failing = [n for n in names if not verdict.get(n)]
+    trials = 0
     for bname in list(failing):
         if verdict.get(bname):
             continue
+        if repair_budget is not None and trials >= repair_budget:
+            break
         fixed = False
+        trials += 1
         forced.add(bname)
         rebuild()
         if verify([bname]).get(bname):
@@ -910,10 +926,15 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
                      and any(s in users[n] and (old_decl_for(s, n) or '').strip() !=
                              candidates[n][choice[n]][1].strip() for s in members)]
         for n in differing:
+            if repair_budget is not None and trials >= repair_budget:
+                break
             prev = choice[n]
             for k in range(len(candidates[n])):
                 if k == prev:
                     continue
+                if repair_budget is not None and trials >= repair_budget:
+                    break
+                trials += 1
                 choice[n] = k
                 rebuild()
                 affected = sorted({roots[x] for x in users[n] if x in roots} | {bname})
@@ -928,6 +949,13 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
             rebuild()
             verdict = verify(names)
             failing = [n for n in names if not verdict.get(n)]
+    # A rejected trial may have left generated bodies from a tentative choice.
+    # Restore the accepted choices before computing fallback units.
+    rebuild()
+    verdict = verify(names)
+    failing = [n for n in names if not verdict.get(n)]
+    report['repair_trials'] = trials
+    report['repair_budget_reached'] = repair_budget is not None and trials >= repair_budget and bool(failing)
     for n in symbols:
         report['truth'][n] = candidates[n][choice[n]]
     report['rewritten'] = [n for n in names if verdict.get(n)]
