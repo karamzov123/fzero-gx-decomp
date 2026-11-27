@@ -467,3 +467,22 @@ earlier block's declarations, so tutruth sees no old declaration to adapt its ca
 longer compiles. Next: split those units into one function per unit before tutruth (each block
 then carries its own declarations, the model tutruth verifies), or teach tutruth to read a
 block's inherited declarations from its unit.
+
+### REL TU pipeline on the older game TUs (2026-11-27)
+
+`rel_unit_split.py` -> `fzgx tutruth` -> `relmerge.py` collapsed 15 Sofdec TUs, but over 25 of the
+39 multi-unit TU files in `main_rel`, `customize`, `title` and `option` it merged none (every
+attempt was rolled back; the 14 largest files were not tried). The failures point at three
+limits, none of them a matter of more attempts:
+
+- `tutruth` verifies each rewritten block in USA only. These TU files also feed Japan and PAL,
+  and a USA-identical rewrite changed PAL `main_rel.rel` in three of them. Its oracle needs the
+  regional builds before its rewrites can be trusted here.
+- TU files that define data under their prologue (`option/_prolog.c`) end up defining the same
+  objects in several units (`multiply-defined: lbl_4_data_*`). Definitions must stay with one
+  unit until the TU is one unit.
+- Where blocks disagree beyond what call-site casts and renames fix, `tutruth` restores them
+  self-contained: the result has no fewer `noprologue` blocks, and the driver discards it.
+
+`relmerge.py` now retains Japan/PAL units as regional fragments when a merge is USA-only, so
+once `tutruth` passes in all regions these files can merge without losing regional source.
