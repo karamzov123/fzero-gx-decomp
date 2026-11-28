@@ -637,3 +637,26 @@ changing the source spelling that produces the retail code.
   zero-initialized storage) follow the 40-byte object already in the TU. GC/1.3.2 emits the
   moved objects at section offsets `0x28` and `0x34`. This preserves the imported C types and
   layout, without claiming to recover the zero object's purpose; regional fallback is unchanged.
+
+### Partial contiguous REL TU collapses (`tutruth` + `relmerge --keep`, 2026-11-27)
+
+`tools/fzgx/tutruth.py` now parses function-pointer parameter lists in prototypes (nested
+parentheses in `PROTO_RE`) and prefixes colliding block-private `static`/`inline` helpers and
+pool primers with `<block>_` so merged compiles do not fail on duplicate local helper names.
+Pairing `tutruth` with `relmerge.py --keep` over the longest contiguous non-reverted run
+collapsed four additional multi-unit REL TUs (`code_units` 1407 -> 1395, `noprologue` 603 -> 601),
+all verified across `GFZP01`, `GFZJ01`, `GFZE01`, and `fzgx lint` (0 findings):
+
+- `rel/main_rel/bg_cas_b.c`: 3 -> 2 units (merged 2 contiguous units; remaining unit `fn_1_FB870`
+  owns `.rodata`/`.bss` and defines `lbl_1_bss_84454[5]` against an extern struct view).
+- `rel/movie_module/sfd_lib.c`: 5 -> 2 units (merged 7 split units into one).
+- `rel/movie_module/mwsfdsl.c`: 10 -> 6 units (merged 8 split units into one).
+- `rel/movie_module/sfd_mps.c`: 12 -> 8 units (merged 5 split units into one).
+
+Remaining blockers logged on the unmerged small/medium game and Sofdec TUs: `emblem.c`
+(`fn_3_14778` 4 words differ), `option/_prolog.c` (`fn_4_ABB0`/`fn_4_AC58` 14/3 words differ
+under GC/2.5; `fn_4_0` kept self-contained), `screen_effect.c` (`fn_1_76A94` redeclared),
+`screen_effect_b.c` (`Sig_fn_1_556F8_Fn1_556F8Object` redeclared + regional mismatch),
+`driver.c` (`static lbl_1_bss_6F648` vs extern), `enemy_ctrl.c` (`lbl_1_bss_7AC48` + regional
+mismatch), `sfd_hds.c`/`sfx_cnv.c` (reloc layout differs), `sfd_trn.c` (function size/padding
+mismatch), and `mwsfdfrm.c`/`mwsfdsfx.c` (`MWSFSVM_Error` signature conflict).
