@@ -1650,5 +1650,50 @@
     "regional_split": [
       "\t.text       start:0x00106084 end:0x0010688C align:4"
     ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/driver/fn_1_A8D4C.c",
+    "symbols": [
+      "fn_1_A8D4C",
+      "fn_1_A8D64",
+      "fn_1_A8D84",
+      "fn_1_A8DC4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/driver_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x000A8D4C end:0x000A8DD4 align:4",
+      "\t.bss        start:0x0006F640 end:0x0006F648 align:8"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/driver/fn_1_A8DD4.c",
+    "symbols": [
+      "fn_1_A8DD4",
+      "fn_1_A8E78",
+      "fn_1_A8EB0",
+      "fn_1_A8EF8",
+      "fn_1_A8F40",
+      "fn_1_A8F78"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/driver_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x000A8DD4 end:0x000A8FA0 align:4"
+    ]
   }
 ]

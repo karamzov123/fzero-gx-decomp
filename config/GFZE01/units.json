@@ -62658,64 +62658,11 @@
       "fn_1_A8528",
       "fn_1_A861C",
       "fn_1_A8834",
-      "fn_1_A89B0"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/driver.c",
-    "collapsed": true,
-    "pool": {
-      "@81": "lbl_1_rodata_4A28",
-      "...rodata.0": "lbl_1_rodata_4A28",
-      "@82": "lbl_1_rodata_4A28+0x4",
-      "@83": "lbl_1_rodata_4A28+0x8",
-      "@84": "lbl_1_rodata_4A28+0xC",
-      "@85": "lbl_1_rodata_4A28+0x10",
-      "@86": "lbl_1_rodata_4A28+0x14",
-      "@87": "lbl_1_rodata_4A28+0x18",
-      "@88": "lbl_1_rodata_4A28+0x1C",
-      "@89": "lbl_1_rodata_4A28+0x20",
-      "@90": "lbl_1_rodata_4A28+0x24",
-      "@91": "lbl_1_rodata_4A28+0x28",
-      "@92": "lbl_1_rodata_4A28+0x2C",
-      "@93": "lbl_1_rodata_4A28+0x30",
-      "@94": "lbl_1_rodata_4A28+0x34",
-      "@95": "lbl_1_rodata_4A28+0x38",
-      "@96": "lbl_1_rodata_4A28+0x3C",
-      "@97": "lbl_1_rodata_4A28+0x40",
-      "@150": "lbl_1_rodata_4A28+0x44",
-      "@151": "lbl_1_rodata_4A28+0x48",
-      "@152": "lbl_1_rodata_4A28+0x4C",
-      "@153": "lbl_1_rodata_4A28+0x50",
-      "@154": "lbl_1_rodata_4A28+0x54",
-      "@155": "lbl_1_rodata_4A28+0x58",
-      "@202": "lbl_1_rodata_4A28+0x5C",
-      "@203": "lbl_1_rodata_4A28+0x60",
-      "@204": "lbl_1_rodata_4A28+0x64",
-      "@205": "lbl_1_rodata_4A28+0x68",
-      "@206": "lbl_1_rodata_4A28+0x6C"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/driver/fn_1_A8D4C.c",
-    "symbols": [
+      "fn_1_A89B0",
       "fn_1_A8D4C",
       "fn_1_A8D64",
       "fn_1_A8D84",
-      "fn_1_A8DC4"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/driver.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/driver/fn_1_A8DD4.c",
-    "symbols": [
+      "fn_1_A8DC4",
       "fn_1_A8DD4",
       "fn_1_A8E78",
       "fn_1_A8EB0",
@@ -62724,9 +62671,14 @@
       "fn_1_A8F78"
     ],
     "status": "matching",
+    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "extra_cflags": [],
-    "tu": "rel/main_rel/driver.c"
+    "tu": "rel/main_rel/driver.c",
+    "collapsed": true,
+    "pool": {
+      "...rodata.0": "lbl_1_rodata_4A28"
+    }
   },
   {
     "module": "main_rel",

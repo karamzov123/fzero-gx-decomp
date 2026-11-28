@@ -185,10 +185,6 @@ rel/main_rel/sound/fn_1_A5864.c:
 rel/main_rel/sound/fn_1_A59AC.c:
 	.text       start:0x000A59AC end:0x000A5AA0
 
-rel/main_rel/driver/fn_1_A8D4C.c:
-	.text       start:0x000A8D4C end:0x000A8DD4 align:4
-	.bss        start:0x0006F640 end:0x0006F648 align:8
-
 rel/main_rel/driver/fn_1_A96FC.c:
 	.text       start:0x000A96FC end:0x000A9868 align:4
 	.data       start:0x000359D8 end:0x00035AC8 align:8
@@ -721,9 +717,6 @@ rel/main_rel/sel_static_disp/fn_1_13FB24.c:
 rel/main_rel/sel_static_disp_c/fn_1_14A284.c:
 	.text       start:0x0014A284 end:0x0014A328 align:4
 
-rel/main_rel/driver/fn_1_A8DD4.c:
-	.text       start:0x000A8DD4 end:0x000A8FA0 align:4
-
 rel/main_rel/sel_static_disp/fn_1_13F72C.c:
 	.text       start:0x0013F72C end:0x0013FB24 align:4
 
@@ -1052,7 +1045,8 @@ rel/main_rel/bitmap/fn_1_47AD4.c:
 	.text       start:0x00047AD4 end:0x000487EC align:4
 
 rel/main_rel/driver/fn_1_A8270.c:
-	.text       start:0x000A8270 end:0x000A8D4C align:4
+	.text       start:0x000A8270 end:0x000A8FA0 align:4
+	.bss        start:0x0006F640 end:0x0006F648 align:8
 
 rel/main_rel/camera_b/fn_1_ABAC.c:
 	.text       start:0x0000ABAC end:0x0000AE38 align:4
