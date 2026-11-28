@@ -175,10 +175,7 @@ rel/movie_module/sfd_tim/fn_12_2EDAC.c:
 	.text       start:0x0002EDAC end:0x0002F1B4 align:4
 
 rel/movie_module/sfd_trn/fn_12_2F1B4.c:
-	.text       start:0x0002F1B4 end:0x0002F474 align:4
-
-rel/movie_module/sfd_trn/fn_12_2F474.c:
-	.text       start:0x0002F474 end:0x0002F63C
+	.text       start:0x0002F1B4 end:0x0002F8A0 align:4
 
 rel/movie_module/sfd_vom/fn_12_2FB54.c:
 	.text       start:0x0002FB54 end:0x0002FD9C align:4
@@ -607,9 +604,6 @@ rel/movie_module/mpv_frm.c:
 rel/movie_module/fn_12_62F8.c:
 	.text       start:0x000062F8 end:0x0000654C align:4
 
-rel/movie_module/sfd_trn/fn_12_2F63C.c:
-	.text       start:0x0002F63C end:0x0002F730 align:4
-
 rel/movie_module/mpv_dec/fn_12_975C.c:
 	.text       start:0x0000975C end:0x00009D08 align:4
 
@@ -648,9 +642,6 @@ rel/movie_module/sfd_tim/fn_12_2E7C8.c:
 
 rel/movie_module/fn_12_331A8.c:
 	.text       start:0x000331A8 end:0x000332DC align:4
-
-rel/movie_module/sfd_trn/fn_12_2F730.c:
-	.text       start:0x0002F730 end:0x0002F8A0 align:4
 
 rel/movie_module/sfd_uo/fn_12_2F8A0.c:
 	.text       start:0x0002F8A0 end:0x0002FB54 align:4

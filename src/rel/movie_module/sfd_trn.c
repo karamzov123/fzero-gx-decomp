@@ -534,6 +534,7 @@ s32 fn_12_2F63C(s32 arg0, s32 arg1, struct fn_12_2F63C_Arg2 *arg2, s32 arg3) {
     }
     return v7;
 }
+#pragma opt_propagation on
 /* fzgx:end fn_12_2F63C */
 
 /* fzgx:begin fn_12_2F730 */
