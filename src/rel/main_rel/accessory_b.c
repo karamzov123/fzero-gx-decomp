@@ -4876,4 +4876,15 @@ s8 fn_1_12A24C(s8 arg) {
     }
     return arg;
 }
+
+extern u32 lbl_1_bss_897A0;
+extern u32 lbl_1_bss_897A4;
+
+
+
+__declspec(section ".data") u32 lbl_1_bss_897A4 __attribute__((aligned(4)));
+
+
+
+__declspec(section ".data") u32 lbl_1_bss_897A0 __attribute__((aligned(32)));
 /* fzgx:end fn_1_12A24C */

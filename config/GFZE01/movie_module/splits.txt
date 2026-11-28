@@ -168,9 +168,6 @@ rel/movie_module/fn_12_2FE60.c:
 rel/movie_module/fn_12_3310C.c:
 	.text       start:0x0003310C end:0x000331A8 align:4
 
-rel/movie_module/mwsfdfrm/fn_12_338C4.c:
-	.text       start:0x000338C4 end:0x0003412C align:4
-
 rel/movie_module/mwsfdrna.c:
 	.text       start:0x0003412C end:0x000341BC align:4
 
@@ -327,7 +324,7 @@ rel/movie_module/mwSfdPause.c:
 	.text       start:0x00038F04 end:0x0003901C align:4
 
 rel/movie_module/mwsfdfrm/fn_12_3379C.c:
-	.text       start:0x0003379C end:0x000338C4 align:4
+	.text       start:0x0003379C end:0x0003412C align:4
 
 rel/movie_module/sfx_cnv/fn_12_147C.c:
 	.text       start:0x0000147C end:0x00001F84 align:4

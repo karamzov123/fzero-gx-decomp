@@ -707,3 +707,16 @@ verified across `GFZP01`, `GFZJ01`, `GFZE01`, and `fzgx lint` (0 findings):
 - `rel/main_rel/ghost.c`: 42 -> 40 units
 - `rel/main_rel/camera.c`: 19 -> 18 units
 - `rel/main_rel/sound.c`: 37 -> 36 units
+
+### Full `mwsfdfrm.c` collapse and adjacent REL data ownership (2026-11-27)
+
+Retiring the remaining two isolated blocks (`fn_12_3379C`, `fn_12_33874`) in
+`rel/movie_module/mwsfdfrm.c` (removing duplicate `Sig_fn_12_2D470_MovieModuleState` and dead
+`MWSFSVM_Error` return capture) collapsed `mwsfdfrm.c` from 2 units to 1 unit
+(`rel_tu_files_one_unit` 88 -> 89, `code_units` 1340 -> 1339). In the same verified batch,
+`tools/consolidate/rel_own_data.py` transferred two adjacent standalone data imports into their
+owning one-unit REL TUs (`data_units` 3444 -> 3442), verified across `GFZP01`/`GFZJ01`/`GFZE01`,
+exact compiled/retail symbol extents, and `fzgx lint` (0 findings):
+
+- `rel/main_rel/accessory_b.c` absorbed `rel/main_rel/data/lbl_1_bss_897A0.c` (`.bss 0x89760..`, 2 symbols).
+- `rel/title/title.c` absorbed `rel/title/data/lbl_8_data_7E50.c` (`.data 0x0..0x7E60`, 2 symbols).

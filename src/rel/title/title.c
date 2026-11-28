@@ -271,7 +271,6 @@ void fn_8_954(void) {
 /* fzgx:end fn_8_954 */
 
 /* fzgx:begin fn_8_AA8 */
-
 struct fn_8_AA8_lbl_8_bss_234 {
     u32 unk_0;
 };
@@ -8531,7 +8530,6 @@ void fn_8_1F74(void) {
 /* fzgx:end fn_8_1F74 */
 
 /* fzgx:begin fn_8_1FB0 */
-
 extern u8 lbl_801A66B8;
 extern u8 lbl_801A66B9;
 
@@ -9674,7 +9672,6 @@ fn_8_68F4();
 /* fzgx:end fn_8_4F64 */
 
 /* fzgx:begin fn_8_516C */
-
 struct fn_8_516C_lbl_8_bss_0 {
     u8 pad_0[0x8];
     u32 unk_8;
@@ -9832,7 +9829,6 @@ void fn_8_530C(void) {
 /* fzgx:end fn_8_530C */
 
 /* fzgx:begin fn_8_5514 */
-
 struct fn_8_5514_lbl_8_bss_0 {
     u8 pad_0[0x8];
     u32 unk_8;
@@ -10338,7 +10334,6 @@ void fn_8_6594(u32 arg0) {
 /* fzgx:end fn_8_6594 */
 
 /* fzgx:begin fn_8_663C */
-
 struct fn_8_663C_Arg0 {
     u32 unk_0;
     u8 pad_4[0xA4];
@@ -10418,4 +10413,19 @@ void fn_8_67B0(void) {
     t3 = fn_80008E84(t1);
     fn_8_8C80(t3);
 }
+
+extern u32 lbl_8_data_7E50;
+extern char lbl_8_data_7E54[12];
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u32 lbl_8_data_7E50 __attribute__((aligned(8))) = 0x4E4F4E00U;
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_8_data_7E54[12] __attribute__((aligned(4))) = "MASTER RECV";
+#pragma explicit_zero_data reset
 /* fzgx:end fn_8_67B0 */

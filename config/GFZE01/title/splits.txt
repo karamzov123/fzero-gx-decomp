@@ -32,7 +32,7 @@ rel/title/operation/fn_8_BAEC.c:
 
 rel/title/title/_prolog.c:
 	.text       start:0x0000082C end:0x000067F8 align:4
-	.data       start:0x00000000 end:0x00007E50 align:8
+	.data       start:0x00000000 end:0x00007E60 align:8
 
 rel/title/operation/fn_8_988C.c:
 	.text       start:0x0000988C end:0x00009B04 align:4
@@ -273,9 +273,6 @@ rel/title/data/lbl_8_bss_3D0.c:
 
 rel/title/data/lbl_8_bss_540.c:
 	.bss        start:0x00000540 end:0x00000550 align:32
-
-rel/title/data/lbl_8_data_7E50.c:
-	.data       start:0x00007E50 end:0x00007E60 align:8
 
 rel/title/data/lbl_8_data_7E60.c:
 	.data       start:0x00007E60 end:0x00007E78 align:8
