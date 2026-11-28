@@ -22,7 +22,21 @@ from .tutruth_build import RegionalVerifier
 
 SCALAR = {'void', 'int', 'char', 'short', 'long', 'unsigned', 'signed', 'float', 'double',
           's8', 'u8', 's16', 'u16', 's32', 'u32', 's64', 'u64', 'f32', 'f64', 'BOOL', 'size_t'}
-PROTO_RE = re.compile(r'^\s*(?:extern\s+)?(.*?)\b([A-Za-z_]\w*)\s*\(([^()]*)\)\s*(?:,|;)')
+PROTO_RE = re.compile(r'^\s*(?:extern\s+)?(.*?)\b([A-Za-z_]\w*)\s*\(((?:[^()]|\([^()]*\))*)\)\s*(?:,|;)')
+
+
+def _split_top_commas(s: str) -> List[str]:
+    parts, depth, start = [], 0, 0
+    for i, c in enumerate(s):
+        if c == '(':
+            depth += 1
+        elif c == ')':
+            depth -= 1
+        elif c == ',' and depth == 0:
+            parts.append(s[start:i])
+            start = i + 1
+    parts.append(s[start:])
+    return parts
 
 
 def _sig(decl: str) -> Optional[Tuple[str, str, List[str]]]:
@@ -34,7 +48,7 @@ def _sig(decl: str) -> Optional[Tuple[str, str, List[str]]]:
     params = []
     inner = m.group(3).strip()
     if inner and inner != 'void':
-        for part in inner.split(','):
+        for part in _split_top_commas(inner):
             part = part.strip()
             if part == '...':
                 params.append('...')
@@ -667,6 +681,28 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
                 rename_in_unit(bname, t)
                 block_renames.setdefault(bname, set()).add(t)
             report.setdefault('renamed_typedefs', []).append(('*', t))
+    # block-private static/inline helpers and pool primers that collide across blocks:
+    # prefix with `<block>_` so whole-TU compilation never hits redeclaration errors
+    static_re = re.compile(
+        r'^(?:__declspec\s*\([^)]*\)\s*)?(?:static\s+(?:inline\s+)?|inline\s+)'
+        r'(?:const\s+|volatile\s+)*(?:(?:unsigned|signed|struct|union|enum)\s+)*'
+        r'[A-Za-z_]\w*(?:\s*\*+\s*|\s+)([A-Za-z_]\w*)\s*(?:\(|\[|=|;)',
+        re.M,
+    )
+    statics_by_name: Dict[str, List[str]] = {}
+    for b in tf.blocks:
+        for nm in dict.fromkeys(static_re.findall(b.body)):
+            if not nm.startswith(('lbl_', 'fn_')):
+                statics_by_name.setdefault(nm, []).append(b.name)
+    pro_statics = set(static_re.findall(tf.prologue))
+    for nm, owners in statics_by_name.items():
+        if len(set(owners)) < 2 and nm not in pro_statics:
+            continue
+        for bname in dict.fromkeys(owners):
+            b = tf.get(bname)
+            b.body = re.sub(r'\b' + re.escape(nm) + r'\b', f'{bname}_{nm}', b.body)
+            rename_in_unit(bname, nm)
+        report.setdefault('renamed_statics', []).append(nm)
     pdecl: Dict[str, str] = {}
     kept_pro = []
     for ln in tf.prologue.splitlines():
