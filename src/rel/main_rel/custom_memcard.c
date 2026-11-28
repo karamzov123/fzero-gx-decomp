@@ -19,6 +19,16 @@ extern void fn_1_132774(void *arg0);
 extern u32 lbl_801A6410;
 extern void OSReport(const char* format, ...);
 
+extern u8 lbl_1_data_41930[0x10];
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") u8 lbl_1_data_41930[0x10] __attribute__((aligned(8))) = {
+    0x25U, 0x64U, 0x50U, 0x20U, 0x83U, 0x4AU, 0x83U, 0x89U, 0x81U, 0x5BU, 0x5BU, 0x25U, 0x64U, 0x5DU, 0x0AU, 0x00U
+};
+#pragma explicit_zero_data reset
+
 /* fzgx:begin fn_1_1312F0 */
 // Reset the memcard state after reporting an unavailable card.
 
@@ -43,8 +53,6 @@ void fn_1_1312F0(void) {
 }
 /* fzgx:end fn_1_1312F0 */
 
-extern void fn_1_F7870();
-extern void fn_8006F038(void *, void *, s16);
 /* fzgx:begin fn_1_131390 */
 #include "dolphin/os/OSTime.h"
 
@@ -134,7 +142,6 @@ void fn_1_1314A4(void) {
 /* fzgx:end fn_1_1314A4 */
 
 /* fzgx:begin fn_1_131558 */
-
 typedef struct {
     s32 unk_00;
     s32 unk_04;
@@ -458,9 +465,6 @@ void fn_1_13198C(s16 idx, void *a1, void *a2, EntryObj *a3, EntryObj *a4, s32 mo
 }
 
 #pragma opt_common_subs reset
-
-
-
 /* fzgx:end fn_1_13198C */
 
 /* fzgx:begin fn_1_131B90 */

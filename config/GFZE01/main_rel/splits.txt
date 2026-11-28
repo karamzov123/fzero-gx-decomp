@@ -375,6 +375,7 @@ rel/main_rel/archive/fn_1_130F98.c:
 
 rel/main_rel/custom_memcard/fn_1_1312F0.c:
 	.text       start:0x001312F0 end:0x001332FC align:4
+	.data       start:0x00041930 end:0x00041940 align:8
 
 rel/main_rel/sel_static_disp/fn_1_134A4C.c:
 	.text       start:0x00134A4C end:0x00134AD4
@@ -474,7 +475,7 @@ rel/main_rel/ranking_c/fn_1_1586A8.c:
 rel/main_rel/ranking_d/fn_1_159440.c:
 	.text       start:0x00159440 end:0x0015B70C align:4
 	.rodata     start:0x0000DAE8 end:0x0000DAF8 align:8
-	.bss        start:0x0008F588 end:0x0008F878 align:8
+	.bss        start:0x0008F588 end:0x0008F8D0 align:8
 
 rel/main_rel/bg_win/fn_1_15BE38.c:
 	.text       start:0x0015BE38 end:0x0015C4EC align:4
@@ -7366,9 +7367,6 @@ rel/main_rel/data/lbl_1_bss_8F420.c:
 rel/main_rel/data/lbl_1_bss_8F428.c:
 	.bss        start:0x0008F428 end:0x0008F568 align:8
 
-rel/main_rel/data/lbl_1_bss_8F878.c:
-	.bss        start:0x0008F878 end:0x0008F8D0 align:8
-
 rel/main_rel/data/lbl_1_bss_8F8D0.c:
 	.bss        start:0x0008F8D0 end:0x0008F8E0 align:16
 
@@ -7613,9 +7611,6 @@ rel/main_rel/data/lbl_1_bss_6EA68.c:
 
 rel/main_rel/data/lbl_1_bss_6EA78.c:
 	.bss        start:0x0006EA78 end:0x0006EA80 align:8
-
-rel/main_rel/data/lbl_1_bss_6EA88.c:
-	.bss        start:0x0006EA88 end:0x0006EA90 align:8
 
 rel/main_rel/data/lbl_1_bss_6EA90.c:
 	.bss        start:0x0006EA90 end:0x0006EA98 align:16
@@ -9202,9 +9197,6 @@ rel/main_rel/data/lbl_1_data_3D138.c:
 rel/main_rel/data/lbl_1_data_3E8E0.c:
 	.data       start:0x0003E8E0 end:0x0003E8F0 align:8
 
-rel/main_rel/data/lbl_1_data_41930.c:
-	.data       start:0x00041930 end:0x00041940 align:8
-
 rel/main_rel/data/lbl_1_data_41940.c:
 	.data       start:0x00041940 end:0x00041968 align:8
 
@@ -9674,6 +9666,7 @@ rel/main_rel/data/lbl_1_bss_6EA98.c:
 
 rel/main_rel/ptclput.c:
 	.text       start:0x0009F7DC end:0x0009FE74 align:4
+	.bss        start:0x0006EA88 end:0x0006EA90 align:8
 
 rel/main_rel/data/lbl_1_rodata_2D70.c:
 	.rodata     start:0x00002D70 end:0x000033A8 align:8

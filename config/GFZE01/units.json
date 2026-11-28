@@ -28141,18 +28141,6 @@
   },
   {
     "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_bss_6EA88.c",
-    "symbols": [
-      "lbl_1_bss_6EA88"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
     "source": "rel/main_rel/data/lbl_1_bss_6EA90.c",
     "symbols": [
       "lbl_1_bss_6EA90",
@@ -29590,18 +29578,6 @@
     "source": "rel/main_rel/data/lbl_1_bss_8F428.c",
     "symbols": [
       "lbl_1_bss_8F428"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_bss_8F878.c",
-    "symbols": [
-      "lbl_1_bss_8F878"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -50421,18 +50397,6 @@
     "source": "rel/main_rel/data/lbl_1_data_41928.c",
     "symbols": [
       "lbl_1_data_41928"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/data/lbl_1_data_41930.c",
-    "symbols": [
-      "lbl_1_data_41930"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -72527,17 +72491,6 @@
   },
   {
     "module": "movie_module",
-    "source": "rel/movie_module/data/lbl_12_bss_7250.c",
-    "symbols": [
-      "lbl_12_bss_7250"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "movie_module",
     "source": "rel/movie_module/data/lbl_12_bss_7A50.c",
     "symbols": [
       "lbl_12_bss_7A50"
@@ -77470,19 +77423,6 @@
       "lbl_10_data_6B9C",
       "lbl_10_data_6BA4",
       "lbl_10_data_6BAC"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "sel",
-    "source": "rel/sel/data/lbl_10_data_6BD0.c",
-    "symbols": [
-      "lbl_10_data_6BD0",
-      "lbl_10_data_6BDC"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],

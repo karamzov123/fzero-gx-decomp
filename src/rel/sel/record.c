@@ -1,4 +1,23 @@
 #include "types.h"
+#include "types.h"
+#include "rel/sel/globals.h"
+#include "rel/sel/name_entry.h"
+#include "font.h"
+
+extern char lbl_10_data_6BD0[9];
+extern char lbl_10_data_6BDC[19];
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_6BD0[9] __attribute__((aligned(8))) = "record.c";
+#pragma explicit_zero_data reset
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") char lbl_10_data_6BDC[19] __attribute__((aligned(4))) = "OKASII by tokieda\n";
+#pragma explicit_zero_data reset
 
 /* fzgx:begin fn_10_26554 */
 extern u8 lbl_10_bss_55CE0;
@@ -51,9 +70,6 @@ void fn_10_26554(void) {
 /* fzgx:end fn_10_26554 */
 
 /* fzgx:begin fn_10_266AC noprologue */
-#include "types.h"
-#include "rel/sel/globals.h"
-#include "rel/sel/name_entry.h"
 
 
 extern u8 lbl_10_bss_55CDC;
@@ -86,7 +102,6 @@ extern void fn_1_47F74(s32);
 extern void fn_1_15555C(void);
 extern void fn_1_14BD74(void);
 
-#include "font.h"
 
 struct fn_10_266AC_pool {
     u8 pad_0[0x38];

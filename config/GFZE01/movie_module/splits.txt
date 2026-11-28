@@ -68,7 +68,7 @@ rel/movie_module/sfd_buf/fn_12_21C00.c:
 
 rel/movie_module/sfd_con/fn_12_22FBC.c:
 	.text       start:0x00022FBC end:0x00023F00 align:4
-	.bss        start:0x000069B0 end:0x00007250 align:16
+	.bss        start:0x000069B0 end:0x00007A50 align:16
 
 rel/movie_module/sfd_hds/fn_12_23F34.c:
 	.text       start:0x00023F34 end:0x00024950 align:4
@@ -828,9 +828,6 @@ rel/movie_module/data/lbl_12_bss_6988.c:
 
 rel/movie_module/data/lbl_12_bss_6990.c:
 	.bss        start:0x00006990 end:0x000069B0 align:16
-
-rel/movie_module/data/lbl_12_bss_7250.c:
-	.bss        start:0x00007250 end:0x00007A50 align:16
 
 rel/movie_module/data/lbl_12_bss_7A50.c:
 	.bss        start:0x00007A50 end:0x00007C58 align:16

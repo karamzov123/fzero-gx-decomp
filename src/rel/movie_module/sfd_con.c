@@ -697,4 +697,10 @@ void fn_12_23E0C(void *arg0, void *arg1, fn_12_23E0C_MovieState *movie) {
     }
     fn_12_24950(state);
 }
+
+extern u8 lbl_12_bss_7250[2048];
+
+
+
+__declspec(section ".data") u8 lbl_12_bss_7250[2048] __attribute__((aligned(16)));
 /* fzgx:end fn_12_23E0C */

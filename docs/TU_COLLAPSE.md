@@ -732,3 +732,13 @@ imports into their owning one-unit REL TUs (`data_units` 3442 -> 3435), verified
 - `rel/main_rel/background_c.c` <- `lbl_1_bss_6EA80.c`
 - `rel/main_rel/bitmap.c` <- `lbl_1_bss_3E000.c`
 - `rel/main_rel/ranking_d.c` <- `lbl_1_bss_8F588.c`
+
+Five additional exclusive `.bss`/`.data` imports transferred into their owning one-unit REL TUs
+(`data_units` 3435 -> 3430), verified across `GFZP01`/`GFZJ01`/`GFZE01`, compiled/retail symbol
+extents, and `fzgx lint` (0 findings):
+
+- `rel/sel/record.c` <- `lbl_10_data_6BD0.c`
+- `rel/movie_module/sfd_con.c` <- `lbl_12_bss_7250.c`
+- `rel/main_rel/ptclput.c` <- `lbl_1_bss_6EA88.c`
+- `rel/main_rel/custom_memcard.c` <- `lbl_1_data_41930.c`
+- `rel/main_rel/ranking_d.c` <- `lbl_1_bss_8F878.c`

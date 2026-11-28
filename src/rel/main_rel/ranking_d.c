@@ -705,4 +705,10 @@ u32 fn_1_15B698(s32 kind, u32 *value) {
     }
     return 1;
 }
+
+extern Obj_1_bss_8F878 lbl_1_bss_8F878;
+
+
+
+__declspec(section ".data") Obj_1_bss_8F878 lbl_1_bss_8F878 __attribute__((aligned(8)));
 /* fzgx:end fn_1_15B698 */

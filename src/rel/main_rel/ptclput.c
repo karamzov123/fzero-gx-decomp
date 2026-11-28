@@ -4,7 +4,11 @@
 #include "psvec.h"
 #include "dolphin/hw_regs.h"
 
+extern Obj_1_bss_6EA88 lbl_1_bss_6EA88;
 
+
+
+__declspec(section ".data") Obj_1_bss_6EA88 lbl_1_bss_6EA88 __attribute__((aligned(8)));
 
 struct fn_1_9F870_lbl_801A6410 {
     u32 unk_0;
