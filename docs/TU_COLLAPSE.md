@@ -750,3 +750,23 @@ units (41 functions) into the canonical block-format TU `src/rel/profile/profile
 145 -> 146). Running `fzgx tutruth rel/profile/profile.c --repair-budget 10` (prefixing 40 colliding
 static helpers) and `relmerge.py --keep` merged 2 contiguous units (`profile`: 20 -> 19 units,
 `code_units` 1339 -> 1338), verified across `GFZP01`, `GFZJ01`, `GFZE01`, and `fzgx lint` (0 findings).
+
+### Partial `movie_module` TU migration and 26-unit collapse batch (2026-11-27)
+
+Added `--partial` mode to `tools/consolidate/rel_tu_migrate.py` so non-crossing, non-`asm` C units
+of mapped REL TUs can migrate into block-format TU files without waiting on a single crossing/asm
+neighbor. Migrating 13 remaining `movie_module` TUs (75 standalone C files -> 13 TU files,
+`rel_tu_files` 146 -> 159) and running `fzgx tutruth --repair-budget 10` + greedy `relmerge.py --keep`
+eliminated 26 `movie_module` code units (`code_units` 1338 -> 1312, `rel_tu_files_one_unit` 89 -> 93),
+verified across `GFZP01`, `GFZJ01`, `GFZE01`, and `fzgx lint` (0 findings):
+
+- `rel/movie_module/mps_get.c`: 3 -> 1 unit (full 1-unit collapse)
+- `rel/movie_module/mpv_cdec.c`: 5 -> 1 unit (full 1-unit collapse)
+- `rel/movie_module/mwsfdply.c`: 5 -> 1 unit (full 1-unit collapse)
+- `rel/movie_module/mwsfdsst.c`: 3 -> 1 unit (full 1-unit collapse)
+- `rel/movie_module/sfd_mpv.c`: 17 -> 13 units
+- `rel/movie_module/mwsfdset.c`: 7 -> 3 units
+- `rel/movie_module/mps_lib.c`: 4 -> 2 units
+- `rel/movie_module/mpv_lib.c`: 4 -> 2 units
+- `rel/movie_module/mps_dec.c`: 4 -> 3 units
+- `rel/movie_module/sfh_main.c`: 3 -> 2 units

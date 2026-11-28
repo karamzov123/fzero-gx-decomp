@@ -45,7 +45,7 @@ def blocks_of(text, symbols):
 
 def main():
     args = sys.argv[1:]
-    module, apply = args[0], '--apply' in args
+    module, apply, partial = args[0], '--apply' in args, '--partial' in args
     only = {a for a in args[1:] if not a.startswith('--')}
     cfg = pathlib.Path(f'config/GFZE01/{module}')
     tus = json.loads((cfg / 'tus.json').read_text())
@@ -71,7 +71,13 @@ def main():
         if len(us) < 2:
             continue   # one unit already: nothing to reconcile
         crossing = [u['source'] for u in by_tu.get(None, []) if any(tu_of.get(s) == name for s in u['symbols'])]
-        if crossing or any(u.get('asm') or u.get('tu') for u in us):
+        if partial:
+            if any(u.get('tu') for u in us):
+                print('skip', name, 'already migrated'); continue
+            us = [u for u in us if not u.get('asm')]
+            if len(us) < 2:
+                continue
+        elif crossing or any(u.get('asm') or u.get('tu') for u in us):
             print('skip', name, 'crossing/asm/already migrated'); continue
         stem = name[:-2]
         tu_src = f'rel/{module}/{name}'
