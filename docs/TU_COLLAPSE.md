@@ -660,3 +660,26 @@ under GC/2.5; `fn_4_0` kept self-contained), `screen_effect.c` (`fn_1_76A94` red
 `driver.c` (`static lbl_1_bss_6F648` vs extern), `enemy_ctrl.c` (`lbl_1_bss_7AC48` + regional
 mismatch), `sfd_hds.c`/`sfx_cnv.c` (reloc layout differs), `sfd_trn.c` (function size/padding
 mismatch), and `mwsfdfrm.c`/`mwsfdsfx.c` (`MWSFSVM_Error` signature conflict).
+
+### Full `sfd_trn.c` collapse and ready contiguous-run sweep (2026-11-27)
+
+Closing the leaked `#pragma opt_propagation off` after `fn_12_2F63C` in `rel/movie_module/sfd_trn.c`
+restored the 1-instruction diff in `fn_12_2F730`/`fn_12_2F7AC` and collapsed `sfd_trn.c` from
+4 units to 1 unit (`rel_tu_files_one_unit` 87 -> 88). Sweeping all 36 remaining multi-unit REL TUs
+for existing contiguous non-`noprologue` runs with `relmerge.py --keep` eliminated 39 total code
+units (`code_units` 1395 -> 1356, `pool_remapped_units` 592 -> 590), all verified across `GFZP01`,
+`GFZJ01`, `GFZE01`, and `fzgx lint` (0 findings):
+
+- `rel/movie_module/sfd_trn.c`: 4 -> 1 unit (full 1-unit collapse)
+- `rel/movie_module/sfx_cnv.c`: 14 -> 4 units
+- `rel/movie_module/mwsfdsfx.c`: 12 -> 4 units
+- `rel/movie_module/sfd_mps.c`: 8 -> 4 units
+- `rel/movie_module/mwsfdfrm.c`: 4 -> 2 units
+- `rel/movie_module/mwsfdlib.c`: 4 -> 3 units
+- `rel/movie_module/sfd_tim.c`: 14 -> 13 units
+- `rel/main_rel/ghost.c`: 46 -> 42 units (Japan/PAL retained in `ghost_regional.c`)
+- `rel/main_rel/sound.c`: 39 -> 37 units (Japan/PAL retained in `sound_regional.c`)
+- `rel/main_rel/camera.c`: 20 -> 19 units (Japan/PAL retained in `camera_regional.c`)
+- `rel/main_rel/bg_for.c`: 12 -> 11 units (Japan/PAL retained in `bg_for_regional.c`)
+- `rel/main_rel/bg_win.c`: 17 -> 16 units (Japan/PAL retained in `bg_win_regional.c`)
+- `rel/main_rel/sel_static_disp_c.c`: 53 -> 52 units (Japan/PAL retained in `sel_static_disp_c_regional.c`)
