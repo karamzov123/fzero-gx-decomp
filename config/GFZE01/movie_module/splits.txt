@@ -444,14 +444,11 @@ rel/movie_module/sfd_tim/fn_12_2ED74.c:
 rel/movie_module/fn_12_12270.c:
 	.text       start:0x00012270 end:0x000124A0 align:4
 
-rel/movie_module/mwsfdlib/fn_12_38A2C.c:
-	.text       start:0x00038A2C end:0x00038AF0 align:4
-
 rel/movie_module/mwsfdsvr/fn_12_3AB00.c:
 	.text       start:0x0003AB00 end:0x0003ABE0 align:4
 
 rel/movie_module/mwsfdlib/fn_12_388C4.c:
-	.text       start:0x000388C4 end:0x00038A2C align:4
+	.text       start:0x000388C4 end:0x00038AF0 align:4
 
 rel/movie_module/sfd_buf/fn_12_22390.c:
 	.text       start:0x00022390 end:0x000226D0 align:4

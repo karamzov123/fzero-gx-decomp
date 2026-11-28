@@ -75801,18 +75801,7 @@
     "source": "rel/movie_module/mwsfdlib/fn_12_388C4.c",
     "symbols": [
       "fn_12_388C4",
-      "fn_12_38A0C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true,
-    "tu": "rel/movie_module/mwsfdlib.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/mwsfdlib/fn_12_38A2C.c",
-    "symbols": [
+      "fn_12_38A0C",
       "fn_12_38A2C",
       "fn_12_38AD0",
       "fn_12_38AE0"
