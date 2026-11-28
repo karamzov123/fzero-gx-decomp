@@ -29,12 +29,6 @@ extern void fn_8004EBB4(void);
 extern void fn_8004EBD4(void);
 extern u32 lbl_12_bss_7C5C;
 extern u32 lbl_12_bss_7C64[137];
-extern int fn_12_2B6B0(u32 arg0);
-extern void fn_12_2F19C();
-extern void fn_12_22FB4();
-extern int fn_12_2F730(void *);
-extern void fn_12_24904(void);
-extern void fn_80058630(void);
 extern void fn_80058680(void);
 extern void fn_12_24924(void);
 extern void fn_12_2F1A0(SfdTimerLibraryWork *work, int source);
@@ -48,8 +42,15 @@ extern const int lbl_12_rodata_C78[100];
 extern int fn_12_24D78(void);
 extern s32 fn_12_24A88(fn_12_24A88_MovieObject *object, s32 value);
 extern void fn_12_24D80(int arg0);
+extern int fn_12_2B6B0(u32 arg0);
+extern void fn_12_2F19C();
+extern void fn_12_22FB4();
+extern int fn_12_2F730(void *);
+extern void fn_12_24904(void);
+extern void fn_80058630(void);
 
 /* fzgx:begin fn_12_24950 */
+
 /* --- rel/movie_module/fn_12_24950.c --- */
 
 void fn_12_24950(void) {
@@ -58,6 +59,7 @@ void fn_12_24950(void) {
 /* fzgx:end fn_12_24950 */
 
 /* fzgx:begin fn_12_24970 */
+
 /* --- rel/movie_module/fn_12_24970.c --- */
 
 void fn_12_24970(void) {
@@ -66,6 +68,7 @@ void fn_12_24970(void) {
 /* fzgx:end fn_12_24970 */
 
 /* fzgx:begin fn_12_24990 */
+
 /* --- rel/movie_module/fn_12_24990.c --- */
 
 s32 fn_12_24990(u32 arg0) {
@@ -82,7 +85,6 @@ s32 fn_12_24990(u32 arg0) {
 /* fzgx:end fn_12_24990 */
 
 /* fzgx:begin fn_12_249BC */
-
 typedef void (*fn_12_249BC_MovieCallback)(void *, u32);
 
 typedef struct fn_12_249BC_MovieObject {
@@ -126,9 +128,11 @@ s32 fn_12_249BC(fn_12_249BC_MovieObject *obj, void *arg0, void *arg1) {
 /* fzgx:end fn_12_249BC */
 
 /* fzgx:begin fn_12_24A88 */
+typedef void (*fn_12_24A88_MovieCallback)(void *, s32);
+
+
+
 /* --- rel/movie_module/fn_12_24A88.c --- */
-
-
 
 s32 fn_12_24A88(fn_12_24A88_MovieObject *object, s32 value) {
     if (value == 0) {
@@ -170,7 +174,6 @@ void fn_12_24B64(int *value) {
 /* fzgx:end fn_12_24B64 */
 
 /* fzgx:begin fn_12_24B80 */
-
 int fn_12_24B80(void) {
     u32 *entry;
     int result;
