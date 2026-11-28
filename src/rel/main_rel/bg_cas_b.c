@@ -4,6 +4,8 @@
 #include "dolphin/hw_regs.h"
 #include "psvec.h"
 #include "rel/main_rel/bg_cas.h"
+#include "game/vec3.h"
+
 
 
 
@@ -32,25 +34,63 @@ typedef struct SplineMain {
     u8 pad5[0x163];
     f32 unk_168;
 } SplineMain;
-
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern void GXInitTexObjLOD(void *texObj, int minFilter, int magFilter, f32 minLod, f32 maxLod, f32 lodBias, int biasClamp, int edgeLod, int maxAniso);
+extern void lbl_8006D758(void);
+extern void lbl_8006E13C(void *);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006DB74(void *);
+extern void GXLoadTexMtxImm(void *, u32, u32);
+extern void fn_80072EDC(s32 arg0, s32 arg1);
+extern void fn_800734A8(u32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void fn_80073778(void *obj, s32 index);
+extern void fn_800738E0(s32 arg0, s32 arg1, s32 arg2);
+extern void fn_800739E0(s32 index, s32 arg1, s32 arg2);
+extern void fn_80073A58(int index, void *arg, s8 value);
+extern void fn_80073C6C(s32 index);
+extern void fn_80073D60(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void fn_800745A4(u32 arg0, s32 arg1, s32 arg2, u32 arg3, u32 arg4, u32 arg5);
+extern void fn_1_FB9DC(u8);
+extern void fn_1_FBA88(u8);
+extern void fn_1_FBC5C(u8);
+extern void fn_1_FCA10(void);
+extern int fn_1_FCF50(void);
+extern void fn_1_563B8(u32 value);
+extern f32 lbl_1_rodata_761C[13];
+extern void fn_1_7EB8C(void *, f32);
+extern void fn_1_7F20C(void *arg0, u32 arg1, f32 arg2);
+extern void lbl_8006DBAC(void *);
+extern void fn_1_FD3A8(void *arg0, f32 arg1);
+extern void *memset(void *, int, u32);
+extern void fn_1_FE7D8(u8 *arg0, s32 arg1);
+extern void fn_1_FF420(void *em_raw);
+extern void fn_80074788(u32 arg0);
+extern void fn_80072864(u32 arg0);
+extern void fn_80072AB0(s32 arg0, s32 arg1, s32 arg2);
+extern void fn_800735C8(s32 index, s32 value);
+extern void fn_80073620(s32 index, s32 value);
+extern void fn_80072C24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void fn_80072D64(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4, s32 arg5);
+extern void fn_80072CC4(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void fn_80072E20(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4, s32 arg5);
+extern void fn_80073678(u32 arg0);
+extern void fn_80074660(u32 arg0);
+extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
+extern void fn_800720B0(s32 arg0);
+extern void fn_1_9A508(void);
+extern void fn_1_9AD54(void);
+extern void fn_1_9AD88(void);
+extern void fn_1_10069C(void *obj_raw);
+extern void fn_1_FF038(void *owner_raw);
+extern const f64 lbl_1_rodata_760C;
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern void fn_80008BA8(void *dst, void *src, u32 size);
+extern u8 lbl_1_bss_851E0[36];
+extern void fn_1_7F230(void *arg0, u32 arg1, f32 arg2);
+extern void fn_1_FFC60(void *arg0);
+extern void fn_1_FEC7C(void *object);
+extern const f32 lbl_1_rodata_76A8;
 void fn_1_FA89C(SplineMain *arg0);
-
-Obj_1_bss_84428 lbl_1_bss_84428;
-
-Obj_1_data_3EED0 lbl_1_data_3EED0 = {
-    0x00U,
-    0x01U,
-    0x03U,
-    0x02U,
-    {0x3FU, 0x80U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x04U, 0x05U, 0x01U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U, 0x06U, 0x04U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x04U, 0x06U, 0x07U, 0x05U, 0xBFU, 0x80U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x02U, 0x03U, 0x07U, 0x06U, 0x00U, 0x00U, 0x00U, 0x00U, 0xBFU, 0x80U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x01U, 0x05U, 0x07U, 0x03U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0x00U, 0xBFU, 0x80U, 0x00U, 0x00U}
-};
-
-Obj_1_data_3EF30 lbl_1_data_3EF30 = {
-    0x3F800000U,
-    0x3F800000U,
-    0x3F800000U,
-    {0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0xBFU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0xBFU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0xBFU, 0x80U, 0x00U, 0x00U, 0xBFU, 0x80U, 0x00U, 0x00U, 0xBFU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0xBFU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0xBFU, 0x80U, 0x00U, 0x00U, 0xBFU, 0x80U, 0x00U, 0x00U, 0xBFU, 0x80U, 0x00U, 0x00U, 0x3FU, 0x80U, 0x00U, 0x00U, 0xBFU, 0x80U, 0x00U, 0x00U, 0xBFU, 0x80U, 0x00U, 0x00U, 0xBFU, 0x80U, 0x00U, 0x00U}
-};
 
 /* fzgx:begin fn_1_FB870 noprologue */
 #include "types.h"
@@ -474,110 +514,14 @@ void fn_1_FBFE4(CasState *state) {
 }
 /* fzgx:end fn_1_FBFE4 */
 
-/* fzgx:begin fn_1_FC40C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_cas.h"
-extern void fn_80008BEC(void *arg0, int arg1, int arg2);
-extern void fn_1_FCA10(void);
-extern int fn_1_FCF50(void);
-extern void *fn_1_563B8(void *);
-extern f32 lbl_1_rodata_761C[13];
-extern void fn_1_7EB8C(void *, f32);
-extern void fn_1_7F20C(void *, s32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DBAC(void *);
-extern void fn_1_FD3A8(void);
-extern void *memset(void *, int, u32);
-extern void fn_1_FE7D8(u8 *, s32);
-extern void fn_1_FF420(u8 *);
-extern void fn_80074788(int);
-extern void fn_80072864(int);
-extern void fn_800745A4(int, int, int, int, int, int);
-extern void fn_800734A8(int, int, int, int);
-extern void fn_80072AB0(int, int, int);
-extern void fn_800735C8(int, int);
-extern void fn_80073620(int, int);
-extern void fn_80073C6C(int);
-extern void fn_80072C24(int, int, int, int, int);
-extern void fn_80072D64(int, int, int, int, int, int);
-extern void fn_80072CC4(int, int, int, int, int);
-extern void fn_80072E20(int, int, int, int, int, int);
-extern void fn_80073678(int);
-extern void fn_80074660(int);
-extern void fn_80074918(int, int, int);
-extern void fn_800720B0(int);
-extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
-extern void fn_1_9AD54(void);
-extern void fn_1_9AD88(void);
-extern void fn_1_10069C(Obj_1_data_2A7E0_At3C *);
-extern void fn_1_FF038(Obj_1_data_2A7E0_At3C *);
-extern const f64 lbl_1_rodata_760C;
-extern void OSPanic(const char *, int, const char *, ...);
-extern void lbl_8006D758(void);
-extern void lbl_8006E13C(void *);
-extern void lbl_8006E0A4(void *);
-extern void fn_80008BA8(void *, void *, u32);
-extern u8 lbl_1_bss_851E0[36];
-extern void fn_1_7F230(void *, s32, f32);
-extern void fn_1_FFC60(Obj_1_data_2A7E0_At3C *arg0);
-extern void fn_1_FEC7C(void *object);
-extern const f32 lbl_1_rodata_76A8;
+/* fzgx:begin fn_1_FC40C */
 
 // fn_1_FC40C: empty in retail (single blr).
 void fn_1_FC40C(void) {
 }
 /* fzgx:end fn_1_FC40C */
 
-/* fzgx:begin fn_1_FC410 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/bg_cas.h"
-extern void fn_80008BEC(void *arg0, int arg1, int arg2);
-extern void fn_1_FCA10(void);
-extern int fn_1_FCF50(void);
-extern void *fn_1_563B8(void *);
-extern f32 lbl_1_rodata_761C[13];
-extern void fn_1_7EB8C(void *, f32);
-extern void fn_1_7F20C(void *, s32, f32);
-extern void lbl_8006DB74(void *);
-extern void lbl_8006DBAC(void *);
-extern void fn_1_FD3A8(void);
-extern void *memset(void *, int, u32);
-extern void fn_1_FE7D8(u8 *, s32);
-extern void fn_1_FF420(u8 *);
-extern void fn_80074788(int);
-extern void fn_80072864(int);
-extern void fn_800745A4(int, int, int, int, int, int);
-extern void fn_800734A8(int, int, int, int);
-extern void fn_80072AB0(int, int, int);
-extern void fn_800735C8(int, int);
-extern void fn_80073620(int, int);
-extern void fn_80073C6C(int);
-extern void fn_80072C24(int, int, int, int, int);
-extern void fn_80072D64(int, int, int, int, int, int);
-extern void fn_80072CC4(int, int, int, int, int);
-extern void fn_80072E20(int, int, int, int, int, int);
-extern void fn_80073678(int);
-extern void fn_80074660(int);
-extern void fn_80074918(int, int, int);
-extern void fn_800720B0(int);
-extern void fn_1_9A508(Obj_1_data_2A7E0 *arg0);
-extern void fn_1_9AD54(void);
-extern void fn_1_9AD88(void);
-extern void fn_1_10069C(Obj_1_data_2A7E0_At3C *);
-extern void fn_1_FF038(Obj_1_data_2A7E0_At3C *);
-extern const f64 lbl_1_rodata_760C;
-extern void OSPanic(const char *, int, const char *, ...);
-extern void lbl_8006D758(void);
-extern void lbl_8006E13C(void *);
-extern void lbl_8006E0A4(void *);
-extern void fn_80008BA8(void *, void *, u32);
-extern u8 lbl_1_bss_851E0[36];
-extern void fn_1_7F230(void *, s32, f32);
-extern void fn_1_FFC60(Obj_1_data_2A7E0_At3C *arg0);
-extern void fn_1_FEC7C(void *object);
-extern const f32 lbl_1_rodata_76A8;
+/* fzgx:begin fn_1_FC410 */
 
 // fn_1_FC410: empty in retail (single blr).
 void fn_1_FC410(void) {

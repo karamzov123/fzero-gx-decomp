@@ -310,10 +310,7 @@ rel/main_rel/bg_cas_b/fn_1_FB870.c:
 	.bss        start:0x00084450 end:0x000850C0 align:8
 
 rel/main_rel/bg_cas_b/fn_1_FC40C.c:
-	.text       start:0x000FC40C end:0x000FC410
-
-rel/main_rel/bg_cas_b/fn_1_FC410.c:
-	.text       start:0x000FC410 end:0x000FC414
+	.text       start:0x000FC40C end:0x000FC414
 
 rel/main_rel/bg_cas_c/fn_1_FC4E0.c:
 	.text       start:0x000FC4E0 end:0x000FC51C

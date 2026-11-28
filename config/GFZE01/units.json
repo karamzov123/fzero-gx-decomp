@@ -24066,18 +24066,7 @@
     "module": "main_rel",
     "source": "rel/main_rel/bg_cas_b/fn_1_FC40C.c",
     "symbols": [
-      "fn_1_FC40C"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bg_cas_b.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bg_cas_b/fn_1_FC410.c",
-    "symbols": [
+      "fn_1_FC40C",
       "fn_1_FC410"
     ],
     "status": "matching",
