@@ -1524,5 +1524,39 @@
     "regional_split": [
       "\t.text       start:0x000A2D84 end:0x000A2DF4 align:4"
     ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/ghost/fn_1_F1B78.c",
+    "symbols": [
+      "fn_1_F1B78"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/ghost_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x000F1B78 end:0x000F1B84"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/ghost/fn_1_F1B94.c",
+    "symbols": [
+      "fn_1_F1B94"
+    ],
+    "status": "matching",
+    "tu": "rel/main_rel/ghost_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x000F1B94 end:0x000F1C54 align:4"
+    ]
   }
 ]

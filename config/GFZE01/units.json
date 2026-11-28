@@ -65766,18 +65766,9 @@
     "module": "main_rel",
     "source": "rel/main_rel/ghost/fn_1_F1B78.c",
     "symbols": [
-      "fn_1_F1B78"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/ghost.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/ghost/fn_1_F1B84.c",
-    "symbols": [
-      "fn_1_F1B84"
+      "fn_1_F1B78",
+      "fn_1_F1B84",
+      "fn_1_F1B94"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -65787,15 +65778,6 @@
     "pool": {
       "lbl_1_bss_7C85C__fzgx_offset_71": "lbl_1_bss_7C85C+0x71"
     }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/ghost/fn_1_F1B94.c",
-    "symbols": [
-      "fn_1_F1B94"
-    ],
-    "status": "matching",
-    "tu": "rel/main_rel/ghost.c"
   },
   {
     "module": "main_rel",
