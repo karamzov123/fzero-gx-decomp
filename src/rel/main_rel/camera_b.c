@@ -401,6 +401,7 @@ void fn_1_8B10(fn_1_8B10_CameraObject *camera, CameraOutput *output) {
 /* fzgx:end fn_1_8B10 */
 
 /* fzgx:begin fn_1_8D08 */
+#include "mathutil_lc.h"
 /* begin game/main_rel/car_test_types.h (deltawave784/windows-and-types@cf9407c75) */
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #define GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -501,12 +502,12 @@ const f64 fzgx_pool_fzgx_camera_half[1] = {0.5};
     /* Read the scale before the locked-cache matrix column. */ \
     dist = *(volatile f32 *)fzgx_pool_fzgx_camera_distance; \
     /* Preserve locked-cache matrix access order. */ \
-    x = *(volatile f32 *)(0xE0000000 + 0x08); \
-    x = x * dist + *(f32 *)(0xE0000000 + 0x0C); \
-    y = *(f32 *)(0xE0000000 + 0x18); \
-    y = y * dist + *(f32 *)(0xE0000000 + 0x1C); \
-    z = *(f32 *)(0xE0000000 + 0x28); \
-    z = z * dist + *(f32 *)(0xE0000000 + 0x2C); \
+    x = mathutilDataV->mtxA[0][2]; \
+    x = x * dist + mathutilData->mtxA[0][3]; \
+    y = mathutilData->mtxA[1][2]; \
+    y = y * dist + mathutilData->mtxA[1][3]; \
+    z = mathutilData->mtxA[2][2]; \
+    z = z * dist + mathutilData->mtxA[2][3]; \
     cam->look.x = x; \
     cam->look.y = y; \
     cam->look.z = z; \
@@ -544,11 +545,11 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
         fzgx_lc0_z = (&pos)->z;
         /* Locked-cache stores must complete before copying the pool vector. */
         /* Preserve locked-cache matrix access order. */
-        *(volatile f32 *)(0xE0000000 + 0x0C) = fzgx_lc0_x;
+        mathutilDataV->mtxA[0][3] = fzgx_lc0_x;
         /* Preserve locked-cache matrix access order. */
-        *(volatile f32 *)(0xE0000000 + 0x1C) = fzgx_lc0_y;
+        mathutilDataV->mtxA[1][3] = fzgx_lc0_y;
         /* Preserve locked-cache matrix access order. */
-        *(volatile f32 *)(0xE0000000 + 0x2C) = fzgx_lc0_z;
+        mathutilDataV->mtxA[2][3] = fzgx_lc0_z;
     }
     {
         fn_1_8D08_Vec up;
@@ -591,9 +592,9 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
         fzgx_lc1_x = *(volatile f32 *)&((&pos)->x);
         fzgx_lc1_y = (&pos)->y;
         fzgx_lc1_z = (&pos)->z;
-        *(f32 *)(0xE0000000 + 0x0C) = fzgx_lc1_x;
-        *(f32 *)(0xE0000000 + 0x1C) = fzgx_lc1_y;
-        *(f32 *)(0xE0000000 + 0x2C) = fzgx_lc1_z;
+        mathutilData->mtxA[0][3] = fzgx_lc1_x;
+        mathutilData->mtxA[1][3] = fzgx_lc1_y;
+        mathutilData->mtxA[2][3] = fzgx_lc1_z;
     }
     lbl_8006E1B0( (void *)((Fn183D28Vec3 *)&cam->target), (void *)((Fn183D28Vec3 *)&cam->pos));
     lbl_8006DC6C(fn_1_8D08_read_pointer__(cam));
@@ -605,9 +606,9 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
         fzgx_lc2_x = *(volatile f32 *)&((&cam->pos)->x);
         fzgx_lc2_y = (&cam->pos)->y;
         fzgx_lc2_z = (&cam->pos)->z;
-        *(f32 *)(0xE0000000 + 0x0C) = fzgx_lc2_x;
-        *(f32 *)(0xE0000000 + 0x1C) = fzgx_lc2_y;
-        *(f32 *)(0xE0000000 + 0x2C) = fzgx_lc2_z;
+        mathutilData->mtxA[0][3] = fzgx_lc2_x;
+        mathutilData->mtxA[1][3] = fzgx_lc2_y;
+        mathutilData->mtxA[2][3] = fzgx_lc2_z;
     }
     mathutil_mtxA_rotate_x(cam->angle);
     camera_update_look(cam);
@@ -646,9 +647,9 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
             fzgx_lc3_x = *(volatile f32 *)&((&pos2)->x);
             fzgx_lc3_y = (&pos2)->y;
             fzgx_lc3_z = (&pos2)->z;
-            *(f32 *)(0xE0000000 + 0x0C) = fzgx_lc3_x;
-            *(f32 *)(0xE0000000 + 0x1C) = fzgx_lc3_y;
-            *(f32 *)(0xE0000000 + 0x2C) = fzgx_lc3_z;
+            mathutilData->mtxA[0][3] = fzgx_lc3_x;
+            mathutilData->mtxA[1][3] = fzgx_lc3_y;
+            mathutilData->mtxA[2][3] = fzgx_lc3_z;
         }
     }
     cam->lerp = fn_1_A888( (void *)(fn_1_8D08_Camera *)(cam));
@@ -676,9 +677,9 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
             fzgx_lc4_x = *(volatile f32 *)&((&pos)->x);
             fzgx_lc4_y = (&pos)->y;
             fzgx_lc4_z = (&pos)->z;
-            *(f32 *)(0xE0000000 + 0x0C) = fzgx_lc4_x;
-            *(f32 *)(0xE0000000 + 0x1C) = fzgx_lc4_y;
-            *(f32 *)(0xE0000000 + 0x2C) = fzgx_lc4_z;
+            mathutilData->mtxA[0][3] = fzgx_lc4_x;
+            mathutilData->mtxA[1][3] = fzgx_lc4_y;
+            mathutilData->mtxA[2][3] = fzgx_lc4_z;
         }
         lbl_8006E1B0( (void *)((Fn183D28Vec3 *)&cam->target), (void *)((Fn183D28Vec3 *)&cam->pos));
         lbl_8006DC6C(fn_1_8D08_read_pointer__(cam));
@@ -690,9 +691,9 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
             fzgx_lc5_x = *(volatile f32 *)&((&cam->pos)->x);
             fzgx_lc5_y = (&cam->pos)->y;
             fzgx_lc5_z = (&cam->pos)->z;
-            *(f32 *)(0xE0000000 + 0x0C) = fzgx_lc5_x;
-            *(f32 *)(0xE0000000 + 0x1C) = fzgx_lc5_y;
-            *(f32 *)(0xE0000000 + 0x2C) = fzgx_lc5_z;
+            mathutilData->mtxA[0][3] = fzgx_lc5_x;
+            mathutilData->mtxA[1][3] = fzgx_lc5_y;
+            mathutilData->mtxA[2][3] = fzgx_lc5_z;
         }
         mathutil_mtxA_rotate_x(cam->angle);
         {
@@ -700,15 +701,15 @@ void fn_1_8D08(fn_1_8D08_Camera *cam, f32 arg1) {
             /* Read the scale before the locked-cache matrix column. */
             dist = *(volatile f32 *)fzgx_pool_fzgx_camera_distance;
             /* Preserve locked-cache matrix access order. */
-            x = *(volatile f32 *)(0xE0000000 + 0x08);
-            x = x * dist + *(f32 *)(0xE0000000 + 0x0C);
-            y = *(f32 *)(0xE0000000 + 0x18);
+            x = mathutilDataV->mtxA[0][2];
+            x = x * dist + mathutilData->mtxA[0][3];
+            y = mathutilData->mtxA[1][2];
             /* Preserve matrix-column load order. */
             /* Preserve locked-cache matrix access order. */
-            z = *(volatile f32 *)(0xE0000000 + 0x1C);
+            z = mathutilDataV->mtxA[1][3];
             y = y * dist + z;
-            look_z = *(f32 *)(0xE0000000 + 0x28);
-            look_z = look_z * dist + *(f32 *)(0xE0000000 + 0x2C);
+            look_z = mathutilData->mtxA[2][2];
+            look_z = look_z * dist + mathutilData->mtxA[2][3];
             cam->look.x = x;
             cam->look.y = y;
             cam->look.z = look_z;
@@ -1684,6 +1685,7 @@ u8 lbl_1_data_3A2C[0x1A4] = {
 /* fzgx:end fn_1_90E0 */
 
 /* fzgx:begin fn_1_A888 noprologue */
+#include "mathutil_lc.h"
 #include "types.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/camera.h"
@@ -1747,15 +1749,15 @@ extern u32 fn_8006E250(void *, void *);
 extern void lbl_8006DB30(void);
 
 static inline void fn_1_A888_setpos(f32 z, f32 y, f32 x) {
-    *(f32 *)(0xE0000000 + 0x0C) = x;  /* fzgx-allow: A2 locked matrix, retail lis 0xe000 base */
-    *(f32 *)(0xE0000000 + 0x1C) = y;  /* fzgx-allow: A2 locked matrix, retail lis 0xe000 base */
-    *(f32 *)(0xE0000000 + 0x2C) = z;  /* fzgx-allow: A2 locked matrix, retail lis 0xe000 base */
+    mathutilData->mtxA[0][3] = x;
+    mathutilData->mtxA[1][3] = y;
+    mathutilData->mtxA[2][3] = z;
 }
 
 static inline void fn_1_A888_setpos2(f32 a, f32 b, f32 c) {
-    *(f32 *)(0xE0000000 + 0x0C) = a;  /* fzgx-allow: A2 locked matrix, retail lis 0xe000 base */
-    *(f32 *)(0xE0000000 + 0x1C) = b;  /* fzgx-allow: A2 locked matrix, retail lis 0xe000 base */
-    *(f32 *)(0xE0000000 + 0x2C) = c;  /* fzgx-allow: A2 locked matrix, retail lis 0xe000 base */
+    mathutilData->mtxA[0][3] = a;
+    mathutilData->mtxA[1][3] = b;
+    mathutilData->mtxA[2][3] = c;
 }
 
 #pragma opt_propagation off
