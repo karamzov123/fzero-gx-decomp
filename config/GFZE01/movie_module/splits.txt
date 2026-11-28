@@ -6,9 +6,6 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:32
 
-rel/movie_module/sfx_cnv/fn_12_3054.c:
-	.text       start:0x00003054 end:0x00003074 align:4
-
 rel/movie_module/fn_12_3074.c:
 	.text       start:0x00003074 end:0x0000307C align:4
 
@@ -446,9 +443,6 @@ rel/movie_module/mpv_vlc/fn_12_11188.c:
 rel/movie_module/fn_12_121BC.c:
 	.text       start:0x000121BC end:0x00012270 align:4
 
-rel/movie_module/sfx_cnv/fn_12_2F04.c:
-	.text       start:0x00002F04 end:0x00003054 align:4
-
 rel/movie_module/fn_12_2A9DC.c:
 	.text       start:0x0002A9DC end:0x0002ACA8 align:4
 
@@ -557,7 +551,7 @@ rel/movie_module/fn_12_7E58.c:
 	.text       start:0x00007E58 end:0x000086B8 align:4
 
 rel/movie_module/sfx_cnv/fn_12_1F84.c:
-	.text       start:0x00001F84 end:0x000021C8 align:4
+	.text       start:0x00001F84 end:0x00003074 align:4
 
 rel/movie_module/fn_12_393F0.c:
 	.text       start:0x000393F0 end:0x00039678 align:4
@@ -645,9 +639,6 @@ rel/movie_module/mwsfdcre/fn_12_364CC.c:
 
 rel/movie_module/sfd_ply/fn_12_2B358.c:
 	.text       start:0x0002B358 end:0x0002B634 align:4
-
-rel/movie_module/sfx_cnv/fn_12_21C8.c:
-	.text       start:0x000021C8 end:0x00002F04 align:4
 
 rel/movie_module/fn_12_1EF80.c:
 	.text       start:0x0001EF80 end:0x00020284 align:4
