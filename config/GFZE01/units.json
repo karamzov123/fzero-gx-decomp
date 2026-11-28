@@ -75323,47 +75323,22 @@
       "fn_12_3391C",
       "fn_12_339B4",
       "fn_12_33A14",
-      "fn_12_33A44"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on"
-    ],
-    "collapsed": true,
-    "tu": "rel/movie_module/mwsfdfrm.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/mwsfdfrm/fn_12_33C78.c",
-    "symbols": [
+      "fn_12_33A44",
       "fn_12_33C78",
-      "fn_12_34084"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on"
-    ],
-    "pool": {
-      "@76": "lbl_12_rodata_1118"
-    },
-    "collapsed": true,
-    "tu": "rel/movie_module/mwsfdfrm.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/mwsfdfrm/fn_12_340D4.c",
-    "symbols": [
+      "fn_12_34084",
       "fn_12_340D4"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ],
     "collapsed": true,
-    "tu": "rel/movie_module/mwsfdfrm.c"
+    "tu": "rel/movie_module/mwsfdfrm.c",
+    "pool": {
+      "@130": "lbl_12_rodata_1118"
+    }
   },
   {
     "module": "movie_module",
