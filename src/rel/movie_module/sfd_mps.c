@@ -382,11 +382,35 @@ struct fn_12_252A0_Arg0 {
     u8 pad_0[0x1138];
     struct fn_12_252A0_arg0_1138_E116 unk_1138[1];
 };
-extern void fn_12_245C4(fn_12_24EA0_MovieModule *module);
-extern int fn_12_654C(Sig_fn_12_654C_MovieModule *, const u8 *, int, int *, int *);
-extern int fn_12_24A88();
-extern u32 fn_12_6A90(u32);
+
+typedef struct SfmpsWork {
+    MpsHandle *decoder;
+    s32 max_video_bound;
+    s32 max_audio_bound;
+    s32 video_pts_baseline;
+    s32 audio_pts_baseline;
+    s32 concat_count;
+    s32 previous_video_stream;
+    s32 previous_audio_stream;
+    s32 first_video_stream;
+    s32 first_audio_stream;
+    s32 selected_video_id;
+    s32 selected_audio_id;
+    s32 delimiter_state;
+    void *element_outputs[0x44];
+    void *element_callback;
+    void *element_callback_argument;
+} SfmpsWork;
+
+typedef struct SfdHandle {
+    u8 pad_0000[0x1AEC];
+    SfmpsWork *work;
+    u8 pad_1AF0[0x214];
+    SfmpsWork mps_work_storage;
+} SfdHandle;
 extern MovieEntry *fn_12_6B28(void);
+extern u32 fn_12_6A90(u32);
+extern int fn_12_24A88();
 extern void fn_12_250D0(void);
 extern int fn_12_21D50(void *, int);
 extern int fn_12_21E94(void *, int);
@@ -406,6 +430,8 @@ extern int fn_12_247BC(void *self, s32 type, u8 *data, s32 size, s32 *out);
 void fn_12_22668(SfdHandle_u3 *handle, int buffer_index, int channel, SfdBufferChannel *output);
 extern void *fn_12_57F0(void *dst, const void *src, u32 size);
 extern u32 lbl_12_bss_7E88;
+extern void fn_12_245C4(fn_12_24EA0_MovieModule *module);
+extern int fn_12_654C(Sig_fn_12_654C_MovieModule *, const u8 *, int, int *, int *);
 extern s32 fn_12_224FC(u8 *arg0, int arg1, u32 *arg2);
 extern s32 fn_12_22254(fn_12_25AAC_SfdHandle *, void *, s32, s32);
 extern int fn_12_2CF20(fn_12_25DA8_MovieModule *, void *, int *);
@@ -564,7 +590,6 @@ int fn_12_25074(void) {
 /* fzgx:end fn_12_25074 */
 
 /* fzgx:begin fn_12_2507C */
-
 struct fn_12_2507C_Arg0 {
     u8 pad_0[0x1AEC];
     u32 unk_1AEC;
@@ -587,7 +612,6 @@ s32 fn_12_2507C(struct fn_12_2507C_Arg0 *arg0) {
 /* fzgx:end fn_12_2507C */
 
 /* fzgx:begin fn_12_250D0 */
-
 void fn_12_250D0(void) {
     fn_12_24A88();
 }
@@ -1287,10 +1311,6 @@ s32 fn_12_25AAC(fn_12_25AAC_SfdHandle *handle, s32 id, u8 *buf, s32 len, s32 pts
 /* fzgx:end fn_12_25AAC */
 
 /* fzgx:begin fn_12_25DA8 */
-
-
-
-
 #pragma opt_dead_assignments off
 static inline u32 fn_12_25DA8_operand(u32 right, u32 left) { return left & right; }
 int fn_12_25DA8(fn_12_25DA8_MovieModule *module, int track, int offset, int length, int limit) {
@@ -1606,7 +1626,6 @@ scan_done:
 /* fzgx:end fn_12_26218 */
 
 /* fzgx:begin fn_12_26534 */
-
 static inline int get_block(struct Movie *movie, u32 *address, int *size, int *end) {
     struct Block block;
     int result = fn_12_22390( (u8 *)(struct Movie *)(movie), movie->stream, (u32 *)(struct Block *)(&block));
