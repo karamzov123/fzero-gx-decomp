@@ -6,12 +6,6 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:32
 
-rel/movie_module/sfx_cnv/fn_12_D38.c:
-	.text       start:0x00000D38 end:0x00000D60
-
-rel/movie_module/sfx_cnv/fn_12_D60.c:
-	.text       start:0x00000D60 end:0x00000F70 align:4
-
 rel/movie_module/sfx_cnv/fn_12_3054.c:
 	.text       start:0x00003054 end:0x00003074 align:4
 
@@ -319,9 +313,6 @@ rel/movie_module/mpv_hdec/fn_12_ABDC.c:
 rel/movie_module/fn_12_68C.c:
 	.text       start:0x0000068C end:0x000008E4 align:4
 
-rel/movie_module/sfx_cnv/fn_12_8E4.c:
-	.text       start:0x000008E4 end:0x00000A5C align:4
-
 rel/movie_module/mwsfdsfx/fn_12_35914.c:
 	.text       start:0x00035914 end:0x000359B0 align:4
 
@@ -387,7 +378,7 @@ rel/movie_module/sfx_cnv/fn_12_147C.c:
 	.text       start:0x0000147C end:0x00001F84 align:4
 
 rel/movie_module/sfx_cnv/fn_12_11A8.c:
-	.text       start:0x000011A8 end:0x0000132C align:4
+	.text       start:0x000008E4 end:0x000013D0 align:4
 
 rel/movie_module/mwsfdcre/mwSfdDestroy.c:
 	.text       start:0x00036088 end:0x00036208 align:4
@@ -401,17 +392,11 @@ rel/movie_module/fn_12_336CC.c:
 rel/movie_module/fn_12_CAE4.c:
 	.text       start:0x0000CAE4 end:0x0000CCC4 align:4
 
-rel/movie_module/sfx_cnv/fn_12_132C.c:
-	.text       start:0x0000132C end:0x000013D0 align:4
-
 rel/movie_module/fn_12_20F4C.c:
 	.text       start:0x00020F4C end:0x000213D8 align:4
 
 rel/movie_module/mwsfdsvr/fn_12_3ACD0.c:
 	.text       start:0x0003ACD0 end:0x0003ADC4 align:4
-
-rel/movie_module/sfx_cnv/fn_12_C60.c:
-	.text       start:0x00000C60 end:0x00000D38 align:4
 
 rel/movie_module/mwsfdsvr/fn_12_3ADC4.c:
 	.text       start:0x0003ADC4 end:0x0003B15C align:4
@@ -506,9 +491,6 @@ rel/movie_module/sfd_buf/fn_12_22390.c:
 
 rel/movie_module/fn_12_CCC4.c:
 	.text       start:0x0000CCC4 end:0x0000CF2C align:4
-
-rel/movie_module/sfx_cnv/fn_12_F70.c:
-	.text       start:0x00000F70 end:0x000011A8 align:4
 
 rel/movie_module/_prolog.c:
 	.text       start:0x00000000 end:0x000004D4 align:4
@@ -633,9 +615,6 @@ rel/movie_module/fn_12_3CB74.c:
 
 rel/movie_module/fn_12_3D144.c:
 	.text       start:0x0003D144 end:0x0003D624 align:4
-
-rel/movie_module/sfx_cnv/fn_12_A5C.c:
-	.text       start:0x00000A5C end:0x00000C60 align:4
 
 rel/movie_module/sfd_tim/fn_12_2E7C8.c:
 	.text       start:0x0002E7C8 end:0x0002E8C8 align:4
