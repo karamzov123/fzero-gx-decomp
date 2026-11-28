@@ -46,14 +46,8 @@ rel/main_rel/camera_c/fn_1_C304.c:
 rel/main_rel/camera_c/camera_snapshot.c:
 	.text       start:0x0000C35C end:0x0000C3B8
 
-rel/main_rel/camera_c/camera_get_state_object.c:
-	.text       start:0x0000D960 end:0x0000D9D8 align:4
-
 rel/main_rel/camera_c/camera_get_extended_state_storage.c:
-	.text       start:0x0000D9D8 end:0x0000D9E4
-
-rel/main_rel/camera_c/camera_get_state_flag.c:
-	.text       start:0x0000D9E4 end:0x0000DA34 align:4
+	.text       start:0x0000D960 end:0x0000DA34 align:4
 
 rel/main_rel/live_camera/fn_1_DA34.c:
 	.text       start:0x0000DA34 end:0x0000E174 align:4
@@ -159,10 +153,7 @@ rel/main_rel/background/fn_1_9CC40.c:
 	.text       start:0x0009CC40 end:0x0009D360 align:4
 
 rel/main_rel/background/fn_1_9D360.c:
-	.text       start:0x0009D360 end:0x0009D3E8
-
-rel/main_rel/background/fn_1_9D3E8.c:
-	.text       start:0x0009D3E8 end:0x0009D420
+	.text       start:0x0009D360 end:0x0009D420
 
 rel/main_rel/background/fn_1_9D77C.c:
 	.text       start:0x0009D77C end:0x0009DDA8 align:4
@@ -252,9 +243,6 @@ rel/main_rel/ghost/fn_1_ECF68.c:
 rel/main_rel/ghost/fn_1_EF0A0.c:
 	.text       start:0x000EF0A0 end:0x000EF5E0 align:4
 
-rel/main_rel/ghost/fn_1_EF764.c:
-	.text       start:0x000EF764 end:0x000EF768
-
 rel/main_rel/ghost/fn_1_EF85C.c:
 	.text       start:0x000EF85C end:0x000EF924 align:4
 
@@ -263,9 +251,6 @@ rel/main_rel/ghost/fn_1_EF924.c:
 
 rel/main_rel/ghost/fn_1_EF978.c:
 	.text       start:0x000EF978 end:0x000EFA8C align:4
-
-rel/main_rel/ghost/fn_1_F0164.c:
-	.text       start:0x000F0164 end:0x000F0168
 
 rel/main_rel/ghost/fn_1_F1B78.c:
 	.text       start:0x000F1B78 end:0x000F1C54 align:4
@@ -525,7 +510,7 @@ rel/main_rel/sel_static_disp/fn_1_13EDDC.c:
 	.text       start:0x0013EDDC end:0x0013EE60 align:4
 
 rel/main_rel/camera/fn_1_6400.c:
-	.text       start:0x00006400 end:0x00006514 align:4
+	.text       start:0x00006400 end:0x0000660C align:4
 
 rel/main_rel/_prolog_b/fn_1_3238.c:
 	.text       start:0x00003238 end:0x00003308 align:4
@@ -732,9 +717,6 @@ rel/main_rel/archive/fn_1_12F028.c:
 rel/main_rel/live_camera/fn_1_FA84.c:
 	.text       start:0x0000FA84 end:0x0000FB50 align:4
 
-rel/main_rel/camera/fn_1_6514.c:
-	.text       start:0x00006514 end:0x0000660C align:4
-
 rel/main_rel/load/fn_1_46DC4.c:
 	.text       start:0x00046DC4 end:0x00046EE8 align:4
 
@@ -851,7 +833,7 @@ rel/main_rel/archive/fn_1_12ECA8.c:
 	.text       start:0x0012ECA8 end:0x0012F028 align:4
 
 rel/main_rel/screen_effect_b/fn_1_79C88.c:
-	.text       start:0x00079C88 end:0x00079E54 align:4
+	.text       start:0x00079C88 end:0x0007A648 align:4
 
 
 rel/main_rel/sel_static_disp/fn_1_1368A0.c:
@@ -1215,9 +1197,6 @@ rel/main_rel/sound/fn_1_A0AA4.c:
 rel/main_rel/sound/fn_1_A02F0.c:
 	.text       start:0x000A02F0 end:0x000A04C4 align:4
 
-rel/main_rel/background/fn_1_9A958.c:
-	.text       start:0x0009A958 end:0x0009AA2C align:4
-
 
 
 rel/main_rel/sel_static_disp_c/fn_1_14BD94.c:
@@ -1402,9 +1381,6 @@ rel/main_rel/sound/fn_1_A0D7C.c:
 rel/main_rel/sel_static_disp/fn_1_138E44.c:
 	.text       start:0x00138E44 end:0x0013923C align:4
 
-rel/main_rel/screen_effect_b/fn_1_7A240.c:
-	.text       start:0x0007A240 end:0x0007A648 align:4
-
 rel/main_rel/sel_static_disp/fn_1_13D02C.c:
 	.text       start:0x0013D02C end:0x0013D460 align:4
 	.data       start:0x00041DF0 end:0x00041E50 align:8
@@ -1511,7 +1487,7 @@ rel/main_rel/ghost/fn_1_EC910.c:
 	.text       start:0x000EC910 end:0x000ECDFC align:4
 
 rel/main_rel/background/fn_1_9A864.c:
-	.text       start:0x0009A864 end:0x0009A958 align:4
+	.text       start:0x0009A864 end:0x0009AA2C align:4
 
 rel/main_rel/background_b/fn_1_9DDA8.c:
 	.text       start:0x0009DDA8 end:0x0009E14C align:4
@@ -1604,16 +1580,10 @@ rel/main_rel/sound/fn_1_A1964.c:
 	.text       start:0x000A1964 end:0x000A1DCC align:4
 
 rel/main_rel/sound/fn_1_A1588.c:
-	.text       start:0x000A1588 end:0x000A176C align:4
-
-rel/main_rel/sound/fn_1_A176C.c:
-	.text       start:0x000A176C end:0x000A1964 align:4
+	.text       start:0x000A1588 end:0x000A1964 align:4
 
 rel/main_rel/sel_static_disp_c/fn_1_14B93C.c:
 	.text       start:0x0014B93C end:0x0014BC3C align:4
-
-rel/main_rel/screen_effect_b/fn_1_79E54.c:
-	.text       start:0x00079E54 end:0x0007A240 align:4
 
 rel/main_rel/bg_cas_c/fn_1_FC760.c:
 	.text       start:0x000FC760 end:0x000FCA10 align:4
@@ -1794,7 +1764,7 @@ rel/main_rel/bg_for/fn_1_DDF80.c:
 	.text       start:0x000DDF80 end:0x000DE9C4 align:4
 
 rel/main_rel/ghost/fn_1_EF5E0.c:
-	.text       start:0x000EF5E0 end:0x000EF764 align:4
+	.text       start:0x000EF5E0 end:0x000EF768 align:4
 
 rel/main_rel/live_camera/fn_1_11748.c:
 	.text       start:0x00011748 end:0x0001189C align:4
@@ -1840,7 +1810,7 @@ rel/main_rel/load/fn_1_47330.c:
 	.text       start:0x00047330 end:0x00047AD4 align:4
 
 rel/main_rel/ghost/fn_1_EFA8C.c:
-	.text       start:0x000EFA8C end:0x000F0164 align:4
+	.text       start:0x000EFA8C end:0x000F0168 align:4
 
 
 rel/main_rel/ghost/fn_1_EA314.c:

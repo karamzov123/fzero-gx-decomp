@@ -1,48 +1,112 @@
 #include "types.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/camera.h"
+#include "dolphin/hw_regs.h"
+#include "psvec.h"
 
+
+
+
+
+typedef struct {
+    f32 x, y, z;
+} CamVec;
+
+typedef struct Vec3f {
+    f32 x, y, z;
+} Vec3f;
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} BD54Vec;
+
+typedef struct { u8 pad_0[0x4]; f32 unk_4; u32 unk_8; f32 unk_C; } Bss_104C;
+
+typedef struct { u8 r, g, b, a; } fn_1_CC5C_Color;
+extern f32 lbl_8006D0B4(f32);
+extern void fn_1_C770(void);
+extern void fn_8006EDBC(Vec3f *, Vec3f *, s16 *, s16 *);
+extern void lbl_8006D7DC(Vec3f *);
+extern void mathutil_mtxA_rotate_x(s16);
+extern void mathutil_mtxA_rotate_y(s16);
+extern void mathutil_mtxA_rotate_z(s16);
+extern void lbl_8006E1B0(Vec3f *, Vec3f *);
+extern void fn_8006E250(Vec3f *, Vec3f *);
+extern f32 lbl_8006D0E8(f32);
+extern void fzgx_touch_f(f32);
+extern void fzgx_touch(void *);
+extern void fn_1_10780C(void *arg0, void *arg1, u32 *arg2, void *arg3);
+extern u32 fn_80008C20(void *, void *, void *);
+extern void lbl_8006E0B4(f32, f32, f32);
+extern void fn_8006FB20(void *, f32);
+extern void lbl_8006DB74(void *);
+extern void fn_8006F3E4(s16 *arg0, s16 *arg1, s16 *arg2);
+extern void lbl_8006DF44(void);
+extern void fn_1_CC5C(void);
+extern void lbl_8006D9D8(void *);
+extern void lbl_8006E14C(f32);
+extern void fn_1_55FC4(f32 scale);
+extern void fn_80072558(void);
+extern void fn_1_55FF0(f32 scale);
+extern u32 lbl_801A6CE0;
+extern u32 lbl_1_bss_38454;
+extern void fn_1_55210(void *value);
+extern Bss_104C lbl_1_bss_104C;
+extern f64 lbl_1_rodata_4A8[7];
+extern void OSReport(const char *msg, ...);
+extern void lbl_8006D5A4(CamVec *a, CamVec *b, CamVec *out, f32 t);
 extern void fn_1_BD54(void);
 extern void fn_1_B870(void);
-extern void camera_get_extended_state_storage(__typeof__(lbl_1_bss_F68));
+extern u8* camera_get_extended_state_storage(void);
 extern void lbl_8006DBAC(void);
 extern void fn_8006F038(void *, void *, s16);
 extern void lbl_8006DCDC(void);
-extern s16 fn_1_6B48(s16 value);
-extern void fn_1_6D2C(u32);
+extern s16 fn_1_6B48(s32 index);
+extern u32 fn_1_6D2C(u32 index);
 extern s32 lbl_1_bss_F78;
-extern void fn_1_A2DF4(u32, u32, u32);
-extern s8 fn_1_86624(void);
-extern s8 fn_1_86634(s32 index);
-extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern void fn_1_A2DF4(s32 arg0, void *arg1, s32 arg2);
+extern u8 fn_1_86624(void);
+extern u8 fn_1_86634(int index);
+extern void OSPanic(const char *file, int line, const char *msg, ...);
 extern u8 lbl_1_bss_F74;
 extern u8 lbl_1_bss_F75;
 extern f32 lbl_1_rodata_188;
-extern s32 fn_1_8708(u8 mode, f32 *value0, f32 *value1);
+extern s32 fn_1_8708(s32 mode, f32 *value0, f32 *value1);
 extern void fn_1_8A0C(s16 index);
-extern void fn_1_A6FE8(void);
+extern f32 fn_1_A6FE8(void);
 extern void fn_1_8D08(GameCameraEntry *value);
 extern f32 lbl_1_bss_1040;
 extern f32 lbl_1_bss_1044;
-extern void OSReport(const unsigned char *, ...);
 extern u8 lbl_1_bss_103C[4];
 extern u8 lbl_1_bss_108C[52];
 extern u8 lbl_1_bss_1014;
-
-extern s8 fn_1_86624(void);
-extern s8 fn_1_86634(s32 index);
-extern void OSPanic(u8 *file, int line, u8 *message, ...);
-extern void fn_1_8A0C(s16 index);
-extern void OSReport(const unsigned char *, ...);
-
 extern f32 lbl_1_rodata_2E0[32];
 extern f32 lbl_8006D6FC(f32 *value, void *target);
-u32 fn_1_6514(u32);
-extern struct fn_1_6400_lbl_801A6410 lbl_801A6410;
-extern u32 fn_1_46B4(u32, u32, void *, u32);
+extern s32 fn_1_6514(s32 value);
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
 extern f64 lbl_1_rodata_478;
 extern f32 lbl_1_rodata_49C;
 extern f32 lbl_1_bss_10C0[6];
+extern f32 lbl_1_bss_BF0[32];
+extern void camera_save_slot(u8);
+extern void camera_snapshot(void);
+extern void fn_1_C10C(u8);
+extern void fn_1_C178(void *);
+extern void camera_report_position(void);
+extern void fn_1_C268(s32);
+extern void fn_1_C304(s32);
+extern void fn_1_C3B8(void);
+extern u16 fzgx_pool_lbl_1_data_4068;
+extern void fn_1_49410(void);
+extern void fn_1_49514(fn_1_CC5C_Color);
+extern void fn_1_4954C(f32 value);
+extern void fn_1_4955C(f32 value1, f32 value2);
+extern void fn_1_495FC(void);
+extern void fn_1_496FC(f32 value1, f32 value2);
+extern void fn_1_4A0D8(const char *s);
+extern void fn_1_4AE0C(const char* format, ...);
 
 /* fzgx:begin fn_1_B724 noprologue */
 #include "types.h"
@@ -148,7 +212,53 @@ void camera_save_parameters(f32 first_parameter, f32 second_parameter) {
 }
 /* fzgx:end camera_save_parameters */
 
-/* fzgx:begin fn_1_B870 */
+/* fzgx:begin fn_1_B870 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/camera.h"
+
+extern void fn_1_BD54(void);
+extern void fn_1_B870(void);
+extern void camera_get_extended_state_storage(__typeof__(lbl_1_bss_F68));
+extern void lbl_8006DBAC(void);
+extern void fn_8006F038(void *, void *, s16);
+extern void lbl_8006DCDC(void);
+extern s16 fn_1_6B48(s16 value);
+extern void fn_1_6D2C(u32);
+extern s32 lbl_1_bss_F78;
+extern void fn_1_A2DF4(u32, u32, u32);
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern u8 lbl_1_bss_F74;
+extern u8 lbl_1_bss_F75;
+extern f32 lbl_1_rodata_188;
+extern s32 fn_1_8708(u8 mode, f32 *value0, f32 *value1);
+extern void fn_1_8A0C(s16 index);
+extern void fn_1_A6FE8(void);
+extern void fn_1_8D08(GameCameraEntry *value);
+extern f32 lbl_1_bss_1040;
+extern f32 lbl_1_bss_1044;
+extern void OSReport(const unsigned char *, ...);
+extern u8 lbl_1_bss_103C[4];
+extern u8 lbl_1_bss_108C[52];
+extern u8 lbl_1_bss_1014;
+
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern void fn_1_8A0C(s16 index);
+extern void OSReport(const unsigned char *, ...);
+
+extern f32 lbl_1_rodata_2E0[32];
+extern f32 lbl_8006D6FC(f32 *value, void *target);
+u32 fn_1_6514(u32);
+extern struct fn_1_6400_lbl_801A6410 lbl_801A6410;
+extern u32 fn_1_46B4(u32, u32, void *, u32);
+extern f64 lbl_1_rodata_478;
+extern f32 lbl_1_rodata_49C;
+extern f32 lbl_1_bss_10C0[6];
+
 #ifndef GAME_VEC3_H
 #define GAME_VEC3_H
 
@@ -331,7 +441,53 @@ void fn_1_B870(void) {
 #pragma opt_lifetimes reset
 /* fzgx:end fn_1_B870 */
 
-/* fzgx:begin fn_1_BD54 */
+/* fzgx:begin fn_1_BD54 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/camera.h"
+
+extern void fn_1_BD54(void);
+extern void fn_1_B870(void);
+extern void camera_get_extended_state_storage(__typeof__(lbl_1_bss_F68));
+extern void lbl_8006DBAC(void);
+extern void fn_8006F038(void *, void *, s16);
+extern void lbl_8006DCDC(void);
+extern s16 fn_1_6B48(s16 value);
+extern void fn_1_6D2C(u32);
+extern s32 lbl_1_bss_F78;
+extern void fn_1_A2DF4(u32, u32, u32);
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern u8 lbl_1_bss_F74;
+extern u8 lbl_1_bss_F75;
+extern f32 lbl_1_rodata_188;
+extern s32 fn_1_8708(u8 mode, f32 *value0, f32 *value1);
+extern void fn_1_8A0C(s16 index);
+extern void fn_1_A6FE8(void);
+extern void fn_1_8D08(GameCameraEntry *value);
+extern f32 lbl_1_bss_1040;
+extern f32 lbl_1_bss_1044;
+extern void OSReport(const unsigned char *, ...);
+extern u8 lbl_1_bss_103C[4];
+extern u8 lbl_1_bss_108C[52];
+extern u8 lbl_1_bss_1014;
+
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern void fn_1_8A0C(s16 index);
+extern void OSReport(const unsigned char *, ...);
+
+extern f32 lbl_1_rodata_2E0[32];
+extern f32 lbl_8006D6FC(f32 *value, void *target);
+u32 fn_1_6514(u32);
+extern struct fn_1_6400_lbl_801A6410 lbl_801A6410;
+extern u32 fn_1_46B4(u32, u32, void *, u32);
+extern f64 lbl_1_rodata_478;
+extern f32 lbl_1_rodata_49C;
+extern f32 lbl_1_bss_10C0[6];
+
 #include "dolphin/hw_regs.h"
 #include "psvec.h"
 
@@ -472,15 +628,6 @@ void fn_1_BD54(void) {
 /* fzgx:end fn_1_BD54 */
 
 /* fzgx:begin fn_1_BFA0 */
-extern u32 fn_1_CC5C(void);
-extern void lbl_8006D9D8(void *);
-extern void lbl_8006E14C(f32);
-extern void fn_1_55FC4(f32);
-extern void fn_80072558(void);
-extern void fn_1_55FF0(f32);
-extern u32 lbl_801A6CE0;
-extern u32 lbl_1_bss_38454;
-extern u32 fn_1_55210(u32);
 
 typedef struct CameraUpdateState {
     u8 unk_00[4];
@@ -540,7 +687,7 @@ void fn_1_BFA0(void) {
         fn_80072558();
         fn_1_55FF0(lbl_1_bss_1040);
         if (lbl_801A6CE0 & 1) {
-            fn_1_55210(*(u32 *)(*(u32 *)(lbl_1_bss_38454 + 8) + 0x20));
+            fn_1_55210( (void *)(u32)(*(u32 *)(*(u32 *)(lbl_1_bss_38454 + 8) + 0x20)));
         }
     }
 }
@@ -595,7 +742,53 @@ void camera_save_slot(u8 index) {
 }
 /* fzgx:end camera_save_slot */
 
-/* fzgx:begin fn_1_C10C */
+/* fzgx:begin fn_1_C10C noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/camera.h"
+
+extern void fn_1_BD54(void);
+extern void fn_1_B870(void);
+extern void camera_get_extended_state_storage(__typeof__(lbl_1_bss_F68));
+extern void lbl_8006DBAC(void);
+extern void fn_8006F038(void *, void *, s16);
+extern void lbl_8006DCDC(void);
+extern s16 fn_1_6B48(s16 value);
+extern void fn_1_6D2C(u32);
+extern s32 lbl_1_bss_F78;
+extern void fn_1_A2DF4(u32, u32, u32);
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern u8 lbl_1_bss_F74;
+extern u8 lbl_1_bss_F75;
+extern f32 lbl_1_rodata_188;
+extern s32 fn_1_8708(u8 mode, f32 *value0, f32 *value1);
+extern void fn_1_8A0C(s16 index);
+extern void fn_1_A6FE8(void);
+extern void fn_1_8D08(GameCameraEntry *value);
+extern f32 lbl_1_bss_1040;
+extern f32 lbl_1_bss_1044;
+extern void OSReport(const unsigned char *, ...);
+extern u8 lbl_1_bss_103C[4];
+extern u8 lbl_1_bss_108C[52];
+extern u8 lbl_1_bss_1014;
+
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern void fn_1_8A0C(s16 index);
+extern void OSReport(const unsigned char *, ...);
+
+extern f32 lbl_1_rodata_2E0[32];
+extern f32 lbl_8006D6FC(f32 *value, void *target);
+u32 fn_1_6514(u32);
+extern struct fn_1_6400_lbl_801A6410 lbl_801A6410;
+extern u32 fn_1_46B4(u32, u32, void *, u32);
+extern f64 lbl_1_rodata_478;
+extern f32 lbl_1_rodata_49C;
+extern f32 lbl_1_bss_10C0[6];
+
 typedef struct {
     u32 unk_0;
     u32 unk_4;
@@ -664,7 +857,53 @@ void fn_1_C10C(u8 idx) {
 }
 /* fzgx:end fn_1_C10C */
 
-/* fzgx:begin fn_1_C178 */
+/* fzgx:begin fn_1_C178 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/camera.h"
+
+extern void fn_1_BD54(void);
+extern void fn_1_B870(void);
+extern void camera_get_extended_state_storage(__typeof__(lbl_1_bss_F68));
+extern void lbl_8006DBAC(void);
+extern void fn_8006F038(void *, void *, s16);
+extern void lbl_8006DCDC(void);
+extern s16 fn_1_6B48(s16 value);
+extern void fn_1_6D2C(u32);
+extern s32 lbl_1_bss_F78;
+extern void fn_1_A2DF4(u32, u32, u32);
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern u8 lbl_1_bss_F74;
+extern u8 lbl_1_bss_F75;
+extern f32 lbl_1_rodata_188;
+extern s32 fn_1_8708(u8 mode, f32 *value0, f32 *value1);
+extern void fn_1_8A0C(s16 index);
+extern void fn_1_A6FE8(void);
+extern void fn_1_8D08(GameCameraEntry *value);
+extern f32 lbl_1_bss_1040;
+extern f32 lbl_1_bss_1044;
+extern void OSReport(const unsigned char *, ...);
+extern u8 lbl_1_bss_103C[4];
+extern u8 lbl_1_bss_108C[52];
+extern u8 lbl_1_bss_1014;
+
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern void fn_1_8A0C(s16 index);
+extern void OSReport(const unsigned char *, ...);
+
+extern f32 lbl_1_rodata_2E0[32];
+extern f32 lbl_8006D6FC(f32 *value, void *target);
+u32 fn_1_6514(u32);
+extern struct fn_1_6400_lbl_801A6410 lbl_801A6410;
+extern u32 fn_1_46B4(u32, u32, void *, u32);
+extern f64 lbl_1_rodata_478;
+extern f32 lbl_1_rodata_49C;
+extern f32 lbl_1_bss_10C0[6];
+
 typedef struct { u8 pad_0[0x4]; f32 unk_4; u32 unk_8; f32 unk_C; } Bss_104C;
 typedef struct {
     u8 pad_0[0x4]; f32 unk_4; f32 unk_8; f32 unk_C; f32 unk_10; f32 unk_14; f32 unk_18; f32 unk_1C;
@@ -685,7 +924,7 @@ void fn_1_C178(void *self) {
 }
 /* fzgx:end fn_1_C178 */
 
-/* fzgx:begin camera_report_position */
+/* fzgx:begin camera_report_position noprologue */
 // Reports the camera's current position values for debugging.
 void camera_report_position(void) {
     OSReport(lbl_1_data_4128, lbl_1_bss_10D8.unk_10,
@@ -693,12 +932,7 @@ void camera_report_position(void) {
 }
 /* fzgx:end camera_report_position */
 
-/* fzgx:begin fn_1_C268 noprologue */
-#include "types.h"
-#include "rel/main_rel/camera.h"
-
-extern f64 lbl_1_rodata_4A8[7];
-extern void OSReport(const char *format, ...);
+/* fzgx:begin fn_1_C268 */
 
 void fn_1_C268(s32 arg) {
     if ((55.0) == lbl_1_bss_10D8.unk_1C) {
@@ -717,7 +951,53 @@ void fn_1_C268(s32 arg) {
 }
 /* fzgx:end fn_1_C268 */
 
-/* fzgx:begin fn_1_C304 */
+/* fzgx:begin fn_1_C304 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/camera.h"
+
+extern void fn_1_BD54(void);
+extern void fn_1_B870(void);
+extern void camera_get_extended_state_storage(__typeof__(lbl_1_bss_F68));
+extern void lbl_8006DBAC(void);
+extern void fn_8006F038(void *, void *, s16);
+extern void lbl_8006DCDC(void);
+extern s16 fn_1_6B48(s16 value);
+extern void fn_1_6D2C(u32);
+extern s32 lbl_1_bss_F78;
+extern void fn_1_A2DF4(u32, u32, u32);
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern u8 lbl_1_bss_F74;
+extern u8 lbl_1_bss_F75;
+extern f32 lbl_1_rodata_188;
+extern s32 fn_1_8708(u8 mode, f32 *value0, f32 *value1);
+extern void fn_1_8A0C(s16 index);
+extern void fn_1_A6FE8(void);
+extern void fn_1_8D08(GameCameraEntry *value);
+extern f32 lbl_1_bss_1040;
+extern f32 lbl_1_bss_1044;
+extern void OSReport(const unsigned char *, ...);
+extern u8 lbl_1_bss_103C[4];
+extern u8 lbl_1_bss_108C[52];
+extern u8 lbl_1_bss_1014;
+
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern void fn_1_8A0C(s16 index);
+extern void OSReport(const unsigned char *, ...);
+
+extern f32 lbl_1_rodata_2E0[32];
+extern f32 lbl_8006D6FC(f32 *value, void *target);
+u32 fn_1_6514(u32);
+extern struct fn_1_6400_lbl_801A6410 lbl_801A6410;
+extern u32 fn_1_46B4(u32, u32, void *, u32);
+extern f64 lbl_1_rodata_478;
+extern f32 lbl_1_rodata_49C;
+extern f32 lbl_1_bss_10C0[6];
+
 // Reports the camera parameters and caller-supplied value for debugging.
 void fn_1_C304(s32 arg) {
     OSReport(lbl_1_data_4198,
@@ -892,7 +1172,53 @@ void fn_1_C3B8(void) {
 }
 /* fzgx:end fn_1_C3B8 */
 
-/* fzgx:begin fn_1_C770 */
+/* fzgx:begin fn_1_C770 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/camera.h"
+
+extern void fn_1_BD54(void);
+extern void fn_1_B870(void);
+extern void camera_get_extended_state_storage(__typeof__(lbl_1_bss_F68));
+extern void lbl_8006DBAC(void);
+extern void fn_8006F038(void *, void *, s16);
+extern void lbl_8006DCDC(void);
+extern s16 fn_1_6B48(s16 value);
+extern void fn_1_6D2C(u32);
+extern s32 lbl_1_bss_F78;
+extern void fn_1_A2DF4(u32, u32, u32);
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern u8 lbl_1_bss_F74;
+extern u8 lbl_1_bss_F75;
+extern f32 lbl_1_rodata_188;
+extern s32 fn_1_8708(u8 mode, f32 *value0, f32 *value1);
+extern void fn_1_8A0C(s16 index);
+extern void fn_1_A6FE8(void);
+extern void fn_1_8D08(GameCameraEntry *value);
+extern f32 lbl_1_bss_1040;
+extern f32 lbl_1_bss_1044;
+extern void OSReport(const unsigned char *, ...);
+extern u8 lbl_1_bss_103C[4];
+extern u8 lbl_1_bss_108C[52];
+extern u8 lbl_1_bss_1014;
+
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern void fn_1_8A0C(s16 index);
+extern void OSReport(const unsigned char *, ...);
+
+extern f32 lbl_1_rodata_2E0[32];
+extern f32 lbl_8006D6FC(f32 *value, void *target);
+u32 fn_1_6514(u32);
+extern struct fn_1_6400_lbl_801A6410 lbl_801A6410;
+extern u32 fn_1_46B4(u32, u32, void *, u32);
+extern f64 lbl_1_rodata_478;
+extern f32 lbl_1_rodata_49C;
+extern f32 lbl_1_bss_10C0[6];
+
 extern void fn_1_BD54(void);
 extern void fn_1_B870(void);
 extern void camera_get_extended_state_storage(__typeof__(lbl_1_bss_F68));
@@ -1182,7 +1508,53 @@ void fn_1_C770(void) {
 }
 /* fzgx:end fn_1_C770 */
 
-/* fzgx:begin fn_1_CC5C */
+/* fzgx:begin fn_1_CC5C noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/camera.h"
+
+extern void fn_1_BD54(void);
+extern void fn_1_B870(void);
+extern void camera_get_extended_state_storage(__typeof__(lbl_1_bss_F68));
+extern void lbl_8006DBAC(void);
+extern void fn_8006F038(void *, void *, s16);
+extern void lbl_8006DCDC(void);
+extern s16 fn_1_6B48(s16 value);
+extern void fn_1_6D2C(u32);
+extern s32 lbl_1_bss_F78;
+extern void fn_1_A2DF4(u32, u32, u32);
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern u8 lbl_1_bss_F74;
+extern u8 lbl_1_bss_F75;
+extern f32 lbl_1_rodata_188;
+extern s32 fn_1_8708(u8 mode, f32 *value0, f32 *value1);
+extern void fn_1_8A0C(s16 index);
+extern void fn_1_A6FE8(void);
+extern void fn_1_8D08(GameCameraEntry *value);
+extern f32 lbl_1_bss_1040;
+extern f32 lbl_1_bss_1044;
+extern void OSReport(const unsigned char *, ...);
+extern u8 lbl_1_bss_103C[4];
+extern u8 lbl_1_bss_108C[52];
+extern u8 lbl_1_bss_1014;
+
+extern s8 fn_1_86624(void);
+extern s8 fn_1_86634(s32 index);
+extern void OSPanic(u8 *file, int line, u8 *message, ...);
+extern void fn_1_8A0C(s16 index);
+extern void OSReport(const unsigned char *, ...);
+
+extern f32 lbl_1_rodata_2E0[32];
+extern f32 lbl_8006D6FC(f32 *value, void *target);
+u32 fn_1_6514(u32);
+extern struct fn_1_6400_lbl_801A6410 lbl_801A6410;
+extern u32 fn_1_46B4(u32, u32, void *, u32);
+extern f64 lbl_1_rodata_478;
+extern f32 lbl_1_rodata_49C;
+extern f32 lbl_1_bss_10C0[6];
+
 #ifndef REL_MAIN_REL_CAMERA_H
 #define REL_MAIN_REL_CAMERA_H
 #ifndef REL_MAIN_REL_GLOBALS_H
@@ -1614,10 +1986,7 @@ u8* camera_get_state_storage(void) {
 }
 /* fzgx:end camera_get_state_storage */
 
-/* fzgx:begin camera_get_extended_state_storage noprologue */
-#include "types.h"
-
-extern u8 lbl_1_bss_108C[52];
+/* fzgx:begin camera_get_extended_state_storage */
 
 // Returns the storage reserved for the camera's extended state.
 u8* camera_get_extended_state_storage(void) {

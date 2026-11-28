@@ -1695,5 +1695,20 @@
     "regional_split": [
       "\t.text       start:0x000A8DD4 end:0x000A8FA0 align:4"
     ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/background/fn_1_9A958.c",
+    "symbols": [
+      "fn_1_9A958"
+    ],
+    "status": "matching",
+    "tu": "rel/main_rel/background_regional.c",
+    "matching_for": [
+      "GFZJ01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x0009A958 end:0x0009AA2C align:4"
+    ]
   }
 ]

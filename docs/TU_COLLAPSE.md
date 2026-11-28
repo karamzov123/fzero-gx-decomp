@@ -693,3 +693,17 @@ and `fzgx lint` (0 findings):
 - `rel/main_rel/driver.c`: 8 -> 6 units (Japan/PAL retained in `driver_regional.c`)
 - `rel/main_rel/bg_common.c`: 14 -> 13 units (Japan/PAL retained in `bg_common_regional.c`)
 - `rel/interview/interview.c`: 52 -> 51 units
+
+### Static-helper deduplication and `main_rel` collapse batch (2026-11-27)
+
+Prefixing colliding block-private `static`/`inline` helpers and pool primers across 21 multi-unit
+REL TUs followed by `fzgx tutruth --repair-budget 0` + greedy `relmerge.py --keep` eliminated
+10 more `main_rel` code units (`code_units` 1350 -> 1340, `pool_remapped_units` 588 -> 587),
+verified across `GFZP01`, `GFZJ01`, `GFZE01`, and `fzgx lint` (0 findings):
+
+- `rel/main_rel/camera_c.c`: 16 -> 14 units
+- `rel/main_rel/screen_effect_b.c`: 12 -> 10 units
+- `rel/main_rel/background.c`: 17 -> 15 units
+- `rel/main_rel/ghost.c`: 42 -> 40 units
+- `rel/main_rel/camera.c`: 19 -> 18 units
+- `rel/main_rel/sound.c`: 37 -> 36 units
