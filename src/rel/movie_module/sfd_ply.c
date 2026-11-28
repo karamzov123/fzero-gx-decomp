@@ -1,20 +1,387 @@
 #include "types.h"
+typedef struct MovieObj MovieObj;
+typedef struct SJ SJ;
+typedef struct SJInterface SJInterface;
+typedef struct SfdHandle SfdHandle;
+typedef struct SfdTransportInterface SfdTransportInterface;
 #include "sofdec/sfd.h"
 
-/* fzgx:begin fn_12_2B138 noprologue */
-#include "types.h"
+typedef struct fn_12_2CC24_MovieModuleState {
+    u8 _pad_0[0x44];
+    u32 field_44;
+} fn_12_2CC24_MovieModuleState;
 
-extern u32 fn_12_24990(u32);
-extern u32 fn_12_24A88(u32, u32);
+struct fn_12_2B25C_MovieModule {
+    char pad_960[0x960];
+    int value_960;
+};
+
+struct fn_12_2B2E4_MovieModule {
+    char pad_44[0x44];
+    int value;
+    char pad_1ab4[0x1a6c];
+    int field_1ab4;
+};
+
+struct fn_12_2B634_MovieModule {
+    char pad_44[0x44];
+    int field_44;
+    int field_48;
+    int field_4c;
+};
+
+struct SJInterface {
+    union {
+        unsigned char padding_extent[48];
+        struct {
+            unsigned char padding_get_num_data[36];
+            int (*get_num_data)(SJ *sj, int channel);
+        } view_get_num_data;
+    } fields;
+};
+
+struct SJ {
+    union {
+        unsigned char padding_extent[4];
+        struct {
+            const SJInterface *interface;
+        } view_interface;
+    } fields;
+};
+
+typedef struct SfdBufferSupply {
+    union {
+        unsigned char padding_extent[24];
+        struct {
+            unsigned char padding_stream_joint[4];
+            SJ *stream_joint;
+        } view_stream_joint;
+        struct {
+            unsigned char padding_buffer_size[12];
+            int buffer_size;
+        } view_buffer_size;
+    } fields;
+} SfdBufferSupply;
+
+typedef struct SfplyHandle {
+    u8 unknown_0000[0x44];
+    int field_0044;
+    int playback_state;
+    int requested_state;
+    u8 unknown_0050[0x9A0 - 0x50];
+    int conditions_primary[64];
+    u8 unknown_0AA0[0xF2C - 0xAA0];
+    int timer_field_02B0;
+    u8 unknown_0F30[0xF48 - 0xF30];
+    int timer_field_02CC;
+    u8 unknown_0F4C[0x2918 - 0xF4C];
+    SfdTimerSummary timer_summaries[8];
+} SfplyHandle;
+
+struct fn_12_2B1E8_MovieModule {
+    char pad_960[0x960];
+    int value_960;
+};
+
+typedef struct SfdPlaybackRuntime {
+    union {
+        unsigned char padding_extent[160];
+        struct {
+            unsigned char padding_field_1C[28];
+            int field_1C;
+        } view_field_1C;
+        struct {
+            unsigned char padding_field_20[32];
+            int field_20;
+        } view_field_20;
+    } fields;
+} SfdPlaybackRuntime;
+
+typedef int SfdConditionValue;
+
+typedef struct SfdTimerState {
+    union {
+        unsigned char padding_extent[1504];
+        struct {
+            unsigned char padding_field_0284[644];
+            int field_0284;
+        } view_field_0284;
+        struct {
+            unsigned char padding_field_0288[648];
+            int field_0288;
+        } view_field_0288;
+    } fields;
+} SfdTimerState;
+
+typedef struct SfdBufferRingWork {
+    union {
+        unsigned char padding_extent[60];
+        struct {
+            SfdBufferSupply supply;
+        } view_supply;
+    } fields;
+} SfdBufferRingWork;
+
+typedef union SfdBufferWork {
+    union {
+        unsigned char padding_extent[60];
+        struct {
+            SfdBufferRingWork ring;
+        } view_ring;
+    } fields;
+} SfdBufferWork;
+
+typedef struct SfdBufferState {
+    union {
+        unsigned char padding_extent[116];
+        struct {
+            unsigned char padding_work[16];
+            SfdBufferWork work;
+        } view_work;
+    } fields;
+} SfdBufferState;
+
+typedef struct fn_12_2C0F8_SfdHandle fn_12_2C0F8_SfdHandle;
+
+typedef int (*SfdTransportLifecycleFn)(fn_12_2C0F8_SfdHandle *handle);
+
+typedef int (*SfdTransportPauseFn)(fn_12_2C0F8_SfdHandle *handle, int state);
+
+typedef int (*SfdTransportBufferFn)(fn_12_2C0F8_SfdHandle *handle, void *buffer);
+
+typedef int SfdTransportValue;
+
+typedef int (*SfdTransportTransferFn)(fn_12_2C0F8_SfdHandle *handle, SfdTransportValue parameter, int value);
+
+struct SfdTransportInterface {
+    SfdTransportLifecycleFn init;
+    SfdTransportLifecycleFn finish;
+    SfdTransportLifecycleFn exec_server;
+    SfdTransportLifecycleFn create;
+    SfdTransportLifecycleFn destroy;
+    SfdTransportLifecycleFn standby;
+    SfdTransportLifecycleFn start;
+    SfdTransportLifecycleFn stop;
+    SfdTransportPauseFn pause;
+    SfdTransportBufferFn get_write;
+    SfdTransportTransferFn add_write;
+    SfdTransportBufferFn get_read;
+    SfdTransportTransferFn add_read;
+    SfdTransportTransferFn seek;
+};
+
+typedef struct SfdTransportState {
+    union {
+        unsigned char padding_extent[68];
+        struct {
+            unsigned char padding_interface[12];
+            const SfdTransportInterface *interface;
+        } view_interface;
+        struct {
+            unsigned char padding_parameter_10[16];
+            int parameter_10;
+        } view_parameter_10;
+    } fields;
+} SfdTransportState;
+
+struct fn_12_2C0F8_SfdHandle {
+    union {
+        unsigned char padding_extent[13720];
+        struct {
+            unsigned char padding_playback_state[72];
+            int playback_state;
+        } view_playback_state;
+        struct {
+            unsigned char padding_requested_state[76];
+            int requested_state;
+        } view_requested_state;
+        struct {
+            unsigned char padding_field_0050[80];
+            int field_0050;
+        } view_field_0050;
+        struct {
+            unsigned char padding_playback_runtime[2376];
+            SfdPlaybackRuntime playback_runtime;
+        } view_playback_runtime;
+        struct {
+            unsigned char padding_conditions_primary[2464];
+            SfdConditionValue conditions_primary[100];
+        } view_conditions_primary;
+        struct {
+            unsigned char padding_timer_state[3196];
+            SfdTimerState timer_state;
+        } view_timer_state;
+        struct {
+            unsigned char padding_buffers[4416];
+            SfdBufferState buffers[8];
+        } view_buffers;
+        struct {
+            unsigned char padding_transports[6816];
+            SfdTransportState transports[9];
+        } view_transports;
+    } fields;
+};
+
+typedef int (*Sig_fn_12_2F264_MovieHandler)(struct Sig_fn_12_2F264_Movie *, int, int, int);
+
+struct Sig_fn_12_2F264_MovieItem {
+    char pad0[0xc];
+    Sig_fn_12_2F264_MovieHandler *handlers;
+    char pad1[0x30];
+    char pad2[4];
+};
+
+struct Sig_fn_12_2F264_Movie {
+    char pad0[0x1aa0];
+    struct Sig_fn_12_2F264_MovieItem items[1];
+};
+
+typedef struct Sig_fn_12_248D4_MovieModule {
+ u32 unk_00; u8 pad_04[8]; u32 unk_0c; u8 pad_10[0x80]; u32 unk_90;
+} Sig_fn_12_248D4_MovieModule;
+
+typedef struct MovieObjVtbl {
+    void *pad[9];
+    int (*func_24)(MovieObj *obj, int arg);
+} MovieObjVtbl;
+
+struct MovieObj {
+    MovieObjVtbl *vtbl;
+};
+
+typedef struct MovieSub {
+    int field_0;
+    MovieObj *obj;
+    int field_8;
+    int field_c;
+} MovieSub;
+
+typedef struct MovieEntry {
+    int field_0;
+    MovieSub sub;
+    u8 pad_14[0x60];
+} MovieEntry;
+
+typedef struct MovieModule_u1 {
+    u8 pad_0000[0x48];
+    int field_48;
+    int field_4c;
+    int field_50;
+    u8 pad_0054[0x96c - 0x54];
+    int field_96c;
+    u8 pad_0970[0xf00 - 0x970];
+    int field_f00;
+    int field_f04;
+    u8 pad_0f08[0x114c - 0xf08];
+    MovieEntry entries[1];
+    u8 pad_11c0[0x1b38 - 0x11c0];
+    int field_1b38;
+} MovieModule_u1;
+
+struct MovieState {
+    char pad_0[4];
+    int value;
+};
+
+struct fn_12_2B9F8_MovieModule {
+    char pad_0[0x94c];
+    struct MovieState state;
+};
+
+typedef void (*fn_12_2B9F8_MovieCallback)(struct fn_12_2B9F8_MovieModule *, void *, struct MovieState *);
+
+struct fn_12_2BA6C_MovieModule {
+    char pad_94c[0x94c];
+    int value_94c;
+};
+
+typedef void (*fn_12_2BA6C_MovieCallback)(struct fn_12_2BA6C_MovieModule *, void *, int *);
+
+typedef struct Sig_fn_12_248E8_MovieModule {
+    u32 unk_00;
+    u32 unk_04;
+    u32 unk_08;
+    u32 unk_0c;
+    u8 pad_10[0x80];
+    u32 unk_90;
+} Sig_fn_12_248E8_MovieModule;
+
+struct Sig_fn_12_2FE30_fn_12_2FE30_Arg0 {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+};
+
+typedef struct Sig_fn_12_2D450_MovieModuleState {
+    s32 field_0;
+    s32 field_4;
+    s32 field_8;
+    s32 field_c;
+} Sig_fn_12_2D450_MovieModuleState;
+
+struct fn_12_2C640_Arg0 {
+    u8 pad_0[0x48];
+    u32 unk_48;
+    u32 unk_4C;
+};
+extern s32 fn_12_24990();
+extern int fn_12_24A88(int arg0, u32 arg1);
+extern int fn_12_226D0(SfdHandle *handle, SfdBufferSupply *supply);
+extern int fn_12_2F210(void *, int, int, u32, u32);
+extern void fn_12_21D40(void *base, int index, int value);
+extern u32 lbl_12_bss_7C64[137];
+extern int fn_12_2F264(struct Sig_fn_12_2F264_Movie *, int);
+extern void fn_12_24970();
+extern void fn_12_24950();
+extern void fn_12_248D4(void *);
+extern void fn_12_22888(u8 *module);
+extern void *fn_12_57F0(void *dst, const void *src, u32 size);
+extern s32 fn_12_2BAE0(void *, s32);
+extern u32 fn_12_2D73C(u8 *base, int index);
+extern int fn_12_2AD78(struct fn_12_2B634_MovieModule *module);
+extern void fn_12_33428(u32 *dst, u32 value, u32 count);
+extern void fn_12_248E8(MovieModule_u1 *self);
+extern void fn_12_2FE30(struct Sig_fn_12_2FE30_fn_12_2FE30_Arg0 *);
+extern void fn_12_24B64(int *value);
+extern void fn_12_2D450(Sig_fn_12_2D450_MovieModuleState *);
+extern int fn_12_2F1D0(void *, int);
+extern int fn_12_21D30(MovieModule_u1 *module, int value);
+extern int fn_12_21C00(MovieModule_u1 *module, int value);
+extern int fn_12_2F1B4(MovieModule_u1 *module, int value);
+extern s32 fn_12_2E714(MovieModule_u1 *module, s32 *a, s32 *b);
+extern unsigned int UTY_MulDiv(int multiplicand, int multiplier, int divisor);
+extern void fn_12_2E42C();
+int fn_12_2E7C8(fn_12_2C0F8_SfdHandle *handle, int *seconds, int *subsecond);
+int fn_12_2EAC4(fn_12_2C0F8_SfdHandle *handle);
+extern u32 fn_12_2ADDC(u32 arg0, u32 arg1);
+extern int fn_12_332DC(int a, int b, int c, int d);
+extern int fn_12_2BE3C(MovieModule_u1 *module);
+extern int fn_12_21E94(MovieModule_u1 *module, int index);
+extern int fn_12_21F28(void *, int);
+extern int fn_12_2F1F0(void *, int);
+extern void fn_12_2D420(void *, u32, u32);
+extern void fn_12_2D7DC(u8 *base, int index, int value);
+extern s64 fn_12_335B8(void);
+extern void fn_12_2D288(SfplyHandle *handle);
+extern s32 fn_12_2C640(struct fn_12_2C640_Arg0 *arg0);
+extern int fn_12_2C0F8(fn_12_2C0F8_SfdHandle *handle);
+extern void fn_12_2C9C4(SfplyHandle *handle);
+extern void fn_12_2EBAC(void);
+
+/* fzgx:begin fn_12_2B138 */
 
 u32 fn_12_2B138(u32 arg0) {
     u32 v0;
     u32 t0, t1;
-    t0 = fn_12_24990(arg0);
+    t0 = ((u32)fn_12_24990(arg0));
     v0 = t0;
     if ((s32)t0 != 0) {
     v0 = 0;
-    t1 = fn_12_24A88(v0, (0xFF000000 + 321));
+    t1 = ((u32)fn_12_24A88(v0, (0xFF000000 + 321)));
     v0 = t1;
     v0 = 0;
     } else {
@@ -24,63 +391,41 @@ u32 fn_12_2B138(u32 arg0) {
 }
 /* fzgx:end fn_12_2B138 */
 
-/* fzgx:begin fn_12_2B188 noprologue */
-#include "types.h"
-
-
+/* fzgx:begin fn_12_2B188 */
 /* --- rel/movie_module/fn_12_2B188.c --- */
-extern int fn_12_24990(void);
-extern void fn_12_24A88(int arg0, u32 arg1);
-extern void fn_12_226D0(void *arg0, void *arg1);
 
 void fn_12_2B188(void *arg0, void *arg1) {
     if (fn_12_24990()) {
         fn_12_24A88(0, 0xff000139);
     } else {
-        fn_12_226D0(arg0, arg1);
+        fn_12_226D0( (SfdHandle *)(void *)(arg0), (SfdBufferSupply *)(void *)(arg1));
     }
 }
 /* fzgx:end fn_12_2B188 */
 
-/* fzgx:begin fn_12_2B1E8 noprologue */
-
+/* fzgx:begin fn_12_2B1E8 */
 /* --- rel/movie_module/fn_12_2B1E8.c --- */
-struct MovieModule {
-    char pad_960[0x960];
-    int value_960;
-};
 
-extern void fn_12_24A88(int value, u32 code);
-extern void fn_12_2F210(struct MovieModule *module, int value, int size, void *data, int flags);
 
-void fn_12_2B1E8(struct MovieModule *module, void *data) {
+void fn_12_2B1E8(struct fn_12_2B1E8_MovieModule *module, void *data) {
     if (fn_12_24990()) {
         fn_12_24A88(0, 0xff000137);
     } else {
         module->value_960 = 0;
-        fn_12_2F210(module, 6, 12, data, 0);
+        fn_12_2F210( (void *)(struct fn_12_2B1E8_MovieModule *)(module), 6, 12, (u32)(void *)(data), 0);
     }
 }
 /* fzgx:end fn_12_2B1E8 */
 
-/* fzgx:begin fn_12_2B25C noprologue */
-#include "types.h"
+/* fzgx:begin fn_12_2B25C */
 
-struct MovieModule {
-    char pad_960[0x960];
-    int value_960;
-};
 
-extern int fn_12_24990(struct MovieModule *module);
-extern void fn_12_24A88(int value, u32 code);
-extern void fn_12_2F210(struct MovieModule *module, int value, int size, void *data, int flags);
-
-void fn_12_2B25C(struct MovieModule *module, void *data) {
+void fn_12_2B25C(struct fn_12_2B25C_MovieModule *module, void *data) {
     *(u32 *)data = 0;
-    if (fn_12_24990(module)) {
+    if (fn_12_24990( (u32)(struct fn_12_2B25C_MovieModule *)(module))) {
         fn_12_24A88(0, 0xff000136);
     } else {
-        fn_12_2F210(module, 6, 11, data, 0);
+        fn_12_2F210( (void *)(struct fn_12_2B25C_MovieModule *)(module), 6, 11, (u32)(void *)(data), 0);
         if (*(u32 *)data != 0) {
             module->value_960 = 1;
         }
@@ -88,37 +433,23 @@ void fn_12_2B25C(struct MovieModule *module, void *data) {
 }
 /* fzgx:end fn_12_2B25C */
 
-/* fzgx:begin fn_12_2B2E4 noprologue */
-#include "types.h"
-
-
+/* fzgx:begin fn_12_2B2E4 */
 /* --- rel/movie_module/fn_12_2B2E4.c --- */
-struct MovieModule {
-    char pad_44[0x44];
-    int value;
-    char pad_1ab4[0x1a6c];
-    int field_1ab4;
-};
 
-extern int fn_12_24990(struct MovieModule *module);
-extern int fn_12_24A88(int arg0, u32 arg1);
-extern void fn_12_21D40(struct MovieModule *module, int value, int arg2);
 
-int fn_12_2B2E4(struct MovieModule *module) {
-    if (fn_12_24990(module)) {
+int fn_12_2B2E4(struct fn_12_2B2E4_MovieModule *module) {
+    if (fn_12_24990( (u32)(struct fn_12_2B2E4_MovieModule *)(module))) {
         return fn_12_24A88(0, 0xff000135);
     } else {
-        fn_12_21D40(module, module->field_1ab4, 1);
+        fn_12_21D40( (void *)(struct fn_12_2B2E4_MovieModule *)(module), module->field_1ab4, 1);
         module->value = 1;
         return 0;
     }
 }
 /* fzgx:end fn_12_2B2E4 */
 
-/* fzgx:begin fn_12_2B348 noprologue */
-
+/* fzgx:begin fn_12_2B348 */
 /* --- rel/movie_module/fn_12_2B348.c --- */
-extern u32 lbl_12_bss_7C64[137];
 
 u32 fn_12_2B348(void) {
     return lbl_12_bss_7C64[127];
@@ -224,28 +555,16 @@ s32 fn_12_2B358(u32 arg0) {
 }
 /* fzgx:end fn_12_2B358 */
 
-/* fzgx:begin fn_12_2B634 noprologue */
-#include "types.h"
+/* fzgx:begin fn_12_2B634 */
 
-struct MovieModule {
-    char pad_44[0x44];
-    int field_44;
-    int field_48;
-    int field_4c;
-};
 
-extern int fn_12_24990(struct MovieModule *module);
-extern int fn_12_24A88(int arg0, u32 arg1);
-extern int fn_12_2D73C(struct MovieModule *module, int arg1);
-extern int fn_12_2AD78(struct MovieModule *module);
-
-int fn_12_2B634(struct MovieModule *module) {
+int fn_12_2B634(struct fn_12_2B634_MovieModule *module) {
     int result;
 
-    if (fn_12_24990(module)) {
+    if (fn_12_24990( (u32)(struct fn_12_2B634_MovieModule *)(module))) {
         return fn_12_24A88(0, 0xff000132);
     } else {
-        if (fn_12_2D73C(module, 0x2f) == 1) {
+        if (((int)fn_12_2D73C( (u8 *)(struct fn_12_2B634_MovieModule *)(module), 0x2f)) == 1) {
             result = fn_12_2AD78(module);
         } else {
             result = 0;
@@ -257,23 +576,10 @@ int fn_12_2B634(struct MovieModule *module) {
 }
 /* fzgx:end fn_12_2B634 */
 
-/* fzgx:begin fn_12_2B6B0 noprologue */
-#include "types.h"
+/* fzgx:begin fn_12_2B6B0 */
 #pragma use_lmw_stmw on
 
 struct fn_12_2B6B0_Copy64 { u32 a[17]; };
-extern int fn_12_24990(u32);
-extern int fn_12_24A88(void *, u32);
-extern int fn_12_2F210(void *, int, int, u32, u32);
-extern void fn_12_24970(void *);
-extern void fn_12_24950(void *);
-extern void fn_12_248D4(void *);
-extern void fn_12_22888(u32);
-extern int fn_12_2F264(void *, int);
-extern void *fn_12_57F0(void *, const void *, u32);
-extern u32 fn_12_2BAE0(void *, int);
-extern void fn_12_21D40(void *, int, int);
-extern u32 lbl_12_bss_7C64[137];
 
 static inline void setFlag(int value) { lbl_12_bss_7C64[127]=value; }
 static inline int prepare(u32 arg0) {
@@ -300,7 +606,7 @@ int fn_12_2B6B0(u32 arg0) {
  int result;
  int i;
  if (fn_12_24990(arg0)) {
-  return fn_12_24A88(0,0xff000131);
+  return fn_12_24A88( (int)(void *)(0),0xff000131);
  }
  if (*(int *)(arg0+0x48)!=1) {
   result=prepare(arg0);
@@ -312,30 +618,30 @@ int fn_12_2B6B0(u32 arg0) {
    loc_28=*(struct fn_12_2B6B0_Copy64 *)arg0;
    v3=*(u32 *)(arg0+0x9c0);
    if ((int)v3!=0) {
-    if (fn_12_24990(arg0)) fn_12_24A88(0,0xff000134);
+    if (fn_12_24990(arg0)) fn_12_24A88( (int)(void *)(0),0xff000134);
     else fn_12_2F210((void *)arg0,0,9,(u32)loc_C,0);
     saved.value=loc_C[5];
    }
    fn_12_248D4((void *)(arg0+0x78));
-   fn_12_22888(arg0);
+   fn_12_22888( (u8 *)(u32)(arg0));
    *(int *)(arg0+0x48)=0;
    *(int *)(arg0+0x4c)=0;
-   if (fn_12_2F264((void *)arg0,4)==0) {
+   if (fn_12_2F264( (struct Sig_fn_12_2F264_Movie *)((void *)arg0),4)==0) {
     fn_12_57F0(loc_6C,(void *)(arg0+0xb30),400);
-    v5=fn_12_2BAE0(&loc_28,0);
-    if (!v5) fn_12_24A88(0,0xff000202);
+    v5=((u32)fn_12_2BAE0(&loc_28,0));
+    if (!v5) fn_12_24A88( (int)(void *)(0),0xff000202);
     else {
      fn_12_57F0((void *)(v5+0x9a0),loc_6C,400);
      fn_12_57F0((void *)(v5+0xb30),loc_6C,400);
      if ((int)v3!=0) {
-      if (fn_12_24990(v5)) result=fn_12_24A88(0,0xff000134);
+      if (fn_12_24990(v5)) result=fn_12_24A88( (int)(void *)(0),0xff000134);
       else result=fn_12_2F210((void *)v5,0,9,(u32)loc_C,0);
       if (!result) {
        v3=loc_C[5];
-       if (fn_12_24990(v5)) result=fn_12_24A88(0,0xff000135);
+       if (fn_12_24990(v5)) result=fn_12_24A88( (int)(void *)(0),0xff000135);
        else result=fn_12_2F210((void *)v5,0,10,saved.value,v3);
        if (!result) {
-        if (fn_12_24990(v5)) fn_12_24A88(0,0xff000135);
+        if (fn_12_24990(v5)) fn_12_24A88( (int)(void *)(0),0xff000135);
         else {
          fn_12_21D40((void *)v5,*(int *)(v5+0x1ab4),1);
          *(int *)(v5+0x44)=1;
@@ -350,10 +656,10 @@ int fn_12_2B6B0(u32 arg0) {
   }
  }
  fn_12_248D4((void *)(arg0+0x78));
- fn_12_22888(arg0);
+ fn_12_22888( (u8 *)(u32)(arg0));
  *(int *)(arg0+0x48)=0;
  *(int *)(arg0+0x4c)=0;
- result=fn_12_2F264((void *)arg0,4);
+ result=fn_12_2F264( (struct Sig_fn_12_2F264_Movie *)((void *)arg0),4);
  p_lbl_12_bss_7C64=lbl_12_bss_7C64+129;
  zero=0;
  for (i=0;i<8;i++) {
@@ -365,112 +671,47 @@ int fn_12_2B6B0(u32 arg0) {
 }
 /* fzgx:end fn_12_2B6B0 */
 
-/* fzgx:begin fn_12_2B9F8 noprologue */
-
+/* fzgx:begin fn_12_2B9F8 */
 /* --- rel/movie_module/fn_12_2B9F8.c --- */
-struct MovieState {
-    char pad_0[4];
-    int value;
-};
 
-struct MovieModule {
-    char pad_0[0x94c];
-    struct MovieState state;
-};
 
-typedef void (*MovieCallback)(struct MovieModule *, void *, struct MovieState *);
 
-extern MovieCallback fn_12_2D73C(struct MovieModule *, int);
-
-void fn_12_2B9F8(struct MovieModule *module, int delta, void *context) {
+void fn_12_2B9F8(struct fn_12_2B9F8_MovieModule *module, int delta, void *context) {
     struct MovieState *state;
-    MovieCallback callback;
+    fn_12_2B9F8_MovieCallback callback;
 
     state = &module->state;
     module->state.value += delta;
-    callback = fn_12_2D73C(module, 0x25);
+    callback = ((fn_12_2B9F8_MovieCallback)fn_12_2D73C( (u8 *)(struct fn_12_2B9F8_MovieModule *)(module), 0x25));
     if (callback != 0) {
         callback(module, context, state);
     }
 }
 /* fzgx:end fn_12_2B9F8 */
 
-/* fzgx:begin fn_12_2BA6C noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_2BA6C */
 /* --- rel/movie_module/fn_12_2BA6C.c --- */
-struct MovieModule {
-    char pad_94c[0x94c];
-    int value_94c;
-};
 
-typedef void (*MovieCallback)(struct MovieModule *, void *, int *);
 
-extern MovieCallback fn_12_2D73C(struct MovieModule *, int);
-
-void fn_12_2BA6C(struct MovieModule *module, int delta, void *arg) {
+void fn_12_2BA6C(struct fn_12_2BA6C_MovieModule *module, int delta, void *arg) {
     int *value = &module->value_94c;
-    MovieCallback callback;
+    fn_12_2BA6C_MovieCallback callback;
 
     *value += delta;
-    callback = fn_12_2D73C(module, 0x24);
+    callback = ((fn_12_2BA6C_MovieCallback)fn_12_2D73C( (u8 *)(struct fn_12_2BA6C_MovieModule *)(module), 0x24));
     if (callback != 0) {
         callback(module, arg, value);
     }
 }
 /* fzgx:end fn_12_2BA6C */
 
-/* fzgx:begin fn_12_2BAE0 noprologue */
-
+/* fzgx:begin fn_12_2BAE0 */
 /* --- rel/movie_module/fn_12_2BAE0.c --- */
-typedef struct Sig_fn_12_248E8_MovieModule {
-    u32 unk_00;
-    u32 unk_04;
-    u32 unk_08;
-    u32 unk_0c;
-    u8 pad_10[0x80];
-    u32 unk_90;
-} Sig_fn_12_248E8_MovieModule;
 
-struct Sig_fn_12_2FE30_fn_12_2FE30_Arg0 {
-    u32 unk_0;
-    u32 unk_4;
-    u32 unk_8;
-    u32 unk_C;
-    u32 unk_10;
-    u32 unk_14;
-    u32 unk_18;
-};
 
-typedef struct Sig_fn_12_2D450_MovieModuleState {
-    s32 field_0;
-    s32 field_4;
-    s32 field_8;
-    s32 field_c;
-} Sig_fn_12_2D450_MovieModuleState;
 
-typedef int (*Sig_fn_12_2F264_MovieHandler)(struct Sig_fn_12_2F264_Movie *, int, int, int);
-
-struct Sig_fn_12_2F264_MovieItem {
-    char pad0[0xc];
-    Sig_fn_12_2F264_MovieHandler *handlers;
-    char pad1[0x30];
-    char pad2[4];
-};
 
 struct Sig_fn_12_2F264_Movie;
-struct Sig_fn_12_2F264_Movie {
-    char pad0[0x1aa0];
-    struct Sig_fn_12_2F264_MovieItem items[1];
-};
-extern u32 lbl_12_bss_7C64;
-extern void fn_12_33428(u32 *, u32, u32);
-extern void fn_12_248E8(Sig_fn_12_248E8_MovieModule *);
-extern void fn_12_2FE30(struct Sig_fn_12_2FE30_fn_12_2FE30_Arg0 *);
-extern void fn_12_24B64(int *);
-extern void * fn_12_57F0(void *, const void *, u32);
-extern void fn_12_2D450(Sig_fn_12_2D450_MovieModuleState *);
-extern int fn_12_2F264(struct Sig_fn_12_2F264_Movie *, int);
 
 struct FzgxCopy_68 { u32 words[17]; };
 s32 fn_12_22954(s32, s32, void *);                  /* extern */
@@ -493,7 +734,7 @@ s32 fn_12_2BAE0(void *arg0, s32 arg1) {
     (*(s32 *)((u8 *)(temp_r31) + 68)) = 1;
     (*(s32 *)((u8 *)(temp_r31) + 80)) = 0;
     (*(s32 *)((u8 *)(temp_r31) + 84)) = 0;
-    fn_12_248E8((Sig_fn_12_248E8_MovieModule *)(temp_r31 + 0x78));
+    fn_12_248E8( (MovieModule_u1 *)((Sig_fn_12_248E8_MovieModule *)(temp_r31 + 0x78)));
     fn_12_33428((u32 *)(temp_r31 + 0x90C), (u32)(0U), (u32)(0x10U));
     (*(s32 *)((u8 *)(temp_r31) + 2316)) = 0;
     (*(s32 *)((u8 *)(temp_r31) + 2320)) = 0;
@@ -528,8 +769,8 @@ s32 fn_12_2BAE0(void *arg0, s32 arg1) {
     } while (var_r28 < 5);
     fn_12_2FE30((struct Sig_fn_12_2FE30_fn_12_2FE30_Arg0 *)(temp_r31 + 0x29B8));
     fn_12_24B64((int *)(temp_r31 + 0x98C));
-    fn_12_57F0((void *)(temp_r31 + 0x9A0), (const void *)(&lbl_12_bss_7C64), (u32)(0x190U));
-    fn_12_57F0((void *)(temp_r31 + 0xB30), (const void *)(&lbl_12_bss_7C64), (u32)(0x190U));
+    fn_12_57F0((void *)(temp_r31 + 0x9A0), (const void *)(&(*((u32 *)&lbl_12_bss_7C64))), (u32)(0x190U));
+    fn_12_57F0((void *)(temp_r31 + 0xB30), (const void *)(&(*((u32 *)&lbl_12_bss_7C64))), (u32)(0x190U));
     fn_12_2EE7C((s32)(temp_r31), (s32)(temp_r31 + 0xCC0));
     if (fn_12_22954((s32)(temp_r31), (s32)(temp_r31 + 0x1140), (void *)(arg0)) != 0) {
         return 0;
@@ -601,7 +842,6 @@ found:
 /* fzgx:end fn_12_2BCF4 */
 
 /* fzgx:begin fn_12_2BE3C noprologue */
-
 /* --- rel/movie_module/fn_12_2BE3C.c --- */
 typedef struct MovieObj MovieObj;
 typedef struct MovieObjVtbl {
@@ -722,7 +962,6 @@ int fn_12_2BE3C(MovieModule_u1 *module) {
 /* fzgx:end fn_12_2BE3C */
 
 /* fzgx:begin fn_12_2C0F8 noprologue */
-
 #include "types.h"
 
 typedef struct SJ SJ;
@@ -1135,23 +1374,8 @@ int fn_12_2C0F8(SfdHandle *handle) {
 }
 /* fzgx:end fn_12_2C0F8 */
 
-/* fzgx:begin fn_12_2C640 noprologue */
-#include "types.h"
+/* fzgx:begin fn_12_2C640 */
 
-struct fn_12_2C640_Arg0 {
-    u8 pad_0[0x48];
-    u32 unk_48;
-    u32 unk_4C;
-};
-
-extern int fn_12_21E94(void *, int);
-extern int fn_12_21F28(void *, int);
-extern int fn_12_2D73C(void *, int);
-extern int fn_12_2F1D0(void *, int);
-extern int fn_12_2F1F0(void *, int);
-extern u32 fn_12_2F210(void *, u32, u32, u32, u32);
-extern void fn_12_2D420(void *, u32, u32);
-extern void fn_12_2D7DC(void *, int, int);
 
 #define FIELD(off) (*(s32 *)((u8 *)arg0 + (off)))
 
@@ -1176,7 +1400,7 @@ s32 fn_12_2C640(struct fn_12_2C640_Arg0 *arg0) {
     s32 tmp_call7;
     v0.value = arg0->unk_48;
     v1.value = arg0->unk_4C;
-    tmp_fn_12_2D73C = fn_12_2D73C(arg0, 5);
+    tmp_fn_12_2D73C = ((int)fn_12_2D73C( (u8 *)(void *)(arg0), 5));
     if (tmp_fn_12_2D73C == 0) {
         v2 = 1;
     } else {
@@ -1185,7 +1409,7 @@ s32 fn_12_2C640(struct fn_12_2C640_Arg0 *arg0) {
         t2 = tmp_fn_12_2F1D0;
         v2 = t1 | t2;
     }
-    tmp_fn_12_2D73C = fn_12_2D73C(arg0, 6);
+    tmp_fn_12_2D73C = ((int)fn_12_2D73C( (u8 *)(void *)(arg0), 6));
     if (tmp_fn_12_2D73C == 0) {
         v3 = 1;
     } else {
@@ -1200,18 +1424,18 @@ s32 fn_12_2C640(struct fn_12_2C640_Arg0 *arg0) {
         return v0.value;
     }
     tmp_call7 = FIELD(0x9b4);
-    if (tmp_call7 == 1 && fn_12_21E94(arg0, 1) == 0 && fn_12_21F28(arg0, 1) == 0) {
+    if (tmp_call7 == 1 && fn_12_21E94( (MovieModule_u1 *)(void *)(arg0), 1) == 0 && fn_12_21F28(arg0, 1) == 0) {
         FIELD(0x9b4) = 0;
     }
-    if (FIELD(0x9b8) == 1 && fn_12_21E94(arg0, 2) == 0 && fn_12_21F28(arg0, 2) == 0) {
+    if (FIELD(0x9b8) == 1 && fn_12_21E94( (MovieModule_u1 *)(void *)(arg0), 2) == 0 && fn_12_21F28(arg0, 2) == 0) {
         FIELD(0x9b8) = 0;
     }
     fn_12_2D420(arg0, FIELD(0x9b4), FIELD(0x9b8));
     if (FIELD(0x9b8) == 0 && FIELD(0x9dc) == 2) {
-        fn_12_2D7DC(arg0, 15, 1);
+        fn_12_2D7DC( (u8 *)(void *)(arg0), 15, 1);
     }
     if (FIELD(0x9b4) == 0 && FIELD(0x9dc) == 1) {
-        fn_12_2D7DC(arg0, 15, 2);
+        fn_12_2D7DC( (u8 *)(void *)(arg0), 15, 2);
     }
     v3 = 0;
     if (FIELD(0x9b8) == 1) v3 |= 1;
@@ -1219,10 +1443,10 @@ s32 fn_12_2C640(struct fn_12_2C640_Arg0 *arg0) {
     switch (v3) {
     case 1: v4 = 1; break;
     case 2: v4 = 2; break;
-    case 3: v4 = fn_12_2D73C(arg0, 25); break;
+    case 3: v4 = ((int)fn_12_2D73C( (u8 *)(void *)(arg0), 25)); break;
     default: v4 = 3; break;
     }
-    fn_12_2D7DC(arg0, 25, v4);
+    fn_12_2D7DC( (u8 *)(void *)(arg0), 25, v4);
     switch ((s32)v1.value) {
     case 2: v0.value = 2; break;
     case 3: v0.value = 3; break;
@@ -1246,7 +1470,7 @@ s32 fn_12_2C640(struct fn_12_2C640_Arg0 *arg0) {
                 tmp_fn_12_2F1D0 = fn_12_2F1D0(arg0, 7);
                 v2 = tmp_fn_12_2F1D0;
                 v7 = v2;
-                tmp_fn_12_2D73C = fn_12_2D73C(arg0, 25);
+                tmp_fn_12_2D73C = ((int)fn_12_2D73C( (u8 *)(void *)(arg0), 25));
                 switch (tmp_fn_12_2D73C) {
                 case 1: v6 = v7; break;
                 case 2: v6 = v0.value; break;
@@ -1268,40 +1492,14 @@ s32 fn_12_2C640(struct fn_12_2C640_Arg0 *arg0) {
     return v0.value;
 }
 #pragma opt_dead_assignments reset
-
 /* fzgx:end fn_12_2C640 */
 
-/* fzgx:begin fn_12_2C9C4 noprologue */
-#include "types.h"
-#include "sofdec/sfd.h"
-
+/* fzgx:begin fn_12_2C9C4 */
 /* sfply_ExecOne, from the CC0 MK Deception decomp (sfd_ply.c) */
 
-typedef struct SfplyHandle {
-    u8 unknown_0000[0x44];
-    int field_0044;
-    int playback_state;
-    int requested_state;
-    u8 unknown_0050[0x9A0 - 0x50];
-    int conditions_primary[64];
-    u8 unknown_0AA0[0xF2C - 0xAA0];
-    int timer_field_02B0;
-    u8 unknown_0F30[0xF48 - 0xF30];
-    int timer_field_02CC;
-    u8 unknown_0F4C[0x2918 - 0xF4C];
-    SfdTimerSummary timer_summaries[8];
-} SfplyHandle;
 
-extern unsigned long long fn_12_335B8(void);
-extern void fn_12_2F264(SfplyHandle *handle, int kind);
-extern void fn_12_2D288(SfplyHandle *handle);
-extern int fn_12_2C640(SfplyHandle *handle);
-extern int fn_12_2C0F8(SfplyHandle *handle);
-extern int fn_12_2F1D0(SfplyHandle *handle, int kind);
-extern int fn_12_2D73C(SfplyHandle *handle, int id);
-extern void fn_12_2F210(SfplyHandle *handle, int a, int b, int c, int d);
 
-static inline int sfply_IsTermAll(SfplyHandle *handle)
+static inline int fn_12_2C9C4_sfply_IsTermAll(SfplyHandle *handle)
 {
     int video_terminated;
     int audio_terminated;
@@ -1310,9 +1508,9 @@ static inline int sfply_IsTermAll(SfplyHandle *handle)
     if (handle->conditions_primary[6] == 0 &&
         handle->conditions_primary[5] == 0) return 1;
     terminated = 0;
-    video_terminated = fn_12_2F1D0(handle, 6);
-    audio_terminated = fn_12_2F1D0(handle, 7);
-    switch (fn_12_2D73C(handle, 0x19)) {
+    video_terminated = fn_12_2F1D0( (void *)(SfplyHandle *)(handle), 6);
+    audio_terminated = fn_12_2F1D0( (void *)(SfplyHandle *)(handle), 7);
+    switch (((int)fn_12_2D73C( (u8 *)(SfplyHandle *)(handle), 0x19))) {
     case 1: terminated = audio_terminated; break;
     case 2: terminated = video_terminated; break;
     case 3: terminated = audio_terminated | video_terminated; break;
@@ -1327,7 +1525,7 @@ static inline int sfply_IsStartable(SfplyHandle *handle)
     if (handle->conditions_primary[5] == 0) return 1;
     if (handle->timer_field_02B0 != 0) return 1;
     if (handle->timer_field_02CC >= handle->conditions_primary[45]) return 1;
-    if (sfply_IsTermAll(handle) != 0) return 1;
+    if (fn_12_2C9C4_sfply_IsTermAll(handle) != 0) return 1;
     return 0;
 }
 
@@ -1343,7 +1541,7 @@ static inline int sfply_StatStby(SfplyHandle *handle, int state)
     case 4:
     case 6:
         if (sfply_IsStartable(handle) != 0) {
-            fn_12_2F210(handle, 7, 6, 0, 0);
+            fn_12_2F210( (void *)(SfplyHandle *)(handle), 7, 6, 0, 0);
             state = 4;
         }
         break;
@@ -1364,9 +1562,9 @@ void fn_12_2C9C4(SfplyHandle *handle)
         return;
     }
     handle->field_0044 = 0;
-    start = fn_12_335B8();
+    start = ((unsigned long long)fn_12_335B8());
     if ((unsigned int)(state - 2) <= 1 || state == 4) {
-        fn_12_2F264(handle, 2);
+        fn_12_2F264( (struct Sig_fn_12_2F264_Movie *)(SfplyHandle *)(handle), 2);
         fn_12_2D288(handle);
     }
 
@@ -1385,13 +1583,13 @@ void fn_12_2C9C4(SfplyHandle *handle)
         }
         break;
     case 2:
-        state = fn_12_2C640(handle);
+        state = fn_12_2C640( (struct fn_12_2C640_Arg0 *)(SfplyHandle *)(handle));
         break;
     case 3:
         state = sfply_StatStby(handle, state);
         break;
     case 4:
-        state = fn_12_2C0F8(handle);
+        state = fn_12_2C0F8( (fn_12_2C0F8_SfdHandle *)(SfplyHandle *)(handle));
         break;
     case 5:
         state = handle->playback_state;
@@ -1401,44 +1599,31 @@ void fn_12_2C9C4(SfplyHandle *handle)
         break;
     }
     handle->playback_state = state;
-    SFTMR_AddTsum(&handle->timer_summaries[5], fn_12_335B8() - start);
+    SFTMR_AddTsum(&handle->timer_summaries[5], ((unsigned long long)fn_12_335B8()) - start);
 }
 /* fzgx:end fn_12_2C9C4 */
 
-/* fzgx:begin fn_12_2CC24 noprologue */
-#include "types.h"
-#include "sofdec/sfd.h"
-
-
+/* fzgx:begin fn_12_2CC24 */
 /* --- rel/movie_module/fn_12_2CC24.c --- */
-typedef struct MovieModuleState {
-    u8 _pad_0[0x44];
-    u32 field_44;
-} MovieModuleState;
 
-extern int fn_12_24990(MovieModuleState *state);
-extern int fn_12_24A88(int arg0, u32 arg1);
-extern void fn_12_2C9C4(MovieModuleState *state);
 
-int fn_12_2CC24(MovieModuleState *state) {
-    if (fn_12_24990(state)) {
+int fn_12_2CC24(fn_12_2CC24_MovieModuleState *state) {
+    if (fn_12_24990( (u32)(fn_12_2CC24_MovieModuleState *)(state))) {
         return fn_12_24A88(0, 0xFF000138);
     }
     state->field_44 = 1;
-    fn_12_2C9C4(state);
+    fn_12_2C9C4( (SfplyHandle *)(fn_12_2CC24_MovieModuleState *)(state));
     return 0;
 }
 /* fzgx:end fn_12_2CC24 */
 
-/* fzgx:begin SFD_IsSvrWait noprologue */
-
+/* fzgx:begin SFD_IsSvrWait */
 /* --- rel/movie_module/SFD_IsSvrWait.c --- */
-extern SfdLibraryWork lbl_12_bss_7C64;
 
 
 
 int SFD_IsSvrWait(void) {
-    SfdHandle **handles = lbl_12_bss_7C64.handles;
+    SfdHandle **handles = (*((SfdLibraryWork *)&lbl_12_bss_7C64)).handles;
     int i;
     int waiting;
     SfdHandle *handle;
@@ -1462,18 +1647,16 @@ int SFD_IsSvrWait(void) {
 }
 /* fzgx:end SFD_IsSvrWait */
 
-/* fzgx:begin fn_12_2CD44 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_2CD44 */
 /* --- rel/movie_module/fn_12_2CD44.c --- */
 /* --- rel/movie_module/fn_12_2CD44.c --- */
-typedef struct MovieModuleState {
+typedef struct fn_12_2CD44_MovieModuleState {
     u8 _pad_0[0x44];
     u32 field_44;
     u32 field_48;
-} MovieModuleState;
+} fn_12_2CD44_MovieModuleState;
 
-u32 fn_12_2CD44(MovieModuleState *state) {
+u32 fn_12_2CD44(fn_12_2CD44_MovieModuleState *state) {
     if (state->field_48 - 1 > 3) {
         return 1;
     }
@@ -1481,14 +1664,11 @@ u32 fn_12_2CD44(MovieModuleState *state) {
 }
 /* fzgx:end fn_12_2CD44 */
 
-/* fzgx:begin fn_12_2CD6C noprologue */
-
+/* fzgx:begin fn_12_2CD6C */
 /* --- rel/movie_module/fn_12_2CD6C.c --- */
-extern void fn_12_2EBAC(void);
 
 void fn_12_2CD6C(void) {
     fn_12_2EBAC();
 }
 #undef v12
-
 /* fzgx:end fn_12_2CD6C */

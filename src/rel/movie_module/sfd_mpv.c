@@ -1,4 +1,13 @@
 #include "types.h"
+typedef struct MPVMCContext MPVMCContext;
+typedef struct SfdAudioOutputCallbacks SfdAudioOutputCallbacks;
+typedef struct SfdSeeWork SfdSeeWork;
+typedef struct SfdVideoFrameState SfdVideoFrameState;
+typedef struct fn_12_26C0C_SfdHandle fn_12_26C0C_SfdHandle;
+typedef struct fn_12_27C58_SJ fn_12_27C58_SJ;
+typedef struct fn_12_27C58_SJInterface fn_12_27C58_SJInterface;
+typedef struct fn_12_27C58_SfdMpvPictureUserData fn_12_27C58_SfdMpvPictureUserData;
+typedef struct fn_12_27C58_SfdTransportSetup fn_12_27C58_SfdTransportSetup;
 #include "sofdec/sj.h"
 #include "rel/movie_module/data/lbl_12_rodata_A18.h"
 
@@ -766,23 +775,61 @@ typedef struct fn_12_28CC4_SfdBufferTransfer {
     fn_12_28CC4_SJCK chunks[2];
     s32 reserved[3];
 } fn_12_28CC4_SfdBufferTransfer;
+
+typedef struct MPVFrameBuffers {
+    int planes[10];
+    int decoded_dct_count;
+    int skipped_dct_count;
+} MPVFrameBuffers;
+
+typedef struct SfdTimerSummary {
+    int fields[8];
+} SfdTimerSummary;
+
+typedef struct SfdMpvPictureUserData {
+    void *buffer;
+    int size;
+} SfdMpvPictureUserData;
+
+typedef struct SfdMpvFrame {
+    int state;
+    void *frame_buffer;
+    int display_time_value;
+    int display_time_scale;
+    int field_40;
+    int field_44;
+    int picture_order;
+    int field_4C;
+    int field_50;
+    SfdMpvPictureUserData *picture_user_buffer;
+    unsigned int picture_info[20];
+} SfdMpvFrame;
+
+typedef struct MovieData {
+    s32 ready;
+    u8 pad04[8];
+    MovieBlob blob;
+    u8 pad34[0x200];
+    s32 field_0234;
+} MovieData;
+
+typedef struct SfdBufferTransfer {
+    fn_12_28CC4_SJCK chunks[2];
+    s32 reserved[3];
+} SfdBufferTransfer;
 extern s32 fn_12_C218(void *arg0, MovieArgs *args, s32 *result);
 extern int fn_12_24A88(int arg0, u32 arg1);
 extern u32 fn_12_2D73C(u8 *base, int index);
 extern void fn_12_24970();
 extern void fn_12_2AB00(void *);
 extern void fn_12_24950();
-extern int fn_12_2ABF0(void *);
-extern fn_12_26B18_MovieData *fn_12_2A9DC(void *, int *);
-extern void fn_12_269E4(struct fn_12_269E4_Arg0 *arg0, struct fn_12_269E4_Arg1 *arg1, struct fn_12_269E4_Arg2 *arg2);
-extern u32 lbl_12_bss_96A0[28];
 extern void *memcpy(void *dst, const void *src, u32 size);
-extern s32 fn_12_CBC8(u32 arg0);
 extern void fn_12_33428(u32 *dst, u32 value, u32 count);
 extern s32 fn_12_26D68(Sig_fn_12_24A88_MovieObject *movie, MovieSetup *setup);
 extern void *fn_12_CF2C(void);
 extern void fn_12_26D24(Sig_fn_12_24A88_MovieObject *movie, s32 code);
 extern int fn_12_A6E8(MPVContext *handle, MPVErrorCallback callback, int object);
+extern s32 fn_12_CBC8(u32 arg0);
 extern void fn_12_CAE4(void *, int, int);
 fn_12_27C58_SfdMpvFrame *fn_12_2AB68(fn_12_27C58_SfdHandle *handle);
 extern u32 fn_12_2AAD4(struct Sig_fn_12_2AAD4_fn_12_2AAD4_Arg0 *);
@@ -791,26 +838,19 @@ extern void fn_12_2E374(u32 arg0, u32 arg1, u32 arg2);
 extern s64 fn_12_335B8(void);
 extern u32 fn_80057D88(u32 arg0, u32 arg1, u32 arg2);
 extern int fn_12_A858(MPVContext *decoder, SJ *stream, fn_12_27478_MPVFrameBuffers *buffers);
-extern void SFTMR_AddTsum(fn_12_27478_SfdTimerSummary *summary, unsigned long long time);
+extern void SFTMR_AddTsum(SfdTimerSummary *summary, long long elapsed);
 extern void fn_12_21E20(fn_12_28CC4_SfdHandle *handle, s32 buffer, s32 size);
 extern void fn_12_2AB54(int* value);
 extern void fn_12_2AC80(fn_12_27478_SfdHandle *handle, int state);
 extern void fn_12_2AB2C(int *value);
 extern void fn_12_2AB40(int *arg0);
-extern void fn_12_CCB0(MPVContext *decoder, int *decoded, int *skipped);
+extern void fn_12_CCB0(const MovieData *movie, u32 *first, u32 *second);
 extern void fn_12_2BA6C(fn_12_27478_SfdHandle *handle, int count, int picture_type);
 extern int fn_12_332DC(int a, int b, int c, int d);
 extern s32 fn_12_A374(s32 arg0, s32 length, s32 count);
 extern void fn_12_2EDAC(void *, int);
 extern int fn_12_2ED74(void *, int);
 extern int fn_12_A9C4(void *movie, void *out_a, void *out_b);
-extern int fn_12_27C58(fn_12_27C58_SfdHandle *, SfdMpvPlaybackSettings *);
-void SFTIM_InitTtu(SfdTimerTimeUnit *unit, int scale);
-extern const int lbl_12_rodata_E10[];
-extern const s32 lbl_12_rodata_C10[9];
-extern s32 fn_12_334FC(s32 a, s32 b, s32 c);
-extern u32 lbl_12_rodata_C54[9];
-extern u32 lbl_12_rodata_C34[8];
 extern void fn_12_2814C(s32 value, s32 index, s32 drop, s32 offset, s32 *out);
 extern void fn_12_CA84(void *decoder, int size, void *buffer);
 extern void fn_12_CA60(void *decoder, int *a, int *b);
@@ -818,6 +858,7 @@ extern int fn_12_C2C8(void *decoder, SJ *stream);
 extern s32 fn_12_AB60(u32 arg0, u32 arg1);
 extern u8 *fn_12_A0D8(u8 *data, s32 size, u32 mask);
 extern int fn_12_2CDD0(fn_12_284F8_SfdHandle *handle, int parameter, const unsigned char *delimiter, Entry *entry);
+extern const int lbl_12_rodata_E10[];
 extern unsigned int UTY_MulDiv(int multiplicand, int multiplier, int divisor);
 extern s32 memcmp(u32 arg0, u32 arg1, u32 arg2);
 extern void fn_12_2D7DC(u8 *base, int index, int value);
@@ -826,6 +867,7 @@ extern int fn_12_AB00(void *obj, int *value);
 extern int fn_12_AA38(void *movie, void *out_a, void *out_b, void *out_c);
 extern int fn_12_21F38(fn_12_284F8_SfdHandle *handle, int index);
 extern void *fn_12_57F0(void *dst, const void *src, u32 size);
+extern int fn_12_27C58(fn_12_27C58_SfdHandle *handle, SfdMpvPlaybackSettings *settings);
 extern int fn_12_21E40(void *module, int index, int *movie_id);
 extern s32 fn_12_21F28(fn_12_28CC4_SfdHandle *handle, s32 buffer);
 extern u32 fn_12_23250(u32 arg0);
@@ -843,21 +885,30 @@ extern void fn_12_A7B0(void *movie, SJ *sj);
 extern void fn_12_2B9F8(fn_12_28CC4_SfdHandle *handle, s32 count, s32 picture_type);
 extern int fn_12_27478(fn_12_27478_SfdHandle *handle, SJ *stream);
 extern void fn_12_22008(fn_12_28CC4_SfdHandle *handle, s32 buffer, s32 size);
-extern int fn_12_29524(fn_12_29524_SfdBufferTransfer *, int, const unsigned char *);
-extern char *fn_12_A1C4(char *text, s32 length, u32 mask);
-int fn_12_21C00(fn_12_298AC_SfdHandle *handle, int buffer_index);
-extern void fn_12_21F48(u8 *module, int index, void *movie, void *stream);
-void fn_12_21FA4(fn_12_298AC_SfdHandle *handle, int buffer_index, unsigned char **position, unsigned char **end_position);
 extern int fn_12_23F00(fn_12_29FF8_MovieModule *module);
 extern s32 fn_12_24990();
 extern int fn_12_298AC(fn_12_298AC_SfdHandle *handle, int *active_size, int *delimiter_type);
 extern int fn_12_28CC4(fn_12_28CC4_SfdHandle *handle, s32 active_size, s32 delimiter_type, int *processed);
 extern int fn_12_21D50(fn_12_29FF8_MovieModule *module, int value);
 extern int fn_12_2AC8C(fn_12_29FF8_MovieModule *module);
+extern int fn_12_2ABF0(void *);
 extern int fn_12_21E94(fn_12_29FF8_MovieModule *module, int value);
 extern int fn_12_2F1B4(fn_12_29FF8_MovieModule *module, int value);
 extern void fn_12_21D60(fn_12_29FF8_MovieModule *module, int value, int flag);
 extern void fn_12_21D40(void *base, int index, int value);
+extern fn_12_26B18_MovieData *fn_12_2A9DC(void *, int *);
+extern void fn_12_269E4(struct fn_12_269E4_Arg0 *arg0, struct fn_12_269E4_Arg1 *arg1, struct fn_12_269E4_Arg2 *arg2);
+extern u32 lbl_12_bss_96A0[28];
+void SFTIM_InitTtu(SfdTimerTimeUnit *unit, int scale);
+extern const s32 lbl_12_rodata_C10[9];
+extern s32 fn_12_334FC(s32 a, s32 b, s32 c);
+extern u32 lbl_12_rodata_C54[9];
+extern u32 lbl_12_rodata_C34[8];
+extern int fn_12_29524(fn_12_29524_SfdBufferTransfer *transfer, int current_type, const unsigned char *delimiter);
+extern char *fn_12_A1C4(char *text, s32 length, u32 mask);
+int fn_12_21C00(fn_12_298AC_SfdHandle *handle, int buffer_index);
+extern void fn_12_21F48(u8 *module, int index, void *movie, void *stream);
+void fn_12_21FA4(fn_12_298AC_SfdHandle *handle, int buffer_index, unsigned char **position, unsigned char **end_position);
 extern int fn_12_29FF8();
 extern void fn_12_D038(void);
 extern u8 lbl_12_bss_9710[73760];
@@ -1146,8 +1197,8 @@ typedef struct fn_12_26C0C_SfdTransportState {
         struct {
             unsigned char padding_context[8];
             void *context;
-        } view_context;
-    } fields;
+        } fn_12_26C0C_view_context;
+    } fn_12_26C0C_fields;
 } fn_12_26C0C_SfdTransportState;
 
 struct fn_12_26C0C_SfdHandle {
@@ -1156,14 +1207,14 @@ struct fn_12_26C0C_SfdHandle {
         struct {
             unsigned char padding_transports[6816];
             fn_12_26C0C_SfdTransportState transports[9];
-        } view_transports;
-    } fields;
+        } fn_12_26C0C_view_transports;
+    } fn_12_26C0C_fields;
 };
 
 static inline int sfmpv_StopSub(fn_12_26C0C_SfdHandle *handle) {
     int result;
     result = 0;
-    if (handle->fields.view_transports.transports[2].fields.view_context.context == 0) {
+    if (handle->fn_12_26C0C_fields.fn_12_26C0C_view_transports.transports[2].fn_12_26C0C_fields.fn_12_26C0C_view_context.context == 0) {
         result = 0;
     }
     return result;
@@ -2053,7 +2104,883 @@ int fn_12_27884(MovieModule *arg0, int *arg1) {
 #pragma opt_propagation reset
 /* fzgx:end fn_12_27884 */
 
-/* fzgx:begin fn_12_27C58 */
+/* fzgx:begin fn_12_27C58 noprologue */
+#include "types.h"
+typedef struct MPVMCContext MPVMCContext;
+typedef struct SfdAudioOutputCallbacks SfdAudioOutputCallbacks;
+typedef struct SfdSeeWork SfdSeeWork;
+typedef struct SfdVideoFrameState SfdVideoFrameState;
+typedef struct fn_12_26C0C_SfdHandle fn_12_26C0C_SfdHandle;
+typedef struct fn_12_27C58_SJ fn_12_27C58_SJ;
+typedef struct fn_12_27C58_SJInterface fn_12_27C58_SJInterface;
+typedef struct fn_12_27C58_SfdMpvPictureUserData fn_12_27C58_SfdMpvPictureUserData;
+typedef struct fn_12_27C58_SfdTransportSetup fn_12_27C58_SfdTransportSetup;
+#include "sofdec/sj.h"
+#include "rel/movie_module/data/lbl_12_rodata_A18.h"
+
+typedef struct MovieArgs {
+    u32 field_0000;
+    u32 field_0004;
+} MovieArgs;
+
+typedef struct fn_12_270AC_MovieObject {
+    u8 pad_0038[0x38];
+    int field_0038;
+    u8 pad_003c[0x1af4];
+    void *field_1b30;
+    u8 pad_1b34[0x38c];
+    void *field_1ec0;
+} fn_12_270AC_MovieObject;
+
+typedef struct SfdCreateConfig {
+    union {
+        unsigned char padding_extent[68];
+        struct {
+            unsigned char padding_video_output_format[56];
+            int video_output_format;
+        } view_video_output_format;
+    } fields;
+} SfdCreateConfig;
+
+typedef struct fn_12_27C58_SfdTransportState {
+    union {
+        unsigned char padding_extent[68];
+        struct {
+            unsigned char padding_context[8];
+            void *context;
+        } view_context;
+        struct {
+            unsigned char padding_state[32];
+            int state;
+        } view_state;
+    } fields;
+} fn_12_27C58_SfdTransportState;
+
+typedef struct fn_12_27C58_SfdHandle fn_12_27C58_SfdHandle;
+
+struct fn_12_27C58_SfdHandle {
+    union {
+        unsigned char padding_extent[13720];
+        struct {
+            SfdCreateConfig create_config;
+        } view_create_config;
+        struct {
+            unsigned char padding_transports[6816];
+            fn_12_27C58_SfdTransportState transports[9];
+        } view_transports;
+    } fields;
+};
+
+typedef int (*SfdTransportLifecycleFn)(fn_12_27C58_SfdHandle *handle);
+
+typedef int (*SfdTransportPauseFn)(fn_12_27C58_SfdHandle *handle, int state);
+
+typedef int (*SfdTransportBufferFn)(fn_12_27C58_SfdHandle *handle, void *buffer);
+
+typedef int SfdTransportValue;
+
+typedef int (*SfdTransportTransferFn)(fn_12_27C58_SfdHandle *handle, SfdTransportValue parameter, int value);
+
+typedef struct SfdTransportInterface SfdTransportInterface;
+
+struct SfdTransportInterface {
+    SfdTransportLifecycleFn init;
+    SfdTransportLifecycleFn finish;
+    SfdTransportLifecycleFn exec_server;
+    SfdTransportLifecycleFn create;
+    SfdTransportLifecycleFn destroy;
+    SfdTransportLifecycleFn standby;
+    SfdTransportLifecycleFn start;
+    SfdTransportLifecycleFn stop;
+    SfdTransportPauseFn pause;
+    SfdTransportBufferFn get_write;
+    SfdTransportTransferFn add_write;
+    SfdTransportBufferFn get_read;
+    SfdTransportTransferFn add_read;
+    SfdTransportTransferFn seek;
+};
+
+typedef struct fn_12_298AC_SfdTransportState {
+    int prepared;
+    int terminated;
+    void *context;
+    const SfdTransportInterface *interface;
+    int parameter_10;
+    int parameter_14;
+    int parameter_18;
+    int buffer_output3;
+    int state;
+    unsigned char unknown_0024[0x20];
+} fn_12_298AC_SfdTransportState;
+
+typedef struct fn_12_298AC_SfdHandle fn_12_298AC_SfdHandle;
+
+struct fn_12_298AC_SfdHandle {
+    unsigned char unknown_0000[0x28];
+    int ring_alignment;
+    unsigned char unknown_002C[0x1AA0 - 0x2C];
+    fn_12_298AC_SfdTransportState transports[9];
+};
+
+typedef struct MovieBlob {
+    s32 field_0000[10];
+} MovieBlob;
+
+typedef struct fn_12_267C0_MovieState {
+    void *field_0000;
+    u8 pad04[0x70];
+    s32 field_0074;
+    s32 field_0078;
+    u8 pad7c[0xc];
+    s32 field_0088;
+} fn_12_267C0_MovieState;
+
+typedef struct fn_12_267C0_MovieData {
+    s32 ready;
+    u8 pad04[8];
+    MovieBlob blob;
+    u8 pad34[0x200];
+    s32 field_0234;
+} fn_12_267C0_MovieData;
+
+typedef struct fn_12_267C0_MovieObject {
+    u8 pad_0000[0xcdc];
+    MovieBlob blob;
+    u8 pad_0d04[0xe2c];
+    fn_12_267C0_MovieState *state;
+    u8 pad_1b34[0xdd4];
+    fn_12_267C0_MovieData *movie;
+} fn_12_267C0_MovieObject;
+
+typedef struct fn_12_27478_SfdTimeCode {
+    int fields[6];
+    int frame_offset;
+} fn_12_27478_SfdTimeCode;
+
+typedef struct fn_12_27478_SfdMpvTimeCodeSnapshot {
+    int valid;
+    fn_12_27478_SfdTimeCode timecode;
+    int value;
+    int scale;
+} fn_12_27478_SfdMpvTimeCodeSnapshot;
+
+typedef struct fn_12_27478_SfdMpvDecodeTimer {
+    unsigned char reserved_000[0x1C];
+    fn_12_27478_SfdMpvTimeCodeSnapshot initial;
+    unsigned char reserved_044[0x50];
+    fn_12_27478_SfdMpvTimeCodeSnapshot current;
+    unsigned char reserved_0BC[0x28];
+    fn_12_27478_SfdMpvTimeCodeSnapshot output_start;
+    unsigned char reserved_10C[0x14];
+    int field_120;
+} fn_12_27478_SfdMpvDecodeTimer;
+
+typedef struct MPVContext MPVContext;
+
+struct MPVContext {
+    union {
+        unsigned char padding_extent[4992];
+        struct {
+            unsigned char padding_state[392];
+            s32 state;
+        } view_state;
+    } fields;
+};
+
+typedef struct fn_12_27478_MPVPictureInfo {
+    int fields_00[6];
+    int picture_type;
+    int fields_1C[6];
+    int field_38;
+} fn_12_27478_MPVPictureInfo;
+
+typedef struct fn_12_27478_SfdMpvPictureUserData {
+    void *buffer;
+    int size;
+} fn_12_27478_SfdMpvPictureUserData;
+
+typedef struct fn_12_27478_SfdMpvFrame {
+    int state;
+    void *frame_buffer;
+    int display_time_value;
+    int display_time_scale;
+    int field_40;
+    int field_44;
+    int picture_order;
+    int field_4C;
+    int field_50;
+    fn_12_27478_SfdMpvPictureUserData *picture_user_buffer;
+    unsigned int picture_info[20];
+} fn_12_27478_SfdMpvFrame;
+
+typedef struct fn_12_27478_SfdMpvFrameWork {
+    MPVContext *decoder;
+    unsigned char reserved_004[0x70];
+    int decode_state;
+    unsigned char reserved_078[0xC];
+    int field_084;
+    int field_088;
+    fn_12_27478_MPVPictureInfo picture_info;
+    unsigned char reserved_0C4[0x6C];
+    fn_12_27478_SfdMpvFrame *pending_frame;
+    unsigned char reserved_134[0x790];
+    void *picture_buffer;
+    int picture_buffer_size;
+} fn_12_27478_SfdMpvFrameWork;
+
+typedef struct fn_12_27478_SfdTimerSummary {
+    int fields[8];
+} fn_12_27478_SfdTimerSummary;
+
+typedef struct fn_12_27478_SfdHandle {
+    unsigned char reserved_0000[0x38];
+    int video_output_format;
+    unsigned char reserved_003C[0x918];
+    int runtime_field_08;
+    int runtime_field_0C;
+    unsigned char reserved_095C[0x3C];
+    int error_field_0C;
+    int error_field_10;
+    unsigned char reserved_09A0[0x10];
+    int conditions_primary_4;
+    unsigned char reserved_09B4[0x30C];
+    fn_12_27478_SfdMpvDecodeTimer timer_state;
+    unsigned char reserved_0DE4[0x11C];
+    int latest_time_value;
+    int latest_time_scale;
+    unsigned char reserved_0F08[0xC28];
+    fn_12_27478_SfdMpvFrameWork *video_work;
+    int video_field_1B34;
+    int video_parameter;
+    unsigned char reserved_1B3C[0xDDC];
+    fn_12_27478_SfdTimerSummary timer_summaries[4];
+} fn_12_27478_SfdHandle;
+
+typedef struct fn_12_284F8_SfdPlaybackSettings {
+    int unk_0;
+    int unk_4;
+    int unk_8;
+    int unk_C;
+    int unk_10;
+    int frame_rate_code;
+    u8 unk_18[8];
+    int unk_20;
+} fn_12_284F8_SfdPlaybackSettings;
+
+typedef struct fn_12_284F8_SfdTimeCode {
+    int frame_rate_code;
+    int drop_frame;
+    int hours;
+    int minutes;
+    int seconds;
+    int frames;
+    int frame_offset;
+} fn_12_284F8_SfdTimeCode;
+
+typedef struct fn_12_284F8_SfdMpvTimeCodeSnapshot {
+    int valid;
+    fn_12_284F8_SfdTimeCode timecode;
+    int value;
+    int scale;
+} fn_12_284F8_SfdMpvTimeCodeSnapshot;
+
+typedef struct fn_12_284F8_SfdMpvDecodeTimer {
+    u8 unk_000[0x1C];
+    fn_12_284F8_SfdMpvTimeCodeSnapshot initial;
+    fn_12_284F8_SfdMpvTimeCodeSnapshot maximum;
+    u8 unk_06C[0x28];
+    fn_12_284F8_SfdMpvTimeCodeSnapshot current;
+    u8 unk_0BC[0x58];
+} fn_12_284F8_SfdMpvDecodeTimer;
+
+typedef struct fn_12_284F8_MPVPictureInfo {
+    int width;
+    int height;
+    int macroblocks_per_row;
+    int macroblock_rows;
+    int frame_rate_code;
+    int temporal_reference;
+    int picture_type;
+    int drop_frame_flag;
+    int time_code_hours;
+    int time_code_minutes;
+    int time_code_seconds;
+    int time_code_pictures;
+    int unk_30;
+} fn_12_284F8_MPVPictureInfo;
+
+typedef struct Entry {
+    int unk_0;
+    int unk_4;
+    int unk_8;
+} Entry;
+
+typedef struct fn_12_284F8_SfdMpvFrameWork {
+    void *decoder;
+    u8 unk_004[0x84];
+    int unk_88;
+    fn_12_284F8_MPVPictureInfo picture_info;
+    u8 unk_0C0[0x1C];
+    int unk_DC;
+    int unk_E0;
+    int unk_E4;
+    int unk_E8;
+    int unk_EC;
+    int unk_F0;
+    Entry unk_F4;
+    u8 unk_100[0x7C0];
+    void *picture_buffer;
+    int picture_buffer_size;
+    int unk_8C8;
+} fn_12_284F8_SfdMpvFrameWork;
+
+typedef struct SeekBuffer {
+    u8 unk_0[0x200];
+    int unk_200;
+} SeekBuffer;
+
+typedef struct SeekEntry {
+    int unk_0;
+    int unk_4;
+    int unk_8;
+    fn_12_284F8_SfdMpvTimeCodeSnapshot unk_C;
+    SeekBuffer unk_34;
+} SeekEntry;
+
+typedef struct SeekWork {
+    u8 unk_0[0xAC4];
+    SeekEntry unk_AC4;
+} SeekWork;
+
+typedef struct fn_12_284F8_SfdHandle {
+    u8 unk_0000[0x90C];
+    fn_12_284F8_SfdPlaybackSettings playback_settings;
+    u8 unk_0930[0x390];
+    fn_12_284F8_SfdMpvDecodeTimer timer_state;
+    int unk_DD4;
+    u8 unk_0DD8[0xD58];
+    fn_12_284F8_SfdMpvFrameWork *video_work;
+    int unk_1B34;
+    int video_parameter;
+    u8 unk_1B3C[0xDCC];
+    SeekWork *seek_work;
+} fn_12_284F8_SfdHandle;
+
+typedef struct fn_12_28CC4_SfdTransportSetup {
+    u8 reserved_00[0xC];
+    const void *audio_transport;
+} fn_12_28CC4_SfdTransportSetup;
+
+typedef struct fn_12_28CC4_SfdTimeCode {
+    s32 frame_rate_code;
+    s32 drop_frame;
+    s32 hours;
+    s32 minutes;
+    s32 seconds;
+    s32 frames;
+    s32 frame_offset;
+} fn_12_28CC4_SfdTimeCode;
+
+typedef struct fn_12_28CC4_SfdMpvTimeCodeSnapshot {
+    s32 valid;
+    fn_12_28CC4_SfdTimeCode timecode;
+    s32 value;
+    s32 scale;
+} fn_12_28CC4_SfdMpvTimeCodeSnapshot;
+
+typedef struct fn_12_28CC4_SfdMpvDecodeTimer {
+    u8 reserved_000[0x1C];
+    fn_12_28CC4_SfdMpvTimeCodeSnapshot initial;
+    fn_12_28CC4_SfdMpvTimeCodeSnapshot maximum;
+    fn_12_28CC4_SfdMpvTimeCodeSnapshot reserved_snapshot;
+    fn_12_28CC4_SfdMpvTimeCodeSnapshot current;
+    fn_12_28CC4_SfdMpvTimeCodeSnapshot previous;
+    u8 reserved_0E4[0x20];
+    s32 reference_time_origin;
+    u8 reserved_108[0x18];
+    s32 reference_time_offset;
+    u8 reserved_124[0x88];
+    s32 total_samples;
+} fn_12_28CC4_SfdMpvDecodeTimer;
+
+typedef struct fn_12_28CC4_SfdMpvFrameWork {
+    void *decoder;
+    u8 reserved_004[0x74];
+    s32 decode_mode;
+    u8 reserved_07C[0xC];
+    s32 concat_count;
+    u8 reserved_08C[0x18];
+    s32 picture_type;
+} fn_12_28CC4_SfdMpvFrameWork;
+
+typedef struct fn_12_28CC4_SfdHandle {
+    fn_12_28CC4_SfdTransportSetup *transport_setup;
+    u8 reserved_0004[0x968];
+    s32 decode_wait;
+    u8 reserved_0970[0x350];
+    fn_12_28CC4_SfdMpvDecodeTimer timer;
+    u8 reserved_0E70[0xCC0];
+    fn_12_28CC4_SfdMpvFrameWork *video_work;
+    u8 reserved_1B34[0x4];
+    s32 video_buffer;
+    u8 reserved_1B3C[0xC];
+    s32 video_total;
+} fn_12_28CC4_SfdHandle;
+
+typedef struct MovieEntry {
+    void *data;
+    u32 field04;
+    u32 field08;
+    u32 field0c;
+    u32 field10;
+    u32 field14;
+    u32 field18;
+    u32 field1c;
+    u32 field20;
+    u32 field24;
+    u32 field28;
+    u32 field2c;
+    u8 payload[0x40];
+} MovieEntry;
+
+typedef struct fn_12_26C2C_MovieModule {
+    u8 pad[0x1b30];
+    MovieEntry *entry;
+} fn_12_26C2C_MovieModule;
+
+typedef void (*Sig_fn_12_24A88_MovieCallback)(void *, s32);
+
+typedef struct Sig_fn_12_24A88_MovieObject {
+    u8 pad_0000[0x48];
+    s32 state;
+    u8 pad_004c[0x940];
+    Sig_fn_12_24A88_MovieCallback callback;
+    void *callback_context;
+    s32 callback_data;
+} Sig_fn_12_24A88_MovieObject;
+
+typedef struct fn_12_29FF8_MovieModule {
+    u8 pad_0000[0x2c];
+    int field_2c;
+    u8 pad_0030[0x48];
+    int field_78;
+    u8 pad_007c[0x78];
+    int field_f4;
+    u8 pad_00f8[0x854];
+    int field_94c;
+    u8 pad_0950[0x10];
+    s32 field_960;
+    u8 pad_0964[0x98];
+    int field_9fc;
+    u8 pad_a00[0x3a4];
+    int field_da4;
+    u8 pad_da8[0x1c];
+    int field_dc4;
+    u8 pad_dc8[0xd68];
+    void *field_1b30;
+    int field_1b34;
+    int field_1b38;
+    int field_1b3c;
+    u8 pad_1b40[0x794];
+    int field_22d4;
+    u8 pad_22d8[0x8];
+    int field_22e0;
+} fn_12_29FF8_MovieModule;
+
+typedef struct fn_12_26B18_MovieData {
+    unsigned char pad_0[0x14];
+    int field_14;
+    int field_18;
+} fn_12_26B18_MovieData;
+
+struct fn_12_269E4_arg0_1138_E116 {
+    u8 pad_0[0x28];
+    u32 unk_28;
+    u8 pad_2C[0x48];
+};
+
+struct fn_12_269E4_Arg0 {
+    u8 pad_0[0x38];
+    u32 unk_38;
+    u8 pad_3C[0x10FC];
+    struct fn_12_269E4_arg0_1138_E116 unk_1138[1];
+    u8 pad_11AC[0x984];
+    u32 unk_1B30;
+    u8 pad_1B34[0x8];
+    u32 unk_1B3C;
+};
+
+struct fn_12_269E4_Arg1 {
+    u8 pad_0[0x4];
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_C;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1C;
+    u32 unk_20;
+    u32 unk_24;
+    u32 unk_28;
+    u32 unk_2C;
+    u32 unk_30;
+    u32 unk_34;
+    u8 pad_38[0x8];
+    u32 unk_40;
+    u8 pad_44[0x18];
+    u32 unk_5C;
+    u32 unk_60;
+    u32 unk_64;
+    u32 unk_68;
+    u32 unk_6C;
+    u32 unk_70;
+    u32 unk_74;
+};
+
+struct fn_12_269E4_Arg2 {
+    u32 unk_0;
+};
+
+typedef struct MovieInfo {
+    u32 field00;
+    u32 field04;
+    u32 field08;
+    u32 field0c;
+    u32 buf0;      /* 0x10 */
+    u32 field14;
+    u32 field18;
+    s32 count;     /* 0x1c */
+    u32 buf1;      /* 0x20 */
+} MovieInfo;
+
+typedef struct MovieChannel {
+    u32 field00;
+    u32 buf;
+    u32 field08;
+    u32 field0c;
+    u32 field10;
+    u32 field14;
+    u32 field18;
+    u32 field1c;
+    u32 field20;
+    u32 *slot;
+    u32 queue[20];
+} MovieChannel;
+
+typedef struct MovieSetup {
+    u32 field000;
+    MovieInfo info;        /* 0x004 */
+    u32 pair[2];           /* 0x028 */
+    u32 bufs[16];          /* 0x030 */
+    u32 field070;
+    u32 field074;
+    u32 field078;
+    u32 field07c;
+    u32 field080;
+    u32 field084;
+    u32 field088;
+    u32 queue[20];         /* 0x08c */
+    s32 field0dc;
+    u32 field0e0;
+    s32 field0e4;
+    u32 field0e8;
+    u32 field0ec;
+    u32 field0f0;
+    s32 field0f4;
+    u32 field0f8;
+    s32 field0fc;
+    u32 field100;
+    u32 field104;
+    u8 pad108[0x20];
+    u32 field128;
+    u32 field12c;
+    u32 field130;
+    u32 pad134;
+    MovieChannel ch[16];   /* 0x138 */
+    u32 field8b8;
+    u32 field8bc;
+    u32 field8c0;
+    u32 field8c4;
+    u32 field8c8;
+    u32 slots[16][2];      /* 0x8cc */
+} MovieSetup;
+
+typedef void (*MPVErrorCallback)(void *object, int error);
+
+typedef struct fn_12_27C58_SfdMpvFrame {
+    union {
+        unsigned char padding_extent[120];
+        struct {
+            int state;
+        } view_state;
+        struct {
+            unsigned char padding_frame_buffer[4];
+            void *frame_buffer;
+        } view_frame_buffer;
+        struct {
+            unsigned char padding_display_time_value[8];
+            int display_time_value;
+        } view_display_time_value;
+        struct {
+            unsigned char padding_display_time_scale[12];
+            int display_time_scale;
+        } view_display_time_scale;
+        struct {
+            unsigned char padding_field_40[16];
+            int field_40;
+        } view_field_40;
+        struct {
+            unsigned char padding_field_44[20];
+            int field_44;
+        } view_field_44;
+        struct {
+            unsigned char padding_picture_order[24];
+            int picture_order;
+        } view_picture_order;
+        struct {
+            unsigned char padding_field_4C[28];
+            int field_4C;
+        } view_field_4C;
+        struct {
+            unsigned char padding_field_50[32];
+            int field_50;
+        } view_field_50;
+        struct {
+            unsigned char padding_picture_info[40];
+            unsigned int picture_info[20];
+        } view_picture_info;
+    } fields;
+} fn_12_27C58_SfdMpvFrame;
+
+typedef struct Sig_fn_12_2AB68_MovieEntry {
+    int used;
+    u8 pad[0x74];
+} Sig_fn_12_2AB68_MovieEntry;
+
+typedef struct Sig_fn_12_2AB68_MovieList {
+    u8 pad[0x134];
+    int count;
+    Sig_fn_12_2AB68_MovieEntry entries[1];
+} Sig_fn_12_2AB68_MovieList;
+
+typedef struct Sig_fn_12_2AB68_MovieObject {
+    u8 pad[0x1b30];
+    Sig_fn_12_2AB68_MovieList *list;
+} Sig_fn_12_2AB68_MovieObject;
+
+struct Sig_fn_12_2AAD4_fn_12_2AAD4_Arg0 {
+    u32 unk_0;
+};
+
+struct fn_12_27224_Arg0 {
+    u8 pad_0[0x1B30];
+    u32 list_1b30;
+};
+
+typedef struct fn_12_28CC4_SJCK {
+    unsigned char *data;
+    long len;
+} fn_12_28CC4_SJCK;
+
+typedef struct fn_12_28CC4_SJ fn_12_28CC4_SJ;
+
+typedef struct fn_12_28CC4_SJInterface {
+    void *reserved[6];
+    void (*get_chunk)(fn_12_28CC4_SJ *sj, int channel, int max_size, fn_12_28CC4_SJCK *chunk);
+    void (*unget_chunk)(fn_12_28CC4_SJ *sj, int channel, fn_12_28CC4_SJCK *chunk);
+    void (*put_chunk)(fn_12_28CC4_SJ *sj, int channel, fn_12_28CC4_SJCK *chunk);
+} fn_12_28CC4_SJInterface;
+
+struct fn_12_28CC4_SJ {
+    const fn_12_28CC4_SJInterface *interface;
+};
+
+typedef struct fn_12_27478_MPVFrameBuffers {
+    int planes[10];
+    int decoded_dct_count;
+    int skipped_dct_count;
+} fn_12_27478_MPVFrameBuffers;
+
+typedef struct SfdMpvPlaybackSettings {
+    union {
+        unsigned char padding_extent[64];
+        struct {
+            int width;
+        } view_width;
+        struct {
+            unsigned char padding_height[4];
+            int height;
+        } view_height;
+    } fields;
+} SfdMpvPlaybackSettings;
+
+typedef struct SfdTimerTimeUnit {
+    int active;
+    int fields_04[7];
+    unsigned short field_20;
+    unsigned short field_22;
+    int value;
+    int scale;
+} SfdTimerTimeUnit;
+
+typedef struct fn_12_28304_SfdTimeCode {
+    int frame_rate_code;
+    int drop_frame;
+    int hours;
+    int minutes;
+    int seconds;
+    int frames;
+    int frame_offset;
+} fn_12_28304_SfdTimeCode;
+
+typedef struct fn_12_28304_SfdMpvTimeCodeSnapshot {
+    int valid;
+    fn_12_28304_SfdTimeCode timecode;
+    int value;
+    int scale;
+} fn_12_28304_SfdMpvTimeCodeSnapshot;
+
+typedef struct fn_12_28304_SfdMpvDecodeTimer {
+    unsigned char reserved_000[0x1C];
+    fn_12_28304_SfdMpvTimeCodeSnapshot initial;
+    fn_12_28304_SfdMpvTimeCodeSnapshot maximum;
+} fn_12_28304_SfdMpvDecodeTimer;
+
+typedef struct fn_12_28304_SfdHandle {
+    unsigned char reserved_0000[0xCC0];
+    fn_12_28304_SfdMpvDecodeTimer timer_state;
+    unsigned char reserved_0D2C[0x1BDC];
+    void *seek_work;
+} fn_12_28304_SfdHandle;
+
+typedef struct fn_12_28304_MPVPictureInfo {
+    int width;
+    int height;
+    int macroblocks_per_row;
+    int macroblock_rows;
+    int frame_rate_code;
+    int temporal_reference;
+    int picture_type;
+    int drop_frame_flag;
+    int time_code_hours;
+    int time_code_minutes;
+    int time_code_seconds;
+    int time_code_pictures;
+} fn_12_28304_MPVPictureInfo;
+
+typedef struct fn_12_29524_SJCK {
+    unsigned char *data;
+    long len;
+} fn_12_29524_SJCK;
+
+typedef struct fn_12_29524_SfdBufferTransfer {
+    fn_12_29524_SJCK chunks[2];
+    int reserved[3];
+} fn_12_29524_SfdBufferTransfer;
+
+typedef struct fn_12_28CC4_SfdBufferTransfer {
+    fn_12_28CC4_SJCK chunks[2];
+    s32 reserved[3];
+} fn_12_28CC4_SfdBufferTransfer;
+extern s32 fn_12_C218(void *arg0, MovieArgs *args, s32 *result);
+extern int fn_12_24A88(int arg0, u32 arg1);
+extern u32 fn_12_2D73C(u8 *base, int index);
+extern void fn_12_24970();
+extern void fn_12_2AB00(void *);
+extern void fn_12_24950();
+extern int fn_12_2ABF0(void *);
+extern fn_12_26B18_MovieData *fn_12_2A9DC(void *, int *);
+extern void fn_12_269E4(struct fn_12_269E4_Arg0 *arg0, struct fn_12_269E4_Arg1 *arg1, struct fn_12_269E4_Arg2 *arg2);
+extern u32 lbl_12_bss_96A0[28];
+extern void *memcpy(void *dst, const void *src, u32 size);
+extern s32 fn_12_CBC8(u32 arg0);
+extern void fn_12_33428(u32 *dst, u32 value, u32 count);
+extern s32 fn_12_26D68(Sig_fn_12_24A88_MovieObject *movie, MovieSetup *setup);
+extern void *fn_12_CF2C(void);
+extern void fn_12_26D24(Sig_fn_12_24A88_MovieObject *movie, s32 code);
+extern int fn_12_A6E8(MPVContext *handle, MPVErrorCallback callback, int object);
+extern void fn_12_CAE4(void *, int, int);
+fn_12_27C58_SfdMpvFrame *fn_12_2AB68(fn_12_27C58_SfdHandle *handle);
+extern u32 fn_12_2AAD4(struct Sig_fn_12_2AAD4_fn_12_2AAD4_Arg0 *);
+extern s32 fn_12_27224(struct fn_12_27224_Arg0 *arg0, u32 arg1, u32 arg2, u32 arg3);
+extern void fn_12_2E374(u32 arg0, u32 arg1, u32 arg2);
+extern s64 fn_12_335B8(void);
+extern u32 fn_80057D88(u32 arg0, u32 arg1, u32 arg2);
+extern int fn_12_A858(MPVContext *decoder, SJ *stream, fn_12_27478_MPVFrameBuffers *buffers);
+extern void SFTMR_AddTsum(fn_12_27478_SfdTimerSummary *summary, unsigned long long time);
+extern void fn_12_21E20(fn_12_28CC4_SfdHandle *handle, s32 buffer, s32 size);
+extern void fn_12_2AB54(int* value);
+extern void fn_12_2AC80(fn_12_27478_SfdHandle *handle, int state);
+extern void fn_12_2AB2C(int *value);
+extern void fn_12_2AB40(int *arg0);
+extern void fn_12_CCB0(MPVContext *decoder, int *decoded, int *skipped);
+extern void fn_12_2BA6C(fn_12_27478_SfdHandle *handle, int count, int picture_type);
+extern int fn_12_332DC(int a, int b, int c, int d);
+extern s32 fn_12_A374(s32 arg0, s32 length, s32 count);
+extern void fn_12_2EDAC(void *, int);
+extern int fn_12_2ED74(void *, int);
+extern int fn_12_A9C4(void *movie, void *out_a, void *out_b);
+extern int fn_12_27C58(fn_12_27C58_SfdHandle *, SfdMpvPlaybackSettings *);
+void SFTIM_InitTtu(SfdTimerTimeUnit *unit, int scale);
+extern const int lbl_12_rodata_E10[];
+extern const s32 lbl_12_rodata_C10[9];
+extern s32 fn_12_334FC(s32 a, s32 b, s32 c);
+extern u32 lbl_12_rodata_C54[9];
+extern u32 lbl_12_rodata_C34[8];
+extern void fn_12_2814C(s32 value, s32 index, s32 drop, s32 offset, s32 *out);
+extern void fn_12_CA84(void *decoder, int size, void *buffer);
+extern void fn_12_CA60(void *decoder, int *a, int *b);
+extern int fn_12_C2C8(void *decoder, SJ *stream);
+extern s32 fn_12_AB60(u32 arg0, u32 arg1);
+extern u8 *fn_12_A0D8(u8 *data, s32 size, u32 mask);
+extern int fn_12_2CDD0(fn_12_284F8_SfdHandle *handle, int parameter, const unsigned char *delimiter, Entry *entry);
+extern unsigned int UTY_MulDiv(int multiplicand, int multiplier, int divisor);
+extern s32 memcmp(u32 arg0, u32 arg1, u32 arg2);
+extern void fn_12_2D7DC(u8 *base, int index, int value);
+extern void fn_12_28304(fn_12_28304_SfdHandle *handle, fn_12_28304_MPVPictureInfo *picture, int pts, int group_changed);
+extern int fn_12_AB00(void *obj, int *value);
+extern int fn_12_AA38(void *movie, void *out_a, void *out_b, void *out_c);
+extern int fn_12_21F38(fn_12_284F8_SfdHandle *handle, int index);
+extern void *fn_12_57F0(void *dst, const void *src, u32 size);
+extern int fn_12_21E40(void *module, int index, int *movie_id);
+extern s32 fn_12_21F28(fn_12_28CC4_SfdHandle *handle, s32 buffer);
+extern u32 fn_12_23250(u32 arg0);
+extern int fn_12_22FBC(fn_12_28CC4_SfdHandle *handle, s32 *samples, s32 *sample_rate);
+extern void fn_12_23120(void *arg0, int arg1);
+extern void fn_12_2EE48(fn_12_28CC4_SfdMpvTimeCodeSnapshot *snapshot, s32 value);
+extern u32 fn_12_A2C4(const u8 *data);
+extern s32 fn_12_231A0(u32 arg0);
+extern int fn_12_21D30(fn_12_28CC4_SfdHandle *handle, s32 buffer);
+extern void fn_12_2AC98(fn_12_28CC4_SfdHandle *handle);
+extern int fn_12_22390(u8 *module, int index, u32 *out);
+extern int fn_12_284F8(fn_12_284F8_SfdHandle *handle, SJCK *chunk, SJ *stream, int flag);
+extern int fn_12_27884(fn_12_28CC4_SfdHandle *handle, fn_12_28CC4_SJCK *chunk);
+extern void fn_12_A7B0(void *movie, SJ *sj);
+extern void fn_12_2B9F8(fn_12_28CC4_SfdHandle *handle, s32 count, s32 picture_type);
+extern int fn_12_27478(fn_12_27478_SfdHandle *handle, SJ *stream);
+extern void fn_12_22008(fn_12_28CC4_SfdHandle *handle, s32 buffer, s32 size);
+extern int fn_12_29524(fn_12_29524_SfdBufferTransfer *, int, const unsigned char *);
+extern char *fn_12_A1C4(char *text, s32 length, u32 mask);
+int fn_12_21C00(fn_12_298AC_SfdHandle *handle, int buffer_index);
+extern void fn_12_21F48(u8 *module, int index, void *movie, void *stream);
+void fn_12_21FA4(fn_12_298AC_SfdHandle *handle, int buffer_index, unsigned char **position, unsigned char **end_position);
+extern int fn_12_23F00(fn_12_29FF8_MovieModule *module);
+extern s32 fn_12_24990();
+extern int fn_12_298AC(fn_12_298AC_SfdHandle *handle, int *active_size, int *delimiter_type);
+extern int fn_12_28CC4(fn_12_28CC4_SfdHandle *handle, s32 active_size, s32 delimiter_type, int *processed);
+extern int fn_12_21D50(fn_12_29FF8_MovieModule *module, int value);
+extern int fn_12_2AC8C(fn_12_29FF8_MovieModule *module);
+extern int fn_12_21E94(fn_12_29FF8_MovieModule *module, int value);
+extern int fn_12_2F1B4(fn_12_29FF8_MovieModule *module, int value);
+extern void fn_12_21D60(fn_12_29FF8_MovieModule *module, int value, int flag);
+extern void fn_12_21D40(void *base, int index, int value);
+extern int fn_12_29FF8();
+extern void fn_12_D038(void);
+extern u8 lbl_12_bss_9710[73760];
+extern s32 fn_12_D0B8(s32 id, void *buf);
+extern void *memset(void *dst, int c, u32 n);
+extern u32 fn_12_2A85C(u32);
+
 /* --- rel/movie_module/fn_12_27C58.c --- */
 typedef struct fn_12_27C58_SJCK {
     unsigned char *data;
@@ -2861,7 +3788,7 @@ int fn_12_27C58(fn_12_27C58_SfdHandle *handle, SfdMpvPlaybackSettings *settings)
 }
 /* fzgx:end fn_12_27C58 */
 
-/* fzgx:begin fn_12_2814C */
+/* fzgx:begin fn_12_2814C noprologue */
 /* --- rel/movie_module/fn_12_2814C.c --- */
 
 void fn_12_2814C(s32 value, s32 index, s32 drop, s32 offset, s32 *out) {
@@ -4390,7 +5317,6 @@ int fn_12_2A434(fn_12_2A434_MovieModule *module, void *source, int count, int st
 /* fzgx:end fn_12_2A434 */
 
 /* fzgx:begin fn_12_2A508 */
-
 u32 fn_12_2A508(u32 arg0) {
     u32 v0;
     u32 t0, t1, t2;
@@ -4411,7 +5337,6 @@ u32 fn_12_2A508(u32 arg0) {
 /* fzgx:end fn_12_2A508 */
 
 /* fzgx:begin fn_12_2A55C */
-
 int fn_12_2A55C(void *arg0, int *arg1) {
     *arg1 = 0;
     if (fn_12_24990(arg0, arg1)) {

@@ -89,20 +89,8 @@ rel/movie_module/sfd_mpv/fn_12_2A308.c:
 rel/movie_module/sfd_mpv/fn_12_2A5C8.c:
 	.text       start:0x0002A5C8 end:0x0002A6FC align:4
 
-rel/movie_module/sfd_ply/fn_12_2B188.c:
-	.text       start:0x0002B188 end:0x0002B25C align:4
-
-rel/movie_module/sfd_ply/fn_12_2B25C.c:
-	.text       start:0x0002B25C end:0x0002B2E4
-
-rel/movie_module/sfd_ply/fn_12_2B2E4.c:
-	.text       start:0x0002B2E4 end:0x0002B358 align:4
-
 rel/movie_module/sfd_ply/fn_12_2B634.c:
-	.text       start:0x0002B634 end:0x0002B6B0
-
-rel/movie_module/sfd_ply/fn_12_2BA6C.c:
-	.text       start:0x0002BA6C end:0x0002BCF4 align:4
+	.text       start:0x0002B634 end:0x0002BCF4 align:4
 
 rel/movie_module/sfd_ply/fn_12_2CC24.c:
 	.text       start:0x0002CC24 end:0x0002CD44 align:4
@@ -214,7 +202,7 @@ rel/movie_module/sfd_adxt/fn_12_2145C.c:
 	.text       start:0x0002145C end:0x000215A4 align:4
 
 rel/movie_module/sfd_ply/fn_12_2B138.c:
-	.text       start:0x0002B138 end:0x0002B188 align:4
+	.text       start:0x0002B138 end:0x0002B358 align:4
 
 rel/movie_module/sfd_set/fn_12_2D500.c:
 	.text       start:0x0002D500 end:0x0002DAB4 align:4
@@ -269,7 +257,7 @@ rel/movie_module/fn_12_57F0.c:
 	.text       start:0x000057F0 end:0x00005810 align:4
 
 rel/movie_module/mps_dec/fn_12_5810.c:
-	.text       start:0x00005810 end:0x00005FA0 align:4
+	.text       start:0x00005810 end:0x0000670C align:4
 
 rel/movie_module/mpv_hdec/MPV_GoNextDelimSj.c:
 	.text       start:0x0000B100 end:0x0000B3E0 align:4
@@ -443,9 +431,6 @@ rel/movie_module/sfh_main/fn_12_32EAC.c:
 rel/movie_module/mpv_frm.c:
 	.text       start:0x0000A7B0 end:0x0000A9C4 align:4
 
-rel/movie_module/mps_dec/fn_12_62F8.c:
-	.text       start:0x000062F8 end:0x0000670C align:4
-
 rel/movie_module/mpv_dec/fn_12_975C.c:
 	.text       start:0x0000975C end:0x00009D08 align:4
 
@@ -550,12 +535,6 @@ rel/movie_module/sfd_adxt/fn_12_20B90.c:
 
 rel/movie_module/sfd_lib/fn_12_24950.c:
 	.text       start:0x00024950 end:0x00024C48 align:4
-
-rel/movie_module/sfd_ply/fn_12_2B6B0.c:
-	.text       start:0x0002B6B0 end:0x0002BA6C align:4
-
-rel/movie_module/mps_dec/fn_12_5FA0.c:
-	.text       start:0x00005FA0 end:0x000062F8 align:4
 
 rel/movie_module/sfx_lib/fn_12_341C.c:
 	.text       start:0x0000341C end:0x000034A8 align:4

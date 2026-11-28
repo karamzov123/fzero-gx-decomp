@@ -780,3 +780,9 @@ Follow-up Sofdec collapses + DOL pragma cleanup (`code_units` 1312 -> 1306, `rel
 - `rel/movie_module/mpv_umc.c`: 7 -> 5 units (forward-declared `MovieModule` in prologue)
 - `rel/movie_module/sfd_adxt.c`: 10 -> 8 units (forward-declared Sofdec handle structs in prologue)
 - `dol/gx/GXInit.c`: removed three redundant `#pragma peephole off` / `reset` pairs (`devprobe.py`: `SAME`)
+
+Breaking below 1,300 code units (`code_units` 1306 -> 1299, `rel_tu_files_one_unit` 94 -> 95),
+verified across `GFZP01`, `GFZJ01`, `GFZE01`, and `fzgx lint` (0 findings):
+
+- `rel/movie_module/mps_dec.c`: 3 -> 1 unit (full 1-unit collapse under `GC/1.3.2 -use_lmw_stmw on` after `#undef`-guarding per-block `READ_BITS`/`READ_BIT`/`SKIP_BITS` macros)
+- `rel/movie_module/sfd_ply.c`: 14 -> 9 units (forward-declared Sofdec handle structs in prologue + `tutruth` + greedy `relmerge --keep`)

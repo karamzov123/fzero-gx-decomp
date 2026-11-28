@@ -1,4 +1,5 @@
 #include "types.h"
+typedef struct MPVContext MPVContext;
 #include "sofdec/sj.h"
 
 typedef void (*fn1_t)(void *);
@@ -71,7 +72,7 @@ extern s16 *lbl_12_bss_6934;
 extern s16 *lbl_12_bss_6930;
 extern s16 *lbl_12_bss_6928;
 extern s16 *lbl_12_bss_691C;
-extern int MPV_GoNextDelimSj(fn_12_8F80_SJ *stream);
+extern int MPV_GoNextDelimSj(SJ *stream);
 extern s32 fn_12_9594(MovieBits *state, MovieCode *code, s32 *out, s32 *base);
 extern s16 *lbl_12_bss_6944;
 extern s16 *lbl_12_bss_6940;
@@ -265,7 +266,7 @@ void fn_12_8BD8(struct fn_12_8BD8_ctx *arg0, SJ *arg1) {
     fn_800589BC(&arg0->chunk, ((u32)ptr - lab_t1), &arg0->chunk, &localB);
     arg1->interface->put_chunk(arg1, 0, &arg0->chunk);
     arg1->interface->unget_chunk(arg1, 1, &localB);
-    MPV_GoNextDelimSj( (fn_12_8F80_SJ *)(SJ *)(arg1));
+    MPV_GoNextDelimSj( (SJ *)((fn_12_8F80_SJ *)(SJ *)(arg1)));
 }
 #pragma opt_propagation reset
 /* fzgx:end fn_12_8BD8 */
@@ -1295,7 +1296,7 @@ void fn_12_9D08(struct fn_12_9D08_ctx *arg0, SJ *arg1) {
     fn_800589BC(&arg0->chunk, ((u32)ptr - lab_t1), &arg0->chunk, &localB);
     arg1->interface->put_chunk(arg1, 0, &arg0->chunk);
     arg1->interface->unget_chunk(arg1, 1, &localB);
-    MPV_GoNextDelimSj( (fn_12_8F80_SJ *)(SJ *)(arg1));
+    MPV_GoNextDelimSj( (SJ *)((fn_12_8F80_SJ *)(SJ *)(arg1)));
 }
 #pragma opt_propagation reset
 /* fzgx:end fn_12_9D08 */

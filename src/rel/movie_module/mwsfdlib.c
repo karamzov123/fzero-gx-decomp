@@ -1,4 +1,5 @@
 #include "types.h"
+typedef struct SfdTransportInterface SfdTransportInterface;
 
 struct mwsfdlib____rodata_0 {
     union {
@@ -49,10 +50,11 @@ struct mwsfdlibBss {
         } view_sdk_mwg_sfd_errcode;
     } fields;
 };
+extern void MWSFSVM_Error(const char *format, ...);
+extern void *memset(void *, int, unsigned long);
 extern struct mwsfdlib____rodata_0 lbl_12_rodata_2270;
 extern u32 lbl_12_bss_1B9D8;
 extern int sprintf(char *s, const char *format, ...);
-extern void MWSFSVM_Error(void *, ...);
 extern u32 lbl_12_bss_1BAAC[1131];
 extern void mwSfdDestroy(void *);
 extern void fn_12_34DB4(void);
@@ -67,7 +69,6 @@ extern void fn_8005870C(void);
 extern void fn_80057CC4(void);
 extern void fn_80058630(void);
 extern void fn_12_34E2C(void);
-extern void *memset(void *, int, unsigned long);
 
 /* fzgx:begin fn_12_388C4 */
 /* --- rel/movie_module/fn_12_388C4.c --- */

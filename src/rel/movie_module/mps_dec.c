@@ -46,6 +46,7 @@ extern void fn_12_5810();
 
 /* --- rel/movie_module/fn_12_5810.c --- */
 
+#undef READ_BITS
 #define READ_BITS(n, dst) \
     if ((s32)v5 >= 32 - (n)) { \
         v5 -= 32 - (n); \
@@ -64,6 +65,7 @@ extern void fn_12_5810();
         v10 <<= (n); \
         v5 += (n); \
     }
+#undef SKIP_BITS
 #define SKIP_BITS(n) \
     v5 += (n); \
     if ((s32)v5 >= 32) { \
@@ -230,6 +232,7 @@ u32 arg7;
 
 /* fzgx:begin fn_12_5FA0 */
 
+#undef READ_BITS
 #define READ_BITS(value, n) \
     if (bits >= 32-(n)) { \
         bits -= 32-(n); \
@@ -247,6 +250,7 @@ u32 arg7;
         current <<= (n); \
         bits += (n); \
     }
+#undef READ_BIT
 #define READ_BIT(value) \
     value = current >> 31; \
     if (bits == 31) { \
@@ -257,6 +261,7 @@ u32 arg7;
         current <<= 1; \
         bits += 1; \
     }
+#undef SKIP_BITS
 #define SKIP_BITS(n) \
     bits += (n); \
     if (bits >= 32) { \
@@ -311,6 +316,7 @@ void fn_12_5FA0(void *output, const void *data, int *count) {
 
 /* fzgx:begin fn_12_62F8 */
 
+#undef READ_BITS
 #define READ_BITS(n, result) \
     if (bits >= 32 - (n)) { \
         bits -= 32 - (n); \
@@ -328,6 +334,7 @@ void fn_12_5FA0(void *output, const void *data, int *count) {
         word <<= (n); \
         bits += (n); \
     }
+#undef SKIP_BITS
 #define SKIP_BITS(n) \
     bits += (n); \
     if (bits >= 32) { \
