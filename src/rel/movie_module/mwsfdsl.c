@@ -104,35 +104,35 @@ struct fn_12_34AB0_MovieModule {
     int field_74;
 };
 extern int fn_12_3A36C();
-extern const u8 lbl_12_rodata_1420[];
 extern void MWSFSVM_Error(const char *format, ...);
-extern u32 fn_80056730(u32 arg0, u32 arg1);
 extern const u8 lbl_12_rodata_12E0[];
-extern int fn_800570DC(void *, void *);
 extern int fn_12_23280(void *arg0);
 extern char lbl_12_rodata_130C[42];
 extern u32 fn_800567EC();
 extern u32 fn_80056C20();
-extern char lbl_12_rodata_1338[46];
-extern u8 lbl_12_rodata_1368[88];
-extern u32 fn_80056BE0(u32 arg0);
-extern void* fn_80056B50(void* movies, int index);
-extern u32 fn_80056A50(s32 *arg0, s32 arg1);
 extern u8 lbl_12_bss_1B780[288];
-extern void fn_80056CD0(void *);
 extern s32 fn_8004F818(s32 arg0, s32 arg1, char *arg2, u32 *arg3, u32 *arg4, u32 *arg5);
 extern void fn_80056E9C(void *, u8 *, u32, u32, u32);
+extern const char lbl_12_rodata_13C0[];
+extern const char lbl_12_rodata_13EC[];
+extern u32 fn_80056BE0(u32 arg0);
+extern const u8 lbl_12_rodata_1420[];
+extern u32 fn_80056730(u32 arg0, u32 arg1);
+extern int fn_800570DC(void *, void *);
+extern char lbl_12_rodata_1338[46];
+extern u8 lbl_12_rodata_1368[88];
+extern void* fn_80056B50(void* movies, int index);
+extern u32 fn_80056A50(s32 *arg0, s32 arg1);
+extern void fn_80056CD0(void *);
 extern void fn_12_3916C(fn_12_34798_MovieModule *, void *);
 extern void fn_12_38DC8(fn_12_34798_MovieModule *);
 extern void LSC_Start(void *);
 extern void fn_12_3858C(fn_12_34798_MovieModule *);
-extern const char lbl_12_rodata_13C0[];
-extern const char lbl_12_rodata_13EC[];
 extern const u8 lbl_12_rodata_1480[];
 
 /* fzgx:begin fn_12_341E4 */
-/* --- rel/movie_module/fn_12_341E4.c --- */
 
+/* --- rel/movie_module/fn_12_341E4.c --- */
 
 void fn_12_341E4(MovieState *movie, int value) {
     if (fn_12_3A36C(movie) == 0) {
@@ -153,6 +153,7 @@ void fn_12_341E4(MovieState *movie, int value) {
 /* fzgx:end fn_12_341E4 */
 
 /* fzgx:begin fn_12_3428C */
+
 /* --- rel/movie_module/fn_12_3428C.c --- */
 
 struct fn_12_3428C_Arg0 {
@@ -168,6 +169,7 @@ void fn_12_3428C(struct fn_12_3428C_Arg0 *arg0) {
 /* fzgx:end fn_12_3428C */
 
 /* fzgx:begin fn_12_342B8 */
+
 /* --- rel/movie_module/fn_12_342B8.c --- */
 
 u32 fn_12_342B8(void) {
@@ -204,15 +206,15 @@ int fn_12_342E4(fn_12_342E4_MovieModule* module, int index) {
 /* fzgx:end fn_12_342E4 */
 
 /* fzgx:begin fn_12_34390 */
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_0[44] = "E1122642: mwPlyLinkStm: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_2C[44] = "E99072101 mwPlyLinkStm: can't link stream";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_58[48] = "E1122637: mwPlyGetSlFname: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_88[40] = "E10821B : Invalid value of stm_no : %d";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_B0[48] = "E1122632: mwPlyStartAfsLp: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_E0[44] = "E1122636: mwPlyEntryAfs: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_10C[52] = "E008311 mwPlyEntryAfs: can't entry pid=%d fid=%d";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_140[44] = "E1122641: mwPlySetLpFlg: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_16C[52] = "E1122634: mwPlyStartSeamless: handle is invalid.";
+static const char fn_12_34390_fzgx_pool_strings_lbl_12_rodata_12E0_0[44] = "E1122642: mwPlyLinkStm: handle is invalid.";
+static const char fn_12_34390_fzgx_pool_strings_lbl_12_rodata_12E0_2C[44] = "E99072101 mwPlyLinkStm: can't link stream";
+static const char fn_12_34390_fzgx_pool_strings_lbl_12_rodata_12E0_58[48] = "E1122637: mwPlyGetSlFname: handle is invalid.";
+static const char fn_12_34390_fzgx_pool_strings_lbl_12_rodata_12E0_88[40] = "E10821B : Invalid value of stm_no : %d";
+static const char fn_12_34390_fzgx_pool_strings_lbl_12_rodata_12E0_B0[48] = "E1122632: mwPlyStartAfsLp: handle is invalid.";
+static const char fn_12_34390_fzgx_pool_strings_lbl_12_rodata_12E0_E0[44] = "E1122636: mwPlyEntryAfs: handle is invalid.";
+static const char fn_12_34390_fzgx_pool_strings_lbl_12_rodata_12E0_10C[52] = "E008311 mwPlyEntryAfs: can't entry pid=%d fid=%d";
+static const char fn_12_34390_fzgx_pool_strings_lbl_12_rodata_12E0_140[44] = "E1122641: mwPlySetLpFlg: handle is invalid.";
+static const char fn_12_34390_fzgx_pool_strings_lbl_12_rodata_12E0_16C[52] = "E1122634: mwPlyStartSeamless: handle is invalid.";
 
 
 typedef struct MovieVTable {
@@ -238,41 +240,41 @@ void fn_12_34390(fn_12_34390_MovieModule *module, void *arg1, void *arg2) {
     
 
     if (!fn_12_3A36C(module)) {
-        MWSFSVM_Error(((char *)fzgx_pool_strings_lbl_12_rodata_12E0_B0));
+        MWSFSVM_Error(((char *)fn_12_34390_fzgx_pool_strings_lbl_12_rodata_12E0_B0));
         return;
     }
 
     fn_80056CD0((module->movies));
 
     if (!fn_12_3A36C(module)) {
-        MWSFSVM_Error(((char *)fzgx_pool_strings_lbl_12_rodata_12E0_E0));
+        MWSFSVM_Error(((char *)fn_12_34390_fzgx_pool_strings_lbl_12_rodata_12E0_E0));
     } else {
         movies = module->movies;
         if (!fn_8004F818( (s32)(void *)(arg1), (s32)(void *)(arg2), (char *)(u8 *)(lbl_12_bss_1B780), (u32 *)(int *)(&x), (u32 *)(int *)(&y), (u32 *)(int *)(&z))) {
             fn_80056E9C(movies, lbl_12_bss_1B780, x, y, z);
         } else {
-            MWSFSVM_Error(((char *)fzgx_pool_strings_lbl_12_rodata_12E0_10C), arg1, arg2);
+            MWSFSVM_Error(((char *)fn_12_34390_fzgx_pool_strings_lbl_12_rodata_12E0_10C), arg1, arg2);
         }
     }
 
     if (!fn_12_3A36C(module)) {
-        MWSFSVM_Error(((char *)fzgx_pool_strings_lbl_12_rodata_12E0_140));
+        MWSFSVM_Error(((char *)fn_12_34390_fzgx_pool_strings_lbl_12_rodata_12E0_140));
     } else {
         fn_80056730( (u32)(void *)(module->movies), 1);
     }
 
     if (!fn_12_3A36C(module)) {
-        MWSFSVM_Error(((char *)fzgx_pool_strings_lbl_12_rodata_12E0_16C));
+        MWSFSVM_Error(((char *)fn_12_34390_fzgx_pool_strings_lbl_12_rodata_12E0_16C));
         return;
     }
 
     current = (fn_12_34390_MovieModule *)module;
     if (!fn_12_3A36C(module)) {
-        MWSFSVM_Error(((char *)fzgx_pool_strings_lbl_12_rodata_12E0_0));
+        MWSFSVM_Error(((char *)fn_12_34390_fzgx_pool_strings_lbl_12_rodata_12E0_0));
     } else {
         field = module->field40;
         if (module->state70 == 0 && fn_12_23280(field) != 0) {
-            MWSFSVM_Error(((char *)fzgx_pool_strings_lbl_12_rodata_12E0_2C));
+            MWSFSVM_Error(((char *)fn_12_34390_fzgx_pool_strings_lbl_12_rodata_12E0_2C));
         }
         module->state70 = 1;
     }
@@ -292,8 +294,8 @@ void fn_12_34390(fn_12_34390_MovieModule *module, void *arg1, void *arg2) {
 /* fzgx:end fn_12_34390 */
 
 /* fzgx:begin fn_12_3454C */
-/* --- rel/movie_module/fn_12_3454C.c --- */
 
+/* --- rel/movie_module/fn_12_3454C.c --- */
 
 void fn_12_3454C(fn_12_3454C_MovieModule *self, const char *arg1, const char *arg2) {
     u32 value_10;
@@ -317,6 +319,7 @@ void fn_12_3454C(fn_12_3454C_MovieModule *self, const char *arg1, const char *ar
 /* fzgx:end fn_12_3454C */
 
 /* fzgx:begin fn_12_34610 */
+
 /* --- rel/movie_module/fn_12_34610.c --- */
 
 void fn_12_34610(fn_12_3454C_MovieModule *module) {
@@ -342,17 +345,17 @@ void fn_12_34634(struct fn_12_34634_MovieModule *self) {
 /* fzgx:end fn_12_34634 */
 
 /* fzgx:begin fn_12_346BC */
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_0[44] = "E1122642: mwPlyLinkStm: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_2C[44] = "E99072101 mwPlyLinkStm: can't link stream";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_58[48] = "E1122637: mwPlyGetSlFname: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_88[40] = "E10821B : Invalid value of stm_no : %d";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_B0[48] = "E1122632: mwPlyStartAfsLp: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_E0[44] = "E1122636: mwPlyEntryAfs: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_10C[52] = "E008311 mwPlyEntryAfs: can't entry pid=%d fid=%d";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_140[44] = "E1122641: mwPlySetLpFlg: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_16C[52] = "E1122634: mwPlyStartSeamless: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_1A0[52] = "E1122635: mwPlyReleaseSeamless: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_1D4[48] = "E1122631: mwPlyReleaseLp: handle is invalid.";
+static const char fn_12_346BC_fzgx_pool_strings_lbl_12_rodata_12E0_0[44] = "E1122642: mwPlyLinkStm: handle is invalid.";
+static const char fn_12_346BC_fzgx_pool_strings_lbl_12_rodata_12E0_2C[44] = "E99072101 mwPlyLinkStm: can't link stream";
+static const char fn_12_346BC_fzgx_pool_strings_lbl_12_rodata_12E0_58[48] = "E1122637: mwPlyGetSlFname: handle is invalid.";
+static const char fn_12_346BC_fzgx_pool_strings_lbl_12_rodata_12E0_88[40] = "E10821B : Invalid value of stm_no : %d";
+static const char fn_12_346BC_fzgx_pool_strings_lbl_12_rodata_12E0_B0[48] = "E1122632: mwPlyStartAfsLp: handle is invalid.";
+static const char fn_12_346BC_fzgx_pool_strings_lbl_12_rodata_12E0_E0[44] = "E1122636: mwPlyEntryAfs: handle is invalid.";
+static const char fn_12_346BC_fzgx_pool_strings_lbl_12_rodata_12E0_10C[52] = "E008311 mwPlyEntryAfs: can't entry pid=%d fid=%d";
+static const char fn_12_346BC_fzgx_pool_strings_lbl_12_rodata_12E0_140[44] = "E1122641: mwPlySetLpFlg: handle is invalid.";
+static const char fn_12_346BC_fzgx_pool_strings_lbl_12_rodata_12E0_16C[52] = "E1122634: mwPlyStartSeamless: handle is invalid.";
+static const char fn_12_346BC_fzgx_pool_strings_lbl_12_rodata_12E0_1A0[52] = "E1122635: mwPlyReleaseSeamless: handle is invalid.";
+static const char fn_12_346BC_fzgx_pool_strings_lbl_12_rodata_12E0_1D4[48] = "E1122631: mwPlyReleaseLp: handle is invalid.";
 
 
 void fn_12_346BC(u32 arg0) {
@@ -367,14 +370,14 @@ void fn_12_346BC(u32 arg0) {
     t0 = ((u32)fn_12_3A36C((Sig_fn_12_3A36C_Fn12_3A36C_Object *)arg0));
     v0 = t0;
     if ((s32)t0 == 0) {
-    v0 = (u32)(((u8 *)fzgx_pool_strings_lbl_12_rodata_12E0_1D4));
+    v0 = (u32)(((u8 *)fn_12_346BC_fzgx_pool_strings_lbl_12_rodata_12E0_1D4));
     MWSFSVM_Error((const char *)(u32)v0);
     } else {
     v0 = arg0;
     t2 = ((u32)fn_12_3A36C((Sig_fn_12_3A36C_Fn12_3A36C_Object *)v0));
     v0 = t2;
     if ((s32)v0 == 0) {
-    v0 = (u32)(((u8 *)fzgx_pool_strings_lbl_12_rodata_12E0_140));
+    v0 = (u32)(((u8 *)fn_12_346BC_fzgx_pool_strings_lbl_12_rodata_12E0_140));
     MWSFSVM_Error((const char *)(u32)v0);
     } else {
     v0 = *(u32 *)((u8 *)arg0 + 76);
@@ -385,14 +388,14 @@ void fn_12_346BC(u32 arg0) {
     t5 = ((u32)fn_12_3A36C((Sig_fn_12_3A36C_Fn12_3A36C_Object *)v0));
     v0 = t5;
     if (((0) == ((s32)v0))) {
-    v0 = (u32)(((u8 *)fzgx_pool_strings_lbl_12_rodata_12E0_1A0));
+    v0 = (u32)(((u8 *)fn_12_346BC_fzgx_pool_strings_lbl_12_rodata_12E0_1A0));
     MWSFSVM_Error((const char *)(u32)v0);
     } else {
     v0 = arg0;
     t7 = ((u32)fn_12_3A36C((Sig_fn_12_3A36C_Fn12_3A36C_Object *)v0));
     v0 = t7;
     if ((s32)v0 == 0) {
-    v0 = (u32)(((u8 *)fzgx_pool_strings_lbl_12_rodata_12E0_0));
+    v0 = (u32)(((u8 *)fn_12_346BC_fzgx_pool_strings_lbl_12_rodata_12E0_0));
     MWSFSVM_Error((const char *)(u32)v0);
     } else {
     if ((s32)*(u8 *)((u8 *)arg0 + 112) == 1) {
@@ -406,17 +409,17 @@ void fn_12_346BC(u32 arg0) {
 /* fzgx:end fn_12_346BC */
 
 /* fzgx:begin fn_12_34798 */
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_0[44] = "E1122642: mwPlyLinkStm: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_2C[44] = "E99072101 mwPlyLinkStm: can't link stream";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_58[48] = "E1122637: mwPlyGetSlFname: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_88[40] = "E10821B : Invalid value of stm_no : %d";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_B0[48] = "E1122632: mwPlyStartAfsLp: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_E0[44] = "E1122636: mwPlyEntryAfs: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_10C[52] = "E008311 mwPlyEntryAfs: can't entry pid=%d fid=%d";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_140[44] = "E1122641: mwPlySetLpFlg: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_16C[52] = "E1122634: mwPlyStartSeamless: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_1A0[52] = "E1122635: mwPlyReleaseSeamless: handle is invalid.";
-static const char fzgx_pool_strings_lbl_12_rodata_12E0_1D4[48] = "E1122631: mwPlyReleaseLp: handle is invalid.";
+static const char fn_12_34798_fzgx_pool_strings_lbl_12_rodata_12E0_0[44] = "E1122642: mwPlyLinkStm: handle is invalid.";
+static const char fn_12_34798_fzgx_pool_strings_lbl_12_rodata_12E0_2C[44] = "E99072101 mwPlyLinkStm: can't link stream";
+static const char fn_12_34798_fzgx_pool_strings_lbl_12_rodata_12E0_58[48] = "E1122637: mwPlyGetSlFname: handle is invalid.";
+static const char fn_12_34798_fzgx_pool_strings_lbl_12_rodata_12E0_88[40] = "E10821B : Invalid value of stm_no : %d";
+static const char fn_12_34798_fzgx_pool_strings_lbl_12_rodata_12E0_B0[48] = "E1122632: mwPlyStartAfsLp: handle is invalid.";
+static const char fn_12_34798_fzgx_pool_strings_lbl_12_rodata_12E0_E0[44] = "E1122636: mwPlyEntryAfs: handle is invalid.";
+static const char fn_12_34798_fzgx_pool_strings_lbl_12_rodata_12E0_10C[52] = "E008311 mwPlyEntryAfs: can't entry pid=%d fid=%d";
+static const char fn_12_34798_fzgx_pool_strings_lbl_12_rodata_12E0_140[44] = "E1122641: mwPlySetLpFlg: handle is invalid.";
+static const char fn_12_34798_fzgx_pool_strings_lbl_12_rodata_12E0_16C[52] = "E1122634: mwPlyStartSeamless: handle is invalid.";
+static const char fn_12_34798_fzgx_pool_strings_lbl_12_rodata_12E0_1A0[52] = "E1122635: mwPlyReleaseSeamless: handle is invalid.";
+static const char fn_12_34798_fzgx_pool_strings_lbl_12_rodata_12E0_1D4[48] = "E1122631: mwPlyReleaseLp: handle is invalid.";
 static const char fzgx_pool_strings_lbl_12_rodata_12E0_204[48] = "E1122630: mwPlyStartFnameLp: handle is invalid.";
 static const char fzgx_pool_strings_lbl_12_rodata_12E0_234[44] = "E10915A: mwPlyStartFnameLp: fname is NULL.";
 static const char fzgx_pool_strings_lbl_12_rodata_12E0_260[48] = "E1122633: mwPlyEntryFname: handle is invalid.";
@@ -450,13 +453,13 @@ void fn_12_34798(fn_12_34798_MovieModule *self, void *arg) {
     }
 
     if (fn_12_3A36C(self) == 0) {
-        MWSFSVM_Error(((char *)fzgx_pool_strings_lbl_12_rodata_12E0_140));
+        MWSFSVM_Error(((char *)fn_12_34798_fzgx_pool_strings_lbl_12_rodata_12E0_140));
     } else {
         fn_80056730( (u32)(void *)(self->movie), 1);
     }
 
     if (fn_12_3A36C(self) == 0) {
-        MWSFSVM_Error(((char *)fzgx_pool_strings_lbl_12_rodata_12E0_16C));
+        MWSFSVM_Error(((char *)fn_12_34798_fzgx_pool_strings_lbl_12_rodata_12E0_16C));
         return;
     }
 
@@ -464,13 +467,13 @@ void fn_12_34798(fn_12_34798_MovieModule *self, void *arg) {
         fn_12_34798_MovieModule *module = (fn_12_34798_MovieModule *)(u32)self;
 
         if (fn_12_3A36C(self) == 0) {
-            MWSFSVM_Error(((char *)fzgx_pool_strings_lbl_12_rodata_12E0_0));
+            MWSFSVM_Error(((char *)fn_12_34798_fzgx_pool_strings_lbl_12_rodata_12E0_0));
         } else {
             int flag = self->field_70;
             void *field = self->field_40;
 
             if (flag == 0 && fn_12_23280(field) != 0) {
-                MWSFSVM_Error(((char *)fzgx_pool_strings_lbl_12_rodata_12E0_2C));
+                MWSFSVM_Error(((char *)fn_12_34798_fzgx_pool_strings_lbl_12_rodata_12E0_2C));
             }
             self->field_70 = 1;
         }
