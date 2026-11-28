@@ -55,6 +55,8 @@ extern u8 lbl_1_data_1DAC0[0x10];
 extern u32 lbl_1_data_1DCF0;
 
 // lbl_1_bss_3BE4: .bss size 0x1C, 5 refs from screen_effect.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_3BE4
+#define FZGX_TYPEDEF_Obj_1_bss_3BE4
 typedef struct {
     u32 unk_0;  // 12 loads, 4 stores
     u8 pad_4[0x4];
@@ -74,9 +76,12 @@ typedef struct {
     f32 unk_98;  // 0 loads, 2 stores
     u32 unk_9C;  // 2 loads, 2 stores
 } Obj_1_bss_3BE4;
+#endif
 extern Obj_1_bss_3BE4 lbl_1_bss_3BE4;
 
 // lbl_1_bss_6D7A8: .bss size 0x18, 5 refs from screen_effect.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_6D7A8
+#define FZGX_TYPEDEF_Obj_1_bss_6D7A8
 typedef struct {
     u16 unk_0;  // 1 loads, 1 stores
     u16 unk_2;  // 1 loads, 1 stores
@@ -88,6 +93,7 @@ typedef struct {
     u16 unk_14;  // 4 loads, 3 stores
     u16 unk_16;  // 5 loads, 4 stores
 } Obj_1_bss_6D7A8;
+#endif
 extern Obj_1_bss_6D7A8 lbl_1_bss_6D7A8;
 
 // lbl_1_data_1D9B8: .data size 0xE4, 5 refs from screen_effect.c
@@ -153,6 +159,8 @@ typedef struct {
 extern Obj_1_data_1DFB0 lbl_1_data_1DFB0;
 
 // lbl_1_data_1E5C0: .data size 0x34, 1 refs from screen_effect.c (own data block)
+#ifndef FZGX_TYPEDEF_Obj_1_data_1E5C0
+#define FZGX_TYPEDEF_Obj_1_data_1E5C0
 typedef struct {
     u32 unk_0;  // 1 loads, 0 stores
     u32 unk_4;  // 1 loads, 0 stores
@@ -168,6 +176,7 @@ typedef struct {
     u32 unk_2C;  // 1 loads, 0 stores
     u32 unk_30;  // 1 loads, 0 stores
 } Obj_1_data_1E5C0;
+#endif
 extern Obj_1_data_1E5C0 lbl_1_data_1E5C0;
 
 // lbl_1_data_1E4B8: .data size 0xA0, 1 refs from screen_effect.c (own data block)

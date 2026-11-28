@@ -32,11 +32,14 @@ extern Obj_1_data_27DE0 lbl_1_data_27DE0;
 extern u32 lbl_1_bss_384B4;
 
 // lbl_1_data_2B0D4: .data size 0x70, 4 refs from burner.c (own data block)
+#ifndef FZGX_TYPEDEF_Obj_1_data_2B0D4
+#define FZGX_TYPEDEF_Obj_1_data_2B0D4
 typedef struct {
     u8 pad_0[0xA];
     s16 unk_A;  // 1 loads, 0 stores
     u8 pad_C[0x64];
 } Obj_1_data_2B0D4;
+#endif
 extern Obj_1_data_2B0D4 lbl_1_data_2B0D4;
 
 // lbl_1_bss_6EA08: .bss size 0x4, 3 refs from burner.c
@@ -52,9 +55,14 @@ extern u32 lbl_1_bss_384B8;
 extern u8 lbl_1_data_27E08[0x9];
 
 // lbl_1_bss_84: .bss size 0x18, 2 refs from burner.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_84_At0
+#define FZGX_TYPEDEF_Obj_1_bss_84_At0
 typedef struct {
     u32 unk_0;  // 5 loads, 0 stores
 } Obj_1_bss_84_At0;
+#endif
+#ifndef FZGX_TYPEDEF_Obj_1_bss_84
+#define FZGX_TYPEDEF_Obj_1_bss_84
 typedef struct {
     Obj_1_bss_84_At0 *unk_0;  // 6 loads, 0 stores
     u32 unk_4;  // 1 loads, 0 stores
@@ -63,6 +71,7 @@ typedef struct {
     u32 unk_10;  // 2 loads, 0 stores
     u32 unk_14;  // 2 loads, 2 stores
 } Obj_1_bss_84;
+#endif
 extern Obj_1_bss_84 lbl_1_bss_84;
 
 // lbl_1_data_2B144: .data size 0x18, 2 refs from burner.c (own data block)

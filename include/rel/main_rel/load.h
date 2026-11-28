@@ -46,12 +46,15 @@ typedef struct {
 extern Obj_1_data_67F0 lbl_1_data_67F0;
 
 // lbl_1_data_6CA0: .data size 0x24, 2 refs from load.c (own data block)
+#ifndef FZGX_TYPEDEF_Obj_1_data_6CA0
+#define FZGX_TYPEDEF_Obj_1_data_6CA0
 typedef struct {
     u32 unk_0;  // 3 loads, 2 stores
     u32 unk_4;  // 2 loads, 1 stores
     u32 unk_8;  // 2 loads, 0 stores
     u8 pad_C[0x18];
 } Obj_1_data_6CA0;
+#endif
 extern Obj_1_data_6CA0 lbl_1_data_6CA0;
 
 // lbl_1_bss_384C8: .bss size 0x4, 2 refs from load.c

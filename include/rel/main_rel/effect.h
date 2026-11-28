@@ -27,6 +27,8 @@ extern u8 lbl_1_data_1D62C[0x94];
 extern u8 lbl_1_data_1C698[0x5D0];
 
 // lbl_1_bss_6C84C: .bss size 0x4, 4 refs from effect.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_6C84C_Target
+#define FZGX_TYPEDEF_Obj_1_bss_6C84C_Target
 typedef struct {
     u8 unk_0;  // 14 loads, 5 stores
     u8 pad_1[0x1];
@@ -43,6 +45,7 @@ typedef struct {
     u32 unk_38;  // 1 loads, 0 stores
     u8 pad_3C[0xAC];
 } Obj_1_bss_6C84C_Target;
+#endif
 extern Obj_1_bss_6C84C_Target *lbl_1_bss_6C84C;  // array of 0xE8-byte records
 
 // lbl_1_bss_6C860: .bss size 0x4, 3 refs from effect.c

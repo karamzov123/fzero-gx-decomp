@@ -71,15 +71,20 @@ extern u8 lbl_3_data_1958[0x18];
 extern u32 lbl_3_data_B8;
 
 // lbl_3_bss_2C584: .bss size 0x188, 2 refs from customize.c
+#ifndef FZGX_TYPEDEF_Obj_3_bss_2C584
+#define FZGX_TYPEDEF_Obj_3_bss_2C584
 typedef struct {
     s16 unk_0;  // 4 loads, 0 stores
     u8 pad_2[0x2];
     u32 unk_4;  // 6 loads, 1 stores
     u8 pad_8[0x180];
 } Obj_3_bss_2C584;
+#endif
 extern Obj_3_bss_2C584 lbl_3_bss_2C584;
 
 // lbl_3_bss_2C7C0: .bss size 0x41100, 2 refs from customize.c
+#ifndef FZGX_TYPEDEF_Obj_3_bss_2C7C0_At0
+#define FZGX_TYPEDEF_Obj_3_bss_2C7C0_At0
 typedef struct {
     u8 pad_0[0x390];
     u32 unk_390;  // 2 loads, 2 stores
@@ -87,6 +92,9 @@ typedef struct {
     u32 unk_3A0;  // 0 loads, 2 stores
     u32 unk_3A4;  // 2 loads, 0 stores
 } Obj_3_bss_2C7C0_At0;
+#endif
+#ifndef FZGX_TYPEDEF_Obj_3_bss_2C7C0
+#define FZGX_TYPEDEF_Obj_3_bss_2C7C0
 typedef struct {
     Obj_3_bss_2C7C0_At0 *unk_0;  // 2 loads, 1 stores
     u8 unk_4;  // 0 loads, 1 stores
@@ -94,6 +102,7 @@ typedef struct {
     u32 unk_C;  // 0 loads, 2 stores
     u8 pad_10[0x410F0];
 } Obj_3_bss_2C7C0;
+#endif
 extern Obj_3_bss_2C7C0 lbl_3_bss_2C7C0;
 
 // lbl_3_data_1A1C: .data size 0x11, 1 refs from customize.c (own data block)

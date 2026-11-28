@@ -42,6 +42,8 @@ typedef struct {
 extern Obj_1_bss_716C8 lbl_1_bss_716C8;
 
 // lbl_1_bss_77380: .bss size 0x3000, 6 refs from memcard.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_77380
+#define FZGX_TYPEDEF_Obj_1_bss_77380
 typedef struct {
     u32 unk_0;  // 10 loads, 11 stores
     u32 unk_4;  // 10 loads, 11 stores
@@ -93,6 +95,7 @@ typedef struct {
     u32 unk_BC;  // 1 loads, 0 stores
     u8 pad_C0[0x2F40];
 } Obj_1_bss_77380;
+#endif
 extern Obj_1_bss_77380 lbl_1_bss_77380;
 
 // lbl_1_data_3C7C4: .data size 0xD8, 5 refs from memcard.c (own data block)
@@ -169,6 +172,8 @@ extern u32 lbl_1_bss_7A380;
 extern u32 lbl_1_bss_718B4;
 
 // lbl_1_bss_718E0: .bss size 0x59E8, 2 refs from memcard.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_718E0
+#define FZGX_TYPEDEF_Obj_1_bss_718E0
 typedef struct {
     u16 unk_0;  // 0 loads, 1 stores
     u8 unk_2;  // 2 loads, 1 stores
@@ -183,6 +188,7 @@ typedef struct {
     u8 unk_5523;  // 1 loads, 0 stores
     u8 pad_5524[0x4C4];
 } Obj_1_bss_718E0;
+#endif
 extern Obj_1_bss_718E0 lbl_1_bss_718E0;
 
 // lbl_1_data_2AC0: .data size 0x80, 2 refs from memcard.c

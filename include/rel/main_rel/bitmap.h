@@ -17,18 +17,23 @@ extern u8 lbl_1_data_1A368[0x9];
 extern u8 lbl_1_data_1A374[0x19];
 
 // lbl_1_data_6CA0: .data size 0x24, 3 refs from bitmap.c
+#ifndef FZGX_TYPEDEF_Obj_1_data_6CA0
+#define FZGX_TYPEDEF_Obj_1_data_6CA0
 typedef struct {
     u32 unk_0;  // 3 loads, 2 stores
     u32 unk_4;  // 2 loads, 1 stores
     u32 unk_8;  // 2 loads, 0 stores
     u8 pad_C[0x18];
 } Obj_1_data_6CA0;
+#endif
 extern Obj_1_data_6CA0 lbl_1_data_6CA0;
 
 // lbl_1_bss_3E058: .bss size 0x4, 2 refs from bitmap.c
 extern u32 lbl_1_bss_3E058;
 
 // lbl_1_data_1AEA8: .data size 0x9A0, 2 refs from bitmap.c (own data block)
+#ifndef FZGX_TYPEDEF_Obj_1_data_1AEA8
+#define FZGX_TYPEDEF_Obj_1_data_1AEA8
 typedef struct {
     u32 unk_0;  // 16 loads, 0 stores
     u8 unk_4;  // 3 loads, 0 stores
@@ -47,13 +52,17 @@ typedef struct {
     f32 unk_34;  // 6 loads, 0 stores
     u8 pad_38[0x968];
 } Obj_1_data_1AEA8;
+#endif
 extern Obj_1_data_1AEA8 lbl_1_data_1AEA8;
 
 // lbl_1_data_1A3B8: .data size 0xAD8, 2 refs from bitmap.c (own data block)
+#ifndef FZGX_TYPEDEF_Obj_1_data_1A3B8
+#define FZGX_TYPEDEF_Obj_1_data_1A3B8
 typedef struct {
     u16 unk_0;  // 2 loads, 0 stores
     u8 pad_2[0xAD6];
 } Obj_1_data_1A3B8;
+#endif
 extern Obj_1_data_1A3B8 lbl_1_data_1A3B8;
 
 // lbl_1_data_1BCC4: .data size 0x4, 2 refs from bitmap.c (own data block)

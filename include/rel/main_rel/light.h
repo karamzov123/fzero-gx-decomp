@@ -8,6 +8,8 @@
 // functions or living in its .data block), layouts recovered from every access in the module.
 
 // lbl_1_bss_6D7A8: .bss size 0x18, 2 refs from light.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_6D7A8
+#define FZGX_TYPEDEF_Obj_1_bss_6D7A8
 typedef struct {
     u16 unk_0;  // 1 loads, 1 stores
     u16 unk_2;  // 1 loads, 1 stores
@@ -19,6 +21,7 @@ typedef struct {
     u16 unk_14;  // 4 loads, 3 stores
     u16 unk_16;  // 5 loads, 4 stores
 } Obj_1_bss_6D7A8;
+#endif
 extern Obj_1_bss_6D7A8 lbl_1_bss_6D7A8;
 
 // lbl_1_data_1EEB0: .data size 0xC, 2 refs from light.c (own data block)

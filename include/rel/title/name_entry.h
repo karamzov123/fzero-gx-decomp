@@ -8,6 +8,8 @@
 // functions or living in its .data block), layouts recovered from every access in the module.
 
 // lbl_8_bss_550: .bss size 0x4, 3 refs from name_entry.c
+#ifndef FZGX_TYPEDEF_Obj_8_bss_550_Target
+#define FZGX_TYPEDEF_Obj_8_bss_550_Target
 typedef struct {
     u32 unk_0;  // 11 loads, 6 stores
     u32 unk_4;  // 1 loads, 1 stores
@@ -36,6 +38,7 @@ typedef struct {
     u8 unk_3B;  // 5 loads, 2 stores
     u32 unk_3C;  // 4 loads, 2 stores
 } Obj_8_bss_550_Target;
+#endif
 extern Obj_8_bss_550_Target *lbl_8_bss_550;
 
 // lbl_8_data_A288: .data size 0x40, 1 refs from name_entry.c (own data block)

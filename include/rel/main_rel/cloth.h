@@ -8,10 +8,15 @@
 // functions or living in its .data block), layouts recovered from every access in the module.
 
 // lbl_1_bss_85250: .bss size 0x30, 5 refs from cloth.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_85250_At10
+#define FZGX_TYPEDEF_Obj_1_bss_85250_At10
 typedef struct {
     u8 pad_0[0x8];
     u32 unk_8;  // 6 loads, 0 stores
 } Obj_1_bss_85250_At10;
+#endif
+#ifndef FZGX_TYPEDEF_Obj_1_bss_85250_At18
+#define FZGX_TYPEDEF_Obj_1_bss_85250_At18
 typedef struct {
     u8 unk_0;  // 5 loads, 6 stores
     u8 unk_1;  // 12 loads, 5 stores
@@ -39,11 +44,17 @@ typedef struct {
     u8 pad_46[0x12];
     f32 unk_58;  // 2 loads, 0 stores
 } Obj_1_bss_85250_At18;
+#endif
+#ifndef FZGX_TYPEDEF_Obj_1_bss_85250_At20
+#define FZGX_TYPEDEF_Obj_1_bss_85250_At20
 typedef struct {
     u32 unk_0;  // 3 loads, 0 stores
     u32 unk_4;  // 3 loads, 0 stores
     f32 unk_8;  // 4 loads, 0 stores
 } Obj_1_bss_85250_At20;
+#endif
+#ifndef FZGX_TYPEDEF_Obj_1_bss_85250
+#define FZGX_TYPEDEF_Obj_1_bss_85250
 typedef struct {
     u32 unk_0;  // 2 loads, 1 stores
     u32 unk_4;  // 7 loads, 2 stores
@@ -58,16 +69,20 @@ typedef struct {
     u32 unk_28;  // 2 loads, 2 stores
     u32 unk_2C;  // 2 loads, 3 stores
 } Obj_1_bss_85250;
+#endif
 extern Obj_1_bss_85250 lbl_1_bss_85250;
 
 // lbl_1_data_3F17C: .data size 0x8, 3 refs from cloth.c (own data block)
 extern u32 lbl_1_data_3F17C;
 
 // lbl_1_bss_85280: .bss size 0x8, 2 refs from cloth.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_85280
+#define FZGX_TYPEDEF_Obj_1_bss_85280
 typedef struct {
     u32 unk_0;  // 3 loads, 2 stores
     u32 unk_4;  // 5 loads, 2 stores
 } Obj_1_bss_85280;
+#endif
 extern Obj_1_bss_85280 lbl_1_bss_85280;
 
 // lbl_1_bss_38460: .bss size 0x54, 2 refs from cloth.c

@@ -1,33 +1,187 @@
 #include "types.h"
 #include "rel/main_rel/globals.h"
 #include "rel/main_rel/load.h"
+#include "dolphin/dvd.h"
+#include "sdk_addresses.h"
 
+
+
+
+typedef void (*ARQCallback)(u32 pointerToARQRequest);
+
+typedef struct ARQRequest {
+    struct ARQRequest *next;
+    u32 owner;
+    u32 type;
+    u32 priority;
+    u32 source;
+    u32 dest;
+    u32 length;
+    ARQCallback callback;
+} ARQRequest;
+
+typedef struct Fn464BCEntry {
+    u32 unk_00;
+    u32 unk_04;
+    u32 unk_08;
+} Fn464BCEntry;
+
+typedef struct Fn464BCObject {
+    u8 unk_00[4];
+    Fn464BCEntry *unk_04;
+    u8 unk_08[8];
+    u8 *unk_10;
+} Fn464BCObject;
+
+typedef struct fn_1_45BF0_LoadEntry {
+    u32 unk_0;
+    u32 unk_4;
+    u32 unk_8;
+    u32 unk_c;
+} fn_1_45BF0_LoadEntry;
+
+typedef struct {
+    u8 pad_0[8];
+    u32 aram;
+    u32 end;
+} LoadArchive;
+
+typedef void (*fn_1_458A0_Sig_ARQPostRequest_ARQCallback)(u32 pointerToARQRequest);
+
+typedef struct fn_1_458A0_Sig_ARQPostRequest_ARQRequest {
+    struct fn_1_458A0_Sig_ARQPostRequest_ARQRequest *next;
+    u32 owner;
+    u32 type;
+    u32 priority;
+    u32 source;
+    u32 dest;
+    u32 length;
+    fn_1_458A0_Sig_ARQPostRequest_ARQCallback callback;
+} fn_1_458A0_Sig_ARQPostRequest_ARQRequest;
+
+typedef void (*fn_1_45E98_Sig_ARQPostRequest_ARQCallback)(u32);
+
+typedef struct fn_1_45E98_Sig_ARQPostRequest_ARQRequest {
+    struct fn_1_45E98_Sig_ARQPostRequest_ARQRequest *next;
+    u32 owner;
+    u32 type;
+    u32 priority;
+    u32 source;
+    u32 dest;
+    u32 length;
+    fn_1_45E98_Sig_ARQPostRequest_ARQCallback callback;
+} fn_1_45E98_Sig_ARQPostRequest_ARQRequest;
+
+typedef struct {
+    void *header;
+    void *data;
+    void *table;
+    u32 count;
+    void *end;
+    u32 unk_14;
+    u32 unk_18;
+} Fn8006A3DCResult;
+
+typedef struct Sig_fn_8006A3DC_Fn8006A3DCHeader {
+    u32 magic;
+    u32 data_offset;
+    u32 unk_8;
+    u32 table_offset;
+} Sig_fn_8006A3DC_Fn8006A3DCHeader;
+
+typedef struct Sig_fn_8006A3DC_Fn8006A3DCResult {
+    void *header, *data, *table;
+    u32 count;
+    void *end;
+    u32 unk_14;
+    u32 unk_18;
+} Sig_fn_8006A3DC_Fn8006A3DCResult;
+extern s32 fn_1_45E84(s32);
+extern fn_1_45BF0_LoadEntry *fn_1_45BF0(u32 size);
+extern void fn_1_45BE0(void);
+extern void fn_1_45BA4(s32);
+extern void fn_1_451D4(void);
+extern int fn_1_46144(LoadArchive *archive, s32 locked, s32 named);
+extern void *memset(void *, int, u32);
+extern u32 fn_80006C2C(s32 arg0, u32 arg1);
+extern void *fn_80006DE8(void *);
+extern u32 fn_80006CE4(u32);
+extern u32 fn_80006DAC(void *, void *, u32, u32, void *, void *, u32);
+extern void ARQPostRequest(ARQRequest *request, u32 owner, u32 type, u32 priority, u32 source, u32 dest, u32 length, ARQCallback callback);
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern void fn_1_45E98(u32 arg0, void *arg1);
+extern s32 fn_8000700C();
+extern void DCInvalidateRange(void *, u32);
+extern void fn_1_45890(void);
+extern void fn_1_D3214(void);
+extern int fn_1_45AD4(void);
+extern u32 fn_80006D1C(void *arg0);
+extern void fn_1_45A58(u32 arg0);
 extern u32 lbl_1_bss_3DCE4[17];
 extern void *fn_80006DFC(void *arg);
-extern void fn_1_D3214(void);
-extern s32 fn_8000700C(s32 arg0);
-extern void fn_1_3BDC(s32 arg0);
+extern void fn_1_3BDC(u32 arg0);
 extern void fn_8000659C(void);
 extern u32 lbl_1_bss_384C4;
-extern void fn_1_46A8C(u32 value);
+extern u32 fn_1_46A8C(u32 value);
 extern u32 lbl_1_bss_3DCD8;
 extern u32 lbl_1_bss_3DD28[179];
-extern void fn_1_47EE4(s32);
-extern void fn_1_485C8(s32);
-extern void fn_1_48140(s32 value);
+extern void fn_1_47EE4(s32 index);
+extern void fn_1_485C8(u32 arg0);
+extern void fn_1_48140(int index);
 extern void fn_1_4DDC0(void);
 extern void fn_1_4F724(void);
-
 extern u8 lbl_1_bss_3E024[52];
 extern char lbl_1_data_1A3AC[5];
-extern void strcpy(void *arg0, void *arg1);
-extern u32 fn_80006CE4(u32);
-extern void *fn_80006DE8(void *);
+extern char *strcpy(char *dst, const char *src);
 extern u32 lbl_801A6410;
-extern void *fn_1_4630(u32 arg0, u32 arg1, u8 *arg2, u32 arg3);
-extern void *fn_1_46B4(u32 arg0, void *arg1, u8 *arg2, u32 arg3);
-extern void strcat(void *arg0, void *arg1);
-extern void fn_1_48004(s32 value, s32 arg);
+extern u32 fn_1_4630();
+extern void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3);
+extern char *strcat(char *dest, const char *src);
+extern void fn_1_48004(s32 index, s32 image);
+extern int fn_1_45D78(u32 start, u32 size, u32 *out_end, s32 mode);
+extern int fn_1_45CD8(int);
+extern s32 fn_8006A3DC(void *header, Fn8006A3DCResult *result);
+extern void fn_80006FE0(u32 arg0, u32 arg1);
+extern s32 fn_8006A554(void *, void *);
+extern u8 fn_1_451E4__fzgx_offset_104[];
+extern u8 fn_1_451E4__fzgx_offset_110[];
+extern u8 fn_1_451E4__fzgx_offset_11C[];
+extern u8 fn_1_451E4__fzgx_offset_128[];
+extern u8 fn_1_451E4__fzgx_offset_26C[];
+extern u8 fn_1_451E4__fzgx_offset_298[];
+extern u8 fn_1_451E4__fzgx_offset_39C[];
+extern u8 fn_1_451E4__fzgx_offset_3D8[];
+extern u8 fn_1_451E4__fzgx_offset_534[];
+extern u8 fn_1_451E4__fzgx_offset_64[];
+extern u8 fn_1_451E4__fzgx_offset_78[];
+extern u8 fn_1_451E4__fzgx_offset_A0[];
+extern u8 fn_1_451E4__fzgx_offset_C0[];
+extern u8 fn_1_451E4__fzgx_offset_EC[];
+extern u8 fn_1_451E4__fzgx_offset_F8[];
+extern u32 fn_1_46EC8(void);
+extern u32 fn_1_46ED8(void);
+extern void fn_1_464BC(Fn464BCObject *object, u32 index, void *arg2, void *arg3);
+extern void OSReport(const char *msg, ...);
+extern u32 fn_1_467F4(void);
+extern void fn_1_469BC(void);
+extern u32 lbl_1_bss_958[2];
+extern void fn_80074918(u8 arg0, s32 arg1, u8 arg2);
+extern void fn_80074788(u32 arg0);
+extern void fn_80074660(u32 arg0);
+extern void fn_80073678(u32 arg0);
+extern void fn_80073C6C(s32 index);
+extern void fn_800747D0(u32 arg0, u32 arg1, s32 arg2, s32 arg3, u32 arg4, s32 arg5, s32 arg6);
+extern void fn_80072AB0(s32 arg0, s32 arg1, s32 arg2);
+extern void fn_800734A8(u32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void fn_80072C24(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void fn_80072D64(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4, s32 arg5);
+extern void fn_80072CC4(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+extern void fn_80072E20(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u8 arg4, s32 arg5);
+extern void fn_800728A8(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void fn_80072864(u32 arg0);
+extern void fn_8007245C(u32 value);
+extern u32 fn_800371F8(u32, void *);
+extern void fn_8003462C(u32 type, u32 vtxfmt, u16 nverts);
 
 /* fzgx:begin fn_1_451E4 noprologue */
 #include "types.h"
@@ -381,28 +535,11 @@ void fn_1_45890(void) {
 /* fzgx:end fn_1_45890 */
 
 /* fzgx:begin fn_1_458A0 */
-typedef void (*Sig_ARQPostRequest_ARQCallback)(u32 pointerToARQRequest);
-typedef struct Sig_ARQPostRequest_ARQRequest {
-    struct Sig_ARQPostRequest_ARQRequest *next;
-    u32 owner;
-    u32 type;
-    u32 priority;
-    u32 source;
-    u32 dest;
-    u32 length;
-    Sig_ARQPostRequest_ARQCallback callback;
-} Sig_ARQPostRequest_ARQRequest;
 struct fn_1_458A0_Arg0 {
     u32 unk_0;
     u8 pad_4[0x50];
     u32 unk_54;
 };
-extern void ARQPostRequest(Sig_ARQPostRequest_ARQRequest *, u32, u32, u32, u32, void *, u32, Sig_ARQPostRequest_ARQCallback);
-extern void DCInvalidateRange(void *, u32);
-extern void fn_1_45890(void);
-extern void fn_1_D3214(void);
-extern int fn_1_45AD4(void);
-extern u32 fn_80006D1C(void *arg0);
 
 static inline void set_load_flag(void) {
     lbl_1_bss_384D0 = 1;
@@ -419,7 +556,7 @@ u32 fn_1_458A0(struct fn_1_458A0_Arg0 *arg0, void *arg1, u32 arg2, u32 arg3) {
         set_load_flag();
         lab_t1.value = len.value;
         DCInvalidateRange(arg1, lab_t1.value);
-        ARQPostRequest((Sig_ARQPostRequest_ARQRequest *)&req, 0, 1, 1, arg0->unk_54 + arg3, arg1, len.value, (Sig_ARQPostRequest_ARQCallback)fn_1_45890);
+        ARQPostRequest( (ARQRequest *)((fn_1_458A0_Sig_ARQPostRequest_ARQRequest *)&req), 0, 1, 1, arg0->unk_54 + arg3, (u32)(void *)(arg1), len.value, (fn_1_458A0_Sig_ARQPostRequest_ARQCallback)fn_1_45890);
         while (fn_1_45AD4() != 0) {
             fn_1_D3214();
         }
@@ -705,46 +842,13 @@ void fn_1_45BE0(void) {
 /* fzgx:end fn_1_45BE0 */
 
 /* fzgx:begin fn_1_45BF0 */
-extern u32 lbl_1_bss_3DCE4[17];
-extern void *fn_80006DFC(void *arg);
-extern void fn_1_D3214(void);
-extern s32 fn_8000700C(s32 arg0);
-extern void fn_1_3BDC(s32 arg0);
-extern void fn_8000659C(void);
-extern u32 lbl_1_bss_384C4;
-extern void fn_1_46A8C(u32 value);
-extern u32 lbl_1_bss_3DCD8;
-extern u32 lbl_1_bss_3DD28[179];
-extern void fn_1_47EE4(s32);
-extern void fn_1_485C8(s32);
-extern void fn_1_48140(s32 value);
-extern void fn_1_4DDC0(void);
-extern void fn_1_4F724(void);
 
-extern u8 lbl_1_bss_3E024[52];
-extern char lbl_1_data_1A3AC[5];
-extern void strcpy(void *arg0, void *arg1);
-extern u32 fn_80006CE4(u32);
-extern void *fn_80006DE8(void *);
-extern u32 lbl_801A6410;
-extern void *fn_1_4630(u32 arg0, u32 arg1, u8 *arg2, u32 arg3);
-extern void *fn_1_46B4(u32 arg0, void *arg1, u8 *arg2, u32 arg3);
-extern void strcat(void *arg0, void *arg1);
-extern void fn_1_48004(s32 value, s32 arg);
 
-extern u32 fn_1_45D78(u32, u32, u32 *, s32);
-extern int fn_1_45CD8(int);
 
-typedef struct LoadEntry {
-    u32 unk_0;
-    u32 unk_4;
-    u32 unk_8;
-    u32 unk_c;
-} LoadEntry;
 
 typedef struct LoadManager {
     u8 pad0[0x18];
-    LoadEntry entries[1408];
+    fn_1_45BF0_LoadEntry entries[1408];
     u32 unk_5818;
     u32 unk_581c;
     u32 unk_5820;
@@ -758,7 +862,7 @@ u32 lbl_1_bss_384C4;
 u32 fzgx_obj_lbl_1_bss_384C8;
 u32 lbl_1_bss_384CC;
 u32 fzgx_obj_lbl_1_bss_384D0[2];
-LoadEntry fzgx_obj_lbl_1_bss_384D8[1408];
+fn_1_45BF0_LoadEntry fzgx_obj_lbl_1_bss_384D8[1408];
 u32 lbl_1_bss_3DCD8;
 u32 fzgx_obj_lbl_1_bss_3DCDC;
 u32 lbl_1_bss_3DCDC__fzgx_offset_4;
@@ -786,9 +890,9 @@ static void fn_1_45BF0_fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-LoadEntry *fn_1_45BF0(u32 size) {
+fn_1_45BF0_LoadEntry *fn_1_45BF0(u32 size) {
     s32 wrapped = 0;
-    LoadEntry *entry;
+    fn_1_45BF0_LoadEntry *entry;
     u32 addr;
     
     u32 aligned_size;
@@ -809,7 +913,7 @@ LoadEntry *fn_1_45BF0(u32 size) {
             }
             wrapped = 1;
         }
-    } while (fn_1_45D78(addr, aligned_size, &lbl_1_bss_3DCD8, 0) == 0);
+    } while (((u32)fn_1_45D78(addr, aligned_size, &lbl_1_bss_3DCD8, 0)) == 0);
 
     entry = fzgx_obj_lbl_1_bss_384D8;
     entry += lbl_1_bss_3DCDC__fzgx_offset_4;
@@ -1281,21 +1385,8 @@ int fn_1_46144(LoadArchive *archive, s32 locked, s32 named) {
 /* fzgx:end fn_1_46144 */
 
 /* fzgx:begin fn_1_464BC */
-typedef struct Fn464BCEntry {
-    u32 unk_00;
-    u32 unk_04;
-    u32 unk_08;
-} Fn464BCEntry;
 
-typedef struct Fn464BCObject {
-    u8 unk_00[4];
-    Fn464BCEntry *unk_04;
-    u8 unk_08[8];
-    u8 *unk_10;
-} Fn464BCObject;
 
-extern u16 lbl_1_data_67CC;
-extern void strcpy(void *arg0, void *arg1);
 
 void fn_1_464BC(Fn464BCObject *object, u32 index, void *arg2, void *arg3) {
     void *result;
@@ -1306,25 +1397,25 @@ void fn_1_464BC(Fn464BCObject *object, u32 index, void *arg2, void *arg3) {
 
     base = object->unk_04;
     entry = &base[index];
-    result = fn_1_4630(lbl_801A6410, (u32)arg3, (*(u8 (*)[76])&lbl_1_data_6730), 0x3f4);
+    result = ((void *)fn_1_4630(lbl_801A6410, (u32)arg3, (*(u8 (*)[76])&lbl_1_data_6730), 0x3f4));
     value = entry->unk_00;
-    strcpy(arg2, object->unk_10 + (value & 0x00ffffff));
+    strcpy( (char *)(void *)(arg2), (const char *)(void *)(object->unk_10 + (value & 0x00ffffff)));
 
     while (entry > base) {
         value = entry->unk_00;
         flag = (value & 0xff000000) != 0;
         if (flag != 0) {
-            strcpy(result, object->unk_10 + (value & 0x00ffffff));
-            strcat(result, &lbl_1_data_67CC);
-            strcat(result, arg2);
-            strcpy(arg2, result);
+            strcpy( (char *)(void *)(result), (const char *)(void *)(object->unk_10 + (value & 0x00ffffff)));
+            strcat( (char *)(void *)(result), (const char *)(void *)(&lbl_1_data_67CC));
+            strcat( (char *)(void *)(result), (const char *)(void *)(arg2));
+            strcpy( (char *)(void *)(arg2), (const char *)(void *)(result));
             entry = &base[entry->unk_04];
         } else {
             entry--;
         }
     }
 
-    fn_1_46B4(lbl_801A6410, result, (*(u8 (*)[76])&lbl_1_data_6730), 0x402);
+    fn_1_46B4(lbl_801A6410, (u32)(void *)(result), (const char *)(u8 *)((*(u8 (*)[76])&lbl_1_data_6730)), 0x402);
 }
 /* fzgx:end fn_1_464BC */
 
@@ -1348,7 +1439,7 @@ s32 fn_1_465D0(char *path, s32 arg1) {
     }
 
     /* Shortcut: the file-scope declaration of fn_8000700C in load.c takes s32 until load.c is one unit. */
-    result = fn_8000700C((s32)path);
+    result = fn_8000700C( (const char *)((s32)path));
     if (result < 0) {
         return -1;
     }
@@ -1377,8 +1468,6 @@ s32 fn_1_465D0(char *path, s32 arg1) {
 /* fzgx:end fn_1_465D0 */
 
 /* fzgx:begin fn_1_466B0 */
-extern u32 fn_1_467F4(void);
-extern void fn_1_469BC(void);
 
 typedef struct {
     u32 unk_0;
@@ -1438,8 +1527,6 @@ u32 fn_1_467F4(void) {
 /* fzgx:end fn_1_467F4 */
 
 /* fzgx:begin fn_1_46838 */
-#include "dolphin/dvd.h"
-
 typedef struct {
     u32 flag;
     s32 id;
@@ -1567,9 +1654,7 @@ void fn_1_46A60(void) {
 }
 /* fzgx:end fn_1_46A60 */
 
-/* fzgx:begin fn_1_46A8C noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_46A8C */
 typedef struct {
     u32 type;
     u32 value;
@@ -1583,9 +1668,6 @@ typedef struct {
     Entry entries[0x200];
 } State;
 
-extern u32 lbl_1_bss_384C0;
-extern u32 fn_1_46EC8(void);
-extern u32 fn_1_46ED8(void);
 
 u32 fn_1_46A8C(u32 value) {
     State *base;
@@ -1623,32 +1705,7 @@ u32 fn_1_46A8C(u32 value) {
 /* fzgx:end fn_1_46A8C */
 
 /* fzgx:begin fn_1_46B44 */
-extern u32 lbl_1_bss_3DCE4[17];
-extern void *fn_80006DFC(void *arg);
-extern void fn_1_D3214(void);
-extern s32 fn_8000700C(s32 arg0);
-extern void fn_1_3BDC(s32 arg0);
-extern void fn_8000659C(void);
-extern u32 lbl_1_bss_384C4;
-extern void fn_1_46A8C(u32 value);
-extern u32 lbl_1_bss_3DCD8;
-extern u32 lbl_1_bss_3DD28[179];
-extern void fn_1_47EE4(s32);
-extern void fn_1_485C8(s32);
-extern void fn_1_48140(s32 value);
-extern void fn_1_4DDC0(void);
-extern void fn_1_4F724(void);
 
-extern u8 lbl_1_bss_3E024[52];
-extern char lbl_1_data_1A3AC[5];
-extern void strcpy(void *arg0, void *arg1);
-extern u32 fn_80006CE4(u32);
-extern void *fn_80006DE8(void *);
-extern u32 lbl_801A6410;
-extern void *fn_1_4630(u32 arg0, u32 arg1, u8 *arg2, u32 arg3);
-extern void *fn_1_46B4(u32 arg0, void *arg1, u8 *arg2, u32 arg3);
-extern void strcat(void *arg0, void *arg1);
-extern void fn_1_48004(s32 value, s32 arg);
 
 struct fn_1_46B44_entry {
     u32 type;
@@ -1715,32 +1772,7 @@ u32 fn_1_46B44(u32 arg0, u32 arg1) {
 /* fzgx:end fn_1_46B44 */
 
 /* fzgx:begin fn_1_46BA0 */
-extern u32 lbl_1_bss_3DCE4[17];
-extern void *fn_80006DFC(void *arg);
-extern void fn_1_D3214(void);
-extern s32 fn_8000700C(s32 arg0);
-extern void fn_1_3BDC(s32 arg0);
-extern void fn_8000659C(void);
-extern u32 lbl_1_bss_384C4;
-extern void fn_1_46A8C(u32 value);
-extern u32 lbl_1_bss_3DCD8;
-extern u32 lbl_1_bss_3DD28[179];
-extern void fn_1_47EE4(s32);
-extern void fn_1_485C8(s32);
-extern void fn_1_48140(s32 value);
-extern void fn_1_4DDC0(void);
-extern void fn_1_4F724(void);
 
-extern u8 lbl_1_bss_3E024[52];
-extern char lbl_1_data_1A3AC[5];
-extern void strcpy(void *arg0, void *arg1);
-extern u32 fn_80006CE4(u32);
-extern void *fn_80006DE8(void *);
-extern u32 lbl_801A6410;
-extern void *fn_1_4630(u32 arg0, u32 arg1, u8 *arg2, u32 arg3);
-extern void *fn_1_46B4(u32 arg0, void *arg1, u8 *arg2, u32 arg3);
-extern void strcat(void *arg0, void *arg1);
-extern void fn_1_48004(s32 value, s32 arg);
 
 struct fn_1_46BA0_lbl_1_bss_384C0 {
     u32 unk_0;
@@ -1800,32 +1832,7 @@ u32 fn_1_46BA0(u32 arg0, u32 arg1) {
 /* fzgx:end fn_1_46BA0 */
 
 /* fzgx:begin fn_1_46BFC */
-extern u32 lbl_1_bss_3DCE4[17];
-extern void *fn_80006DFC(void *arg);
-extern void fn_1_D3214(void);
-extern s32 fn_8000700C(s32 arg0);
-extern void fn_1_3BDC(s32 arg0);
-extern void fn_8000659C(void);
-extern u32 lbl_1_bss_384C4;
-extern void fn_1_46A8C(u32 value);
-extern u32 lbl_1_bss_3DCD8;
-extern u32 lbl_1_bss_3DD28[179];
-extern void fn_1_47EE4(s32);
-extern void fn_1_485C8(s32);
-extern void fn_1_48140(s32 value);
-extern void fn_1_4DDC0(void);
-extern void fn_1_4F724(void);
 
-extern u8 lbl_1_bss_3E024[52];
-extern char lbl_1_data_1A3AC[5];
-extern void strcpy(void *arg0, void *arg1);
-extern u32 fn_80006CE4(u32);
-extern void *fn_80006DE8(void *);
-extern u32 lbl_801A6410;
-extern void *fn_1_4630(u32 arg0, u32 arg1, u8 *arg2, u32 arg3);
-extern void *fn_1_46B4(u32 arg0, void *arg1, u8 *arg2, u32 arg3);
-extern void strcat(void *arg0, void *arg1);
-extern void fn_1_48004(s32 value, s32 arg);
 
 struct fn_1_46BFC_state {
     u32 unk_0;
@@ -1834,7 +1841,6 @@ struct fn_1_46BFC_state {
     u32 entries[0x600];
 };
 
-extern u32 lbl_1_bss_958[2];
 
 /* file-scope objects of the retail TU, in retail order: MWCC addresses them off one section base */
 u32 fzgx_obj_lbl_1_bss_384C0;
@@ -1890,10 +1896,7 @@ u32 fn_1_46C60(void) {
 }
 /* fzgx:end fn_1_46C60 */
 
-/* fzgx:begin fn_1_46C70 noprologue */
-#include "rel/main_rel/load.h"
-
-extern s32 fn_8000700C(void);
+/* fzgx:begin fn_1_46C70 */
 
 s32 fn_1_46C70(void) {
     s32 value;
@@ -1918,7 +1921,6 @@ s32 fn_1_46C70(void) {
 /* fzgx:end fn_1_46C70 */
 
 /* fzgx:begin fn_1_46DC4 */
-extern s32 fn_8000700C(s32 arg0);
 
 s32 fn_1_46DC4(s32 value) {
     u8 *entry;
@@ -1926,7 +1928,7 @@ s32 fn_1_46DC4(s32 value) {
     s32 i;
 
     count = 0;
-    value = fn_8000700C(value);
+    value = fn_8000700C( (const char *)(s32)(value));
     entry = (u8 *)&lbl_1_bss_384D8;
     for (i = 0; i < 1024; i++, entry += 0x10) {
         if ((((Obj_1_bss_384D8 *)entry)->unk_0 & 0x10000000) != 0 &&
@@ -2084,7 +2086,6 @@ __declspec(section ".fzgxpool") static void fn_1_4706C_fzgx_bss_prime(void) {
 }
 #pragma section code_type ".text"
 
-extern void fn_8000659C(void);
 
 void fn_1_4706C(void) {
     struct { u32 value; } i;
@@ -2117,10 +2118,6 @@ u32 fn_1_47184(void) {
 /* fzgx:end fn_1_47184 */
 
 /* fzgx:begin fn_1_471A0 */
-#include "types.h"
-
-
-
 u32 fn_1_471A0(void) {
     u32 *p;
     u32 i;
@@ -2138,10 +2135,6 @@ u32 fn_1_471A0(void) {
 /* fzgx:end fn_1_471A0 */
 
 /* fzgx:begin fn_1_47268 */
-#include "types.h"
-
-
-
 u32 fn_1_47268(void) {
     u32 *p;
     u32 i;
@@ -2159,8 +2152,6 @@ u32 fn_1_47268(void) {
 /* fzgx:end fn_1_47268 */
 
 /* fzgx:begin fn_1_47330 */
-#include "sdk_addresses.h"
-
 typedef union PPCWGPipe {
     u8 u8;
     u16 u16;
@@ -2175,30 +2166,13 @@ typedef union PPCWGPipe {
 /* GX write-gather FIFO: hardware register, every store must reach it. */
 volatile PPCWGPipe GXWGFifo : FZGX_ADDR_GXFIFO;
 
-extern void fn_80074918(u8, s32, u8);
-extern void fn_80074788(u32);
-extern void fn_80074660(u32);
-extern void fn_80073678(u32);
-extern void fn_80073C6C(s32);
-extern void fn_800747D0(u32, u32, s32, s32, u32, s32, s32);
-extern void fn_80072AB0(s32, s32, s32);
-extern void fn_800734A8(u32, s32, s32, s32);
-extern void fn_80072C24(s32, s32, s32, s32, s32);
-extern void fn_80072D64(s32, s32, s32, s32, u8, s32);
-extern void fn_80072CC4(s32, s32, s32, s32, s32);
-extern void fn_80072E20(s32, s32, s32, s32, u8, s32);
-extern void fn_800728A8(s32, s32, s32, s32);
-extern void fn_80072864(u32);
-extern void fn_8007245C(u32);
-extern u32 fn_800371F8(u32, void *);
-extern void fn_8003462C(u32, u32, u32);
 
-typedef struct LoadEntry {
+typedef struct fn_1_47330_LoadEntry {
     u32 unk_0;
     u32 unk_4;
     u32 unk_8;
     u32 unk_c;
-} LoadEntry;
+} fn_1_47330_LoadEntry;
 
 typedef struct Pos { f32 x, y, z; } Pos;
 typedef struct Color { u8 r, g, b, a; } Color;
@@ -2207,7 +2181,7 @@ typedef struct Color { u8 r, g, b, a; } Color;
  * section base; the fzgx_pool_gap_ objects span the retail objects in between */
 u32 fzgx_obj_lbl_1_bss_384C0;
 u8 fzgx_pool_gap_384C4[0x14];
-LoadEntry fzgx_obj_lbl_1_bss_384D8[0x580];
+fn_1_47330_LoadEntry fzgx_obj_lbl_1_bss_384D8[0x580];
 u32 fzgx_pool_gap_3DCD8;
 u32 fzgx_obj_lbl_1_bss_3DCDC;
 u8 fzgx_pool_gap_3DCE0[0x314];
@@ -2233,7 +2207,7 @@ static inline void VERT(f32 x, f32 y, f32 z) {
 }
 
 void fn_1_47330(Pos *pos, f32 width, f32 height) {
-    LoadEntry *entry;
+    fn_1_47330_LoadEntry *entry;
     s32 i;
     s32 draw;
 

@@ -8,6 +8,8 @@
 // functions or living in its .data block), layouts recovered from every access in the module.
 
 // lbl_1_bss_7AE88: .bss size 0x30, 11 refs from phys.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_7AE88_At10
+#define FZGX_TYPEDEF_Obj_1_bss_7AE88_At10
 typedef struct {
     u8 pad_0[0x554];
     f32 unk_554;  // 1 loads, 0 stores
@@ -34,6 +36,9 @@ typedef struct {
     u8 pad_77C8[0x6C];
     f32 unk_7834;  // 2 loads, 0 stores
 } Obj_1_bss_7AE88_At10;
+#endif
+#ifndef FZGX_TYPEDEF_Obj_1_bss_7AE88
+#define FZGX_TYPEDEF_Obj_1_bss_7AE88
 typedef struct {
     u32 unk_0;  // 13 loads, 3 stores
     s16 unk_4;  // 12 loads, 3 stores
@@ -54,6 +59,7 @@ typedef struct {
     s16 unk_2C;  // 12 loads, 5 stores
     u8 pad_2E[0x2];
 } Obj_1_bss_7AE88;
+#endif
 extern Obj_1_bss_7AE88 lbl_1_bss_7AE88;
 
 // lbl_1_bss_7B188: .bss size 0x8, 6 refs from phys.c

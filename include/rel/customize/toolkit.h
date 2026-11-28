@@ -8,6 +8,8 @@
 // functions or living in its .data block), layouts recovered from every access in the module.
 
 // lbl_3_bss_A2438: .bss size 0x1C, 17 refs from toolkit.c
+#ifndef FZGX_TYPEDEF_Obj_3_bss_A2438
+#define FZGX_TYPEDEF_Obj_3_bss_A2438
 typedef struct {
     u8 unk_0;  // 23 loads, 1 stores
     u8 pad_1[0x3];
@@ -26,6 +28,7 @@ typedef struct {
     s16 unk_18;  // 2 loads, 4 stores
     s16 unk_1A;  // 2 loads, 4 stores
 } Obj_3_bss_A2438;
+#endif
 extern Obj_3_bss_A2438 lbl_3_bss_A2438;
 
 // lbl_3_bss_20: .bss size 0xD0, 12 refs from toolkit.c
@@ -101,12 +104,15 @@ typedef struct {
 extern Obj_3_bss_6D8C0 lbl_3_bss_6D8C0;
 
 // lbl_3_bss_2C584: .bss size 0x188, 4 refs from toolkit.c
+#ifndef FZGX_TYPEDEF_Obj_3_bss_2C584
+#define FZGX_TYPEDEF_Obj_3_bss_2C584
 typedef struct {
     s16 unk_0;  // 4 loads, 0 stores
     u8 pad_2[0x2];
     u32 unk_4;  // 6 loads, 1 stores
     u8 pad_8[0x180];
 } Obj_3_bss_2C584;
+#endif
 extern Obj_3_bss_2C584 lbl_3_bss_2C584;
 
 // lbl_3_data_C4: .data size 0x2, 4 refs from toolkit.c
@@ -142,6 +148,8 @@ extern u8 lbl_3_data_4B84[0x14];
 extern u32 lbl_3_bss_A2454;
 
 // lbl_3_bss_2C7C0: .bss size 0x41100, 3 refs from toolkit.c
+#ifndef FZGX_TYPEDEF_Obj_3_bss_2C7C0_At0
+#define FZGX_TYPEDEF_Obj_3_bss_2C7C0_At0
 typedef struct {
     u8 pad_0[0x390];
     u32 unk_390;  // 2 loads, 2 stores
@@ -149,6 +157,9 @@ typedef struct {
     u32 unk_3A0;  // 0 loads, 2 stores
     u32 unk_3A4;  // 2 loads, 0 stores
 } Obj_3_bss_2C7C0_At0;
+#endif
+#ifndef FZGX_TYPEDEF_Obj_3_bss_2C7C0
+#define FZGX_TYPEDEF_Obj_3_bss_2C7C0
 typedef struct {
     Obj_3_bss_2C7C0_At0 *unk_0;  // 2 loads, 1 stores
     u8 unk_4;  // 0 loads, 1 stores
@@ -156,6 +167,7 @@ typedef struct {
     u32 unk_C;  // 0 loads, 2 stores
     u8 pad_10[0x410F0];
 } Obj_3_bss_2C7C0;
+#endif
 extern Obj_3_bss_2C7C0 lbl_3_bss_2C7C0;
 
 // lbl_3_bss_7E084: .bss size 0x1B8, 2 refs from toolkit.c

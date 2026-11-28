@@ -53,6 +53,8 @@ typedef struct {
 extern Obj_3_bss_A2410 lbl_3_bss_A2410;
 
 // lbl_3_bss_A2438: .bss size 0x1C, 2 refs from editor.c
+#ifndef FZGX_TYPEDEF_Obj_3_bss_A2438
+#define FZGX_TYPEDEF_Obj_3_bss_A2438
 typedef struct {
     u8 unk_0;  // 23 loads, 1 stores
     u8 pad_1[0x3];
@@ -71,6 +73,7 @@ typedef struct {
     s16 unk_18;  // 2 loads, 4 stores
     s16 unk_1A;  // 2 loads, 4 stores
 } Obj_3_bss_A2438;
+#endif
 extern Obj_3_bss_A2438 lbl_3_bss_A2438;
 
 // lbl_3_data_3738: .data size 0x48, 2 refs from editor.c (own data block)

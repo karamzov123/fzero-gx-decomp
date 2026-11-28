@@ -20,6 +20,8 @@ extern u8 lbl_1_data_40EF8[0x11];
 extern u8 lbl_1_bss_8E380;
 
 // lbl_1_data_1E5C0: .data size 0x34, 2 refs from custom_memcard.c
+#ifndef FZGX_TYPEDEF_Obj_1_data_1E5C0
+#define FZGX_TYPEDEF_Obj_1_data_1E5C0
 typedef struct {
     u32 unk_0;  // 1 loads, 0 stores
     u32 unk_4;  // 1 loads, 0 stores
@@ -35,6 +37,7 @@ typedef struct {
     u32 unk_2C;  // 1 loads, 0 stores
     u32 unk_30;  // 1 loads, 0 stores
 } Obj_1_data_1E5C0;
+#endif
 extern Obj_1_data_1E5C0 lbl_1_data_1E5C0;
 
 // lbl_1_bss_8E384: .bss size 0x44, 2 refs from custom_memcard.c

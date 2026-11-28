@@ -1882,5 +1882,135 @@
     "regional_split": [
       "\t.text       start:0x0000446C end:0x0000451C align:4"
     ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp/fn_1_1332FC.c",
+    "symbols": [
+      "fn_1_1332FC",
+      "fn_1_13354C",
+      "fn_1_133748",
+      "fn_1_133968",
+      "fn_1_133A8C",
+      "fn_1_133BD8",
+      "fn_1_133DBC",
+      "fn_1_133DE0"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "collapsed": true,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "pool": {
+      "@30": "lbl_1_rodata_8600",
+      "@85": "lbl_1_rodata_86F8",
+      "@86": "lbl_1_rodata_86FC"
+    },
+    "tu": "rel/main_rel/sel_static_disp_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x001332FC end:0x00133E04 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp/fn_1_134A4C.c",
+    "symbols": [
+      "fn_1_134A4C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x00134A4C end:0x00134AD4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp/fn_1_134AD4.c",
+    "symbols": [
+      "fn_1_134AD4"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "tu": "rel/main_rel/sel_static_disp_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x00134AD4 end:0x00134EE4 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/load/fn_1_46A60.c",
+    "symbols": [
+      "fn_1_46A60"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/load_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x00046A60 end:0x00046A8C"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/load/fn_1_46A8C.c",
+    "symbols": [
+      "fn_1_46A8C"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/main_rel/load_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x00046A8C end:0x00046B44 align:4"
+    ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/camera_b/fn_1_8B10.c",
+    "symbols": [
+      "fn_1_8B10"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/camera_b_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x00008B10 end:0x00008D08 align:4"
+    ]
   }
 ]

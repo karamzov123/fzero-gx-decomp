@@ -49,6 +49,8 @@ extern Obj_1_bss_38454_Target *lbl_1_bss_38454;
 extern u8 lbl_1_data_3DDA8[0xC];
 
 // lbl_1_bss_7AE88: .bss size 0x30, 2 refs from bg_for.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_7AE88_At10
+#define FZGX_TYPEDEF_Obj_1_bss_7AE88_At10
 typedef struct {
     u8 pad_0[0x554];
     f32 unk_554;  // 1 loads, 0 stores
@@ -75,6 +77,9 @@ typedef struct {
     u8 pad_77C8[0x6C];
     f32 unk_7834;  // 2 loads, 0 stores
 } Obj_1_bss_7AE88_At10;
+#endif
+#ifndef FZGX_TYPEDEF_Obj_1_bss_7AE88
+#define FZGX_TYPEDEF_Obj_1_bss_7AE88
 typedef struct {
     u32 unk_0;  // 13 loads, 3 stores
     s16 unk_4;  // 12 loads, 3 stores
@@ -95,14 +100,18 @@ typedef struct {
     s16 unk_2C;  // 12 loads, 5 stores
     u8 pad_2E[0x2];
 } Obj_1_bss_7AE88;
+#endif
 extern Obj_1_bss_7AE88 lbl_1_bss_7AE88;
 
 // lbl_1_data_2B0D4: .data size 0x70, 2 refs from bg_for.c
+#ifndef FZGX_TYPEDEF_Obj_1_data_2B0D4
+#define FZGX_TYPEDEF_Obj_1_data_2B0D4
 typedef struct {
     u8 pad_0[0xA];
     s16 unk_A;  // 1 loads, 0 stores
     u8 pad_C[0x64];
 } Obj_1_data_2B0D4;
+#endif
 extern Obj_1_data_2B0D4 lbl_1_data_2B0D4;
 
 // jumptable_1_data_3DCE0: .data size 0xC8, 1 refs from bg_for.c (own data block)

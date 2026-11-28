@@ -70,6 +70,8 @@ extern s16 lbl_10_bss_1A;
 extern u8 lbl_10_bss_493A0[0x5B20];
 
 // lbl_10_bss_55CD8: .bss size 0x4, 5 refs from sel.c
+#ifndef FZGX_TYPEDEF_Obj_10_bss_55CD8_Target
+#define FZGX_TYPEDEF_Obj_10_bss_55CD8_Target
 typedef struct {
     u32 unk_0;  // 12 loads, 7 stores
     u32 unk_4;  // 1 loads, 1 stores
@@ -98,6 +100,7 @@ typedef struct {
     u8 unk_3B;  // 5 loads, 2 stores
     u32 unk_3C;  // 4 loads, 2 stores
 } Obj_10_bss_55CD8_Target;
+#endif
 extern Obj_10_bss_55CD8_Target *lbl_10_bss_55CD8;
 
 // lbl_10_data_68E0: .data size 0xA0, 5 refs from sel.c (own data block)

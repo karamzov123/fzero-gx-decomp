@@ -41,6 +41,8 @@ typedef struct {
 extern Obj_1_bss_89750 lbl_1_bss_89750;
 
 // lbl_1_bss_86ED0: .bss size 0x1C70, 2 refs from accessory.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_86ED0
+#define FZGX_TYPEDEF_Obj_1_bss_86ED0
 typedef struct {
     u8 pad_0[0x8];
     u32 unk_8;  // 7 loads, 0 stores
@@ -48,6 +50,7 @@ typedef struct {
     u32 unk_10;  // 3 loads, 0 stores
     u8 pad_14[0x1C5C];
 } Obj_1_bss_86ED0;
+#endif
 extern Obj_1_bss_86ED0 lbl_1_bss_86ED0;
 
 // lbl_1_bss_89770: .bss size 0x10, 2 refs from accessory.c

@@ -14,10 +14,13 @@ extern u8 lbl_8_bss_0;
 extern char lbl_8_data_0[4];
 
 // lbl_8_bss_3D0: .bss size 0x170, 5 refs from title.c
+#ifndef FZGX_TYPEDEF_Obj_8_bss_3D0
+#define FZGX_TYPEDEF_Obj_8_bss_3D0
 typedef struct {
     u32 unk_0;  // 25 loads, 0 stores
     u8 pad_4[0x16C];
 } Obj_8_bss_3D0;
+#endif
 extern Obj_8_bss_3D0 lbl_8_bss_3D0;
 
 // lbl_8_bss_3CC: .bss size 0x4, 5 refs from title.c

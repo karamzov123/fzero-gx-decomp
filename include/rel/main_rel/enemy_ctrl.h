@@ -70,9 +70,14 @@ extern u8 lbl_1_bss_9C;
 extern u32 lbl_1_data_3D290;
 
 // lbl_1_bss_84: .bss size 0x18, 2 refs from enemy_ctrl.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_84_At0
+#define FZGX_TYPEDEF_Obj_1_bss_84_At0
 typedef struct {
     u32 unk_0;  // 5 loads, 0 stores
 } Obj_1_bss_84_At0;
+#endif
+#ifndef FZGX_TYPEDEF_Obj_1_bss_84
+#define FZGX_TYPEDEF_Obj_1_bss_84
 typedef struct {
     Obj_1_bss_84_At0 *unk_0;  // 6 loads, 0 stores
     u32 unk_4;  // 1 loads, 0 stores
@@ -81,6 +86,7 @@ typedef struct {
     u32 unk_10;  // 2 loads, 0 stores
     u32 unk_14;  // 2 loads, 2 stores
 } Obj_1_bss_84;
+#endif
 extern Obj_1_bss_84 lbl_1_bss_84;
 
 // lbl_1_data_3D574: .data size 0x5, 2 refs from enemy_ctrl.c (own data block)

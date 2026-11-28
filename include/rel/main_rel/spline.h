@@ -24,6 +24,8 @@ typedef struct {
 extern Obj_1_bss_84428 lbl_1_bss_84428;
 
 // lbl_1_bss_718E0: .bss size 0x59E8, 3 refs from spline.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_718E0
+#define FZGX_TYPEDEF_Obj_1_bss_718E0
 typedef struct {
     u16 unk_0;  // 0 loads, 1 stores
     u8 unk_2;  // 2 loads, 1 stores
@@ -38,6 +40,7 @@ typedef struct {
     u8 unk_5523;  // 1 loads, 0 stores
     u8 pad_5524[0x4C4];
 } Obj_1_bss_718E0;
+#endif
 extern Obj_1_bss_718E0 lbl_1_bss_718E0;
 
 // lbl_1_bss_7F028: .bss size 0x1, 3 refs from spline.c

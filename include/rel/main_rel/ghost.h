@@ -62,6 +62,8 @@ typedef struct {
 extern Obj_1_bss_7C584 lbl_1_bss_7C584;
 
 // lbl_1_bss_77380: .bss size 0x3000, 2 refs from ghost.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_77380
+#define FZGX_TYPEDEF_Obj_1_bss_77380
 typedef struct {
     u32 unk_0;  // 10 loads, 11 stores
     u32 unk_4;  // 10 loads, 11 stores
@@ -113,6 +115,7 @@ typedef struct {
     u32 unk_BC;  // 1 loads, 0 stores
     u8 pad_C0[0x2F40];
 } Obj_1_bss_77380;
+#endif
 extern Obj_1_bss_77380 lbl_1_bss_77380;
 
 // lbl_1_data_3E73C: .data size 0x158, 1 refs from ghost.c (own data block)

@@ -46,10 +46,13 @@ typedef struct {
 extern Obj_1_bss_8ED94 lbl_1_bss_8ED94;
 
 // lbl_1_data_49AB4: .data size 0x14, 2 refs from rep_memcard.c
+#ifndef FZGX_TYPEDEF_Obj_1_data_49AB4
+#define FZGX_TYPEDEF_Obj_1_data_49AB4
 typedef struct {
     u32 unk_0;  // 1 loads, 8 stores
     u8 pad_4[0x10];
 } Obj_1_data_49AB4;
+#endif
 extern Obj_1_data_49AB4 lbl_1_data_49AB4;
 
 // jumptable_1_data_49AD8: .data size 0x30, 1 refs from rep_memcard.c (own data block)

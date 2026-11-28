@@ -48,14 +48,20 @@ extern Obj_1_bss_6EAC6 lbl_1_bss_6EAC6;
 extern u32 lbl_1_bss_6EA9C;
 
 // lbl_1_bss_6EAD0: .bss size 0x708, 2 refs from sound.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_6EAD0_At0
+#define FZGX_TYPEDEF_Obj_1_bss_6EAD0_At0
 typedef struct {
     u32 unk_0;  // 23 loads, 0 stores
     u32 unk_4;  // 9 loads, 0 stores
 } Obj_1_bss_6EAD0_At0;
+#endif
+#ifndef FZGX_TYPEDEF_Obj_1_bss_6EAD0
+#define FZGX_TYPEDEF_Obj_1_bss_6EAD0
 typedef struct {
     Obj_1_bss_6EAD0_At0 *unk_0;  // 34 loads, 0 stores
     u8 pad_4[0x704];
 } Obj_1_bss_6EAD0;
+#endif
 extern Obj_1_bss_6EAD0 lbl_1_bss_6EAD0;
 
 // jumptable_1_data_33FAC: .data size 0x44, 1 refs from sound.c (own data block)

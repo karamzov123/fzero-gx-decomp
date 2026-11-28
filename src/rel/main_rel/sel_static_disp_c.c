@@ -1,12 +1,24 @@
 #include "types.h"
-#include "game/pad.h"
+#include "dolphin/types.h"
 #include "rel/main_rel/globals.h"
+#include "game/pad.h"
 #include "rel/main_rel/sel_static_disp.h"
 #include "font.h"
+#include "rel/main_rel/game.h"
+#include "rel/main_rel/car_test.h"
+
+
+typedef unsigned long u32;
 
 typedef struct {
     u32 v[8];
 } Word8;
+
+typedef float f32;
+
+typedef signed long s32;
+
+typedef unsigned char u8;
 
 typedef struct {
     u8 pad0[0x4];
@@ -171,49 +183,462 @@ typedef struct fn_1_151668_StaticDisp {
     s32 value_2728;
     s32 value_272c;
 } fn_1_151668_StaticDisp;
+
+typedef unsigned short u16;
+
+typedef struct {
+void *value;
+} Val;
+
+typedef struct {
+u8 pad8[8];
+Val *value;
+} Ref;
+
+typedef struct {
+u8 pad344[0x344];
+Ref *ref;
+} Obj;
+
+typedef struct CompareEntry {
+    s16 index;
+    f32 value;
+} CompareEntry;
+
+typedef struct fn_1_14DEC8_FontVertex {
+f32 x, y, z;
+} fn_1_14DEC8_FontVertex;
+
+typedef struct fn_1_14DEC8_FontDrawPacket fn_1_14DEC8_FontDrawPacket;
+
+struct fn_1_14DEC8_FontDrawPacket {
+u32 image;
+f32 x, y, z;
+f32 scale_x, scale_y;
+f32 u0, v0, u1, v1;
+s16 rotation_z, rotation_y;
+f32 alpha;
+u32 flags;
+f32 depth;
+u8 color[4], color_add[4];
+u32 format;
+u16 width, height;
+void* pixels;
+fn_1_14DEC8_FontDrawPacket* secondary;
+void (*vertex_callback)(fn_1_14DEC8_FontDrawPacket* packet, fn_1_14DEC8_FontVertex* vertices);
+u32 unk_54;
+};
+
+typedef struct {
+    u32 words[3];
+} Blend3;
+
+typedef struct {
+    u8 *kind;        /* 0x00: descriptor pointer, byte 3 is the blend key */
+    f32 f04;
+    f32 f08;
+    f32 f0C;
+    f32 f10;
+    f32 f14;
+    f32 f18;
+    f32 f1C;
+    f32 f20;
+    f32 f24;
+    f32 f28;
+    f32 f2C;
+    f32 f30;
+    f32 f34;
+    f32 f38;
+    f32 f3C;
+    f32 f40;
+    f32 f44;
+    u8 b48;
+    u8 b49;
+    u8 pad4A[2];
+    f32 f4C;
+    f32 f50;
+    Blend3 tail[8];  /* 0x54..0xB4 */
+} DispEntry;
+
+typedef s32 (*Sig_fn_8007E96C_fn_8007E96C_Compare)(u32, u32);
+
+struct Names {
+	u8 *p[75];
+};
+
+typedef struct {
+    f32 x;
+    f32 y;
+    f32 z;
+} Fn183D28Vec3;
+
+typedef struct Pool {
+    u8 pad_00[0x48];
+    f64 c48;
+    u8 pad_50[4];
+    f32 c54;
+    u8 pad_58[4];
+    f32 c5c;
+    u8 pad_60[8];
+    f32 c68;
+    f32 c6c;
+    f32 c70;
+    u8 pad_74[4];
+    f64 c78;
+    f64 c80;
+} Pool;
+
+typedef struct CameraState151054 {
+    u8 pad_0[0x118];
+    s32 unk_118;
+} CameraState151054;
+
+typedef struct fn_1_150D3C_Entry {
+    u8 pad_08[8];
+    u32 flags;
+    u8 pad_0c[0x20];
+    f32 x;
+    f32 y;
+    f32 z;
+    u8 tail[0x74];
+} fn_1_150D3C_Entry;
+
+typedef struct Object {
+    u8 pad_84[0x84];
+    s32 count;
+    fn_1_150D3C_Entry entries[1];
+} Object;
+
+typedef struct Rotation151054 {
+    u32 unk_0;
+    f32 unk_4;
+} Rotation151054;
+
+typedef struct Display151054 {
+    u32 unk_0;
+    u8 pad_4[0xC];
+    f32 unk_10;
+    u8 pad_14[0x20];
+    Rotation151054 **unk_34;
+} Display151054;
+
+typedef struct Entry151054 {
+    f32 unk_1824;
+    f32 unk_1828;
+    f32 unk_182C;
+    f32 unk_1830;
+    f32 unk_1834;
+    f32 unk_1838;
+    f32 unk_183C;
+    f32 unk_1840;
+    f32 unk_1844;
+    f32 unk_1848;
+    f32 unk_184C;
+    f32 unk_1850;
+    f32 unk_1854;
+    Display151054 *unk_1858;
+    u8 unk_185C;
+    u8 unk_185D;
+    u8 unk_185E;
+    u8 unk_185F;
+} Entry151054;
+
+typedef struct State151054 {
+    u8 pad_0[0x1824];
+    Entry151054 entries[64];
+    s32 unk_2724;
+    s32 unk_2728;
+    s32 unk_272C;
+    f32 unk_2730;
+    f32 unk_2734;
+    f32 unk_2738;
+    f32 unk_273C;
+    f32 unk_2740;
+    f32 unk_2744;
+} State151054;
+extern u16 lbl_1_bss_50EC[10];
+extern u32 lbl_801A66A4;
+extern void fn_1_14A1AC(u8);
+extern const f32 lbl_1_rodata_99A4;
+extern u32 fn_1_5910(void);
+extern u32 fn_1_149FB4(s32 index);
+extern u8 fn_1_3F864(void);
+extern void fn_1_A52B0(s32 index);
+extern void fn_1_A2D84(u32 arg0);
+extern f64 lbl_1_rodata_99B0;
+extern int fn_1_8623C(void);
 extern void OSPanic(const char *file, int line, const char *msg, ...);
-extern u32 lbl_801A66B4;
-extern void fn_1_14E9E4(int arg0, void *arg1);
 extern u32 __cvt_fp2unsigned(f32);
 extern int sprintf(char *s, const char *format, ...);
-extern char *strcpy(char *dst, const char *src);
-extern s32 fn_1_3F864(void);
-extern void fn_1_A2D84(u32 arg0);
-extern void fn_1_14A9D0(u8, int, int, int, int, int);
-extern void fn_1_14BFD8(void *, void *, int);
-extern u32 lbl_801A66A4;
+extern size_t strlen(const char *str);
+extern void qsort(void *arg0, u32 arg1, s32 arg2, void *callback);
+extern void fn_1_3F2A0(void);
+extern void fn_1_14A9D0();
 extern void fn_1_14CA4C(void);
-extern u8 lbl_1_bss_5138[260];
-extern int fn_1_C24A4(void);
+extern u32 fn_1_14BE30(void);
+extern void fn_1_14BFD8(s16 port, u8 *sel, s32 arg2);
+extern s32 fn_1_1555B0(s32 value);
+extern void fn_1_1556B4(u8 arg0, u8 arg1);
+extern u32 lbl_801A66A0;
+extern void fn_1_12EF80(s16 value, s16 *row, s16 *column);
+extern s16 fn_1_12EF24(s16 row, s16 column);
+extern u32 fn_1_F89E4(u8 value);
+extern u8 lbl_1_bss_718E0[];
+extern u32 lbl_801A66B4;
+extern u32 fn_1_155F7C(void);
+extern u32 fn_1_155F8C(void);
+extern void fn_1_155FB4(char *arg);
+extern char *strcpy(char *dst, const char *src);
+extern char *strncpy(char *dst, const char *src, size_t n);
+extern void fn_1_14CAC8(void);
+extern void fn_1_A2DC4(u32 arg0);
+extern s32 fn_1_14CEB8(u8 *name);
+extern s32 strncmp(const char *s1, const char *s2, size_t n);
+extern void OSReport(const char *msg, ...);
+extern u8 *lbl_1_bss_25CD0[];
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern u8 *strstr(u8 *str, const u8 *needle);
+extern u8 lbl_1_bss_8E598[148];
+extern u8 lbl_1_bss_8E62C[132];
+extern const u8 lbl_1_rodata_9828[172];
+extern const u8 lbl_1_rodata_98D4[208];
+extern void *fn_1_D3884(void *name);
+extern void * fn_1_14F344(void *);
+extern void fn_1_517EC(FontDrawPacket *p, s16 x, s16 y, s16 width, s16 height, s16 texture_width, s16 texture_height);
+extern const f32 lbl_1_rodata_9C30;
+extern void fn_1_55FF0();
+extern void fn_80072558(void);
+extern void fn_1_151C3C(s16 index, s16 row);
+extern void fn_1_556B8(void *value);
+extern void fn_1_55210(void *value);
+extern void fn_1_151C78(void);
+extern void lbl_8006E0A4(void *);
+extern void lbl_8006DAEC(void);
+extern void lbl_8006DBE4(void);
+extern void lbl_8006DC20(void);
+extern u8 lbl_1_rodata_A894[1800];
+extern s32 fn_1_14FE48(void *arg0, void *arg1);
+extern s32 fn_1_14FDAC(void *, void *, s16, void *);
+extern s16 fn_1_14F090(void *, s16);
+extern s16 fn_1_14F01C(void *);
+extern u32 lbl_1_rodata_99D8[75];
+extern void *fn_1_36AD0(s16 arg0, u32 arg1);
+extern void *fn_1_14F6F8(void *arg0, void *arg1, void *arg2, DispEntry *out);
+extern void fn_1_14FD7C(u32 *, u32);
+extern s32 fn_1_14FD6C(s32 *arg0, s32 *arg1);
+extern u8 lbl_1_bss_8E6B0[308];
+extern u16 lbl_1_bss_8E7E4[722];
+extern char * fn_1_14EBF8(s16, char *, s16);
+extern char * fn_1_14EA74(s16, char *, s16);
+extern s32 fn_1_14ED00(s32 arg0, void *arg1, s32 arg2);
+extern u32 fn_8007E96C(u32, u32, u32, u32, Sig_fn_8007E96C_fn_8007E96C_Compare);
+extern u8 fn_1_14E8A4__fzgx_offset_0[];
+extern u8 fn_1_14E8CC__fzgx_offset_0[];
+extern u8 fn_1_14E8F4__fzgx_offset_0[];
+extern u8 fn_1_14E91C__fzgx_offset_0[];
+extern u8 fn_1_14E944__fzgx_offset_0[];
+extern u8 fn_1_14E96C__fzgx_offset_0[];
+extern u8 fn_1_14E9A8__fzgx_offset_0[];
+extern u8 fn_1_14EE00__fzgx_offset_64[];
+extern u8 fn_1_14EE00__fzgx_offset_6C[];
+extern u8 fn_1_14EE00__fzgx_offset_74[];
+extern u8 fn_1_14EE00__fzgx_offset_7C[];
+extern u8 fn_1_14EE00__fzgx_offset_84[];
+extern u8 fn_1_14EE00__fzgx_offset_88[];
+extern u8 lbl_1_data_43E78__fzgx_offset_0[];
+extern u8 lbl_1_data_43E84__fzgx_offset_0[];
+extern u8 lbl_1_data_43E88__fzgx_offset_0[];
+extern u8 lbl_1_data_43E9C__fzgx_offset_0[];
+extern u8 lbl_1_data_43EA8__fzgx_offset_0[];
+extern u8 lbl_1_data_43EB8__fzgx_offset_0[];
+extern u8 lbl_1_data_43EC8__fzgx_offset_0[];
+extern u8 lbl_1_data_43EE8__fzgx_offset_0[];
+extern u8 lbl_1_data_43EF4__fzgx_offset_0[];
+extern u8 lbl_1_data_43F08__fzgx_offset_0[];
+extern u8 lbl_1_data_43F18__fzgx_offset_0[];
+extern u8 lbl_1_data_43F2C__fzgx_offset_0[];
+extern u8 lbl_1_data_43F38__fzgx_offset_0[];
+extern u8 lbl_1_data_43F4C__fzgx_offset_0[];
+extern u8 lbl_1_data_43F54__fzgx_offset_0[];
+extern u8 lbl_1_data_43F64__fzgx_offset_0[];
+extern u8 lbl_1_data_43F74__fzgx_offset_0[];
+extern u8 lbl_1_data_43F84__fzgx_offset_0[];
+extern u8 lbl_1_data_43F90__fzgx_offset_0[];
+extern u8 lbl_1_data_43FA0__fzgx_offset_0[];
+extern u8 lbl_1_data_43FB0__fzgx_offset_0[];
+extern u8 lbl_1_data_43FC8__fzgx_offset_0[];
+extern u8 lbl_1_data_43FD8__fzgx_offset_0[];
+extern u8 lbl_1_data_43FEC__fzgx_offset_0[];
+extern u8 lbl_1_data_43FF8__fzgx_offset_0[];
+extern u8 lbl_1_data_44008__fzgx_offset_0[];
+extern u8 lbl_1_data_44018__fzgx_offset_0[];
+extern u8 lbl_1_data_44030__fzgx_offset_0[];
+extern u8 lbl_1_data_44038__fzgx_offset_0[];
+extern u8 lbl_1_data_44048__fzgx_offset_0[];
+extern u8 lbl_1_data_44054__fzgx_offset_0[];
+extern u8 lbl_1_data_44064__fzgx_offset_0[];
+extern u8 lbl_1_data_44070__fzgx_offset_0[];
+extern u8 lbl_1_data_44084__fzgx_offset_0[];
+extern u8 lbl_1_data_44090__fzgx_offset_0[];
+extern u8 lbl_1_data_440A4__fzgx_offset_0[];
+extern u8 lbl_1_data_440B0__fzgx_offset_0[];
+extern u8 lbl_1_data_440C0__fzgx_offset_0[];
+extern u8 lbl_1_data_440CC__fzgx_offset_0[];
+extern u8 lbl_1_data_440DC__fzgx_offset_0[];
+extern u8 lbl_1_data_440EC__fzgx_offset_0[];
+extern u8 lbl_1_data_44100__fzgx_offset_0[];
+extern u8 lbl_1_data_4410C__fzgx_offset_0[];
+extern u8 lbl_1_data_44120__fzgx_offset_0[];
+extern u8 lbl_1_data_4412C__fzgx_offset_0[];
+extern u8 lbl_1_data_44138__fzgx_offset_0[];
+extern u8 lbl_1_data_44144__fzgx_offset_0[];
+extern u8 lbl_1_data_44154__fzgx_offset_0[];
+extern u8 lbl_1_data_44160__fzgx_offset_0[];
+extern u8 lbl_1_data_44170__fzgx_offset_0[];
+extern u8 lbl_1_data_4417C__fzgx_offset_0[];
+extern u8 lbl_1_data_4418C__fzgx_offset_0[];
+extern u8 lbl_1_data_4419C__fzgx_offset_0[];
+extern u8 lbl_1_data_441AC__fzgx_offset_0[];
+extern u8 lbl_1_data_441B8__fzgx_offset_0[];
+extern u8 lbl_1_data_441D0__fzgx_offset_0[];
+extern u8 lbl_1_data_441DC__fzgx_offset_0[];
+extern u8 lbl_1_data_441EC__fzgx_offset_0[];
+extern u8 lbl_1_data_441F8__fzgx_offset_0[];
+extern u8 lbl_1_data_4420C__fzgx_offset_0[];
+extern u8 lbl_1_data_44220__fzgx_offset_0[];
+extern u8 lbl_1_data_4423C__fzgx_offset_0[];
+extern u8 lbl_1_data_44244__fzgx_offset_0[];
+extern u8 lbl_1_data_44250__fzgx_offset_0[];
+extern u8 lbl_1_data_44260__fzgx_offset_0[];
+extern u8 lbl_1_data_44270__fzgx_offset_0[];
+extern u8 lbl_1_data_4427C__fzgx_offset_0[];
+extern u8 lbl_1_data_44290__fzgx_offset_0[];
+extern u8 lbl_1_data_4429C__fzgx_offset_0[];
+extern u8 lbl_1_data_442AC__fzgx_offset_0[];
+extern u8 lbl_1_data_442BC__fzgx_offset_0[];
+extern u8 lbl_1_data_442D0__fzgx_offset_0[];
+extern u8 lbl_1_data_442E0__fzgx_offset_0[];
+extern u8 lbl_1_data_442F4__fzgx_offset_0[];
+extern u8 lbl_1_data_44304__fzgx_offset_0[];
+extern u8 lbl_1_data_4431C__fzgx_offset_0[];
+extern u8 lbl_1_data_44328__fzgx_offset_0[];
+extern u8 lbl_1_data_4433C__fzgx_offset_0[];
+extern u8 lbl_1_data_4434C__fzgx_offset_0[];
+extern u8 lbl_1_data_44360__fzgx_offset_0[];
+extern u8 lbl_1_data_4436C__fzgx_offset_0[];
+extern u8 lbl_1_data_44378__fzgx_offset_0[];
+extern u8 lbl_1_data_44384__fzgx_offset_0[];
+extern u8 lbl_1_data_44394__fzgx_offset_0[];
+extern u8 lbl_1_data_443A4__fzgx_offset_0[];
+extern u8 lbl_1_data_443B8__fzgx_offset_0[];
+extern u8 lbl_1_data_443C8__fzgx_offset_0[];
+extern u8 lbl_1_data_443DC__fzgx_offset_0[];
+extern u8 lbl_1_data_443EC__fzgx_offset_0[];
+extern u8 lbl_1_data_44400__fzgx_offset_0[];
+extern u8 lbl_1_data_44410__fzgx_offset_0[];
+extern u8 lbl_1_data_44424__fzgx_offset_0[];
+extern u8 lbl_1_data_44430__fzgx_offset_0[];
+extern u8 lbl_1_data_44444__fzgx_offset_0[];
+extern u8 lbl_1_data_44450__fzgx_offset_0[];
+extern u8 lbl_1_data_4445C__fzgx_offset_0[];
+extern u8 lbl_1_data_44468__fzgx_offset_0[];
+extern u8 lbl_1_data_44478__fzgx_offset_0[];
+extern u8 lbl_1_data_4448C__fzgx_offset_0[];
+extern u8 lbl_1_data_444AC__fzgx_offset_0[];
+extern u8 lbl_1_data_444BC__fzgx_offset_0[];
+extern u8 lbl_1_data_444D0__fzgx_offset_0[];
+extern u8 lbl_1_data_444DC__fzgx_offset_0[];
+extern u8 lbl_1_data_444F0__fzgx_offset_0[];
+extern u8 lbl_1_data_444F8__fzgx_offset_0[];
+extern u8 lbl_1_data_44504__fzgx_offset_0[];
+extern u8 lbl_1_data_44510__fzgx_offset_0[];
+extern u8 lbl_1_data_44520__fzgx_offset_0[];
+extern u8 lbl_1_data_4452C__fzgx_offset_0[];
+extern u8 lbl_1_data_4453C__fzgx_offset_0[];
+extern u8 lbl_1_data_44548__fzgx_offset_0[];
+extern u8 lbl_1_data_44558__fzgx_offset_0[];
+extern u8 lbl_1_data_44568__fzgx_offset_0[];
+extern u8 lbl_1_data_4457C__fzgx_offset_0[];
+extern u8 lbl_1_data_4458C__fzgx_offset_0[];
+extern u8 lbl_1_data_445A8__fzgx_offset_0[];
+extern u8 lbl_1_data_445B8__fzgx_offset_0[];
+extern u8 lbl_1_data_445CC__fzgx_offset_0[];
+extern u8 lbl_1_data_445D8__fzgx_offset_0[];
+extern u8 lbl_1_data_445E8__fzgx_offset_0[];
+extern u8 lbl_1_data_445F4__fzgx_offset_0[];
+extern u8 lbl_1_data_44608__fzgx_offset_0[];
+extern u8 lbl_1_data_44614__fzgx_offset_0[];
+extern u8 lbl_1_data_44624__fzgx_offset_0[];
+extern u8 lbl_1_data_44630__fzgx_offset_0[];
+extern u8 lbl_1_data_44640__fzgx_offset_0[];
+extern u8 lbl_1_data_44650__fzgx_offset_0[];
+extern u8 lbl_1_data_44664__fzgx_offset_0[];
+extern u8 lbl_1_data_44670__fzgx_offset_0[];
+extern u8 lbl_1_data_44684__fzgx_offset_0[];
+extern u8 lbl_1_data_44690__fzgx_offset_0[];
+extern u8 lbl_1_data_446A0__fzgx_offset_0[];
+extern u8 lbl_1_data_446B0__fzgx_offset_0[];
+extern u8 lbl_1_data_446C8__fzgx_offset_0[];
+extern u8 lbl_1_data_446D8__fzgx_offset_0[];
+extern u8 lbl_1_data_446EC__fzgx_offset_0[];
+extern u8 lbl_1_data_446F8__fzgx_offset_0[];
+extern u8 lbl_1_data_44708__fzgx_offset_0[];
+extern u8 lbl_1_data_44714__fzgx_offset_0[];
+extern u8 lbl_1_data_44728__fzgx_offset_0[];
+extern u8 lbl_1_data_44738__fzgx_offset_0[];
+extern u8 lbl_1_data_44750__fzgx_offset_0[];
+extern u8 lbl_1_data_4475C__fzgx_offset_0[];
+extern u8 lbl_1_data_4476C__fzgx_offset_0[];
+extern u8 lbl_1_data_44778__fzgx_offset_0[];
+extern u8 lbl_1_data_44788__fzgx_offset_0[];
+extern u8 lbl_1_data_44794__fzgx_offset_0[];
+extern u8 lbl_1_data_447A8__fzgx_offset_0[];
+extern u8 lbl_1_data_447B0__fzgx_offset_0[];
+extern u8 lbl_1_data_447BC__fzgx_offset_0[];
+extern u8 lbl_1_data_447C8__fzgx_offset_0[];
+extern u8 lbl_1_data_447DC__fzgx_offset_0[];
+extern u8 lbl_1_data_447E8__fzgx_offset_0[];
+extern u8 lbl_1_data_447FC__fzgx_offset_0[];
+extern u8 lbl_1_data_44808__fzgx_offset_0[];
+extern u8 lbl_8015B200[];
+extern void fn_1_12AB38(void *arg0);
+extern s32 fn_1_12ADA0(void *arg0, void *arg1);
+extern void fn_1_8019C(void *arg0);
+extern struct Names lbl_1_rodata_CE10;
+extern s16 fn_1_3F0C8();
+extern void fn_1_1507C4(Fn183D28Vec3 *pos, Fn183D28Vec3 *vel);
+extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
+extern s32 fn_1_54E34(void *arg0, f32 arg1);
+extern f32 fn_1_A71AC(void);
+extern s16 fn_1_58E3C(void *source);
+extern u32 lbl_8006DCA4(void);
+extern u32 lbl_8006D5F0(void *, void *, f32);
+extern void *memset(void *, int, u32);
+extern void fn_1_1030D4(void *entry, void *arg);
+extern f64 lbl_8006D188(s32 value);
+extern const f32 lbl_1_rodata_CF40[];
+extern u8 fn_1_58C4(void);
+extern void fn_1_5948(u32 arg0);
+extern s16 camera_get_mode(void);
+extern void fn_1_627C();
+extern u32 fn_1_8627C(s32 index);
+extern void fn_1_14E9E4(int arg0, void *arg1);
+extern s32 fn_1_C24A4(void);
 extern u8 fn_1_B7C00(void);
 extern void fn_1_320A4(void);
 extern u8 lbl_1_rodata_9B04[300];
-extern void *fn_1_12ADA0(char *dst, void *arg);
-extern void fn_1_8019C(void *arg0);
-extern void fn_1_12A7C4(const char *src, char *dst, int size);
-extern u8 lbl_8015B200[];
-extern size_t strlen(const char *str);
-extern void fn_1_12AB38(void *arg0);
-extern void *fn_1_D3884(void *arg0);
+extern s32 fn_1_12A7C4(void *arg0, void *arg1, void *arg2);
 extern void fn_1_14D728(Source *source, Display *displays);
 extern void fn_80071718(void *arg0);
 extern void fn_800711A8(void *arg0);
-extern s16 fn_1_14F344(s16);
 extern u8 lbl_1_rodata_9CDC[1200];
-extern Fn1_14E9E4Entry *fn_1_14F608(int arg0);
-extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern u8 *fn_1_14F608(void *arg0);
+extern void fn_80008BA8(void *dst, void *src, u32 size);
 extern u8 lbl_1_rodata_A18C[1800];
-extern s32 fn_1_14FE48(void *arg0, void *arg1);
-extern void *fn_1_14FDAC(void *arg0, void *arg1, s16 arg2, void *arg3);
 extern const u8 lbl_1_rodata_AF9C[2040];
 extern u8 lbl_1_rodata_B794[240];
-extern s16 fn_1_14F090(s16, s16);
-extern s16 fn_1_14F01C(s16);
-extern u32 lbl_1_rodata_99D8[75];
 extern u8 lbl_1_rodata_CB98[324];
-extern void fn_1_465D0(char *, int);
-extern s32 fn_1_14FD6C(s32 *arg0, s32 *arg1);
-extern void qsort(void *arg0, u32 arg1, s32 arg2, void *callback);
+extern s32 fn_1_465D0(char *path, s32 arg1);
 extern char *strtok(char *string, const char *delimiters);
 extern void fn_1_150C8C(fn_1_150C8C_Object *obj);
 extern void fn_1_150F30(fn_1_150F30_StaticDisp *self);
@@ -221,7 +646,7 @@ extern f32 lbl_1_rodata_CF70[54];
 extern void fn_1_14BFB8(void);
 extern u32 lbl_801A63C0;
 extern u32 fn_1_14D6D8(s16 index);
-extern void fn_1_14DEC8(void *arg0, void *arg1, void *arg2, void *arg3, int arg4);
+extern void fn_1_14DEC8();
 extern void fn_1_14E09C();
 extern void fn_1_14E1E0();
 extern u8 lbl_1_rodata_B884[76];
@@ -229,18 +654,16 @@ extern u8 lbl_1_rodata_B8D8[1200];
 extern u8 lbl_1_rodata_BD88[2400];
 extern u8 lbl_1_rodata_C6E8[1200];
 extern u8 lbl_1_rodata_CCDC[308];
-extern void fn_1_14FD7C(u32 *arg0, u32 arg1);
-extern void fn_1_9A508(Obj_1_data_2A7E0 *state);
+extern void fn_1_9A508();
 extern void fn_1_9AD54(void);
 extern u32 fn_1_9D260(void);
-extern void fn_1_150D3C(Obj_1_data_2A7E0_At3C *arg0, u32 arg1);
+extern void fn_1_150D3C(Object *obj, void *arg);
 extern void fn_1_150654(void);
-extern void fn_1_151054(Obj_1_data_2A7E0_At3C *arg);
+extern void fn_1_151054(State151054 *arg0);
 extern void fn_1_103090(void *entry);
 extern void fn_1_1030A4(void *entry);
 extern void fn_1_103264(void *entry, void *arg);
 extern void fn_1_151668(fn_1_151668_StaticDisp *self);
-extern const f32 lbl_1_rodata_CF40[];
 extern void fn_1_150F74(void *self);
 
 /* fzgx:begin fn_1_14A028 noprologue */
@@ -953,20 +1376,13 @@ void fn_1_14A9CC(void) {
 }
 /* fzgx:end fn_1_14A9CC */
 
-/* fzgx:begin fn_1_14A9D0 noprologue */
-typedef signed long s32;
-
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned long u32;
-
-typedef float f32;
+/* fzgx:begin fn_1_14A9D0 */
 typedef double f64;
 
 #pragma section code_type ".fzgxpool"
-static const u32 fzgx_pool_table1[95] = {0x82A082A2, 0x82A482A6, 0x82A882A9, 0x82AB82AD, 0x82AF82B1, 0x82B382B5, 0x82B782B9, 0x82BB82BD, 0x82BF82C2, 0x82C482C6, 0x82C882C9, 0x82CA82CB, 0x82CC82CD, 0x82D082D3, 0x82D682D9, 0x82DC82DD, 0x82DE82DF, 0x82E082E2, 0x82E482E6, 0x82E782E8, 0x82E982EA, 0x82EB82ED, 0x82EE82EF, 0x82F082F1, 0x82A482AA, 0x82AC82AE, 0x82B082B2, 0x82B482B6, 0x82B882BA, 0x82BC82BE, 0x82C082C3, 0x82C582C7, 0x82CE82D1, 0x82D482D7, 0x82DA82CF, 0x82D282D5, 0x82D882DB, 0x829F82A1, 0x82A382A5, 0x82A782C1, 0x82E182E3, 0x82E582EC, 0x00000000, 0x83418343, 0x83458347, 0x8349834A, 0x834C834E, 0x83508352, 0x83548356, 0x8358835A, 0x835C835E, 0x83608363, 0x83658367, 0x8369836A, 0x836B836C, 0x836D836E, 0x83718374, 0x8377837A, 0x837D837E, 0x83808381, 0x83828384, 0x83868388, 0x8389838A, 0x838B838C, 0x838D838F, 0x83908391, 0x83928393, 0x8394834B, 0x834D834F, 0x83518353, 0x83558357, 0x8359835B, 0x835D835F, 0x83618364, 0x83668368, 0x836F8372, 0x83758378, 0x837B8370, 0x83738376, 0x8379837C, 0x83408342, 0x83448346, 0x83488362, 0x83838385, 0x8387838E, 0x00000000, 0x81968196, 0x81960000, 0x83478374, 0x835B838D, 0x00000000, 0x8265817C, 0x82798264, 0x8271826E, 0x00000000}; /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; } /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+static const u32 fn_1_14A9D0_fzgx_pool_table1[95] = {0x82A082A2, 0x82A482A6, 0x82A882A9, 0x82AB82AD, 0x82AF82B1, 0x82B382B5, 0x82B782B9, 0x82BB82BD, 0x82BF82C2, 0x82C482C6, 0x82C882C9, 0x82CA82CB, 0x82CC82CD, 0x82D082D3, 0x82D682D9, 0x82DC82DD, 0x82DE82DF, 0x82E082E2, 0x82E482E6, 0x82E782E8, 0x82E982EA, 0x82EB82ED, 0x82EE82EF, 0x82F082F1, 0x82A482AA, 0x82AC82AE, 0x82B082B2, 0x82B482B6, 0x82B882BA, 0x82BC82BE, 0x82C082C3, 0x82C582C7, 0x82CE82D1, 0x82D482D7, 0x82DA82CF, 0x82D282D5, 0x82D882DB, 0x829F82A1, 0x82A382A5, 0x82A782C1, 0x82E182E3, 0x82E582EC, 0x00000000, 0x83418343, 0x83458347, 0x8349834A, 0x834C834E, 0x83508352, 0x83548356, 0x8358835A, 0x835C835E, 0x83608363, 0x83658367, 0x8369836A, 0x836B836C, 0x836D836E, 0x83718374, 0x8377837A, 0x837D837E, 0x83808381, 0x83828384, 0x83868388, 0x8389838A, 0x838B838C, 0x838D838F, 0x83908391, 0x83928393, 0x8394834B, 0x834D834F, 0x83518353, 0x83558357, 0x8359835B, 0x835D835F, 0x83618364, 0x83668368, 0x836F8372, 0x83758378, 0x837B8370, 0x83738376, 0x8379837C, 0x83408342, 0x83448346, 0x83488362, 0x83838385, 0x8387838E, 0x00000000, 0x81968196, 0x81960000, 0x83478374, 0x835B838D, 0x00000000, 0x8265817C, 0x82798264, 0x8271826E, 0x00000000}; /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fn_1_14A9D0_fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fn_1_14A9D0_fzgx_pool_table1; } /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fn_1_14A9D0_fzgx_pool_prime2(void) {
 volatile f32 s; volatile f64 d; /* fzgx-allow: S2 pool primer sinks */
 s = 0.0f;
 d = 4503599627370496.0;
@@ -979,8 +1395,8 @@ s = -0.10000000149011612f;
 s = 0.05000000074505806f;
 s = -0.05000000074505806f;
 }
-static const u32 fzgx_pool_table3[1] = {0x00000000}; /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; } /* fzgx-allow: S2 pool primer sink */
+static const u32 fn_1_14A9D0_fzgx_pool_table3[1] = {0x00000000}; /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fn_1_14A9D0_fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fn_1_14A9D0_fzgx_pool_table3; } /* fzgx-allow: S2 pool primer sink */
 #pragma section code_type ".text"
 struct fn_1_14A9D0_lbl_1_bss_8E518 {
 u8 pad_0[0x4];
@@ -1005,7 +1421,6 @@ u8 pad_0[0x10];
 u16 unk_10;
 u16 unk_12;
 };
-extern struct fn_1_14A9D0_lbl_1_bss_8E518 lbl_1_bss_8E518;
 
 static const u8 fzgx_pool_fzgx_unused_rodata_9828[172] = {0x82,0xA0,0x82,0xA2,0x82,0xA4,0x82,0xA6,0x82,0xA8,0x82,0xA9,0x82,0xAB,0x82,0xAD,0x82,0xAF,0x82,0xB1,0x82,0xB3,0x82,0xB5,0x82,0xB7,0x82,0xB9,0x82,0xBB,0x82,0xBD,0x82,0xBF,0x82,0xC2,0x82,0xC4,0x82,0xC6,0x82,0xC8,0x82,0xC9,0x82,0xCA,0x82,0xCB,0x82,0xCC,0x82,0xCD,0x82,0xD0,0x82,0xD3,0x82,0xD6,0x82,0xD9,0x82,0xDC,0x82,0xDD,0x82,0xDE,0x82,0xDF,0x82,0xE0,0x82,0xE2,0x82,0xE4,0x82,0xE6,0x82,0xE7,0x82,0xE8,0x82,0xE9,0x82,0xEA,0x82,0xEB,0x82,0xED,0x82,0xEE,0x82,0xEF,0x82,0xF0,0x82,0xF1,0x82,0xA4,0x82,0xAA,0x82,0xAC,0x82,0xAE,0x82,0xB0,0x82,0xB2,0x82,0xB4,0x82,0xB6,0x82,0xB8,0x82,0xBA,0x82,0xBC,0x82,0xBE,0x82,0xC0,0x82,0xC3,0x82,0xC5,0x82,0xC7,0x82,0xCE,0x82,0xD1,0x82,0xD4,0x82,0xD7,0x82,0xDA,0x82,0xCF,0x82,0xD2,0x82,0xD5,0x82,0xD8,0x82,0xDB,0x82,0x9F,0x82,0xA1,0x82,0xA3,0x82,0xA5,0x82,0xA7,0x82,0xC1,0x82,0xE1,0x82,0xE3,0x82,0xE5,0x82,0xEC,0x00,0x00,0x00,0x00};
 const u8 fzgx_pool_lbl_1_rodata_98D4[208] = {0x83,0x41,0x83,0x43,0x83,0x45,0x83,0x47,0x83,0x49,0x83,0x4A,0x83,0x4C,0x83,0x4E,0x83,0x50,0x83,0x52,0x83,0x54,0x83,0x56,0x83,0x58,0x83,0x5A,0x83,0x5C,0x83,0x5E,0x83,0x60,0x83,0x63,0x83,0x65,0x83,0x67,0x83,0x69,0x83,0x6A,0x83,0x6B,0x83,0x6C,0x83,0x6D,0x83,0x6E,0x83,0x71,0x83,0x74,0x83,0x77,0x83,0x7A,0x83,0x7D,0x83,0x7E,0x83,0x80,0x83,0x81,0x83,0x82,0x83,0x84,0x83,0x86,0x83,0x88,0x83,0x89,0x83,0x8A,0x83,0x8B,0x83,0x8C,0x83,0x8D,0x83,0x8F,0x83,0x90,0x83,0x91,0x83,0x92,0x83,0x93,0x83,0x94,0x83,0x4B,0x83,0x4D,0x83,0x4F,0x83,0x51,0x83,0x53,0x83,0x55,0x83,0x57,0x83,0x59,0x83,0x5B,0x83,0x5D,0x83,0x5F,0x83,0x61,0x83,0x64,0x83,0x66,0x83,0x68,0x83,0x6F,0x83,0x72,0x83,0x75,0x83,0x78,0x83,0x7B,0x83,0x70,0x83,0x73,0x83,0x76,0x83,0x79,0x83,0x7C,0x83,0x40,0x83,0x42,0x83,0x44,0x83,0x46,0x83,0x48,0x83,0x62,0x83,0x83,0x83,0x85,0x83,0x87,0x83,0x8E,0x00,0x00,0x00,0x00,0x81,0x96,0x81,0x96,0x81,0x96,0x00,0x00,0x83,0x47,0x83,0x74,0x83,0x5B,0x83,0x8D,0x00,0x00,0x00,0x00,0x82,0x65,0x81,0x7C,0x82,0x79,0x82,0x64,0x82,0x71,0x82,0x6E,0x00,0x00,0x00,0x00};
@@ -1020,8 +1435,6 @@ const f32 fzgx_pool_lbl_1_rodata_99B0__fzgx_offset_18 = -0.100000001f;
 const f32 fzgx_pool_lbl_1_rodata_99B0__fzgx_offset_1C = 0.0500000007f;
 const f32 fzgx_pool_lbl_1_rodata_99B0__fzgx_offset_20 = -0.0500000007f;
 const u8 fzgx_pool_lbl_1_rodata_99B0__fzgx_offset_24[4] = {0x00,0x00,0x00,0x00};
-extern u32 lbl_801A66A4;
-extern void fn_1_A2D84(u32);
 /* 1 when x is within eps of n */
 /* cursor count that fits on the page */
 typedef struct lbl_1_bss_9F8_t {
@@ -1040,7 +1453,7 @@ u32 lbl_1_bss_BF0[32];
 u32 fzgx_obj_lbl_1_bss_C70[20];
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_14A9D0_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_9F8;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_A48;
@@ -1052,7 +1465,15 @@ static void fzgx_bss_layout(void) {
 #pragma section code_type ".text"
 
 #pragma opt_dead_assignments off
-void fn_1_14A9D0(u8 arg0, s32 arg1, u32 arg2, u32 arg3, s32 arg4, s32 arg5, u8 arg6) {
+void fn_1_14A9D0(arg0, arg1, arg2, arg3, arg4, arg5, arg6)
+u8 arg0;
+s32 arg1;
+u32 arg2;
+u32 arg3;
+s32 arg4;
+s32 arg5;
+u8 arg6;
+{
 struct fn_1_14A9D0_lbl_1_bss_8E518 *p;
 f32 *pos;
 s32 *target;
@@ -1065,7 +1486,7 @@ f32 k;
 f32 step;
 f32 delta;
 s32 near;
-p = &lbl_1_bss_8E518;
+p = &(*((struct fn_1_14A9D0_lbl_1_bss_8E518 *)&lbl_1_bss_8E518));
 p->unk_38 = arg0;
 p->unk_3C = arg3;
 if (arg5 != 0) {
@@ -1154,7 +1575,252 @@ return;
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_1_14A9D0 */
 
-/* fzgx:begin fn_1_14AE94 */
+/* fzgx:begin fn_1_14AE94 noprologue */
+#include "types.h"
+#include "game/pad.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/sel_static_disp.h"
+#include "font.h"
+
+typedef struct {
+    u32 v[8];
+} Word8;
+
+typedef struct {
+    u8 pad0[0x4];
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+    u8 pad18[0x18];
+    s32 unk_30;
+    u8 pad34[0x24];
+} Sp8;
+
+typedef struct {
+    u32 value[22];
+} Fn139F18Data;
+
+typedef struct StaticDispParams {
+    s32 id;
+    f32 x;
+    f32 y;
+    f32 z;
+    u32 unk1[8];
+    s32 count;
+    u32 unk2[9];
+} StaticDispParams;
+
+struct Struct_26F8 {
+    u32 unk00;
+    f32 unk04;
+    f32 unk08;
+    f32 unk0C;
+    u8 pad10[0x1C];
+    f32 unk2C;
+    u32 unk30;
+    u8 pad34[4];
+    u32 unk38;
+    u8 pad3C[0x1C];
+};
+
+typedef struct {
+    const char *p[9];
+} PtrTab;
+
+struct fn_1_13F8C4_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E43C {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E440 {
+    u32 unk_0;
+};
+
+typedef struct {
+    s16 indices[2];
+    u8 pad8[4];
+    u32 flags;
+} Source;
+
+typedef struct {
+    s16 index;
+    u8 pad2[0x1e];
+    char text[0x320];
+    void *object;
+    void *handle[4];
+} Display;
+
+struct Sig_fn_80071718_fn_80071718_Arg0 {
+    u8 pad_0[0xC];
+    u32 unk_C;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Entry {
+    u8 pad_00[0x24];
+    void *field_24;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Arg0 {
+    s32 count;
+    u8 pad_04[4];
+    struct Sig_fn_800711A8_fn_800711A8_Entry **entries;
+    u8 pad_0C[4];
+    u32 field_10;
+    void *field_14;
+};
+
+typedef struct {
+    u8 data[4];
+    f32 value;
+    u8 tail[8];
+} Fn1_14E9E4Entry;
+
+typedef struct fn_1_150C8C_Entry {
+    u8 pad[0x68];
+    u32 active;
+    u8 tail[0x40];
+} fn_1_150C8C_Entry;
+
+typedef struct fn_1_150C8C_Object {
+    u8 pad_84[0x84];
+    s32 count;
+    fn_1_150C8C_Entry entries[1];
+} fn_1_150C8C_Object;
+
+typedef struct fn_1_150F30_StaticDisp {
+    u8 pad_2728[0x2728];
+    s32 unk_2728;
+    s32 unk_272c;
+} fn_1_150F30_StaticDisp;
+
+typedef struct Fn14E09CValue {
+    void *value;
+} Fn14E09CValue;
+
+typedef struct Fn14E09CRef {
+    u8 pad8[8];
+    Fn14E09CValue *value;
+} Fn14E09CRef;
+
+typedef struct Fn14E09CObj {
+    u8 pad344[0x344];
+    Fn14E09CRef *ref;
+} Fn14E09CObj;
+
+typedef struct DispNode {
+    u8 pad[4];
+    f32 value;
+} DispNode;
+
+typedef struct DispChildList {
+    DispNode *child[3];
+} DispChildList;
+
+typedef struct DispObject {
+    u32 flags;
+    u8 pad0[12];
+    f32 value;
+    u8 pad1[32];
+    DispChildList *children;
+} DispObject;
+
+typedef struct fn_1_151668_StaticDispEntry {
+    f32 first;
+    u8 pad0[0x18];
+    f32 values[3];
+    DispObject *object;
+    u8 active;
+    u8 scale_first;
+    u8 scale_second;
+    u8 clear_flag;
+    u8 pad2[0x0c];
+} fn_1_151668_StaticDispEntry;
+
+typedef struct fn_1_151668_StaticDisp {
+    u8 pad0[0x1830];
+    fn_1_151668_StaticDispEntry entries[63];
+    u8 pad1[0x30];
+    s32 entry_count;
+    s32 value_2728;
+    s32 value_272c;
+} fn_1_151668_StaticDisp;
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern u32 lbl_801A66B4;
+extern void fn_1_14E9E4(int arg0, void *arg1);
+extern u32 __cvt_fp2unsigned(f32);
+extern int sprintf(char *s, const char *format, ...);
+extern char *strcpy(char *dst, const char *src);
+extern s32 fn_1_3F864(void);
+extern void fn_1_A2D84(u32 arg0);
+extern void fn_1_14A9D0(u8, int, int, int, int, int);
+extern void fn_1_14BFD8(void *, void *, int);
+extern u32 lbl_801A66A4;
+extern void fn_1_14CA4C(void);
+extern u8 lbl_1_bss_5138[260];
+extern int fn_1_C24A4(void);
+extern u8 fn_1_B7C00(void);
+extern void fn_1_320A4(void);
+extern u8 lbl_1_rodata_9B04[300];
+extern void *fn_1_12ADA0(char *dst, void *arg);
+extern void fn_1_8019C(void *arg0);
+extern void fn_1_12A7C4(const char *src, char *dst, int size);
+extern u8 lbl_8015B200[];
+extern size_t strlen(const char *str);
+extern void fn_1_12AB38(void *arg0);
+extern void *fn_1_D3884(void *arg0);
+extern void fn_1_14D728(Source *source, Display *displays);
+extern void fn_80071718(void *arg0);
+extern void fn_800711A8(void *arg0);
+extern s16 fn_1_14F344(s16);
+extern u8 lbl_1_rodata_9CDC[1200];
+extern Fn1_14E9E4Entry *fn_1_14F608(int arg0);
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern u8 lbl_1_rodata_A18C[1800];
+extern s32 fn_1_14FE48(void *arg0, void *arg1);
+extern void *fn_1_14FDAC(void *arg0, void *arg1, s16 arg2, void *arg3);
+extern const u8 lbl_1_rodata_AF9C[2040];
+extern u8 lbl_1_rodata_B794[240];
+extern s16 fn_1_14F090(s16, s16);
+extern s16 fn_1_14F01C(s16);
+extern u32 lbl_1_rodata_99D8[75];
+extern u8 lbl_1_rodata_CB98[324];
+extern void fn_1_465D0(char *, int);
+extern s32 fn_1_14FD6C(s32 *arg0, s32 *arg1);
+extern void qsort(void *arg0, u32 arg1, s32 arg2, void *callback);
+extern char *strtok(char *string, const char *delimiters);
+extern void fn_1_150C8C(fn_1_150C8C_Object *obj);
+extern void fn_1_150F30(fn_1_150F30_StaticDisp *self);
+extern f32 lbl_1_rodata_CF70[54];
+extern void fn_1_14BFB8(void);
+extern u32 lbl_801A63C0;
+extern u32 fn_1_14D6D8(s16 index);
+extern void fn_1_14DEC8(void *arg0, void *arg1, void *arg2, void *arg3, int arg4);
+extern void fn_1_14E09C();
+extern void fn_1_14E1E0();
+extern u8 lbl_1_rodata_B884[76];
+extern u8 lbl_1_rodata_B8D8[1200];
+extern u8 lbl_1_rodata_BD88[2400];
+extern u8 lbl_1_rodata_C6E8[1200];
+extern u8 lbl_1_rodata_CCDC[308];
+extern void fn_1_14FD7C(u32 *arg0, u32 arg1);
+extern void fn_1_9A508(Obj_1_data_2A7E0 *state);
+extern void fn_1_9AD54(void);
+extern u32 fn_1_9D260(void);
+extern void fn_1_150D3C(Obj_1_data_2A7E0_At3C *arg0, u32 arg1);
+extern void fn_1_150654(void);
+extern void fn_1_151054(Obj_1_data_2A7E0_At3C *arg);
+extern void fn_1_103090(void *entry);
+extern void fn_1_1030A4(void *entry);
+extern void fn_1_103264(void *entry, void *arg);
+extern void fn_1_151668(fn_1_151668_StaticDisp *self);
+extern const f32 lbl_1_rodata_CF40[];
+extern void fn_1_150F74(void *self);
+
 void fn_1_14AE94(void) {
     if ((s32)lbl_1_bss_8E540 != 0) {
         lbl_1_bss_8E528 = lbl_801A66A4 - 0xbe;
@@ -1165,7 +1831,7 @@ void fn_1_14AE94(void) {
 }
 /* fzgx:end fn_1_14AE94 */
 
-/* fzgx:begin fn_1_14AED4 */
+/* fzgx:begin fn_1_14AED4 noprologue */
 typedef struct {
     u32 v[8];
 } Word8_fn_1_14AED4;
@@ -1492,13 +2158,13 @@ void fn_1_14AED4(void) {
 }
 /* fzgx:end fn_1_14AED4 */
 
-/* fzgx:begin fn_1_14B1B8 */
+/* fzgx:begin fn_1_14B1B8 noprologue */
 // fn_1_14B1B8: empty in retail (single blr).
 void fn_1_14B1B8(void) {
 }
 /* fzgx:end fn_1_14B1B8 */
 
-/* fzgx:begin fn_1_14B1BC */
+/* fzgx:begin fn_1_14B1BC noprologue */
 void fn_1_14B1BC(void) {
     int flag = lbl_1_bss_8E544;
 
@@ -1920,13 +2586,258 @@ void fn_1_14B1FC(void) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_14B1FC */
 
-/* fzgx:begin fn_1_14B4FC */
+/* fzgx:begin fn_1_14B4FC noprologue */
+#include "types.h"
+#include "game/pad.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/sel_static_disp.h"
+#include "font.h"
+
+typedef struct {
+    u32 v[8];
+} Word8;
+
+typedef struct {
+    u8 pad0[0x4];
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+    u8 pad18[0x18];
+    s32 unk_30;
+    u8 pad34[0x24];
+} Sp8;
+
+typedef struct {
+    u32 value[22];
+} Fn139F18Data;
+
+typedef struct StaticDispParams {
+    s32 id;
+    f32 x;
+    f32 y;
+    f32 z;
+    u32 unk1[8];
+    s32 count;
+    u32 unk2[9];
+} StaticDispParams;
+
+struct Struct_26F8 {
+    u32 unk00;
+    f32 unk04;
+    f32 unk08;
+    f32 unk0C;
+    u8 pad10[0x1C];
+    f32 unk2C;
+    u32 unk30;
+    u8 pad34[4];
+    u32 unk38;
+    u8 pad3C[0x1C];
+};
+
+typedef struct {
+    const char *p[9];
+} PtrTab;
+
+struct fn_1_13F8C4_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E43C {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E440 {
+    u32 unk_0;
+};
+
+typedef struct {
+    s16 indices[2];
+    u8 pad8[4];
+    u32 flags;
+} Source;
+
+typedef struct {
+    s16 index;
+    u8 pad2[0x1e];
+    char text[0x320];
+    void *object;
+    void *handle[4];
+} Display;
+
+struct Sig_fn_80071718_fn_80071718_Arg0 {
+    u8 pad_0[0xC];
+    u32 unk_C;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Entry {
+    u8 pad_00[0x24];
+    void *field_24;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Arg0 {
+    s32 count;
+    u8 pad_04[4];
+    struct Sig_fn_800711A8_fn_800711A8_Entry **entries;
+    u8 pad_0C[4];
+    u32 field_10;
+    void *field_14;
+};
+
+typedef struct {
+    u8 data[4];
+    f32 value;
+    u8 tail[8];
+} Fn1_14E9E4Entry;
+
+typedef struct fn_1_150C8C_Entry {
+    u8 pad[0x68];
+    u32 active;
+    u8 tail[0x40];
+} fn_1_150C8C_Entry;
+
+typedef struct fn_1_150C8C_Object {
+    u8 pad_84[0x84];
+    s32 count;
+    fn_1_150C8C_Entry entries[1];
+} fn_1_150C8C_Object;
+
+typedef struct fn_1_150F30_StaticDisp {
+    u8 pad_2728[0x2728];
+    s32 unk_2728;
+    s32 unk_272c;
+} fn_1_150F30_StaticDisp;
+
+typedef struct Fn14E09CValue {
+    void *value;
+} Fn14E09CValue;
+
+typedef struct Fn14E09CRef {
+    u8 pad8[8];
+    Fn14E09CValue *value;
+} Fn14E09CRef;
+
+typedef struct Fn14E09CObj {
+    u8 pad344[0x344];
+    Fn14E09CRef *ref;
+} Fn14E09CObj;
+
+typedef struct DispNode {
+    u8 pad[4];
+    f32 value;
+} DispNode;
+
+typedef struct DispChildList {
+    DispNode *child[3];
+} DispChildList;
+
+typedef struct DispObject {
+    u32 flags;
+    u8 pad0[12];
+    f32 value;
+    u8 pad1[32];
+    DispChildList *children;
+} DispObject;
+
+typedef struct fn_1_151668_StaticDispEntry {
+    f32 first;
+    u8 pad0[0x18];
+    f32 values[3];
+    DispObject *object;
+    u8 active;
+    u8 scale_first;
+    u8 scale_second;
+    u8 clear_flag;
+    u8 pad2[0x0c];
+} fn_1_151668_StaticDispEntry;
+
+typedef struct fn_1_151668_StaticDisp {
+    u8 pad0[0x1830];
+    fn_1_151668_StaticDispEntry entries[63];
+    u8 pad1[0x30];
+    s32 entry_count;
+    s32 value_2728;
+    s32 value_272c;
+} fn_1_151668_StaticDisp;
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern u32 lbl_801A66B4;
+extern void fn_1_14E9E4(int arg0, void *arg1);
+extern u32 __cvt_fp2unsigned(f32);
+extern int sprintf(char *s, const char *format, ...);
+extern char *strcpy(char *dst, const char *src);
+extern s32 fn_1_3F864(void);
+extern void fn_1_A2D84(u32 arg0);
+extern void fn_1_14A9D0(u8, int, int, int, int, int);
+extern void fn_1_14BFD8(void *, void *, int);
+extern u32 lbl_801A66A4;
+extern void fn_1_14CA4C(void);
+extern u8 lbl_1_bss_5138[260];
+extern int fn_1_C24A4(void);
+extern u8 fn_1_B7C00(void);
+extern void fn_1_320A4(void);
+extern u8 lbl_1_rodata_9B04[300];
+extern void *fn_1_12ADA0(char *dst, void *arg);
+extern void fn_1_8019C(void *arg0);
+extern void fn_1_12A7C4(const char *src, char *dst, int size);
+extern u8 lbl_8015B200[];
+extern size_t strlen(const char *str);
+extern void fn_1_12AB38(void *arg0);
+extern void *fn_1_D3884(void *arg0);
+extern void fn_1_14D728(Source *source, Display *displays);
+extern void fn_80071718(void *arg0);
+extern void fn_800711A8(void *arg0);
+extern s16 fn_1_14F344(s16);
+extern u8 lbl_1_rodata_9CDC[1200];
+extern Fn1_14E9E4Entry *fn_1_14F608(int arg0);
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern u8 lbl_1_rodata_A18C[1800];
+extern s32 fn_1_14FE48(void *arg0, void *arg1);
+extern void *fn_1_14FDAC(void *arg0, void *arg1, s16 arg2, void *arg3);
+extern const u8 lbl_1_rodata_AF9C[2040];
+extern u8 lbl_1_rodata_B794[240];
+extern s16 fn_1_14F090(s16, s16);
+extern s16 fn_1_14F01C(s16);
+extern u32 lbl_1_rodata_99D8[75];
+extern u8 lbl_1_rodata_CB98[324];
+extern void fn_1_465D0(char *, int);
+extern s32 fn_1_14FD6C(s32 *arg0, s32 *arg1);
+extern void qsort(void *arg0, u32 arg1, s32 arg2, void *callback);
+extern char *strtok(char *string, const char *delimiters);
+extern void fn_1_150C8C(fn_1_150C8C_Object *obj);
+extern void fn_1_150F30(fn_1_150F30_StaticDisp *self);
+extern f32 lbl_1_rodata_CF70[54];
+extern void fn_1_14BFB8(void);
+extern u32 lbl_801A63C0;
+extern u32 fn_1_14D6D8(s16 index);
+extern void fn_1_14DEC8(void *arg0, void *arg1, void *arg2, void *arg3, int arg4);
+extern void fn_1_14E09C();
+extern void fn_1_14E1E0();
+extern u8 lbl_1_rodata_B884[76];
+extern u8 lbl_1_rodata_B8D8[1200];
+extern u8 lbl_1_rodata_BD88[2400];
+extern u8 lbl_1_rodata_C6E8[1200];
+extern u8 lbl_1_rodata_CCDC[308];
+extern void fn_1_14FD7C(u32 *arg0, u32 arg1);
+extern void fn_1_9A508(Obj_1_data_2A7E0 *state);
+extern void fn_1_9AD54(void);
+extern u32 fn_1_9D260(void);
+extern void fn_1_150D3C(Obj_1_data_2A7E0_At3C *arg0, u32 arg1);
+extern void fn_1_150654(void);
+extern void fn_1_151054(Obj_1_data_2A7E0_At3C *arg);
+extern void fn_1_103090(void *entry);
+extern void fn_1_1030A4(void *entry);
+extern void fn_1_103264(void *entry, void *arg);
+extern void fn_1_151668(fn_1_151668_StaticDisp *self);
+extern const f32 lbl_1_rodata_CF40[];
+extern void fn_1_150F74(void *self);
+
 // fn_1_14B4FC: empty in retail (single blr).
 void fn_1_14B4FC(void) {
 }
 /* fzgx:end fn_1_14B4FC */
 
-/* fzgx:begin fn_1_14B500 */
+/* fzgx:begin fn_1_14B500 noprologue */
 /* local view of one seat's 0xA0-byte result record at lbl_1_bss_3C30+0xD4 (written by fn_1_2E928) */
 typedef struct {
     u8 pad_0[0x18];
@@ -1991,7 +2902,7 @@ void fn_1_14B500(void) {
 }
 /* fzgx:end fn_1_14B500 */
 
-/* fzgx:begin fn_1_14B62C */
+/* fzgx:begin fn_1_14B62C noprologue */
 typedef struct {
     u8 pad_0[0x4];
     u8 unk_4;
@@ -2166,13 +3077,13 @@ void fn_1_14B62C(void) {
 }
 /* fzgx:end fn_1_14B62C */
 
-/* fzgx:begin fn_1_14B8F8 */
+/* fzgx:begin fn_1_14B8F8 noprologue */
 // fn_1_14B8F8: empty in retail (single blr).
 void fn_1_14B8F8(void) {
 }
 /* fzgx:end fn_1_14B8F8 */
 
-/* fzgx:begin fn_1_14B8FC */
+/* fzgx:begin fn_1_14B8FC noprologue */
 void fn_1_14B8FC(void) {
     s32 flag = lbl_1_bss_8E544;
     if (flag != 0) {
@@ -2184,10 +3095,7 @@ void fn_1_14B8FC(void) {
 }
 /* fzgx:end fn_1_14B8FC */
 
-/* fzgx:begin fn_1_14B93C noprologue */
-#include "types.h"
-#include "rel/main_rel/sel_static_disp.h"
-
+/* fzgx:begin fn_1_14B93C */
 struct fn_1_14B93C_state {
     u8 pad_0[4];
     u8 unk_4;
@@ -2219,7 +3127,7 @@ u32 fzgx_obj_lbl_1_bss_8E540;
 u32 fzgx_obj_lbl_1_bss_8E544;
 u8 fzgx_obj_lbl_1_bss_8E548[0x8];
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_14B93C_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8E518;
     s = lbl_1_bss_8E518__fzgx_offset_4;
@@ -2238,12 +3146,6 @@ static void fzgx_bss_layout(void) {
 }
 #pragma section code_type ".text"
 
-extern u32 fn_1_3F2A0(void);
-extern u32 fn_1_14A9D0(u32,u32,u32,u32,u32,u32);
-extern void fn_1_A2D84(u32);
-extern void fn_1_14CA4C(void);
-extern int fn_1_8623C(void);
-extern u32 lbl_801A66A4;
 
 void fn_1_14B93C(void) {
     u32 v0;
@@ -2395,13 +3297,258 @@ void fn_1_14BCBC(u32 arg0, u32 arg1) {
 }
 /* fzgx:end fn_1_14BCBC */
 
-/* fzgx:begin fn_1_14BD44 */
+/* fzgx:begin fn_1_14BD44 noprologue */
+#include "types.h"
+#include "game/pad.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/sel_static_disp.h"
+#include "font.h"
+
+typedef struct {
+    u32 v[8];
+} Word8;
+
+typedef struct {
+    u8 pad0[0x4];
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+    u8 pad18[0x18];
+    s32 unk_30;
+    u8 pad34[0x24];
+} Sp8;
+
+typedef struct {
+    u32 value[22];
+} Fn139F18Data;
+
+typedef struct StaticDispParams {
+    s32 id;
+    f32 x;
+    f32 y;
+    f32 z;
+    u32 unk1[8];
+    s32 count;
+    u32 unk2[9];
+} StaticDispParams;
+
+struct Struct_26F8 {
+    u32 unk00;
+    f32 unk04;
+    f32 unk08;
+    f32 unk0C;
+    u8 pad10[0x1C];
+    f32 unk2C;
+    u32 unk30;
+    u8 pad34[4];
+    u32 unk38;
+    u8 pad3C[0x1C];
+};
+
+typedef struct {
+    const char *p[9];
+} PtrTab;
+
+struct fn_1_13F8C4_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E43C {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E440 {
+    u32 unk_0;
+};
+
+typedef struct {
+    s16 indices[2];
+    u8 pad8[4];
+    u32 flags;
+} Source;
+
+typedef struct {
+    s16 index;
+    u8 pad2[0x1e];
+    char text[0x320];
+    void *object;
+    void *handle[4];
+} Display;
+
+struct Sig_fn_80071718_fn_80071718_Arg0 {
+    u8 pad_0[0xC];
+    u32 unk_C;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Entry {
+    u8 pad_00[0x24];
+    void *field_24;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Arg0 {
+    s32 count;
+    u8 pad_04[4];
+    struct Sig_fn_800711A8_fn_800711A8_Entry **entries;
+    u8 pad_0C[4];
+    u32 field_10;
+    void *field_14;
+};
+
+typedef struct {
+    u8 data[4];
+    f32 value;
+    u8 tail[8];
+} Fn1_14E9E4Entry;
+
+typedef struct fn_1_150C8C_Entry {
+    u8 pad[0x68];
+    u32 active;
+    u8 tail[0x40];
+} fn_1_150C8C_Entry;
+
+typedef struct fn_1_150C8C_Object {
+    u8 pad_84[0x84];
+    s32 count;
+    fn_1_150C8C_Entry entries[1];
+} fn_1_150C8C_Object;
+
+typedef struct fn_1_150F30_StaticDisp {
+    u8 pad_2728[0x2728];
+    s32 unk_2728;
+    s32 unk_272c;
+} fn_1_150F30_StaticDisp;
+
+typedef struct Fn14E09CValue {
+    void *value;
+} Fn14E09CValue;
+
+typedef struct Fn14E09CRef {
+    u8 pad8[8];
+    Fn14E09CValue *value;
+} Fn14E09CRef;
+
+typedef struct Fn14E09CObj {
+    u8 pad344[0x344];
+    Fn14E09CRef *ref;
+} Fn14E09CObj;
+
+typedef struct DispNode {
+    u8 pad[4];
+    f32 value;
+} DispNode;
+
+typedef struct DispChildList {
+    DispNode *child[3];
+} DispChildList;
+
+typedef struct DispObject {
+    u32 flags;
+    u8 pad0[12];
+    f32 value;
+    u8 pad1[32];
+    DispChildList *children;
+} DispObject;
+
+typedef struct fn_1_151668_StaticDispEntry {
+    f32 first;
+    u8 pad0[0x18];
+    f32 values[3];
+    DispObject *object;
+    u8 active;
+    u8 scale_first;
+    u8 scale_second;
+    u8 clear_flag;
+    u8 pad2[0x0c];
+} fn_1_151668_StaticDispEntry;
+
+typedef struct fn_1_151668_StaticDisp {
+    u8 pad0[0x1830];
+    fn_1_151668_StaticDispEntry entries[63];
+    u8 pad1[0x30];
+    s32 entry_count;
+    s32 value_2728;
+    s32 value_272c;
+} fn_1_151668_StaticDisp;
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern u32 lbl_801A66B4;
+extern void fn_1_14E9E4(int arg0, void *arg1);
+extern u32 __cvt_fp2unsigned(f32);
+extern int sprintf(char *s, const char *format, ...);
+extern char *strcpy(char *dst, const char *src);
+extern s32 fn_1_3F864(void);
+extern void fn_1_A2D84(u32 arg0);
+extern void fn_1_14A9D0(u8, int, int, int, int, int);
+extern void fn_1_14BFD8(void *, void *, int);
+extern u32 lbl_801A66A4;
+extern void fn_1_14CA4C(void);
+extern u8 lbl_1_bss_5138[260];
+extern int fn_1_C24A4(void);
+extern u8 fn_1_B7C00(void);
+extern void fn_1_320A4(void);
+extern u8 lbl_1_rodata_9B04[300];
+extern void *fn_1_12ADA0(char *dst, void *arg);
+extern void fn_1_8019C(void *arg0);
+extern void fn_1_12A7C4(const char *src, char *dst, int size);
+extern u8 lbl_8015B200[];
+extern size_t strlen(const char *str);
+extern void fn_1_12AB38(void *arg0);
+extern void *fn_1_D3884(void *arg0);
+extern void fn_1_14D728(Source *source, Display *displays);
+extern void fn_80071718(void *arg0);
+extern void fn_800711A8(void *arg0);
+extern s16 fn_1_14F344(s16);
+extern u8 lbl_1_rodata_9CDC[1200];
+extern Fn1_14E9E4Entry *fn_1_14F608(int arg0);
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern u8 lbl_1_rodata_A18C[1800];
+extern s32 fn_1_14FE48(void *arg0, void *arg1);
+extern void *fn_1_14FDAC(void *arg0, void *arg1, s16 arg2, void *arg3);
+extern const u8 lbl_1_rodata_AF9C[2040];
+extern u8 lbl_1_rodata_B794[240];
+extern s16 fn_1_14F090(s16, s16);
+extern s16 fn_1_14F01C(s16);
+extern u32 lbl_1_rodata_99D8[75];
+extern u8 lbl_1_rodata_CB98[324];
+extern void fn_1_465D0(char *, int);
+extern s32 fn_1_14FD6C(s32 *arg0, s32 *arg1);
+extern void qsort(void *arg0, u32 arg1, s32 arg2, void *callback);
+extern char *strtok(char *string, const char *delimiters);
+extern void fn_1_150C8C(fn_1_150C8C_Object *obj);
+extern void fn_1_150F30(fn_1_150F30_StaticDisp *self);
+extern f32 lbl_1_rodata_CF70[54];
+extern void fn_1_14BFB8(void);
+extern u32 lbl_801A63C0;
+extern u32 fn_1_14D6D8(s16 index);
+extern void fn_1_14DEC8(void *arg0, void *arg1, void *arg2, void *arg3, int arg4);
+extern void fn_1_14E09C();
+extern void fn_1_14E1E0();
+extern u8 lbl_1_rodata_B884[76];
+extern u8 lbl_1_rodata_B8D8[1200];
+extern u8 lbl_1_rodata_BD88[2400];
+extern u8 lbl_1_rodata_C6E8[1200];
+extern u8 lbl_1_rodata_CCDC[308];
+extern void fn_1_14FD7C(u32 *arg0, u32 arg1);
+extern void fn_1_9A508(Obj_1_data_2A7E0 *state);
+extern void fn_1_9AD54(void);
+extern u32 fn_1_9D260(void);
+extern void fn_1_150D3C(Obj_1_data_2A7E0_At3C *arg0, u32 arg1);
+extern void fn_1_150654(void);
+extern void fn_1_151054(Obj_1_data_2A7E0_At3C *arg);
+extern void fn_1_103090(void *entry);
+extern void fn_1_1030A4(void *entry);
+extern void fn_1_103264(void *entry, void *arg);
+extern void fn_1_151668(fn_1_151668_StaticDisp *self);
+extern const f32 lbl_1_rodata_CF40[];
+extern void fn_1_150F74(void *self);
+
 void fn_1_14BD44(void *arg0, void *arg1) {
     fn_1_14BFD8(arg1, arg0, 0);
 }
 /* fzgx:end fn_1_14BD44 */
 
-/* fzgx:begin fn_1_14BD74 */
+/* fzgx:begin fn_1_14BD74 noprologue */
 void fn_1_14BD74(void) {
     fn_1_14BFB8();
 }
@@ -2510,7 +3657,7 @@ u32 fn_1_14BE30(void) {
 void fn_1_14BED0(void) {
     Obj_1_bss_9F8 *obj_9f8;
 
-    fn_1_14BFD8(0, 0, 1);
+    fn_1_14BFD8( (s16)(void *)(0), (u8 *)(void *)(0), 1);
     fn_1_14A9D0(10, 1, 30, 180, 1, 0);
 
     if ((s32)lbl_1_bss_25BA0.unk_0 == 0) {
@@ -2696,11 +3843,7 @@ void fn_1_14BFD8(s16 port, u8 *sel, s32 arg2) {
 #pragma opt_propagation reset
 /* fzgx:end fn_1_14BFD8 */
 
-/* fzgx:begin fn_1_14C35C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/sel_static_disp.h"
-
+/* fzgx:begin fn_1_14C35C */
 typedef struct {
     char *unk_0;
     s32 unk_4;
@@ -2711,15 +3854,6 @@ typedef struct {
     s32 unk_20;
 } fn_1_14C35C_Table;
 
-extern u8 lbl_1_bss_718E0[];
-extern s32 lbl_801A66B4;
-extern void fn_1_1556B4(u8, u8);
-extern s32 fn_1_155F7C(void);
-extern s32 fn_1_155F8C(void);
-extern void fn_1_155FB4(const char *);
-extern char *strcpy(char *dst, const char *src);
-extern unsigned long strlen(const char *);
-extern char *strncpy(char *, const char *, unsigned long);
 
 /* the retail TU's .data objects this function uses, at their retail offsets, so MWCC addresses them off one
  * section base; the fzgx_pool_gap_ objects span the retail objects in between */
@@ -2809,7 +3943,7 @@ s32 lbl_1_bss_8E570__fzgx_offset_1C;
 s32 lbl_1_bss_8E570__fzgx_offset_20;
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_14C35C_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8E518;
     s = *(u8 *)&fzgx_pool_gap_8E51C;
@@ -2879,7 +4013,7 @@ void fn_1_14C35C(void) {
     fzgx_obj_lbl_1_bss_8E559 = 0;
     fn_1_1556B4(42, 0);
     lbl_1_bss_8E560__fzgx_offset_4 = 0;
-    if (lbl_801A66B4 == 5) {
+    if ((*((s32 *)&lbl_801A66B4)) == 5) {
         lbl_1_bss_8E560__fzgx_offset_8 = lbl_1_data_42F34__fzgx_offset_90.unk_0[0].unk_0;
         lbl_1_bss_8E560__fzgx_offset_C = lbl_1_data_42F34__fzgx_offset_90.unk_0[0].unk_4;
     } else {
@@ -2894,10 +4028,10 @@ void fn_1_14C35C(void) {
     }
 
     name = (char *)&lbl_1_bss_718E0[0x5522];
-    strncpy(lbl_1_bss_8E570__fzgx_offset_8, name, strlen(name));
-    lbl_1_bss_8E560__fzgx_offset_4 = strlen(name) / 2;
-    if (lbl_801A66B4 != 5) {
-        lbl_1_bss_8E560__fzgx_offset_4 = strlen(name);
+    strncpy(lbl_1_bss_8E570__fzgx_offset_8, name, ((unsigned long)strlen(name)));
+    lbl_1_bss_8E560__fzgx_offset_4 = ((unsigned long)strlen(name)) / 2;
+    if ((*((s32 *)&lbl_801A66B4)) != 5) {
+        lbl_1_bss_8E560__fzgx_offset_4 = ((unsigned long)strlen(name));
         strcpy((char *)buf, lbl_1_bss_8E570__fzgx_offset_8);
         src = buf;
         dst = lbl_1_bss_8E570__fzgx_offset_8;
@@ -2921,10 +4055,10 @@ void fn_1_14C35C(void) {
         lbl_1_bss_8E570__fzgx_offset_4 = 0;
     }
     if (fzgx_obj_lbl_1_bss_8E520 != 0) {
-        if (fn_1_155F7C() != 0) {
+        if (((s32)fn_1_155F7C()) != 0) {
             fzgx_obj_lbl_1_bss_8E520 = 0;
             lbl_1_bss_8E570__fzgx_offset_1C = 1;
-            lbl_1_bss_8E570__fzgx_offset_20 = fn_1_155F8C();
+            lbl_1_bss_8E570__fzgx_offset_20 = ((s32)fn_1_155F8C());
             fn_1_155FB4("");
             lbl_1_bss_3C04 = 0x744;
             value = lbl_1_bss_8E570__fzgx_offset_20 - 2 < 0 ? 0
@@ -3002,13 +4136,258 @@ void fn_1_14C6F8(void)
 }
 /* fzgx:end fn_1_14C6F8 */
 
-/* fzgx:begin fn_1_14C7F4 */
+/* fzgx:begin fn_1_14C7F4 noprologue */
+#include "types.h"
+#include "game/pad.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/sel_static_disp.h"
+#include "font.h"
+
+typedef struct {
+    u32 v[8];
+} Word8;
+
+typedef struct {
+    u8 pad0[0x4];
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+    u8 pad18[0x18];
+    s32 unk_30;
+    u8 pad34[0x24];
+} Sp8;
+
+typedef struct {
+    u32 value[22];
+} Fn139F18Data;
+
+typedef struct StaticDispParams {
+    s32 id;
+    f32 x;
+    f32 y;
+    f32 z;
+    u32 unk1[8];
+    s32 count;
+    u32 unk2[9];
+} StaticDispParams;
+
+struct Struct_26F8 {
+    u32 unk00;
+    f32 unk04;
+    f32 unk08;
+    f32 unk0C;
+    u8 pad10[0x1C];
+    f32 unk2C;
+    u32 unk30;
+    u8 pad34[4];
+    u32 unk38;
+    u8 pad3C[0x1C];
+};
+
+typedef struct {
+    const char *p[9];
+} PtrTab;
+
+struct fn_1_13F8C4_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E43C {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E440 {
+    u32 unk_0;
+};
+
+typedef struct {
+    s16 indices[2];
+    u8 pad8[4];
+    u32 flags;
+} Source;
+
+typedef struct {
+    s16 index;
+    u8 pad2[0x1e];
+    char text[0x320];
+    void *object;
+    void *handle[4];
+} Display;
+
+struct Sig_fn_80071718_fn_80071718_Arg0 {
+    u8 pad_0[0xC];
+    u32 unk_C;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Entry {
+    u8 pad_00[0x24];
+    void *field_24;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Arg0 {
+    s32 count;
+    u8 pad_04[4];
+    struct Sig_fn_800711A8_fn_800711A8_Entry **entries;
+    u8 pad_0C[4];
+    u32 field_10;
+    void *field_14;
+};
+
+typedef struct {
+    u8 data[4];
+    f32 value;
+    u8 tail[8];
+} Fn1_14E9E4Entry;
+
+typedef struct fn_1_150C8C_Entry {
+    u8 pad[0x68];
+    u32 active;
+    u8 tail[0x40];
+} fn_1_150C8C_Entry;
+
+typedef struct fn_1_150C8C_Object {
+    u8 pad_84[0x84];
+    s32 count;
+    fn_1_150C8C_Entry entries[1];
+} fn_1_150C8C_Object;
+
+typedef struct fn_1_150F30_StaticDisp {
+    u8 pad_2728[0x2728];
+    s32 unk_2728;
+    s32 unk_272c;
+} fn_1_150F30_StaticDisp;
+
+typedef struct Fn14E09CValue {
+    void *value;
+} Fn14E09CValue;
+
+typedef struct Fn14E09CRef {
+    u8 pad8[8];
+    Fn14E09CValue *value;
+} Fn14E09CRef;
+
+typedef struct Fn14E09CObj {
+    u8 pad344[0x344];
+    Fn14E09CRef *ref;
+} Fn14E09CObj;
+
+typedef struct DispNode {
+    u8 pad[4];
+    f32 value;
+} DispNode;
+
+typedef struct DispChildList {
+    DispNode *child[3];
+} DispChildList;
+
+typedef struct DispObject {
+    u32 flags;
+    u8 pad0[12];
+    f32 value;
+    u8 pad1[32];
+    DispChildList *children;
+} DispObject;
+
+typedef struct fn_1_151668_StaticDispEntry {
+    f32 first;
+    u8 pad0[0x18];
+    f32 values[3];
+    DispObject *object;
+    u8 active;
+    u8 scale_first;
+    u8 scale_second;
+    u8 clear_flag;
+    u8 pad2[0x0c];
+} fn_1_151668_StaticDispEntry;
+
+typedef struct fn_1_151668_StaticDisp {
+    u8 pad0[0x1830];
+    fn_1_151668_StaticDispEntry entries[63];
+    u8 pad1[0x30];
+    s32 entry_count;
+    s32 value_2728;
+    s32 value_272c;
+} fn_1_151668_StaticDisp;
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern u32 lbl_801A66B4;
+extern void fn_1_14E9E4(int arg0, void *arg1);
+extern u32 __cvt_fp2unsigned(f32);
+extern int sprintf(char *s, const char *format, ...);
+extern char *strcpy(char *dst, const char *src);
+extern s32 fn_1_3F864(void);
+extern void fn_1_A2D84(u32 arg0);
+extern void fn_1_14A9D0(u8, int, int, int, int, int);
+extern void fn_1_14BFD8(void *, void *, int);
+extern u32 lbl_801A66A4;
+extern void fn_1_14CA4C(void);
+extern u8 lbl_1_bss_5138[260];
+extern int fn_1_C24A4(void);
+extern u8 fn_1_B7C00(void);
+extern void fn_1_320A4(void);
+extern u8 lbl_1_rodata_9B04[300];
+extern void *fn_1_12ADA0(char *dst, void *arg);
+extern void fn_1_8019C(void *arg0);
+extern void fn_1_12A7C4(const char *src, char *dst, int size);
+extern u8 lbl_8015B200[];
+extern size_t strlen(const char *str);
+extern void fn_1_12AB38(void *arg0);
+extern void *fn_1_D3884(void *arg0);
+extern void fn_1_14D728(Source *source, Display *displays);
+extern void fn_80071718(void *arg0);
+extern void fn_800711A8(void *arg0);
+extern s16 fn_1_14F344(s16);
+extern u8 lbl_1_rodata_9CDC[1200];
+extern Fn1_14E9E4Entry *fn_1_14F608(int arg0);
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern u8 lbl_1_rodata_A18C[1800];
+extern s32 fn_1_14FE48(void *arg0, void *arg1);
+extern void *fn_1_14FDAC(void *arg0, void *arg1, s16 arg2, void *arg3);
+extern const u8 lbl_1_rodata_AF9C[2040];
+extern u8 lbl_1_rodata_B794[240];
+extern s16 fn_1_14F090(s16, s16);
+extern s16 fn_1_14F01C(s16);
+extern u32 lbl_1_rodata_99D8[75];
+extern u8 lbl_1_rodata_CB98[324];
+extern void fn_1_465D0(char *, int);
+extern s32 fn_1_14FD6C(s32 *arg0, s32 *arg1);
+extern void qsort(void *arg0, u32 arg1, s32 arg2, void *callback);
+extern char *strtok(char *string, const char *delimiters);
+extern void fn_1_150C8C(fn_1_150C8C_Object *obj);
+extern void fn_1_150F30(fn_1_150F30_StaticDisp *self);
+extern f32 lbl_1_rodata_CF70[54];
+extern void fn_1_14BFB8(void);
+extern u32 lbl_801A63C0;
+extern u32 fn_1_14D6D8(s16 index);
+extern void fn_1_14DEC8(void *arg0, void *arg1, void *arg2, void *arg3, int arg4);
+extern void fn_1_14E09C();
+extern void fn_1_14E1E0();
+extern u8 lbl_1_rodata_B884[76];
+extern u8 lbl_1_rodata_B8D8[1200];
+extern u8 lbl_1_rodata_BD88[2400];
+extern u8 lbl_1_rodata_C6E8[1200];
+extern u8 lbl_1_rodata_CCDC[308];
+extern void fn_1_14FD7C(u32 *arg0, u32 arg1);
+extern void fn_1_9A508(Obj_1_data_2A7E0 *state);
+extern void fn_1_9AD54(void);
+extern u32 fn_1_9D260(void);
+extern void fn_1_150D3C(Obj_1_data_2A7E0_At3C *arg0, u32 arg1);
+extern void fn_1_150654(void);
+extern void fn_1_151054(Obj_1_data_2A7E0_At3C *arg);
+extern void fn_1_103090(void *entry);
+extern void fn_1_1030A4(void *entry);
+extern void fn_1_103264(void *entry, void *arg);
+extern void fn_1_151668(fn_1_151668_StaticDisp *self);
+extern const f32 lbl_1_rodata_CF40[];
+extern void fn_1_150F74(void *self);
+
 // fn_1_14C7F4: empty in retail (single blr).
 void fn_1_14C7F4(void) {
 }
 /* fzgx:end fn_1_14C7F4 */
 
-/* fzgx:begin fn_1_14C7F8 */
+/* fzgx:begin fn_1_14C7F8 noprologue */
 void fn_1_14C7F8(void) {
     s32 state;
 
@@ -3026,7 +4405,7 @@ void fn_1_14C7F8(void) {
 }
 /* fzgx:end fn_1_14C7F8 */
 
-/* fzgx:begin fn_1_14C864 */
+/* fzgx:begin fn_1_14C864 noprologue */
 void fn_1_14C864(void) {
     Obj_1_bss_9F8 *flags;
     u8 mode;
@@ -3065,13 +4444,13 @@ void fn_1_14C864(void) {
 }
 /* fzgx:end fn_1_14C864 */
 
-/* fzgx:begin fn_1_14C964 */
+/* fzgx:begin fn_1_14C964 noprologue */
 // fn_1_14C964: empty in retail (single blr).
 void fn_1_14C964(void) {
 }
 /* fzgx:end fn_1_14C964 */
 
-/* fzgx:begin fn_1_14C968 */
+/* fzgx:begin fn_1_14C968 noprologue */
 void fn_1_14C968(void) {
     if (lbl_1_bss_3C30.unk_5 == 2) {
         fn_1_3FF90();
@@ -3080,7 +4459,7 @@ void fn_1_14C968(void) {
 }
 /* fzgx:end fn_1_14C968 */
 
-/* fzgx:begin fn_1_14C9A0 */
+/* fzgx:begin fn_1_14C9A0 noprologue */
 void fn_1_14C9A0(void) {
     int state = lbl_1_bss_5138[0xe2];
 
@@ -3103,31 +4482,31 @@ void fn_1_14C9A0(void) {
 }
 /* fzgx:end fn_1_14C9A0 */
 
-/* fzgx:begin fn_1_14CA3C */
+/* fzgx:begin fn_1_14CA3C noprologue */
 // fn_1_14CA3C: empty in retail (single blr).
 void fn_1_14CA3C(void) {
 }
 /* fzgx:end fn_1_14CA3C */
 
-/* fzgx:begin fn_1_14CA40 */
+/* fzgx:begin fn_1_14CA40 noprologue */
 // fn_1_14CA40: empty in retail (single blr).
 void fn_1_14CA40(void) {
 }
 /* fzgx:end fn_1_14CA40 */
 
-/* fzgx:begin fn_1_14CA44 */
+/* fzgx:begin fn_1_14CA44 noprologue */
 // fn_1_14CA44: empty in retail (single blr).
 void fn_1_14CA44(void) {
 }
 /* fzgx:end fn_1_14CA44 */
 
-/* fzgx:begin fn_1_14CA48 */
+/* fzgx:begin fn_1_14CA48 noprologue */
 // fn_1_14CA48: empty in retail (single blr).
 void fn_1_14CA48(void) {
 }
 /* fzgx:end fn_1_14CA48 */
 
-/* fzgx:begin fn_1_14CA4C */
+/* fzgx:begin fn_1_14CA4C noprologue */
 // Arms the display update and refreshes it when the selected value exceeds the current one.
 void fn_1_14CA4C(void) {
     u8 *display_state = (u8 *)&lbl_1_bss_8E518;
@@ -3148,7 +4527,7 @@ void fn_1_14CA4C(void) {
 }
 /* fzgx:end fn_1_14CA4C */
 
-/* fzgx:begin fn_1_14CAC8 */
+/* fzgx:begin fn_1_14CAC8 noprologue */
 /* one page of the name entry's character grid: two-byte characters and their count */
 typedef struct {
     char *unk_0;
@@ -3493,7 +4872,252 @@ mark:
 }
 /* fzgx:end fn_1_14CEB8 */
 
-/* fzgx:begin fn_1_14D5CC */
+/* fzgx:begin fn_1_14D5CC noprologue */
+#include "types.h"
+#include "game/pad.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/sel_static_disp.h"
+#include "font.h"
+
+typedef struct {
+    u32 v[8];
+} Word8;
+
+typedef struct {
+    u8 pad0[0x4];
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+    u8 pad18[0x18];
+    s32 unk_30;
+    u8 pad34[0x24];
+} Sp8;
+
+typedef struct {
+    u32 value[22];
+} Fn139F18Data;
+
+typedef struct StaticDispParams {
+    s32 id;
+    f32 x;
+    f32 y;
+    f32 z;
+    u32 unk1[8];
+    s32 count;
+    u32 unk2[9];
+} StaticDispParams;
+
+struct Struct_26F8 {
+    u32 unk00;
+    f32 unk04;
+    f32 unk08;
+    f32 unk0C;
+    u8 pad10[0x1C];
+    f32 unk2C;
+    u32 unk30;
+    u8 pad34[4];
+    u32 unk38;
+    u8 pad3C[0x1C];
+};
+
+typedef struct {
+    const char *p[9];
+} PtrTab;
+
+struct fn_1_13F8C4_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E43C {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E440 {
+    u32 unk_0;
+};
+
+typedef struct {
+    s16 indices[2];
+    u8 pad8[4];
+    u32 flags;
+} Source;
+
+typedef struct {
+    s16 index;
+    u8 pad2[0x1e];
+    char text[0x320];
+    void *object;
+    void *handle[4];
+} Display;
+
+struct Sig_fn_80071718_fn_80071718_Arg0 {
+    u8 pad_0[0xC];
+    u32 unk_C;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Entry {
+    u8 pad_00[0x24];
+    void *field_24;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Arg0 {
+    s32 count;
+    u8 pad_04[4];
+    struct Sig_fn_800711A8_fn_800711A8_Entry **entries;
+    u8 pad_0C[4];
+    u32 field_10;
+    void *field_14;
+};
+
+typedef struct {
+    u8 data[4];
+    f32 value;
+    u8 tail[8];
+} Fn1_14E9E4Entry;
+
+typedef struct fn_1_150C8C_Entry {
+    u8 pad[0x68];
+    u32 active;
+    u8 tail[0x40];
+} fn_1_150C8C_Entry;
+
+typedef struct fn_1_150C8C_Object {
+    u8 pad_84[0x84];
+    s32 count;
+    fn_1_150C8C_Entry entries[1];
+} fn_1_150C8C_Object;
+
+typedef struct fn_1_150F30_StaticDisp {
+    u8 pad_2728[0x2728];
+    s32 unk_2728;
+    s32 unk_272c;
+} fn_1_150F30_StaticDisp;
+
+typedef struct Fn14E09CValue {
+    void *value;
+} Fn14E09CValue;
+
+typedef struct Fn14E09CRef {
+    u8 pad8[8];
+    Fn14E09CValue *value;
+} Fn14E09CRef;
+
+typedef struct Fn14E09CObj {
+    u8 pad344[0x344];
+    Fn14E09CRef *ref;
+} Fn14E09CObj;
+
+typedef struct DispNode {
+    u8 pad[4];
+    f32 value;
+} DispNode;
+
+typedef struct DispChildList {
+    DispNode *child[3];
+} DispChildList;
+
+typedef struct DispObject {
+    u32 flags;
+    u8 pad0[12];
+    f32 value;
+    u8 pad1[32];
+    DispChildList *children;
+} DispObject;
+
+typedef struct fn_1_151668_StaticDispEntry {
+    f32 first;
+    u8 pad0[0x18];
+    f32 values[3];
+    DispObject *object;
+    u8 active;
+    u8 scale_first;
+    u8 scale_second;
+    u8 clear_flag;
+    u8 pad2[0x0c];
+} fn_1_151668_StaticDispEntry;
+
+typedef struct fn_1_151668_StaticDisp {
+    u8 pad0[0x1830];
+    fn_1_151668_StaticDispEntry entries[63];
+    u8 pad1[0x30];
+    s32 entry_count;
+    s32 value_2728;
+    s32 value_272c;
+} fn_1_151668_StaticDisp;
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern u32 lbl_801A66B4;
+extern void fn_1_14E9E4(int arg0, void *arg1);
+extern u32 __cvt_fp2unsigned(f32);
+extern int sprintf(char *s, const char *format, ...);
+extern char *strcpy(char *dst, const char *src);
+extern s32 fn_1_3F864(void);
+extern void fn_1_A2D84(u32 arg0);
+extern void fn_1_14A9D0(u8, int, int, int, int, int);
+extern void fn_1_14BFD8(void *, void *, int);
+extern u32 lbl_801A66A4;
+extern void fn_1_14CA4C(void);
+extern u8 lbl_1_bss_5138[260];
+extern int fn_1_C24A4(void);
+extern u8 fn_1_B7C00(void);
+extern void fn_1_320A4(void);
+extern u8 lbl_1_rodata_9B04[300];
+extern void *fn_1_12ADA0(char *dst, void *arg);
+extern void fn_1_8019C(void *arg0);
+extern void fn_1_12A7C4(const char *src, char *dst, int size);
+extern u8 lbl_8015B200[];
+extern size_t strlen(const char *str);
+extern void fn_1_12AB38(void *arg0);
+extern void *fn_1_D3884(void *arg0);
+extern void fn_1_14D728(Source *source, Display *displays);
+extern void fn_80071718(void *arg0);
+extern void fn_800711A8(void *arg0);
+extern s16 fn_1_14F344(s16);
+extern u8 lbl_1_rodata_9CDC[1200];
+extern Fn1_14E9E4Entry *fn_1_14F608(int arg0);
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern u8 lbl_1_rodata_A18C[1800];
+extern s32 fn_1_14FE48(void *arg0, void *arg1);
+extern void *fn_1_14FDAC(void *arg0, void *arg1, s16 arg2, void *arg3);
+extern const u8 lbl_1_rodata_AF9C[2040];
+extern u8 lbl_1_rodata_B794[240];
+extern s16 fn_1_14F090(s16, s16);
+extern s16 fn_1_14F01C(s16);
+extern u32 lbl_1_rodata_99D8[75];
+extern u8 lbl_1_rodata_CB98[324];
+extern void fn_1_465D0(char *, int);
+extern s32 fn_1_14FD6C(s32 *arg0, s32 *arg1);
+extern void qsort(void *arg0, u32 arg1, s32 arg2, void *callback);
+extern char *strtok(char *string, const char *delimiters);
+extern void fn_1_150C8C(fn_1_150C8C_Object *obj);
+extern void fn_1_150F30(fn_1_150F30_StaticDisp *self);
+extern f32 lbl_1_rodata_CF70[54];
+extern void fn_1_14BFB8(void);
+extern u32 lbl_801A63C0;
+extern u32 fn_1_14D6D8(s16 index);
+extern void fn_1_14DEC8(void *arg0, void *arg1, void *arg2, void *arg3, int arg4);
+extern void fn_1_14E09C();
+extern void fn_1_14E1E0();
+extern u8 lbl_1_rodata_B884[76];
+extern u8 lbl_1_rodata_B8D8[1200];
+extern u8 lbl_1_rodata_BD88[2400];
+extern u8 lbl_1_rodata_C6E8[1200];
+extern u8 lbl_1_rodata_CCDC[308];
+extern void fn_1_14FD7C(u32 *arg0, u32 arg1);
+extern void fn_1_9A508(Obj_1_data_2A7E0 *state);
+extern void fn_1_9AD54(void);
+extern u32 fn_1_9D260(void);
+extern void fn_1_150D3C(Obj_1_data_2A7E0_At3C *arg0, u32 arg1);
+extern void fn_1_150654(void);
+extern void fn_1_151054(Obj_1_data_2A7E0_At3C *arg);
+extern void fn_1_103090(void *entry);
+extern void fn_1_1030A4(void *entry);
+extern void fn_1_103264(void *entry, void *arg);
+extern void fn_1_151668(fn_1_151668_StaticDisp *self);
+extern const f32 lbl_1_rodata_CF40[];
+extern void fn_1_150F74(void *self);
+
 // Keep sampling candidates until one satisfies the required and forbidden flags.
 s16 fn_1_14D5CC(s16 arg0, u32 required_mask, u32 forbidden_mask) {
     s16 candidate_index;
@@ -3512,7 +5136,7 @@ s16 fn_1_14D5CC(s16 arg0, u32 required_mask, u32 forbidden_mask) {
 }
 /* fzgx:end fn_1_14D5CC */
 
-/* fzgx:begin fn_1_14D670 */
+/* fzgx:begin fn_1_14D670 noprologue */
 s16 fn_1_14D670(void) {
     u32 value;
     s32 sample;
@@ -3529,7 +5153,7 @@ s16 fn_1_14D670(void) {
 }
 /* fzgx:end fn_1_14D670 */
 
-/* fzgx:begin fn_1_14D6D8 */
+/* fzgx:begin fn_1_14D6D8 noprologue */
 typedef struct {
     u32 values[75];
 } Table75;
@@ -3541,7 +5165,7 @@ u32 fn_1_14D6D8(s16 index) {
 }
 /* fzgx:end fn_1_14D6D8 */
 
-/* fzgx:begin fn_1_14D728 */
+/* fzgx:begin fn_1_14D728 noprologue */
 typedef struct { u32 values[75]; } InitTable;
 
 void fn_1_14D728(Source *source, Display *displays) {
@@ -3591,7 +5215,7 @@ void fn_1_14D728(Source *source, Display *displays) {
 }
 /* fzgx:end fn_1_14D728 */
 
-/* fzgx:begin fn_1_14D8DC */
+/* fzgx:begin fn_1_14D8DC noprologue */
 void fn_1_14D8DC(u8 *arg0, u8 *arg1, s16 arg2) {
     u8 *data;
     u8 *p1;
@@ -3794,7 +5418,6 @@ void fn_1_14DC68(fn_1_14DC68_StaticDispEntry *arg0, s16 arg1) {
 /* fzgx:end fn_1_14DC68 */
 
 /* fzgx:begin fn_1_14DD68 */
-extern s16 fn_1_14F344(s16);
 
 static inline u8 *fn_1_14DD68_find(u8 *base) {
     u8 *p;
@@ -3806,7 +5429,7 @@ static inline u8 *fn_1_14DD68_find(u8 *base) {
     p = base;
 
     for (; (u32)i < 3; i++) {
-        if (fn_1_14F344(*(s16 *)p) == 0) {
+        if (((s16)fn_1_14F344( (void *)(s16)(*(s16 *)p))) == 0) {
             result = base + i * 0x360 + 0x23c;
             break;
         }
@@ -3821,7 +5444,6 @@ void *fn_1_14DD68(void *arg0) {
 /* fzgx:end fn_1_14DD68 */
 
 /* fzgx:begin fn_1_14DDF4 */
-extern s16 fn_1_14F344(s16);
 
 static inline u8 *fn_1_14DDF4_find(u8 *base) {
     u8 *p;
@@ -3833,7 +5455,7 @@ static inline u8 *fn_1_14DDF4_find(u8 *base) {
     p = base;
 
     for (; (u32)i < 3; i++) {
-        if (fn_1_14F344(*(s16 *)p) == 0) {
+        if (((s16)fn_1_14F344( (void *)(s16)(*(s16 *)p))) == 0) {
             result = base + i * 0x360 + 0x228;
             break;
         }
@@ -4579,10 +6201,6 @@ int fn_1_14E944(const Fn1_14E944Entry *arg0, const Fn1_14E944Entry *arg1) {
 /* fzgx:end fn_1_14E944 */
 
 /* fzgx:begin fn_1_14E96C */
-typedef struct CompareEntry {
-    s16 index;
-    f32 value;
-} CompareEntry;
 
 s32 fn_1_14E96C(const CompareEntry *a, const CompareEntry *b)
 {
@@ -4593,7 +6211,252 @@ s32 fn_1_14E96C(const CompareEntry *a, const CompareEntry *b)
 }
 /* fzgx:end fn_1_14E96C */
 
-/* fzgx:begin fn_1_14E9A8 */
+/* fzgx:begin fn_1_14E9A8 noprologue */
+#include "types.h"
+#include "game/pad.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/sel_static_disp.h"
+#include "font.h"
+
+typedef struct {
+    u32 v[8];
+} Word8;
+
+typedef struct {
+    u8 pad0[0x4];
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+    u8 pad18[0x18];
+    s32 unk_30;
+    u8 pad34[0x24];
+} Sp8;
+
+typedef struct {
+    u32 value[22];
+} Fn139F18Data;
+
+typedef struct StaticDispParams {
+    s32 id;
+    f32 x;
+    f32 y;
+    f32 z;
+    u32 unk1[8];
+    s32 count;
+    u32 unk2[9];
+} StaticDispParams;
+
+struct Struct_26F8 {
+    u32 unk00;
+    f32 unk04;
+    f32 unk08;
+    f32 unk0C;
+    u8 pad10[0x1C];
+    f32 unk2C;
+    u32 unk30;
+    u8 pad34[4];
+    u32 unk38;
+    u8 pad3C[0x1C];
+};
+
+typedef struct {
+    const char *p[9];
+} PtrTab;
+
+struct fn_1_13F8C4_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E43C {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E440 {
+    u32 unk_0;
+};
+
+typedef struct {
+    s16 indices[2];
+    u8 pad8[4];
+    u32 flags;
+} Source;
+
+typedef struct {
+    s16 index;
+    u8 pad2[0x1e];
+    char text[0x320];
+    void *object;
+    void *handle[4];
+} Display;
+
+struct Sig_fn_80071718_fn_80071718_Arg0 {
+    u8 pad_0[0xC];
+    u32 unk_C;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Entry {
+    u8 pad_00[0x24];
+    void *field_24;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Arg0 {
+    s32 count;
+    u8 pad_04[4];
+    struct Sig_fn_800711A8_fn_800711A8_Entry **entries;
+    u8 pad_0C[4];
+    u32 field_10;
+    void *field_14;
+};
+
+typedef struct {
+    u8 data[4];
+    f32 value;
+    u8 tail[8];
+} Fn1_14E9E4Entry;
+
+typedef struct fn_1_150C8C_Entry {
+    u8 pad[0x68];
+    u32 active;
+    u8 tail[0x40];
+} fn_1_150C8C_Entry;
+
+typedef struct fn_1_150C8C_Object {
+    u8 pad_84[0x84];
+    s32 count;
+    fn_1_150C8C_Entry entries[1];
+} fn_1_150C8C_Object;
+
+typedef struct fn_1_150F30_StaticDisp {
+    u8 pad_2728[0x2728];
+    s32 unk_2728;
+    s32 unk_272c;
+} fn_1_150F30_StaticDisp;
+
+typedef struct Fn14E09CValue {
+    void *value;
+} Fn14E09CValue;
+
+typedef struct Fn14E09CRef {
+    u8 pad8[8];
+    Fn14E09CValue *value;
+} Fn14E09CRef;
+
+typedef struct Fn14E09CObj {
+    u8 pad344[0x344];
+    Fn14E09CRef *ref;
+} Fn14E09CObj;
+
+typedef struct DispNode {
+    u8 pad[4];
+    f32 value;
+} DispNode;
+
+typedef struct DispChildList {
+    DispNode *child[3];
+} DispChildList;
+
+typedef struct DispObject {
+    u32 flags;
+    u8 pad0[12];
+    f32 value;
+    u8 pad1[32];
+    DispChildList *children;
+} DispObject;
+
+typedef struct fn_1_151668_StaticDispEntry {
+    f32 first;
+    u8 pad0[0x18];
+    f32 values[3];
+    DispObject *object;
+    u8 active;
+    u8 scale_first;
+    u8 scale_second;
+    u8 clear_flag;
+    u8 pad2[0x0c];
+} fn_1_151668_StaticDispEntry;
+
+typedef struct fn_1_151668_StaticDisp {
+    u8 pad0[0x1830];
+    fn_1_151668_StaticDispEntry entries[63];
+    u8 pad1[0x30];
+    s32 entry_count;
+    s32 value_2728;
+    s32 value_272c;
+} fn_1_151668_StaticDisp;
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern u32 lbl_801A66B4;
+extern void fn_1_14E9E4(int arg0, void *arg1);
+extern u32 __cvt_fp2unsigned(f32);
+extern int sprintf(char *s, const char *format, ...);
+extern char *strcpy(char *dst, const char *src);
+extern s32 fn_1_3F864(void);
+extern void fn_1_A2D84(u32 arg0);
+extern void fn_1_14A9D0(u8, int, int, int, int, int);
+extern void fn_1_14BFD8(void *, void *, int);
+extern u32 lbl_801A66A4;
+extern void fn_1_14CA4C(void);
+extern u8 lbl_1_bss_5138[260];
+extern int fn_1_C24A4(void);
+extern u8 fn_1_B7C00(void);
+extern void fn_1_320A4(void);
+extern u8 lbl_1_rodata_9B04[300];
+extern void *fn_1_12ADA0(char *dst, void *arg);
+extern void fn_1_8019C(void *arg0);
+extern void fn_1_12A7C4(const char *src, char *dst, int size);
+extern u8 lbl_8015B200[];
+extern size_t strlen(const char *str);
+extern void fn_1_12AB38(void *arg0);
+extern void *fn_1_D3884(void *arg0);
+extern void fn_1_14D728(Source *source, Display *displays);
+extern void fn_80071718(void *arg0);
+extern void fn_800711A8(void *arg0);
+extern s16 fn_1_14F344(s16);
+extern u8 lbl_1_rodata_9CDC[1200];
+extern Fn1_14E9E4Entry *fn_1_14F608(int arg0);
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern u8 lbl_1_rodata_A18C[1800];
+extern s32 fn_1_14FE48(void *arg0, void *arg1);
+extern void *fn_1_14FDAC(void *arg0, void *arg1, s16 arg2, void *arg3);
+extern const u8 lbl_1_rodata_AF9C[2040];
+extern u8 lbl_1_rodata_B794[240];
+extern s16 fn_1_14F090(s16, s16);
+extern s16 fn_1_14F01C(s16);
+extern u32 lbl_1_rodata_99D8[75];
+extern u8 lbl_1_rodata_CB98[324];
+extern void fn_1_465D0(char *, int);
+extern s32 fn_1_14FD6C(s32 *arg0, s32 *arg1);
+extern void qsort(void *arg0, u32 arg1, s32 arg2, void *callback);
+extern char *strtok(char *string, const char *delimiters);
+extern void fn_1_150C8C(fn_1_150C8C_Object *obj);
+extern void fn_1_150F30(fn_1_150F30_StaticDisp *self);
+extern f32 lbl_1_rodata_CF70[54];
+extern void fn_1_14BFB8(void);
+extern u32 lbl_801A63C0;
+extern u32 fn_1_14D6D8(s16 index);
+extern void fn_1_14DEC8(void *arg0, void *arg1, void *arg2, void *arg3, int arg4);
+extern void fn_1_14E09C();
+extern void fn_1_14E1E0();
+extern u8 lbl_1_rodata_B884[76];
+extern u8 lbl_1_rodata_B8D8[1200];
+extern u8 lbl_1_rodata_BD88[2400];
+extern u8 lbl_1_rodata_C6E8[1200];
+extern u8 lbl_1_rodata_CCDC[308];
+extern void fn_1_14FD7C(u32 *arg0, u32 arg1);
+extern void fn_1_9A508(Obj_1_data_2A7E0 *state);
+extern void fn_1_9AD54(void);
+extern u32 fn_1_9D260(void);
+extern void fn_1_150D3C(Obj_1_data_2A7E0_At3C *arg0, u32 arg1);
+extern void fn_1_150654(void);
+extern void fn_1_151054(Obj_1_data_2A7E0_At3C *arg);
+extern void fn_1_103090(void *entry);
+extern void fn_1_1030A4(void *entry);
+extern void fn_1_103264(void *entry, void *arg);
+extern void fn_1_151668(fn_1_151668_StaticDisp *self);
+extern const f32 lbl_1_rodata_CF40[];
+extern void fn_1_150F74(void *self);
+
 typedef struct CompareEntry {
     s16 index;
     f32 value;
@@ -4608,7 +6471,7 @@ s32 fn_1_14E9A8(const CompareEntry *a, const CompareEntry *b)
 }
 /* fzgx:end fn_1_14E9A8 */
 
-/* fzgx:begin fn_1_14E9E4 */
+/* fzgx:begin fn_1_14E9E4 noprologue */
 typedef struct {
     Fn1_14E9E4Entry entries[75];
 } Fn1_14E9E4Blob;
@@ -4623,7 +6486,7 @@ void fn_1_14E9E4(int arg0, void *arg1) {
 }
 /* fzgx:end fn_1_14E9E4 */
 
-/* fzgx:begin fn_1_14EA74 */
+/* fzgx:begin fn_1_14EA74 noprologue */
 typedef struct {
     u8 bytes[0x708];
 } Fn1_14EA74Blob;
@@ -4662,21 +6525,13 @@ char *fn_1_14EA74(s16 arg0, char *arg1, s16 arg2) {
 }
 /* fzgx:end fn_1_14EA74 */
 
-/* fzgx:begin fn_1_14EBF8 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/sel_static_disp.h"
-
-extern u8 lbl_1_rodata_A894[1800];
-extern s16 fn_1_14FE48(void *arg0, void *arg1);
-extern s32 fn_1_14FDAC(void *arg0, void *arg1, s16 arg2, void *arg3);
-extern int sprintf(char *arg0, const char *arg1, ...);
+/* fzgx:begin fn_1_14EBF8 */
 
 typedef struct {
     void *word[75][6];
 } Table1800;
 
-u32 fn_1_14EBF8(s16 arg0, u32 arg1, s16 arg2) {
+char * fn_1_14EBF8(s16 arg0, char *arg1, s16 arg2) {
     char *data = (char *)lbl_1_data_43E78;
     char buf0[64];
     Table1800 table;
@@ -4684,7 +6539,7 @@ u32 fn_1_14EBF8(s16 arg0, u32 arg1, s16 arg2) {
 
     table = *(Table1800 *)lbl_1_rodata_A894;
 
-    if (fn_1_14FE48(table.word[arg0][arg2], data + 0x2428) < 2) {
+    if (((s16)fn_1_14FE48(table.word[arg0][arg2], data + 0x2428)) < 2) {
         sprintf((char *)arg1, data + 0x242c,
                 fn_1_14FDAC(table.word[arg0][arg2], data + 0x2428, 0, buf0));
     } else {
@@ -4692,11 +6547,256 @@ u32 fn_1_14EBF8(s16 arg0, u32 arg1, s16 arg2) {
                 fn_1_14FDAC(table.word[arg0][arg2], data + 0x2428, 2, buf0),
                 fn_1_14FDAC(table.word[arg0][arg2], data + 0x2428, 3, buf3));
     }
-    return arg1;
+    return (char *)(arg1);
 }
 /* fzgx:end fn_1_14EBF8 */
 
-/* fzgx:begin fn_1_14ED00 */
+/* fzgx:begin fn_1_14ED00 noprologue */
+#include "types.h"
+#include "game/pad.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/sel_static_disp.h"
+#include "font.h"
+
+typedef struct {
+    u32 v[8];
+} Word8;
+
+typedef struct {
+    u8 pad0[0x4];
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+    u8 pad18[0x18];
+    s32 unk_30;
+    u8 pad34[0x24];
+} Sp8;
+
+typedef struct {
+    u32 value[22];
+} Fn139F18Data;
+
+typedef struct StaticDispParams {
+    s32 id;
+    f32 x;
+    f32 y;
+    f32 z;
+    u32 unk1[8];
+    s32 count;
+    u32 unk2[9];
+} StaticDispParams;
+
+struct Struct_26F8 {
+    u32 unk00;
+    f32 unk04;
+    f32 unk08;
+    f32 unk0C;
+    u8 pad10[0x1C];
+    f32 unk2C;
+    u32 unk30;
+    u8 pad34[4];
+    u32 unk38;
+    u8 pad3C[0x1C];
+};
+
+typedef struct {
+    const char *p[9];
+} PtrTab;
+
+struct fn_1_13F8C4_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E43C {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E440 {
+    u32 unk_0;
+};
+
+typedef struct {
+    s16 indices[2];
+    u8 pad8[4];
+    u32 flags;
+} Source;
+
+typedef struct {
+    s16 index;
+    u8 pad2[0x1e];
+    char text[0x320];
+    void *object;
+    void *handle[4];
+} Display;
+
+struct Sig_fn_80071718_fn_80071718_Arg0 {
+    u8 pad_0[0xC];
+    u32 unk_C;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Entry {
+    u8 pad_00[0x24];
+    void *field_24;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Arg0 {
+    s32 count;
+    u8 pad_04[4];
+    struct Sig_fn_800711A8_fn_800711A8_Entry **entries;
+    u8 pad_0C[4];
+    u32 field_10;
+    void *field_14;
+};
+
+typedef struct {
+    u8 data[4];
+    f32 value;
+    u8 tail[8];
+} Fn1_14E9E4Entry;
+
+typedef struct fn_1_150C8C_Entry {
+    u8 pad[0x68];
+    u32 active;
+    u8 tail[0x40];
+} fn_1_150C8C_Entry;
+
+typedef struct fn_1_150C8C_Object {
+    u8 pad_84[0x84];
+    s32 count;
+    fn_1_150C8C_Entry entries[1];
+} fn_1_150C8C_Object;
+
+typedef struct fn_1_150F30_StaticDisp {
+    u8 pad_2728[0x2728];
+    s32 unk_2728;
+    s32 unk_272c;
+} fn_1_150F30_StaticDisp;
+
+typedef struct Fn14E09CValue {
+    void *value;
+} Fn14E09CValue;
+
+typedef struct Fn14E09CRef {
+    u8 pad8[8];
+    Fn14E09CValue *value;
+} Fn14E09CRef;
+
+typedef struct Fn14E09CObj {
+    u8 pad344[0x344];
+    Fn14E09CRef *ref;
+} Fn14E09CObj;
+
+typedef struct DispNode {
+    u8 pad[4];
+    f32 value;
+} DispNode;
+
+typedef struct DispChildList {
+    DispNode *child[3];
+} DispChildList;
+
+typedef struct DispObject {
+    u32 flags;
+    u8 pad0[12];
+    f32 value;
+    u8 pad1[32];
+    DispChildList *children;
+} DispObject;
+
+typedef struct fn_1_151668_StaticDispEntry {
+    f32 first;
+    u8 pad0[0x18];
+    f32 values[3];
+    DispObject *object;
+    u8 active;
+    u8 scale_first;
+    u8 scale_second;
+    u8 clear_flag;
+    u8 pad2[0x0c];
+} fn_1_151668_StaticDispEntry;
+
+typedef struct fn_1_151668_StaticDisp {
+    u8 pad0[0x1830];
+    fn_1_151668_StaticDispEntry entries[63];
+    u8 pad1[0x30];
+    s32 entry_count;
+    s32 value_2728;
+    s32 value_272c;
+} fn_1_151668_StaticDisp;
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern u32 lbl_801A66B4;
+extern void fn_1_14E9E4(int arg0, void *arg1);
+extern u32 __cvt_fp2unsigned(f32);
+extern int sprintf(char *s, const char *format, ...);
+extern char *strcpy(char *dst, const char *src);
+extern s32 fn_1_3F864(void);
+extern void fn_1_A2D84(u32 arg0);
+extern void fn_1_14A9D0(u8, int, int, int, int, int);
+extern void fn_1_14BFD8(void *, void *, int);
+extern u32 lbl_801A66A4;
+extern void fn_1_14CA4C(void);
+extern u8 lbl_1_bss_5138[260];
+extern int fn_1_C24A4(void);
+extern u8 fn_1_B7C00(void);
+extern void fn_1_320A4(void);
+extern u8 lbl_1_rodata_9B04[300];
+extern void *fn_1_12ADA0(char *dst, void *arg);
+extern void fn_1_8019C(void *arg0);
+extern void fn_1_12A7C4(const char *src, char *dst, int size);
+extern u8 lbl_8015B200[];
+extern size_t strlen(const char *str);
+extern void fn_1_12AB38(void *arg0);
+extern void *fn_1_D3884(void *arg0);
+extern void fn_1_14D728(Source *source, Display *displays);
+extern void fn_80071718(void *arg0);
+extern void fn_800711A8(void *arg0);
+extern s16 fn_1_14F344(s16);
+extern u8 lbl_1_rodata_9CDC[1200];
+extern Fn1_14E9E4Entry *fn_1_14F608(int arg0);
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern u8 lbl_1_rodata_A18C[1800];
+extern s32 fn_1_14FE48(void *arg0, void *arg1);
+extern void *fn_1_14FDAC(void *arg0, void *arg1, s16 arg2, void *arg3);
+extern const u8 lbl_1_rodata_AF9C[2040];
+extern u8 lbl_1_rodata_B794[240];
+extern s16 fn_1_14F090(s16, s16);
+extern s16 fn_1_14F01C(s16);
+extern u32 lbl_1_rodata_99D8[75];
+extern u8 lbl_1_rodata_CB98[324];
+extern void fn_1_465D0(char *, int);
+extern s32 fn_1_14FD6C(s32 *arg0, s32 *arg1);
+extern void qsort(void *arg0, u32 arg1, s32 arg2, void *callback);
+extern char *strtok(char *string, const char *delimiters);
+extern void fn_1_150C8C(fn_1_150C8C_Object *obj);
+extern void fn_1_150F30(fn_1_150F30_StaticDisp *self);
+extern f32 lbl_1_rodata_CF70[54];
+extern void fn_1_14BFB8(void);
+extern u32 lbl_801A63C0;
+extern u32 fn_1_14D6D8(s16 index);
+extern void fn_1_14DEC8(void *arg0, void *arg1, void *arg2, void *arg3, int arg4);
+extern void fn_1_14E09C();
+extern void fn_1_14E1E0();
+extern u8 lbl_1_rodata_B884[76];
+extern u8 lbl_1_rodata_B8D8[1200];
+extern u8 lbl_1_rodata_BD88[2400];
+extern u8 lbl_1_rodata_C6E8[1200];
+extern u8 lbl_1_rodata_CCDC[308];
+extern void fn_1_14FD7C(u32 *arg0, u32 arg1);
+extern void fn_1_9A508(Obj_1_data_2A7E0 *state);
+extern void fn_1_9AD54(void);
+extern u32 fn_1_9D260(void);
+extern void fn_1_150D3C(Obj_1_data_2A7E0_At3C *arg0, u32 arg1);
+extern void fn_1_150654(void);
+extern void fn_1_151054(Obj_1_data_2A7E0_At3C *arg);
+extern void fn_1_103090(void *entry);
+extern void fn_1_1030A4(void *entry);
+extern void fn_1_103264(void *entry, void *arg);
+extern void fn_1_151668(fn_1_151668_StaticDisp *self);
+extern const f32 lbl_1_rodata_CF40[];
+extern void fn_1_150F74(void *self);
+
 typedef struct {
     u32 values[5];
     u32 unk0;
@@ -4724,7 +6824,7 @@ s32 fn_1_14ED00(s32 arg0, void *arg1, s32 arg2) {
 }
 /* fzgx:end fn_1_14ED00 */
 
-/* fzgx:begin fn_1_14EE00 */
+/* fzgx:begin fn_1_14EE00 noprologue */
 typedef struct {
     u32 word[60];
 } Table240;
@@ -4769,7 +6869,7 @@ int fn_1_14EE00(s16 arg0, void *arg1, s16 arg2) {
 }
 /* fzgx:end fn_1_14EE00 */
 
-/* fzgx:begin fn_1_14EEC4 */
+/* fzgx:begin fn_1_14EEC4 noprologue */
 typedef struct {
     u32 values[3][6];
 } StaticDispTable;
@@ -4783,7 +6883,7 @@ void *fn_1_14EEC4(s16 index, void *obj, s16 subindex) {
 }
 /* fzgx:end fn_1_14EEC4 */
 
-/* fzgx:begin fn_1_14EF40 */
+/* fzgx:begin fn_1_14EF40 noprologue */
 typedef struct {
     u8 pad[4];
     f32 value;
@@ -4804,14 +6904,14 @@ s16 fn_1_14EF40(void *arg0, void *arg1, void *arg2) {
 }
 /* fzgx:end fn_1_14EF40 */
 
-/* fzgx:begin fn_1_14F014 */
+/* fzgx:begin fn_1_14F014 noprologue */
 // fn_1_14F014: returns a constant.
 int fn_1_14F014(void) {
     return 75;
 }
 /* fzgx:end fn_1_14F014 */
 
-/* fzgx:begin fn_1_14F01C */
+/* fzgx:begin fn_1_14F01C noprologue */
 typedef struct {
     u8 unk0[2];
     s16 value;
@@ -4841,7 +6941,7 @@ s16 fn_1_14F01C(s16 value) {
 }
 /* fzgx:end fn_1_14F01C */
 
-/* fzgx:begin fn_1_14F090 */
+/* fzgx:begin fn_1_14F090 noprologue */
 typedef struct {
     u8 unk0[2];
     s16 value;
@@ -4874,11 +6974,7 @@ s16 fn_1_14F090(s16 value, s16 occurrence) {
 }
 /* fzgx:end fn_1_14F090 */
 
-/* fzgx:begin fn_1_14F118 noprologue */
-#include "types.h"
-
-extern s16 fn_1_14F090(void *table, s16 index);
-extern s16 fn_1_14F01C(void *table);
+/* fzgx:begin fn_1_14F118 */
 
 // Returns the index of the first table entry matching the requested value.
 s16 fn_1_14F118(s16 value, void *table) {
@@ -4893,7 +6989,252 @@ s16 fn_1_14F118(s16 value, void *table) {
 }
 /* fzgx:end fn_1_14F118 */
 
-/* fzgx:begin fn_1_14F19C */
+/* fzgx:begin fn_1_14F19C noprologue */
+#include "types.h"
+#include "game/pad.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/sel_static_disp.h"
+#include "font.h"
+
+typedef struct {
+    u32 v[8];
+} Word8;
+
+typedef struct {
+    u8 pad0[0x4];
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+    u8 pad18[0x18];
+    s32 unk_30;
+    u8 pad34[0x24];
+} Sp8;
+
+typedef struct {
+    u32 value[22];
+} Fn139F18Data;
+
+typedef struct StaticDispParams {
+    s32 id;
+    f32 x;
+    f32 y;
+    f32 z;
+    u32 unk1[8];
+    s32 count;
+    u32 unk2[9];
+} StaticDispParams;
+
+struct Struct_26F8 {
+    u32 unk00;
+    f32 unk04;
+    f32 unk08;
+    f32 unk0C;
+    u8 pad10[0x1C];
+    f32 unk2C;
+    u32 unk30;
+    u8 pad34[4];
+    u32 unk38;
+    u8 pad3C[0x1C];
+};
+
+typedef struct {
+    const char *p[9];
+} PtrTab;
+
+struct fn_1_13F8C4_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E43C {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E440 {
+    u32 unk_0;
+};
+
+typedef struct {
+    s16 indices[2];
+    u8 pad8[4];
+    u32 flags;
+} Source;
+
+typedef struct {
+    s16 index;
+    u8 pad2[0x1e];
+    char text[0x320];
+    void *object;
+    void *handle[4];
+} Display;
+
+struct Sig_fn_80071718_fn_80071718_Arg0 {
+    u8 pad_0[0xC];
+    u32 unk_C;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Entry {
+    u8 pad_00[0x24];
+    void *field_24;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Arg0 {
+    s32 count;
+    u8 pad_04[4];
+    struct Sig_fn_800711A8_fn_800711A8_Entry **entries;
+    u8 pad_0C[4];
+    u32 field_10;
+    void *field_14;
+};
+
+typedef struct {
+    u8 data[4];
+    f32 value;
+    u8 tail[8];
+} Fn1_14E9E4Entry;
+
+typedef struct fn_1_150C8C_Entry {
+    u8 pad[0x68];
+    u32 active;
+    u8 tail[0x40];
+} fn_1_150C8C_Entry;
+
+typedef struct fn_1_150C8C_Object {
+    u8 pad_84[0x84];
+    s32 count;
+    fn_1_150C8C_Entry entries[1];
+} fn_1_150C8C_Object;
+
+typedef struct fn_1_150F30_StaticDisp {
+    u8 pad_2728[0x2728];
+    s32 unk_2728;
+    s32 unk_272c;
+} fn_1_150F30_StaticDisp;
+
+typedef struct Fn14E09CValue {
+    void *value;
+} Fn14E09CValue;
+
+typedef struct Fn14E09CRef {
+    u8 pad8[8];
+    Fn14E09CValue *value;
+} Fn14E09CRef;
+
+typedef struct Fn14E09CObj {
+    u8 pad344[0x344];
+    Fn14E09CRef *ref;
+} Fn14E09CObj;
+
+typedef struct DispNode {
+    u8 pad[4];
+    f32 value;
+} DispNode;
+
+typedef struct DispChildList {
+    DispNode *child[3];
+} DispChildList;
+
+typedef struct DispObject {
+    u32 flags;
+    u8 pad0[12];
+    f32 value;
+    u8 pad1[32];
+    DispChildList *children;
+} DispObject;
+
+typedef struct fn_1_151668_StaticDispEntry {
+    f32 first;
+    u8 pad0[0x18];
+    f32 values[3];
+    DispObject *object;
+    u8 active;
+    u8 scale_first;
+    u8 scale_second;
+    u8 clear_flag;
+    u8 pad2[0x0c];
+} fn_1_151668_StaticDispEntry;
+
+typedef struct fn_1_151668_StaticDisp {
+    u8 pad0[0x1830];
+    fn_1_151668_StaticDispEntry entries[63];
+    u8 pad1[0x30];
+    s32 entry_count;
+    s32 value_2728;
+    s32 value_272c;
+} fn_1_151668_StaticDisp;
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern u32 lbl_801A66B4;
+extern void fn_1_14E9E4(int arg0, void *arg1);
+extern u32 __cvt_fp2unsigned(f32);
+extern int sprintf(char *s, const char *format, ...);
+extern char *strcpy(char *dst, const char *src);
+extern s32 fn_1_3F864(void);
+extern void fn_1_A2D84(u32 arg0);
+extern void fn_1_14A9D0(u8, int, int, int, int, int);
+extern void fn_1_14BFD8(void *, void *, int);
+extern u32 lbl_801A66A4;
+extern void fn_1_14CA4C(void);
+extern u8 lbl_1_bss_5138[260];
+extern int fn_1_C24A4(void);
+extern u8 fn_1_B7C00(void);
+extern void fn_1_320A4(void);
+extern u8 lbl_1_rodata_9B04[300];
+extern void *fn_1_12ADA0(char *dst, void *arg);
+extern void fn_1_8019C(void *arg0);
+extern void fn_1_12A7C4(const char *src, char *dst, int size);
+extern u8 lbl_8015B200[];
+extern size_t strlen(const char *str);
+extern void fn_1_12AB38(void *arg0);
+extern void *fn_1_D3884(void *arg0);
+extern void fn_1_14D728(Source *source, Display *displays);
+extern void fn_80071718(void *arg0);
+extern void fn_800711A8(void *arg0);
+extern s16 fn_1_14F344(s16);
+extern u8 lbl_1_rodata_9CDC[1200];
+extern Fn1_14E9E4Entry *fn_1_14F608(int arg0);
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern u8 lbl_1_rodata_A18C[1800];
+extern s32 fn_1_14FE48(void *arg0, void *arg1);
+extern void *fn_1_14FDAC(void *arg0, void *arg1, s16 arg2, void *arg3);
+extern const u8 lbl_1_rodata_AF9C[2040];
+extern u8 lbl_1_rodata_B794[240];
+extern s16 fn_1_14F090(s16, s16);
+extern s16 fn_1_14F01C(s16);
+extern u32 lbl_1_rodata_99D8[75];
+extern u8 lbl_1_rodata_CB98[324];
+extern void fn_1_465D0(char *, int);
+extern s32 fn_1_14FD6C(s32 *arg0, s32 *arg1);
+extern void qsort(void *arg0, u32 arg1, s32 arg2, void *callback);
+extern char *strtok(char *string, const char *delimiters);
+extern void fn_1_150C8C(fn_1_150C8C_Object *obj);
+extern void fn_1_150F30(fn_1_150F30_StaticDisp *self);
+extern f32 lbl_1_rodata_CF70[54];
+extern void fn_1_14BFB8(void);
+extern u32 lbl_801A63C0;
+extern u32 fn_1_14D6D8(s16 index);
+extern void fn_1_14DEC8(void *arg0, void *arg1, void *arg2, void *arg3, int arg4);
+extern void fn_1_14E09C();
+extern void fn_1_14E1E0();
+extern u8 lbl_1_rodata_B884[76];
+extern u8 lbl_1_rodata_B8D8[1200];
+extern u8 lbl_1_rodata_BD88[2400];
+extern u8 lbl_1_rodata_C6E8[1200];
+extern u8 lbl_1_rodata_CCDC[308];
+extern void fn_1_14FD7C(u32 *arg0, u32 arg1);
+extern void fn_1_9A508(Obj_1_data_2A7E0 *state);
+extern void fn_1_9AD54(void);
+extern u32 fn_1_9D260(void);
+extern void fn_1_150D3C(Obj_1_data_2A7E0_At3C *arg0, u32 arg1);
+extern void fn_1_150654(void);
+extern void fn_1_151054(Obj_1_data_2A7E0_At3C *arg);
+extern void fn_1_103090(void *entry);
+extern void fn_1_1030A4(void *entry);
+extern void fn_1_103264(void *entry, void *arg);
+extern void fn_1_151668(fn_1_151668_StaticDisp *self);
+extern const f32 lbl_1_rodata_CF40[];
+extern void fn_1_150F74(void *self);
+
 typedef struct {
     u32 values[75];
 } FlagTable;
@@ -4922,13 +7263,7 @@ s16 fn_1_14F19C(s16 wanted, s16 arg, u32 mask) {
 }
 /* fzgx:end fn_1_14F19C */
 
-/* fzgx:begin fn_1_14F270 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-
-extern f32 lbl_1_rodata_99D8[75];
-extern s16 fn_1_14F090(void *arg, s16 index);
-extern s16 fn_1_14F01C(void *arg);
+/* fzgx:begin fn_1_14F270 */
 
 typedef struct {
     u32 values[75];
@@ -4941,7 +7276,7 @@ s16 fn_1_14F270(s16 wanted, void *arg, u32 mask) {
     s16 count;
     s16 index;
 
-    source = (const MaskTable *)lbl_1_rodata_99D8;
+    source = (const MaskTable *)(((f32 *)&lbl_1_rodata_99D8));
     i = 0;
     count = 0;
     for (; i < fn_1_14F01C(arg); i++) {
@@ -4958,7 +7293,252 @@ s16 fn_1_14F270(s16 wanted, void *arg, u32 mask) {
 }
 /* fzgx:end fn_1_14F270 */
 
-/* fzgx:begin fn_1_14F344 */
+/* fzgx:begin fn_1_14F344 noprologue */
+#include "types.h"
+#include "game/pad.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/sel_static_disp.h"
+#include "font.h"
+
+typedef struct {
+    u32 v[8];
+} Word8;
+
+typedef struct {
+    u8 pad0[0x4];
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+    u8 pad18[0x18];
+    s32 unk_30;
+    u8 pad34[0x24];
+} Sp8;
+
+typedef struct {
+    u32 value[22];
+} Fn139F18Data;
+
+typedef struct StaticDispParams {
+    s32 id;
+    f32 x;
+    f32 y;
+    f32 z;
+    u32 unk1[8];
+    s32 count;
+    u32 unk2[9];
+} StaticDispParams;
+
+struct Struct_26F8 {
+    u32 unk00;
+    f32 unk04;
+    f32 unk08;
+    f32 unk0C;
+    u8 pad10[0x1C];
+    f32 unk2C;
+    u32 unk30;
+    u8 pad34[4];
+    u32 unk38;
+    u8 pad3C[0x1C];
+};
+
+typedef struct {
+    const char *p[9];
+} PtrTab;
+
+struct fn_1_13F8C4_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E43C {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E440 {
+    u32 unk_0;
+};
+
+typedef struct {
+    s16 indices[2];
+    u8 pad8[4];
+    u32 flags;
+} Source;
+
+typedef struct {
+    s16 index;
+    u8 pad2[0x1e];
+    char text[0x320];
+    void *object;
+    void *handle[4];
+} Display;
+
+struct Sig_fn_80071718_fn_80071718_Arg0 {
+    u8 pad_0[0xC];
+    u32 unk_C;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Entry {
+    u8 pad_00[0x24];
+    void *field_24;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Arg0 {
+    s32 count;
+    u8 pad_04[4];
+    struct Sig_fn_800711A8_fn_800711A8_Entry **entries;
+    u8 pad_0C[4];
+    u32 field_10;
+    void *field_14;
+};
+
+typedef struct {
+    u8 data[4];
+    f32 value;
+    u8 tail[8];
+} Fn1_14E9E4Entry;
+
+typedef struct fn_1_150C8C_Entry {
+    u8 pad[0x68];
+    u32 active;
+    u8 tail[0x40];
+} fn_1_150C8C_Entry;
+
+typedef struct fn_1_150C8C_Object {
+    u8 pad_84[0x84];
+    s32 count;
+    fn_1_150C8C_Entry entries[1];
+} fn_1_150C8C_Object;
+
+typedef struct fn_1_150F30_StaticDisp {
+    u8 pad_2728[0x2728];
+    s32 unk_2728;
+    s32 unk_272c;
+} fn_1_150F30_StaticDisp;
+
+typedef struct Fn14E09CValue {
+    void *value;
+} Fn14E09CValue;
+
+typedef struct Fn14E09CRef {
+    u8 pad8[8];
+    Fn14E09CValue *value;
+} Fn14E09CRef;
+
+typedef struct Fn14E09CObj {
+    u8 pad344[0x344];
+    Fn14E09CRef *ref;
+} Fn14E09CObj;
+
+typedef struct DispNode {
+    u8 pad[4];
+    f32 value;
+} DispNode;
+
+typedef struct DispChildList {
+    DispNode *child[3];
+} DispChildList;
+
+typedef struct DispObject {
+    u32 flags;
+    u8 pad0[12];
+    f32 value;
+    u8 pad1[32];
+    DispChildList *children;
+} DispObject;
+
+typedef struct fn_1_151668_StaticDispEntry {
+    f32 first;
+    u8 pad0[0x18];
+    f32 values[3];
+    DispObject *object;
+    u8 active;
+    u8 scale_first;
+    u8 scale_second;
+    u8 clear_flag;
+    u8 pad2[0x0c];
+} fn_1_151668_StaticDispEntry;
+
+typedef struct fn_1_151668_StaticDisp {
+    u8 pad0[0x1830];
+    fn_1_151668_StaticDispEntry entries[63];
+    u8 pad1[0x30];
+    s32 entry_count;
+    s32 value_2728;
+    s32 value_272c;
+} fn_1_151668_StaticDisp;
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern u32 lbl_801A66B4;
+extern void fn_1_14E9E4(int arg0, void *arg1);
+extern u32 __cvt_fp2unsigned(f32);
+extern int sprintf(char *s, const char *format, ...);
+extern char *strcpy(char *dst, const char *src);
+extern s32 fn_1_3F864(void);
+extern void fn_1_A2D84(u32 arg0);
+extern void fn_1_14A9D0(u8, int, int, int, int, int);
+extern void fn_1_14BFD8(void *, void *, int);
+extern u32 lbl_801A66A4;
+extern void fn_1_14CA4C(void);
+extern u8 lbl_1_bss_5138[260];
+extern int fn_1_C24A4(void);
+extern u8 fn_1_B7C00(void);
+extern void fn_1_320A4(void);
+extern u8 lbl_1_rodata_9B04[300];
+extern void *fn_1_12ADA0(char *dst, void *arg);
+extern void fn_1_8019C(void *arg0);
+extern void fn_1_12A7C4(const char *src, char *dst, int size);
+extern u8 lbl_8015B200[];
+extern size_t strlen(const char *str);
+extern void fn_1_12AB38(void *arg0);
+extern void *fn_1_D3884(void *arg0);
+extern void fn_1_14D728(Source *source, Display *displays);
+extern void fn_80071718(void *arg0);
+extern void fn_800711A8(void *arg0);
+extern s16 fn_1_14F344(s16);
+extern u8 lbl_1_rodata_9CDC[1200];
+extern Fn1_14E9E4Entry *fn_1_14F608(int arg0);
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern u8 lbl_1_rodata_A18C[1800];
+extern s32 fn_1_14FE48(void *arg0, void *arg1);
+extern void *fn_1_14FDAC(void *arg0, void *arg1, s16 arg2, void *arg3);
+extern const u8 lbl_1_rodata_AF9C[2040];
+extern u8 lbl_1_rodata_B794[240];
+extern s16 fn_1_14F090(s16, s16);
+extern s16 fn_1_14F01C(s16);
+extern u32 lbl_1_rodata_99D8[75];
+extern u8 lbl_1_rodata_CB98[324];
+extern void fn_1_465D0(char *, int);
+extern s32 fn_1_14FD6C(s32 *arg0, s32 *arg1);
+extern void qsort(void *arg0, u32 arg1, s32 arg2, void *callback);
+extern char *strtok(char *string, const char *delimiters);
+extern void fn_1_150C8C(fn_1_150C8C_Object *obj);
+extern void fn_1_150F30(fn_1_150F30_StaticDisp *self);
+extern f32 lbl_1_rodata_CF70[54];
+extern void fn_1_14BFB8(void);
+extern u32 lbl_801A63C0;
+extern u32 fn_1_14D6D8(s16 index);
+extern void fn_1_14DEC8(void *arg0, void *arg1, void *arg2, void *arg3, int arg4);
+extern void fn_1_14E09C();
+extern void fn_1_14E1E0();
+extern u8 lbl_1_rodata_B884[76];
+extern u8 lbl_1_rodata_B8D8[1200];
+extern u8 lbl_1_rodata_BD88[2400];
+extern u8 lbl_1_rodata_C6E8[1200];
+extern u8 lbl_1_rodata_CCDC[308];
+extern void fn_1_14FD7C(u32 *arg0, u32 arg1);
+extern void fn_1_9A508(Obj_1_data_2A7E0 *state);
+extern void fn_1_9AD54(void);
+extern u32 fn_1_9D260(void);
+extern void fn_1_150D3C(Obj_1_data_2A7E0_At3C *arg0, u32 arg1);
+extern void fn_1_150654(void);
+extern void fn_1_151054(Obj_1_data_2A7E0_At3C *arg);
+extern void fn_1_103090(void *entry);
+extern void fn_1_1030A4(void *entry);
+extern void fn_1_103264(void *entry, void *arg);
+extern void fn_1_151668(fn_1_151668_StaticDisp *self);
+extern const f32 lbl_1_rodata_CF40[];
+extern void fn_1_150F74(void *self);
+
 typedef struct {
     u8 unk0[2];
     s16 value;
@@ -4977,7 +7557,7 @@ s16 fn_1_14F344(s16 index) {
 }
 /* fzgx:end fn_1_14F344 */
 
-/* fzgx:begin fn_1_14F38C */
+/* fzgx:begin fn_1_14F38C noprologue */
 typedef struct {
     u8 unk0[2];
     s16 unk2;
@@ -5023,7 +7603,7 @@ void fn_1_14F38C(fn_1_14F38C_StaticDisp *disp, u8 *table) {
 }
 /* fzgx:end fn_1_14F38C */
 
-/* fzgx:begin fn_1_14F46C */
+/* fzgx:begin fn_1_14F46C noprologue */
 typedef struct {
     char *entries[75];
 } StaticDisplayStrings;
@@ -5090,12 +7670,7 @@ void fn_1_14F46C(DisplayState *state) {
 }
 /* fzgx:end fn_1_14F46C */
 
-/* fzgx:begin fn_1_14F608 noprologue */
-#include "types.h"
-
-extern s16 fn_1_14F01C(void *arg);
-extern s16 fn_1_14F090(void *table, s16 index);
-extern void *fn_1_14F344(void *self);
+/* fzgx:begin fn_1_14F608 */
 
 // Index of the first table entry matching value, or -1 when absent.
 static inline s16 find_ordinal(void *table, s16 value) {
@@ -5134,21 +7709,17 @@ u8 *fn_1_14F608(void *arg0) {
 }
 /* fzgx:end fn_1_14F608 */
 
-/* fzgx:begin fn_1_14F6F8 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/sel_static_disp.h"
-
+/* fzgx:begin fn_1_14F6F8 */
 #pragma section code_type ".fzgxpool"
-static const u32 fzgx_pool_table1[150] = {0x80000000, 0x10000000, 0x80000000, 0x80000000, 0x80000000, 0x80000000, 0x00000000, 0x80000000, 0x10000000, 0x60000000, 0x80000000, 0x90000000, 0x00000000, 0x20000000, 0x20000000, 0x80000000, 0x80000000, 0x10000000, 0x00000000, 0x20000000, 0x20000000, 0x80000000, 0x90000000, 0x00000000, 0x00000000, 0x80000000, 0x10000000, 0x80000000, 0x00000000, 0x80000000, 0x80000000, 0x80000000, 0x20000000, 0x80000000, 0x60000000, 0x80000000, 0x00000000, 0x20000000, 0x10000000, 0x00000000, 0x80000000, 0x00000000, 0x80000000, 0x80000000, 0x10000000, 0x20000000, 0x90000000, 0x00000000, 0x90000000, 0x20000000, 0x80000009, 0x8000001A, 0x10000002, 0x60000001, 0x00000018, 0x8000000A, 0x80000002, 0x90000003, 0x0000000A, 0x8000000B, 0x0000001B, 0x20000010, 0x90000002, 0x80000013, 0x2000001A, 0x0000000B, 0x80000019, 0x20000000, 0x8000001B, 0x20000011, 0x10000012, 0x80000008, 0x80000012, 0x10000003, 0x00000003, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+static const u32 fn_1_14F6F8_fzgx_pool_table1[150] = {0x80000000, 0x10000000, 0x80000000, 0x80000000, 0x80000000, 0x80000000, 0x00000000, 0x80000000, 0x10000000, 0x60000000, 0x80000000, 0x90000000, 0x00000000, 0x20000000, 0x20000000, 0x80000000, 0x80000000, 0x10000000, 0x00000000, 0x20000000, 0x20000000, 0x80000000, 0x90000000, 0x00000000, 0x00000000, 0x80000000, 0x10000000, 0x80000000, 0x00000000, 0x80000000, 0x80000000, 0x80000000, 0x20000000, 0x80000000, 0x60000000, 0x80000000, 0x00000000, 0x20000000, 0x10000000, 0x00000000, 0x80000000, 0x00000000, 0x80000000, 0x80000000, 0x10000000, 0x20000000, 0x90000000, 0x00000000, 0x90000000, 0x20000000, 0x80000009, 0x8000001A, 0x10000002, 0x60000001, 0x00000018, 0x8000000A, 0x80000002, 0x90000003, 0x0000000A, 0x8000000B, 0x0000001B, 0x20000010, 0x90000002, 0x80000013, 0x2000001A, 0x0000000B, 0x80000019, 0x20000000, 0x8000001B, 0x20000011, 0x10000012, 0x80000008, 0x80000012, 0x10000003, 0x00000003, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fn_1_14F6F8_fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fn_1_14F6F8_fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fn_1_14F6F8_fzgx_pool_prime2(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
     s = 1.0f;
 }
-static const u32 fzgx_pool_table3[1831] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00070008, 0x80000000, 0x00010000, 0x00000000, 0x0009000F, 0x10000000, 0x00020000, 0x00000000, 0x00030008, 0x80000000, 0x00030000, 0x00000000, 0x00010008, 0x80000000, 0x00040000, 0x00000000, 0x00090008, 0x80000000, 0x00050000, 0x00000000, 0x00030008, 0x80000000, 0x00060000, 0x00000000, 0x00030004, 0x00000000, 0x00070000, 0x00000000, 0x00050008, 0x80000000, 0x00080000, 0x00000000, 0x0005000F, 0x10000000, 0x00090000, 0x00000000, 0x00070063, 0x60000000, 0x000A0000, 0x00000000, 0x00070008, 0x80000000, 0x000B0000, 0x00000000, 0x0003000F, 0x90000000, 0x000C0000, 0x00000000, 0x00010005, 0x00000000, 0x000D0000, 0x00000000, 0x00010005, 0x20000000, 0x000E0000, 0x00000000, 0x00030003, 0x20000000, 0x000F0000, 0x00000000, 0x00010008, 0x80000000, 0x00100000, 0x00000000, 0x00050008, 0x80000000, 0x00110000, 0x00000000, 0x0007000F, 0x10000000, 0x00120000, 0x00000000, 0x00050005, 0x00000000, 0x00130000, 0x00000000, 0x00050004, 0x20000000, 0x00140000, 0x00000000, 0x00050004, 0x20000000, 0x00150000, 0x00000000, 0x00050008, 0x80000000, 0x00160000, 0x00000000, 0x0003000F, 0x90000000, 0x00170000, 0x00000000, 0x0009000A, 0x00000000, 0x00180000, 0x00000000, 0x00070007, 0x00000000, 0x00190001, 0x00000000, 0x00070008, 0x80000000, 0x001A0001, 0x00000000, 0x0007000F, 0x10000000, 0x001B0001, 0x00000000, 0x00010008, 0x80000000, 0x001C0001, 0x00000000, 0x00050004, 0x00000000, 0x001D0001, 0x00000000, 0x00050008, 0x80000000, 0x001E0001, 0x00000000, 0x00030008, 0x80000000, 0x001F0001, 0x00000000, 0x00090008, 0x80000000, 0x00200001, 0x00000000, 0x00090003, 0x20000000, 0x00210001, 0x00000000, 0x00030008, 0x80000000, 0x00220001, 0x00000000, 0x00070063, 0x60000000, 0x00230001, 0x00000000, 0x00090008, 0x80000000, 0x00240001, 0x00000000, 0x0001000A, 0x00000000, 0x00250001, 0x00000000, 0x00050004, 0x20000000, 0x00260001, 0x00000000, 0x0003000F, 0x10000000, 0x00270001, 0x00000000, 0x00030005, 0x00000000, 0x00280001, 0x00000000, 0x00070008, 0x80000000, 0x00290001, 0x00000000, 0x00090005, 0x00000000, 0x002A0001, 0x00000000, 0x00050008, 0x80000000, 0x002B0001, 0x00000000, 0x00050008, 0x80000000, 0x002C0001, 0x00000000, 0x0001000F, 0x10000000, 0x002D0001, 0x00000000, 0x00070004, 0x20000000, 0x002E0001, 0x00000000, 0x0001000F, 0x90000000, 0x002F0001, 0x00000000, 0x00050007, 0x00000000, 0x00300001, 0x00000000, 0x0005000F, 0x90000000, 0x00310001, 0x00000000, 0x00030005, 0x20000000, 0x00320002, 0x00000000, 0x00090008, 0x80000009, 0x00330002, 0x00000000, 0x00050008, 0x8000001A, 0x00340002, 0x00000000, 0x0005000F, 0x10000002, 0x00350002, 0x00000000, 0x00090063, 0x60000001, 0x00360002, 0x00000000, 0x00070004, 0x00000018, 0x00370002, 0x00000000, 0x00050008, 0x8000000A, 0x00380002, 0x00000000, 0x00010008, 0x80000002, 0x00390002, 0x00000000, 0x0007000F, 0x90000003, 0x003A0002, 0x00000000, 0x00030005, 0x0000000A, 0x003B0002, 0x00000000, 0x00030008, 0x8000000B, 0x003C0002, 0x00000000, 0x0001000A, 0x0000001B, 0x003D0002, 0x00000000, 0x00050005, 0x20000010, 0x003E0002, 0x00000000, 0x0003000F, 0x90000002, 0x003F0002, 0x00000000, 0x00030008, 0x80000013, 0x00400002, 0x00000000, 0x00050004, 0x2000001A, 0x00410002, 0x00000000, 0x00030005, 0x0000000B, 0x00420002, 0x00000000, 0x00070008, 0x80000019, 0x00430002, 0x00000000, 0x00070003, 0x20000000, 0x00440002, 0x00000000, 0x00030008, 0x8000001B, 0x00450002, 0x00000000, 0x00050004, 0x20000011, 0x00460002, 0x00000000, 0x0001000F, 0x10000012, 0x00470002, 0x00000000, 0x00070008, 0x80000008, 0x00480002, 0x00000000, 0x00050008, 0x80000012, 0x00490002, 0x00000000, 0x0007000F, 0x10000003, 0x004A0002, 0x00000000, 0x00010007, 0x00000003, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+static const u32 fn_1_14F6F8_fzgx_pool_table3[1831] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00070008, 0x80000000, 0x00010000, 0x00000000, 0x0009000F, 0x10000000, 0x00020000, 0x00000000, 0x00030008, 0x80000000, 0x00030000, 0x00000000, 0x00010008, 0x80000000, 0x00040000, 0x00000000, 0x00090008, 0x80000000, 0x00050000, 0x00000000, 0x00030008, 0x80000000, 0x00060000, 0x00000000, 0x00030004, 0x00000000, 0x00070000, 0x00000000, 0x00050008, 0x80000000, 0x00080000, 0x00000000, 0x0005000F, 0x10000000, 0x00090000, 0x00000000, 0x00070063, 0x60000000, 0x000A0000, 0x00000000, 0x00070008, 0x80000000, 0x000B0000, 0x00000000, 0x0003000F, 0x90000000, 0x000C0000, 0x00000000, 0x00010005, 0x00000000, 0x000D0000, 0x00000000, 0x00010005, 0x20000000, 0x000E0000, 0x00000000, 0x00030003, 0x20000000, 0x000F0000, 0x00000000, 0x00010008, 0x80000000, 0x00100000, 0x00000000, 0x00050008, 0x80000000, 0x00110000, 0x00000000, 0x0007000F, 0x10000000, 0x00120000, 0x00000000, 0x00050005, 0x00000000, 0x00130000, 0x00000000, 0x00050004, 0x20000000, 0x00140000, 0x00000000, 0x00050004, 0x20000000, 0x00150000, 0x00000000, 0x00050008, 0x80000000, 0x00160000, 0x00000000, 0x0003000F, 0x90000000, 0x00170000, 0x00000000, 0x0009000A, 0x00000000, 0x00180000, 0x00000000, 0x00070007, 0x00000000, 0x00190001, 0x00000000, 0x00070008, 0x80000000, 0x001A0001, 0x00000000, 0x0007000F, 0x10000000, 0x001B0001, 0x00000000, 0x00010008, 0x80000000, 0x001C0001, 0x00000000, 0x00050004, 0x00000000, 0x001D0001, 0x00000000, 0x00050008, 0x80000000, 0x001E0001, 0x00000000, 0x00030008, 0x80000000, 0x001F0001, 0x00000000, 0x00090008, 0x80000000, 0x00200001, 0x00000000, 0x00090003, 0x20000000, 0x00210001, 0x00000000, 0x00030008, 0x80000000, 0x00220001, 0x00000000, 0x00070063, 0x60000000, 0x00230001, 0x00000000, 0x00090008, 0x80000000, 0x00240001, 0x00000000, 0x0001000A, 0x00000000, 0x00250001, 0x00000000, 0x00050004, 0x20000000, 0x00260001, 0x00000000, 0x0003000F, 0x10000000, 0x00270001, 0x00000000, 0x00030005, 0x00000000, 0x00280001, 0x00000000, 0x00070008, 0x80000000, 0x00290001, 0x00000000, 0x00090005, 0x00000000, 0x002A0001, 0x00000000, 0x00050008, 0x80000000, 0x002B0001, 0x00000000, 0x00050008, 0x80000000, 0x002C0001, 0x00000000, 0x0001000F, 0x10000000, 0x002D0001, 0x00000000, 0x00070004, 0x20000000, 0x002E0001, 0x00000000, 0x0001000F, 0x90000000, 0x002F0001, 0x00000000, 0x00050007, 0x00000000, 0x00300001, 0x00000000, 0x0005000F, 0x90000000, 0x00310001, 0x00000000, 0x00030005, 0x20000000, 0x00320002, 0x00000000, 0x00090008, 0x80000009, 0x00330002, 0x00000000, 0x00050008, 0x8000001A, 0x00340002, 0x00000000, 0x0005000F, 0x10000002, 0x00350002, 0x00000000, 0x00090063, 0x60000001, 0x00360002, 0x00000000, 0x00070004, 0x00000018, 0x00370002, 0x00000000, 0x00050008, 0x8000000A, 0x00380002, 0x00000000, 0x00010008, 0x80000002, 0x00390002, 0x00000000, 0x0007000F, 0x90000003, 0x003A0002, 0x00000000, 0x00030005, 0x0000000A, 0x003B0002, 0x00000000, 0x00030008, 0x8000000B, 0x003C0002, 0x00000000, 0x0001000A, 0x0000001B, 0x003D0002, 0x00000000, 0x00050005, 0x20000010, 0x003E0002, 0x00000000, 0x0003000F, 0x90000002, 0x003F0002, 0x00000000, 0x00030008, 0x80000013, 0x00400002, 0x00000000, 0x00050004, 0x2000001A, 0x00410002, 0x00000000, 0x00030005, 0x0000000B, 0x00420002, 0x00000000, 0x00070008, 0x80000019, 0x00430002, 0x00000000, 0x00070003, 0x20000000, 0x00440002, 0x00000000, 0x00030008, 0x8000001B, 0x00450002, 0x00000000, 0x00050004, 0x20000011, 0x00460002, 0x00000000, 0x0001000F, 0x10000012, 0x00470002, 0x00000000, 0x00070008, 0x80000008, 0x00480002, 0x00000000, 0x00050008, 0x80000012, 0x00490002, 0x00000000, 0x0007000F, 0x10000003, 0x004A0002, 0x00000000, 0x00010007, 0x00000003, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fn_1_14F6F8_fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fn_1_14F6F8_fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fn_1_14F6F8_fzgx_pool_prime4(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
     d = 4503601774854144.0;
 }
@@ -5166,41 +7737,8 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime6(void) {
 static const u32 fzgx_pool_table7[1] = {0x00000434};  /* fzgx-allow: A1 retail pool bytes */
 __declspec(section ".fzgxpool") static void fzgx_pool_keep7(void) { const u32 *volatile cp; cp = fzgx_pool_table7; }  /* fzgx-allow: S2 pool primer sink */
 #pragma section code_type ".text"
-extern s16 fn_1_14F01C(void *arg);
-extern s16 fn_1_14F090(void *table, s16 index);
-extern void *fn_1_14F344(void *self);
-extern u8 lbl_1_data_4634C[];
 
-typedef struct {
-    u32 words[3];
-} Blend3;
 
-typedef struct {
-    u8 *kind;        /* 0x00: descriptor pointer, byte 3 is the blend key */
-    f32 f04;
-    f32 f08;
-    f32 f0C;
-    f32 f10;
-    f32 f14;
-    f32 f18;
-    f32 f1C;
-    f32 f20;
-    f32 f24;
-    f32 f28;
-    f32 f2C;
-    f32 f30;
-    f32 f34;
-    f32 f38;
-    f32 f3C;
-    f32 f40;
-    f32 f44;
-    u8 b48;
-    u8 b49;
-    u8 pad4A[2];
-    f32 f4C;
-    f32 f50;
-    Blend3 tail[8];  /* 0x54..0xB4 */
-} DispEntry;
 
 static inline s16 find_ordinal_1_14F6F8(void *table, s16 value) {
     s16 index;
@@ -5273,7 +7811,7 @@ void *fn_1_14F6F8(void *arg0, void *arg1, void *arg2, DispEntry *out) {
     rate = delta;
     rate /= 8.0f;
 
-    out->kind = lbl_1_data_4634C;
+    out->kind = (((u8 *)&lbl_1_data_4634C));
     out->f04 = x->f04 + y->f04 + z->f04;
 
     blend = out->f04;
@@ -5331,19 +7869,13 @@ void *fn_1_14F6F8(void *arg0, void *arg1, void *arg2, DispEntry *out) {
 }
 /* fzgx:end fn_1_14F6F8 */
 
-/* fzgx:begin fn_1_14FC80 noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-#include "rel/main_rel/sel_static_disp.h"
-
-extern void *fn_1_36AD0(s16 arg0, u32 arg1);
-extern void fn_1_14F6F8(u8 arg0, u8 arg1, u8 arg2, u32 arg3);
+/* fzgx:begin fn_1_14FC80 */
 
 void fn_1_14FC80(s16 arg0, u32 arg1) {
     u8 *data;
 
     data = (u8 *)fn_1_36AD0(arg0, arg1) + arg0 * 0x81C0;
-    fn_1_14F6F8(data[0x81A4], data[0x81AC], data[0x81B4], arg1);
+    fn_1_14F6F8( (void *)(u8)(data[0x81A4]), (void *)(u8)(data[0x81AC]), (void *)(u8)(data[0x81B4]), (DispEntry *)(u32)(arg1));
 }
 /* fzgx:end fn_1_14FC80 */
 
@@ -5357,7 +7889,7 @@ void fn_1_14FCE4(u32 arg0, s16 arg1) {
 
     data = *(Data *)lbl_1_rodata_CCDC;
     fn_1_14FD7C(data.words, 77);
-    fn_80008BA8(arg0, (u32)(data.words), arg1 << 2);
+    fn_80008BA8( (void *)(u32)(arg0), (void *)((u32)(data.words)), arg1 << 2);
 }
 /* fzgx:end fn_1_14FCE4 */
 
@@ -5386,7 +7918,252 @@ void fn_1_14FD7C(u32 *arg0, u32 arg1) {
 }
 /* fzgx:end fn_1_14FD7C */
 
-/* fzgx:begin fn_1_14FDAC */
+/* fzgx:begin fn_1_14FDAC noprologue */
+#include "types.h"
+#include "game/pad.h"
+#include "rel/main_rel/globals.h"
+#include "rel/main_rel/sel_static_disp.h"
+#include "font.h"
+
+typedef struct {
+    u32 v[8];
+} Word8;
+
+typedef struct {
+    u8 pad0[0x4];
+    f32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    f32 unk_10;
+    f32 unk_14;
+    u8 pad18[0x18];
+    s32 unk_30;
+    u8 pad34[0x24];
+} Sp8;
+
+typedef struct {
+    u32 value[22];
+} Fn139F18Data;
+
+typedef struct StaticDispParams {
+    s32 id;
+    f32 x;
+    f32 y;
+    f32 z;
+    u32 unk1[8];
+    s32 count;
+    u32 unk2[9];
+} StaticDispParams;
+
+struct Struct_26F8 {
+    u32 unk00;
+    f32 unk04;
+    f32 unk08;
+    f32 unk0C;
+    u8 pad10[0x1C];
+    f32 unk2C;
+    u32 unk30;
+    u8 pad34[4];
+    u32 unk38;
+    u8 pad3C[0x1C];
+};
+
+typedef struct {
+    const char *p[9];
+} PtrTab;
+
+struct fn_1_13F8C4_lbl_801A6410 {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E43C {
+    u32 unk_0;
+};
+
+struct fn_1_149C64_lbl_1_bss_8E440 {
+    u32 unk_0;
+};
+
+typedef struct {
+    s16 indices[2];
+    u8 pad8[4];
+    u32 flags;
+} Source;
+
+typedef struct {
+    s16 index;
+    u8 pad2[0x1e];
+    char text[0x320];
+    void *object;
+    void *handle[4];
+} Display;
+
+struct Sig_fn_80071718_fn_80071718_Arg0 {
+    u8 pad_0[0xC];
+    u32 unk_C;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Entry {
+    u8 pad_00[0x24];
+    void *field_24;
+};
+
+struct Sig_fn_800711A8_fn_800711A8_Arg0 {
+    s32 count;
+    u8 pad_04[4];
+    struct Sig_fn_800711A8_fn_800711A8_Entry **entries;
+    u8 pad_0C[4];
+    u32 field_10;
+    void *field_14;
+};
+
+typedef struct {
+    u8 data[4];
+    f32 value;
+    u8 tail[8];
+} Fn1_14E9E4Entry;
+
+typedef struct fn_1_150C8C_Entry {
+    u8 pad[0x68];
+    u32 active;
+    u8 tail[0x40];
+} fn_1_150C8C_Entry;
+
+typedef struct fn_1_150C8C_Object {
+    u8 pad_84[0x84];
+    s32 count;
+    fn_1_150C8C_Entry entries[1];
+} fn_1_150C8C_Object;
+
+typedef struct fn_1_150F30_StaticDisp {
+    u8 pad_2728[0x2728];
+    s32 unk_2728;
+    s32 unk_272c;
+} fn_1_150F30_StaticDisp;
+
+typedef struct Fn14E09CValue {
+    void *value;
+} Fn14E09CValue;
+
+typedef struct Fn14E09CRef {
+    u8 pad8[8];
+    Fn14E09CValue *value;
+} Fn14E09CRef;
+
+typedef struct Fn14E09CObj {
+    u8 pad344[0x344];
+    Fn14E09CRef *ref;
+} Fn14E09CObj;
+
+typedef struct DispNode {
+    u8 pad[4];
+    f32 value;
+} DispNode;
+
+typedef struct DispChildList {
+    DispNode *child[3];
+} DispChildList;
+
+typedef struct DispObject {
+    u32 flags;
+    u8 pad0[12];
+    f32 value;
+    u8 pad1[32];
+    DispChildList *children;
+} DispObject;
+
+typedef struct fn_1_151668_StaticDispEntry {
+    f32 first;
+    u8 pad0[0x18];
+    f32 values[3];
+    DispObject *object;
+    u8 active;
+    u8 scale_first;
+    u8 scale_second;
+    u8 clear_flag;
+    u8 pad2[0x0c];
+} fn_1_151668_StaticDispEntry;
+
+typedef struct fn_1_151668_StaticDisp {
+    u8 pad0[0x1830];
+    fn_1_151668_StaticDispEntry entries[63];
+    u8 pad1[0x30];
+    s32 entry_count;
+    s32 value_2728;
+    s32 value_272c;
+} fn_1_151668_StaticDisp;
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern u32 lbl_801A66B4;
+extern void fn_1_14E9E4(int arg0, void *arg1);
+extern u32 __cvt_fp2unsigned(f32);
+extern int sprintf(char *s, const char *format, ...);
+extern char *strcpy(char *dst, const char *src);
+extern s32 fn_1_3F864(void);
+extern void fn_1_A2D84(u32 arg0);
+extern void fn_1_14A9D0(u8, int, int, int, int, int);
+extern void fn_1_14BFD8(void *, void *, int);
+extern u32 lbl_801A66A4;
+extern void fn_1_14CA4C(void);
+extern u8 lbl_1_bss_5138[260];
+extern int fn_1_C24A4(void);
+extern u8 fn_1_B7C00(void);
+extern void fn_1_320A4(void);
+extern u8 lbl_1_rodata_9B04[300];
+extern void *fn_1_12ADA0(char *dst, void *arg);
+extern void fn_1_8019C(void *arg0);
+extern void fn_1_12A7C4(const char *src, char *dst, int size);
+extern u8 lbl_8015B200[];
+extern size_t strlen(const char *str);
+extern void fn_1_12AB38(void *arg0);
+extern void *fn_1_D3884(void *arg0);
+extern void fn_1_14D728(Source *source, Display *displays);
+extern void fn_80071718(void *arg0);
+extern void fn_800711A8(void *arg0);
+extern s16 fn_1_14F344(s16);
+extern u8 lbl_1_rodata_9CDC[1200];
+extern Fn1_14E9E4Entry *fn_1_14F608(int arg0);
+extern void fn_80008BA8(u32 arg0, u32 arg1, u32 arg2);
+extern u8 lbl_1_rodata_A18C[1800];
+extern s32 fn_1_14FE48(void *arg0, void *arg1);
+extern void *fn_1_14FDAC(void *arg0, void *arg1, s16 arg2, void *arg3);
+extern const u8 lbl_1_rodata_AF9C[2040];
+extern u8 lbl_1_rodata_B794[240];
+extern s16 fn_1_14F090(s16, s16);
+extern s16 fn_1_14F01C(s16);
+extern u32 lbl_1_rodata_99D8[75];
+extern u8 lbl_1_rodata_CB98[324];
+extern void fn_1_465D0(char *, int);
+extern s32 fn_1_14FD6C(s32 *arg0, s32 *arg1);
+extern void qsort(void *arg0, u32 arg1, s32 arg2, void *callback);
+extern char *strtok(char *string, const char *delimiters);
+extern void fn_1_150C8C(fn_1_150C8C_Object *obj);
+extern void fn_1_150F30(fn_1_150F30_StaticDisp *self);
+extern f32 lbl_1_rodata_CF70[54];
+extern void fn_1_14BFB8(void);
+extern u32 lbl_801A63C0;
+extern u32 fn_1_14D6D8(s16 index);
+extern void fn_1_14DEC8(void *arg0, void *arg1, void *arg2, void *arg3, int arg4);
+extern void fn_1_14E09C();
+extern void fn_1_14E1E0();
+extern u8 lbl_1_rodata_B884[76];
+extern u8 lbl_1_rodata_B8D8[1200];
+extern u8 lbl_1_rodata_BD88[2400];
+extern u8 lbl_1_rodata_C6E8[1200];
+extern u8 lbl_1_rodata_CCDC[308];
+extern void fn_1_14FD7C(u32 *arg0, u32 arg1);
+extern void fn_1_9A508(Obj_1_data_2A7E0 *state);
+extern void fn_1_9AD54(void);
+extern u32 fn_1_9D260(void);
+extern void fn_1_150D3C(Obj_1_data_2A7E0_At3C *arg0, u32 arg1);
+extern void fn_1_150654(void);
+extern void fn_1_151054(Obj_1_data_2A7E0_At3C *arg);
+extern void fn_1_103090(void *entry);
+extern void fn_1_1030A4(void *entry);
+extern void fn_1_103264(void *entry, void *arg);
+extern void fn_1_151668(fn_1_151668_StaticDisp *self);
+extern const f32 lbl_1_rodata_CF40[];
+extern void fn_1_150F74(void *self);
+
 void *fn_1_14FDAC(void *arg0, void *arg1, s16 arg2, void *arg3) {
     u8 local[0x40];
     void *value;
@@ -5409,7 +8186,7 @@ void *fn_1_14FDAC(void *arg0, void *arg1, s16 arg2, void *arg3) {
 }
 /* fzgx:end fn_1_14FDAC */
 
-/* fzgx:begin fn_1_14FE48 */
+/* fzgx:begin fn_1_14FE48 noprologue */
 s32 fn_1_14FE48(void *arg0, void *arg1) {
     u8 data[64];
     void *value;
@@ -5426,7 +8203,7 @@ s32 fn_1_14FE48(void *arg0, void *arg1) {
 }
 /* fzgx:end fn_1_14FE48 */
 
-/* fzgx:begin fn_1_14FEAC */
+/* fzgx:begin fn_1_14FEAC noprologue */
 typedef s32 (*Sig_fn_8007E96C_fn_8007E96C_Compare)(u32, u32);
 
 extern u8 lbl_1_bss_8E6B0[308];
@@ -6076,7 +8853,7 @@ done:
 }
 /* fzgx:end fn_1_14FEAC */
 
-/* fzgx:begin fn_1_1502BC */
+/* fzgx:begin fn_1_1502BC noprologue */
 extern int sprintf(char *s, const char *format, ...);
 extern size_t strlen(const char *str);
 extern u8 lbl_8015B200[];
@@ -6144,7 +8921,7 @@ struct Group *fn_1_1502BC(struct Group *arg0, s16 *arg1, s16 arg2)
 }
 /* fzgx:end fn_1_1502BC */
 
-/* fzgx:begin fn_1_150464 */
+/* fzgx:begin fn_1_150464 noprologue */
 void fn_1_150464(u32 arg0) {
     u32 v2;
     u32 v1;
@@ -6177,13 +8954,13 @@ void fn_1_150464(u32 arg0) {
 }
 /* fzgx:end fn_1_150464 */
 
-/* fzgx:begin fn_1_150500 */
+/* fzgx:begin fn_1_150500 noprologue */
 void fn_1_150500(void) {
     lbl_1_data_2A7E0.unk_3C->unk_0 = 0;
 }
 /* fzgx:end fn_1_150500 */
 
-/* fzgx:begin fn_1_150518 */
+/* fzgx:begin fn_1_150518 noprologue */
 // Reset the active object's counters and re-run its two setup passes.
 void fn_1_150518(void) {
     Obj_1_data_2A7E0_At3C *obj = lbl_1_data_2A7E0.unk_3C;
@@ -6197,13 +8974,13 @@ void fn_1_150518(void) {
 }
 /* fzgx:end fn_1_150518 */
 
-/* fzgx:begin fn_1_150570 */
+/* fzgx:begin fn_1_150570 noprologue */
 // fn_1_150570: empty in retail (single blr).
 void fn_1_150570(void) {
 }
 /* fzgx:end fn_1_150570 */
 
-/* fzgx:begin fn_1_150574 */
+/* fzgx:begin fn_1_150574 noprologue */
 // Initializes the static display object referenced by the main state.
 void fn_1_150574(void) {
     Obj_1_data_2A7E0_At3C *display = lbl_1_data_2A7E0.unk_3C;
@@ -6213,7 +8990,7 @@ void fn_1_150574(void) {
 }
 /* fzgx:end fn_1_150574 */
 
-/* fzgx:begin fn_1_1505B4 */
+/* fzgx:begin fn_1_1505B4 noprologue */
 // Refreshes the static display state and applies the current object selection.
 void fn_1_1505B4(void) {
     Obj_1_data_2A7E0_At3C *display_state;
@@ -6228,7 +9005,7 @@ void fn_1_1505B4(void) {
 }
 /* fzgx:end fn_1_1505B4 */
 
-/* fzgx:begin fn_1_150608 */
+/* fzgx:begin fn_1_150608 noprologue */
 // Prepare the static display state and pass it to the display routine.
 void fn_1_150608(void) {
     Obj_1_data_2A7E0_At3C *value;
@@ -6241,13 +9018,13 @@ void fn_1_150608(void) {
 }
 /* fzgx:end fn_1_150608 */
 
-/* fzgx:begin fn_1_150650 */
+/* fzgx:begin fn_1_150650 noprologue */
 // fn_1_150650: empty in retail (single blr).
 void fn_1_150650(void) {
 }
 /* fzgx:end fn_1_150650 */
 
-/* fzgx:begin fn_1_150654 */
+/* fzgx:begin fn_1_150654 noprologue */
 typedef struct {
     s32 unk_0;
     s32 unk_4;
@@ -6318,8 +9095,6 @@ void fn_1_150654(void) {
 /* fzgx:end fn_1_150654 */
 
 /* fzgx:begin fn_1_1507C4 */
-#include "rel/main_rel/car_test.h"
-
 /* begin game/main_rel/car_test_types.h (fork-deltawave784/windows-and-types@b1e6f2df) */
 #ifndef GAME_MAIN_REL_CAR_TEST_TYPES_H
 #define GAME_MAIN_REL_CAR_TEST_TYPES_H
@@ -6328,13 +9103,7 @@ void fn_1_150654(void) {
 // a block can compile standalone and under the prologue. Hand-owned (librarian).
 
 
-typedef struct {
-    f32 x;
-    f32 y;
-    f32 z;
-} Fn183D28Vec3;
 
-extern void lbl_8006E1B0(Fn183D28Vec3 *, Fn183D28Vec3 *);
 
 #endif  // GAME_MAIN_REL_CAR_TEST_TYPES_H
 
@@ -6363,13 +9132,6 @@ typedef struct {
     u8 pad_90[0xe8 - 0x90];
 } Fn1507C4Particle;
 
-extern s32 fn_1_54E34(void *, f32);
-extern f32 fn_1_A71AC(void);
-extern s16 fn_1_58E3C(void *);
-extern u32 lbl_8006DCA4(void);
-extern u32 lbl_8006D5F0(void *, void *, f32);
-extern void *memset(void *, int, u32);
-extern u32 lbl_801A66A0;
 
 static inline s32 fn_1_1507C4_rand(void) {
     lbl_801A63C0 = (lbl_801A63C0) * 0x676A4B6B + 0x33CB;
@@ -6519,14 +9281,11 @@ void fn_1_150CEC(fn_1_150CEC_Object *obj) {
 }
 /* fzgx:end fn_1_150CEC */
 
-/* fzgx:begin fn_1_150D3C noprologue */
-#include "types.h"
-#include "rel/main_rel/globals.h"
-
+/* fzgx:begin fn_1_150D3C */
 #pragma section code_type ".fzgxpool"
-static const u32 fzgx_pool_table1[3] = {0x00000000, 0xBF800000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
+static const u32 fn_1_150D3C_fzgx_pool_table1[3] = {0x00000000, 0xBF800000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fn_1_150D3C_fzgx_pool_keep1(void) { const u32 *volatile cp; cp = fn_1_150D3C_fzgx_pool_table1; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fn_1_150D3C_fzgx_pool_prime2(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
     s = 20.0f;
     s = 10.0f;
@@ -6553,56 +9312,23 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime2(void) {
     s = 0.75f;
     s = 182.04444885253906f;
 }
-static const u32 fzgx_pool_table3[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime4(void) {
+static const u32 fn_1_150D3C_fzgx_pool_table3[1] = {0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fn_1_150D3C_fzgx_pool_keep3(void) { const u32 *volatile cp; cp = fn_1_150D3C_fzgx_pool_table3; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fn_1_150D3C_fzgx_pool_prime4(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
     d = 2.0;
     d = 4503599627370496.0;
 }
 #pragma section code_type ".text"
 
-extern void fn_1_1030D4(void *entry, void *arg);
-extern f64 lbl_8006D188(s32 value);
-extern u32 lbl_801A66A0;
 
-typedef struct Pool {
-    u8 pad_00[0x48];
-    f64 c48;
-    u8 pad_50[4];
-    f32 c54;
-    u8 pad_58[4];
-    f32 c5c;
-    u8 pad_60[8];
-    f32 c68;
-    f32 c6c;
-    f32 c70;
-    u8 pad_74[4];
-    f64 c78;
-    f64 c80;
-} Pool;
 
-extern const Pool lbl_1_rodata_CF40;
 
-typedef struct Entry {
-    u8 pad_08[8];
-    u32 flags;
-    u8 pad_0c[0x20];
-    f32 x;
-    f32 y;
-    f32 z;
-    u8 tail[0x74];
-} Entry;
 
-typedef struct Object {
-    u8 pad_84[0x84];
-    s32 count;
-    Entry entries[1];
-} Object;
 
 void fn_1_150D3C(Object *obj, void *arg) {
     s32 count;
-    Entry *entry;
+    fn_1_150D3C_Entry *entry;
 
     count = obj->count;
     entry = obj->entries;

@@ -11,6 +11,8 @@
 extern u8 lbl_1_data_5548[0x190];
 
 // lbl_1_bss_3BE4: .bss size 0x1C, 3 refs from stcoli.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_3BE4
+#define FZGX_TYPEDEF_Obj_1_bss_3BE4
 typedef struct {
     u32 unk_0;  // 12 loads, 4 stores
     u8 pad_4[0x4];
@@ -30,26 +32,35 @@ typedef struct {
     f32 unk_98;  // 0 loads, 2 stores
     u32 unk_9C;  // 2 loads, 2 stores
 } Obj_1_bss_3BE4;
+#endif
 extern Obj_1_bss_3BE4 lbl_1_bss_3BE4;
 
 // lbl_1_data_5F5C: .data size 0x10, 2 refs from stcoli.c (own data block)
 extern u8 lbl_1_data_5F5C[0x10];
 
 // lbl_1_bss_6EAD0: .bss size 0x708, 2 refs from stcoli.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_6EAD0_At0
+#define FZGX_TYPEDEF_Obj_1_bss_6EAD0_At0
 typedef struct {
     u32 unk_0;  // 23 loads, 0 stores
     u32 unk_4;  // 9 loads, 0 stores
 } Obj_1_bss_6EAD0_At0;
+#endif
+#ifndef FZGX_TYPEDEF_Obj_1_bss_6EAD0
+#define FZGX_TYPEDEF_Obj_1_bss_6EAD0
 typedef struct {
     Obj_1_bss_6EAD0_At0 *unk_0;  // 34 loads, 0 stores
     u8 pad_4[0x704];
 } Obj_1_bss_6EAD0;
+#endif
 extern Obj_1_bss_6EAD0 lbl_1_bss_6EAD0;
 
 // lbl_1_data_4: .data size 0x4, 2 refs from stcoli.c
 extern f32 lbl_1_data_4;
 
 // lbl_1_bss_5138: .bss size 0x104, 2 refs from stcoli.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_5138
+#define FZGX_TYPEDEF_Obj_1_bss_5138
 typedef struct {
     u16 unk_0;  // 1 loads, 2 stores
     u8 unk_2;  // 4 loads, 3 stores
@@ -74,6 +85,7 @@ typedef struct {
     u8 unk_EB;  // 2 loads, 2 stores
     u8 pad_EC[0x18];
 } Obj_1_bss_5138;
+#endif
 extern Obj_1_bss_5138 lbl_1_bss_5138;
 
 // lbl_1_data_61D4: .data size 0xEC, 1 refs from stcoli.c (own data block)

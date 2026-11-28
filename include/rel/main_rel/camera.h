@@ -111,6 +111,8 @@ extern u8 camera_flag_1;
 extern s16 camera_transition_count;
 
 // lbl_1_bss_D58: .bss size 0x18, 3 refs from camera.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_D58
+#define FZGX_TYPEDEF_Obj_1_bss_D58
 typedef struct {
     u16 unk_0;  // 4 loads, 0 stores
     u16 unk_2;  // 1 loads, 0 stores
@@ -122,6 +124,7 @@ typedef struct {
     u16 unk_12;  // 4 loads, 0 stores
     u8 pad_14[0x4];
 } Obj_1_bss_D58;
+#endif
 extern Obj_1_bss_D58 lbl_1_bss_D58;
 
 // lbl_1_data_4068: .data size 0x1, 3 refs from camera.c (own data block)

@@ -8,6 +8,8 @@
 // functions or living in its .data block), layouts recovered from every access in the module.
 
 // lbl_3_bss_7EE40: .bss size 0x81C0, 5 refs from emb_memcard.c
+#ifndef FZGX_TYPEDEF_Obj_3_bss_7EE40
+#define FZGX_TYPEDEF_Obj_3_bss_7EE40
 typedef struct {
     u32 unk_0;  // 1 loads, 0 stores
     u8 pad_4[0x3];
@@ -27,9 +29,12 @@ typedef struct {
     f32 unk_64;  // 0 loads, 1 stores
     u8 pad_68[0x8158];
 } Obj_3_bss_7EE40;
+#endif
 extern Obj_3_bss_7EE40 lbl_3_bss_7EE40;
 
 // lbl_3_bss_7EDD8: .bss size 0x68, 5 refs from emb_memcard.c
+#ifndef FZGX_TYPEDEF_Obj_3_bss_7EDD8
+#define FZGX_TYPEDEF_Obj_3_bss_7EDD8
 typedef struct {
     u32 unk_0;  // 0 loads, 1 stores
     u32 unk_4;  // 2 loads, 1 stores
@@ -67,9 +72,12 @@ typedef struct {
     u8 unk_51;  // 1 loads, 2 stores
     u8 pad_52[0x16];
 } Obj_3_bss_7EDD8;
+#endif
 extern Obj_3_bss_7EDD8 lbl_3_bss_7EDD8;
 
 // lbl_3_bss_7EDC0: .bss size 0xC, 3 refs from emb_memcard.c
+#ifndef FZGX_TYPEDEF_Obj_3_bss_7EDC0_At0
+#define FZGX_TYPEDEF_Obj_3_bss_7EDC0_At0
 typedef struct {
     u8 pad_0[0x5];
     u8 unk_5;  // 1 loads, 0 stores
@@ -77,11 +85,15 @@ typedef struct {
     u8 unk_7;  // 0 loads, 1 stores
     u8 unk_8;  // 1 loads, 0 stores
 } Obj_3_bss_7EDC0_At0;
+#endif
+#ifndef FZGX_TYPEDEF_Obj_3_bss_7EDC0
+#define FZGX_TYPEDEF_Obj_3_bss_7EDC0
 typedef struct {
     Obj_3_bss_7EDC0_At0 *unk_0;  // 20 loads, 1 stores
     u8 pad_4[0x4];
     u32 unk_8;  // 4 loads, 2 stores
 } Obj_3_bss_7EDC0;
+#endif
 extern Obj_3_bss_7EDC0 lbl_3_bss_7EDC0;
 
 // lbl_3_data_1A40: .data size 0x2, 2 refs from emb_memcard.c (own data block)

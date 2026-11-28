@@ -84,6 +84,8 @@ typedef struct {
 extern Obj_1_data_4754 lbl_1_data_4754;
 
 // lbl_1_bss_525C: .bss size 0x198, 2 refs from live_camera.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_525C
+#define FZGX_TYPEDEF_Obj_1_bss_525C
 typedef struct {
     u32 unk_0;  // 1 loads, 0 stores
     u8 pad_4[0x1];
@@ -97,6 +99,7 @@ typedef struct {
     u8 unk_192;  // 2 loads, 0 stores
     u8 pad_193[0x5];
 } Obj_1_bss_525C;
+#endif
 extern Obj_1_bss_525C lbl_1_bss_525C;
 
 // lbl_1_bss_3B30: .bss size 0x8C, 2 refs from live_camera.c
@@ -119,14 +122,20 @@ extern u32 lbl_1_bss_3B2C;
 extern u8 lbl_1_bss_6F243;
 
 // lbl_1_bss_6EAD0: .bss size 0x708, 2 refs from live_camera.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_6EAD0_At0
+#define FZGX_TYPEDEF_Obj_1_bss_6EAD0_At0
 typedef struct {
     u32 unk_0;  // 23 loads, 0 stores
     u32 unk_4;  // 9 loads, 0 stores
 } Obj_1_bss_6EAD0_At0;
+#endif
+#ifndef FZGX_TYPEDEF_Obj_1_bss_6EAD0
+#define FZGX_TYPEDEF_Obj_1_bss_6EAD0
 typedef struct {
     Obj_1_bss_6EAD0_At0 *unk_0;  // 34 loads, 0 stores
     u8 pad_4[0x704];
 } Obj_1_bss_6EAD0;
+#endif
 extern Obj_1_bss_6EAD0 lbl_1_bss_6EAD0;
 
 // lbl_1_bss_115C: .bss size 0x1, 2 refs from live_camera.c

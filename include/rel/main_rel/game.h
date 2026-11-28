@@ -11,14 +11,20 @@
 extern u8 lbl_1_bss_5480[0x20700];
 
 // lbl_1_bss_6EAD0: .bss size 0x708, 6 refs from game.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_6EAD0_At0
+#define FZGX_TYPEDEF_Obj_1_bss_6EAD0_At0
 typedef struct {
     u32 unk_0;  // 23 loads, 0 stores
     u32 unk_4;  // 9 loads, 0 stores
 } Obj_1_bss_6EAD0_At0;
+#endif
+#ifndef FZGX_TYPEDEF_Obj_1_bss_6EAD0
+#define FZGX_TYPEDEF_Obj_1_bss_6EAD0
 typedef struct {
     Obj_1_bss_6EAD0_At0 *unk_0;  // 34 loads, 0 stores
     u8 pad_4[0x704];
 } Obj_1_bss_6EAD0;
+#endif
 extern Obj_1_bss_6EAD0 lbl_1_bss_6EAD0;
 
 // lbl_1_bss_3C12: .bss size 0xA, 6 refs from game.c
@@ -29,10 +35,13 @@ typedef struct {
 extern Obj_1_bss_3C12 lbl_1_bss_3C12;
 
 // lbl_1_bss_25BA0: .bss size 0xA8, 5 refs from game.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_25BA0
+#define FZGX_TYPEDEF_Obj_1_bss_25BA0
 typedef struct {
     u32 unk_0;  // 11 loads, 4 stores
     u8 pad_4[0xA4];
 } Obj_1_bss_25BA0;
+#endif
 extern Obj_1_bss_25BA0 lbl_1_bss_25BA0;
 
 // lbl_1_data_5B84: .data size 0x1, 5 refs from game.c
@@ -81,6 +90,8 @@ typedef struct {
 extern Obj_1_bss_3C1C lbl_1_bss_3C1C;
 
 // lbl_1_bss_D58: .bss size 0x18, 2 refs from game.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_D58
+#define FZGX_TYPEDEF_Obj_1_bss_D58
 typedef struct {
     u16 unk_0;  // 4 loads, 0 stores
     u16 unk_2;  // 1 loads, 0 stores
@@ -92,6 +103,7 @@ typedef struct {
     u16 unk_12;  // 4 loads, 0 stores
     u8 pad_14[0x4];
 } Obj_1_bss_D58;
+#endif
 extern Obj_1_bss_D58 lbl_1_bss_D58;
 
 // lbl_1_bss_26C64: .bss size 0x4, 2 refs from game.c
@@ -192,6 +204,8 @@ extern u16 lbl_1_bss_53F4;
 extern s16 lbl_1_bss_962;
 
 // lbl_1_bss_5138: .bss size 0x104, 2 refs from game.c
+#ifndef FZGX_TYPEDEF_Obj_1_bss_5138
+#define FZGX_TYPEDEF_Obj_1_bss_5138
 typedef struct {
     u16 unk_0;  // 1 loads, 2 stores
     u8 unk_2;  // 4 loads, 3 stores
@@ -216,6 +230,7 @@ typedef struct {
     u8 unk_EB;  // 2 loads, 2 stores
     u8 pad_EC[0x18];
 } Obj_1_bss_5138;
+#endif
 extern Obj_1_bss_5138 lbl_1_bss_5138;
 
 // lbl_1_data_6608: .data size 0xF, 2 refs from game.c (own data block)
