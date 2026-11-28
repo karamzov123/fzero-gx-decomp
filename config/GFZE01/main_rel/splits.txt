@@ -1821,7 +1821,7 @@ rel/main_rel/load/fn_1_46EE8.c:
 
 
 rel/main_rel/bg_for/fn_1_DDF80.c:
-	.text       start:0x000DDF80 end:0x000DE4B0 align:4
+	.text       start:0x000DDF80 end:0x000DE9C4 align:4
 
 rel/main_rel/ghost/fn_1_EF5E0.c:
 	.text       start:0x000EF5E0 end:0x000EF764 align:4
@@ -7503,9 +7503,6 @@ rel/main_rel/alloc_b/fn_1_5948.c:
 
 rel/main_rel/sel_static_disp/fn_1_133E04.c:
 	.text       start:0x00133E04 end:0x00134A4C align:4
-
-rel/main_rel/bg_for/fn_1_DE4B0.c:
-	.text       start:0x000DE4B0 end:0x000DE9C4 align:4
 
 
 rel/main_rel/_prolog_b/fn_1_3308.c:

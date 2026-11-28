@@ -24996,17 +24996,7 @@
     "source": "rel/main_rel/bg_for/fn_1_DDF80.c",
     "symbols": [
       "fn_1_DDF80",
-      "fn_1_DE180"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/bg_for.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bg_for/fn_1_DE4B0.c",
-    "symbols": [
+      "fn_1_DE180",
       "fn_1_DE4B0"
     ],
     "status": "matching",
@@ -25015,10 +25005,7 @@
     "extra_cflags": [],
     "tu": "rel/main_rel/bg_for.c",
     "pool": {
-      "...rodata.0": "lbl_1_rodata_6780",
-      "@187": "lbl_1_rodata_6800",
-      "@31": "lbl_1_rodata_6780+0x20",
-      "@26": "lbl_1_rodata_6780"
+      "...rodata.0": "lbl_1_rodata_6780"
     }
   },
   {
