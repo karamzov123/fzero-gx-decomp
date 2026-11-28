@@ -75601,40 +75601,12 @@
     "module": "movie_module",
     "source": "rel/movie_module/mwsfdsfx/fn_12_3570C.c",
     "symbols": [
-      "fn_12_3570C"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/movie_module/mwsfdsfx.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/mwsfdsfx/fn_12_357BC.c",
-    "symbols": [
-      "fn_12_357BC"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/movie_module/mwsfdsfx.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/mwsfdsfx/fn_12_35868.c",
-    "symbols": [
-      "fn_12_35868"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/movie_module/mwsfdsfx.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/mwsfdsfx/fn_12_35914.c",
-    "symbols": [
-      "fn_12_35914"
+      "fn_12_3570C",
+      "fn_12_357BC",
+      "fn_12_35868",
+      "fn_12_35914",
+      "fn_12_359B0",
+      "fn_12_35A5C"
     ],
     "status": "matching",
     "mw_version": null,
@@ -75642,28 +75614,6 @@
       "-use_lmw_stmw",
       "on"
     ],
-    "tu": "rel/movie_module/mwsfdsfx.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/mwsfdsfx/fn_12_359B0.c",
-    "symbols": [
-      "fn_12_359B0"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/movie_module/mwsfdsfx.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/mwsfdsfx/fn_12_35A5C.c",
-    "symbols": [
-      "fn_12_35A5C"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
     "tu": "rel/movie_module/mwsfdsfx.c"
   },
   {
