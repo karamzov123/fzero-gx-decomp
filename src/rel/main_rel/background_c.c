@@ -681,7 +681,8 @@ struct fn_1_9F164_Arg0 {
     u32 unk_3C;
 };
 
-#define XF_PUT(v) (*(volatile f32 *)0xCC008000 = (f32)(v)) /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+#include "dolphin/hw_regs.h"
+#define XF_PUT(v) (*(volatile f32 *)GX_FIFO_BASE = (f32)(v))  /* volatile: hardware port */
 
 extern f32 lbl_1_rodata_42D0;
 extern f32 lbl_1_rodata_42D4;
@@ -771,6 +772,14 @@ void fn_1_9F164(struct fn_1_9F164_Arg0 *arg0, f32 arg1) {
 /* fzgx:end fn_1_9F164 */
 
 /* fzgx:begin fn_1_9F4B4 */
+#include "dolphin/gx.h"
+
+/* Game code writes the pipe through a pointer, which can alias other memory (as in title's
+   fn_8_C7B0): the named GXWGFifo object would let the compiler keep reloaded values in registers. */
+#define GX_PIPE (*(volatile PPCWGPipe *)GX_FIFO_BASE)  /* volatile: hardware port */
+#define GXPosition3f32(x, y, z) (GX_PIPE.f32 = (x), GX_PIPE.f32 = (y), GX_PIPE.f32 = (z))
+#define GXTexCoord2f32(s, t) (GX_PIPE.f32 = (s), GX_PIPE.f32 = (t))
+
 struct fn_1_9F4B4_Arg0 {
     u8 pad_0[0xC];
     f32 unk_C;
@@ -871,26 +880,14 @@ void fn_1_9F4B4(struct fn_1_9F4B4_Arg0 *arg0) {
             lbl_8006E1D8(lab_t0__, f31.value, f30.value, (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0);
         }
         lbl_8006DB30();
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_C[0];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_C[1];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_C[2];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_18[0];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_18[1];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_18[2];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = ((*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D4).unk_0);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_24[0];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_24[1];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_24[2];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = ((*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D4).unk_0);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = ((*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D4).unk_0);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_30[0];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_30[1];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = loc_30[2];  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0;  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
-        *(f32 *)((u8 *)0xCC000000 + 0x8000) = ((*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D4).unk_0);  /* fzgx-allow: A1,A2 unnamed OS/hardware memory */
+        GXPosition3f32(loc_C[0], loc_C[1], loc_C[2]);
+        GXTexCoord2f32((*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0, (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0);
+        GXPosition3f32(loc_18[0], loc_18[1], loc_18[2]);
+        GXTexCoord2f32(((*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D4).unk_0), (*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0);
+        GXPosition3f32(loc_24[0], loc_24[1], loc_24[2]);
+        GXTexCoord2f32(((*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D4).unk_0), ((*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D4).unk_0));
+        GXPosition3f32(loc_30[0], loc_30[1], loc_30[2]);
+        GXTexCoord2f32((*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D0).unk_0, ((*(struct fn_1_9F4B4_lbl_1_rodata_42D0 *)&lbl_1_rodata_42D4).unk_0));
     }
 }
 

@@ -1228,7 +1228,8 @@ typedef union {
     f32 f32;
 } WGPipe;
 
-volatile WGPipe GXWGFifo : 0xCC008000; /* fzgx-allow: A1 write-gather FIFO port */
+#include "dolphin/hw_regs.h"
+volatile WGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
 
 extern u16 fn_1_A5DB0(void);
 extern void fn_8003462C(u32, u32, u32);
@@ -2568,7 +2569,8 @@ typedef union {
     f32 f32;
 } WGPipe;
 
-volatile WGPipe GXWGFifo : 0xCC008000; /* fzgx-allow: A1 write-gather FIFO port */
+#include "dolphin/hw_regs.h"
+volatile WGPipe GXWGFifo : GX_FIFO_BASE; /* volatile: hardware port */
 
 extern u8 lbl_1_data_1DAC0[0x44];
 extern u8 lbl_1_data_1DB9C[0x24];
