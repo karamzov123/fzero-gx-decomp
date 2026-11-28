@@ -2,27 +2,231 @@
 #include "sofdec/mpv.h"
 #include "sofdec/sj.h"
 
-/* fzgx:begin fn_12_ABDC noprologue */
-#include "types.h"
-#include "sofdec/mpv.h"
-#pragma opt_propagation off
+typedef struct MPVErrorInfo {
+    union {
+        unsigned char padding_extent[20];
+        struct {
+            unsigned char padding_field_0C[12];
+            int field_0C;
+        } view_field_0C;
+        struct {
+            unsigned char padding_field_10[16];
+            int field_10;
+        } view_field_10;
+    } fields;
+} MPVErrorInfo;
 
-/* --- rel/movie_module/fn_12_ABDC.c --- */
-typedef struct Sig_fn_12_ABDC_MPVContext Sig_fn_12_ABDC_MPVContext;
-typedef struct Sig_fn_12_ABDC_SJInterface Sig_fn_12_ABDC_SJInterface;
-typedef struct Sig_fn_12_ABDC_SJ Sig_fn_12_ABDC_SJ;
-typedef struct Sig_fn_12_ABDC_MPVDecoderFields {
- union { unsigned char padding_extent[168]; struct { unsigned char padding_field_1AC[28]; s32 field_1AC; } view_field_1AC; } fields;
-} Sig_fn_12_ABDC_MPVDecoderFields;
-typedef union Sig_fn_12_ABDC_MPVConditionState {
- union { unsigned char padding_extent[168]; struct { int conditions[17]; } view_conditions; struct { Sig_fn_12_ABDC_MPVDecoderFields decoder; } view_decoder; } fields;
-} Sig_fn_12_ABDC_MPVConditionState;
-typedef struct Sig_fn_12_ABDC_MPVErrorInfo {
- union { unsigned char padding_extent[20]; struct { unsigned char padding_field_0C[12]; int field_0C; } view_field_0C; struct { unsigned char padding_field_10[16]; int field_10; } view_field_10; } fields;
-} Sig_fn_12_ABDC_MPVErrorInfo;
+typedef struct Sig_fn_12_9730_MovieModule {
+ u8 _pad0[0x318]; u32 field_318; u32 field_31c; u32 field_320;
+} Sig_fn_12_9730_MovieModule;
+
+typedef void (*MovieFn)();
+
+typedef struct MovieBits { u32 address; s32 limit; s32 bit; } MovieBits;
+
+typedef struct MovieState {
+    u8 pad0[0x1a0];
+    s32 unk1a0;
+    u32 pad1a4;
+    s32 unk1a8;
+    u8 pad1ac[0x38];
+    u32 unk1e4;
+    s32 unk1e8;
+    u8 pad1ec[0xa0];
+    u32 unk28c;
+    u32 pad290;
+    MovieFn unk294;
+    MovieFn unk298;
+    MovieFn unk29c;
+    MovieFn unk2a0;
+    MovieFn unk2a4;
+    MovieFn unk2a8;
+    MovieFn unk2ac;
+    MovieFn unk2b0;
+    MovieFn unk2b4;
+    u8 pad2b8[8];
+    u32 unk2c0;
+    u32 unk2c4;
+    u32 unk2c8;
+    u32 unk2cc;
+    u8 pad2d0[0x14];
+    u32 unk2e4;
+    u32 unk2e8;
+    u32 unk2ec;
+    u32 unk2f0;
+    u8 pad2f4[0xfd4];
+    MovieBits bits;
+    u8 pad12d4[0x30];
+    u32 state;
+} MovieState;
+
+typedef struct Sig_fn_12_9744_MovieState {
+ u8 _pad10[0x10]; s32 field_10; s32 field_14; s32 field_18; s32 field_1c;
+} Sig_fn_12_9744_MovieState;
+
 typedef struct Sig_fn_12_ABDC_SJCK {
  union { unsigned char padding_extent[8]; struct { unsigned char *data; } view_data; struct { unsigned char padding_len[4]; int len; } view_len; } fields;
 } Sig_fn_12_ABDC_SJCK;
+
+typedef struct fn_12_AE70_SJCK {
+    union {
+        unsigned char padding_extent[8];
+        struct {
+            unsigned char *data;
+        } view_data;
+        struct {
+            unsigned char padding_len[4];
+            int len;
+        } view_len;
+    } fields;
+} fn_12_AE70_SJCK;
+
+typedef struct fn_12_C2C8_SJCK {
+    union {
+        unsigned char padding_extent[8];
+        struct {
+            unsigned char *data;
+        } view_data;
+        struct {
+            unsigned char padding_len[4];
+            long len;
+        } view_len;
+    } fields;
+} fn_12_C2C8_SJCK;
+
+struct Sig_fn_800589BC_fn_800589BC_Arg2 {
+    u32 unk_0;
+    u32 unk_4;
+};
+
+struct Sig_fn_800589BC_fn_800589BC_Arg3 {
+    u32 unk_0;
+    u32 unk_4;
+};
+
+typedef struct MPVDecoderFields {
+    union {
+        unsigned char padding_extent[168];
+        struct {
+            unsigned char padding_field_1AC[28];
+            s32 field_1AC;
+        } view_field_1AC;
+    } fields;
+} MPVDecoderFields;
+
+typedef union fn_12_AE70_MPVConditionState {
+    union {
+        unsigned char padding_extent[168];
+        struct {
+            int conditions[17];
+        } view_conditions;
+        struct {
+            MPVDecoderFields decoder;
+        } view_decoder;
+    } fields;
+} fn_12_AE70_MPVConditionState;
+
+typedef struct fn_12_AE70_MPVContext fn_12_AE70_MPVContext;
+
+struct fn_12_AE70_MPVContext {
+    union {
+        unsigned char padding_extent[4992];
+        struct {
+            unsigned char padding_condition_state[400];
+            fn_12_AE70_MPVConditionState condition_state;
+        } view_condition_state;
+        struct {
+            unsigned char padding_error_info[544];
+            MPVErrorInfo error_info;
+        } view_error_info;
+        struct {
+            unsigned char padding_field_1300[4800];
+            s32 field_1300;
+        } view_field_1300;
+        struct {
+            unsigned char padding_field_1304[4804];
+            s32 field_1304;
+        } view_field_1304;
+        struct {
+            unsigned char padding_field_1324[4852];
+            s32 field_1324;
+        } view_field_1324;
+    } fields;
+};
+
+typedef struct fn_12_C2C8_MPVConditionState {
+    union {
+        unsigned char padding_extent[192];
+        struct {
+            int conditions[16];
+        } view_conditions;
+    } fields;
+} fn_12_C2C8_MPVConditionState;
+
+typedef struct fn_12_C2C8_MPVPictureUserBuffer {
+    union {
+        unsigned char padding_extent[12];
+        struct {
+            unsigned char padding_size[8];
+            s32 size;
+        } view_size;
+    } fields;
+} fn_12_C2C8_MPVPictureUserBuffer;
+
+typedef struct fn_12_C2C8_MPVContext_u0 fn_12_C2C8_MPVContext_u0;
+
+struct fn_12_C2C8_MPVContext_u0 {
+    union {
+        unsigned char padding_extent[4992];
+        struct {
+            unsigned char padding_condition_state[400];
+            fn_12_C2C8_MPVConditionState condition_state;
+        } view_condition_state;
+        struct {
+            unsigned char padding_error_info[544];
+            MPVErrorInfo error_info;
+        } view_error_info;
+        struct {
+            unsigned char padding_field_358[4820];
+            s32 field_358;
+        } view_field_358;
+        struct {
+            unsigned char padding_field_1300[4800];
+            s32 field_1300;
+        } view_field_1300;
+        struct {
+            unsigned char padding_field_1304[4804];
+            s32 field_1304;
+        } view_field_1304;
+        struct {
+            unsigned char padding_header_chunk[4808];
+            fn_12_C2C8_SJCK header_chunk;
+        } view_header_chunk;
+        struct {
+            unsigned char padding_bit_offset[4816];
+            s32 bit_offset;
+        } view_bit_offset;
+        struct {
+            unsigned char padding_picture_user[4920];
+            fn_12_C2C8_MPVPictureUserBuffer picture_user;
+        } view_picture_user;
+    } fields;
+};
+
+typedef struct Sig_fn_12_ABDC_MPVDecoderFields {
+ union { unsigned char padding_extent[168]; struct { unsigned char padding_field_1AC[28]; s32 field_1AC; } view_field_1AC; } fields;
+} Sig_fn_12_ABDC_MPVDecoderFields;
+
+typedef union Sig_fn_12_ABDC_MPVConditionState {
+ union { unsigned char padding_extent[168]; struct { int conditions[17]; } view_conditions; struct { Sig_fn_12_ABDC_MPVDecoderFields decoder; } view_decoder; } fields;
+} Sig_fn_12_ABDC_MPVConditionState;
+
+typedef struct Sig_fn_12_ABDC_MPVErrorInfo {
+ union { unsigned char padding_extent[20]; struct { unsigned char padding_field_0C[12]; int field_0C; } view_field_0C; struct { unsigned char padding_field_10[16]; int field_10; } view_field_10; } fields;
+} Sig_fn_12_ABDC_MPVErrorInfo;
+
+typedef struct Sig_fn_12_ABDC_MPVContext Sig_fn_12_ABDC_MPVContext;
+
 struct Sig_fn_12_ABDC_MPVContext {
  union {
  struct { unsigned char padding_chunk[4808]; Sig_fn_12_ABDC_SJCK chunk; } view_chunk;
@@ -34,6 +238,11 @@ struct Sig_fn_12_ABDC_MPVContext {
  struct { unsigned char padding_field_1324[4852]; s32 field_1324; } view_field_1324;
  } fields;
 };
+
+typedef struct Sig_fn_12_ABDC_SJ Sig_fn_12_ABDC_SJ;
+
+typedef struct Sig_fn_12_ABDC_SJInterface Sig_fn_12_ABDC_SJInterface;
+
 struct Sig_fn_12_ABDC_SJInterface {
  union {
  unsigned char padding_extent[48];
@@ -42,19 +251,318 @@ struct Sig_fn_12_ABDC_SJInterface {
  struct { unsigned char padding_put_chunk[32]; void (*put_chunk)(Sig_fn_12_ABDC_SJ *, int, Sig_fn_12_ABDC_SJCK *); } view_put_chunk;
  } fields;
 };
+
 struct Sig_fn_12_ABDC_SJ {
  union { unsigned char padding_extent[4]; struct { const Sig_fn_12_ABDC_SJInterface *interface; } view_interface; } fields;
 };
-typedef struct Sig_fn_12_9744_MovieState {
- u8 _pad10[0x10]; s32 field_10; s32 field_14; s32 field_18; s32 field_1c;
-} Sig_fn_12_9744_MovieState;
-typedef struct Sig_fn_12_9730_MovieModule {
- u8 _pad0[0x318]; u32 field_318; u32 field_31c; u32 field_320;
-} Sig_fn_12_9730_MovieModule;
+
+typedef struct MPVContext_u1 MPVContext_u1;
+
+struct MPVContext_u1 {
+    union {
+        unsigned char padding_extent[4992];
+        struct {
+            unsigned char padding_stc_code_0[4824];
+            s32 stc_code_0;
+        } view_stc_code_0;
+        struct {
+            unsigned char padding_stc_code_1[4828];
+            s32 stc_code_1;
+        } view_stc_code_1;
+        struct {
+            unsigned char padding_stc_code_2[4832];
+            s32 stc_code_2;
+        } view_stc_code_2;
+        struct {
+            unsigned char padding_field_1314[4836];
+            s32 field_1314;
+        } view_field_1314;
+        struct {
+            unsigned char padding_decode_intra_block[4840];
+            int (*decode_intra_block)(void *, void *);
+        } view_decode_intra_block;
+        struct {
+            unsigned char padding_decode_nonintra_block[4844];
+            int (*decode_nonintra_block)(void *, void *);
+        } view_decode_nonintra_block;
+        struct {
+            unsigned char padding_y_dc_size[4856];
+            u8 *y_dc_size;
+        } view_y_dc_size;
+        struct {
+            unsigned char padding_chroma_dc_size[4860];
+            u8 *chroma_dc_size;
+        } view_chroma_dc_size;
+    } fields;
+};
+
+typedef void (*MPVFunc)();
+
+typedef struct fn_12_C218_MovieObject_u1 fn_12_C218_MovieObject_u1;
+
+typedef struct fn_12_C218_MovieVTable {
+    u8 pad_0000[0x0c];
+    void (*method_000c)(fn_12_C218_MovieObject_u1 *);
+    u8 pad_0010[0x14];
+    s32 (*method_0024)(fn_12_C218_MovieObject_u1 *, s32);
+} fn_12_C218_MovieVTable;
+
+struct fn_12_C218_MovieObject_u1 {
+    fn_12_C218_MovieVTable *vtable;
+};
+
+typedef struct fn_12_C2C8_SJ_u0 fn_12_C2C8_SJ_u0;
+
+typedef struct fn_12_C2C8_SJInterface_u0 fn_12_C2C8_SJInterface_u0;
+
+struct fn_12_C2C8_SJInterface_u0 {
+    union {
+        unsigned char padding_extent[48];
+        struct {
+            unsigned char padding_get_chunk[24];
+            void (*get_chunk)(fn_12_C2C8_SJ_u0 *sj, long channel, long max_size, fn_12_C2C8_SJCK *chunk);
+        } view_get_chunk;
+        struct {
+            unsigned char padding_unget_chunk[28];
+            void (*unget_chunk)(fn_12_C2C8_SJ_u0 *sj, int channel, fn_12_C2C8_SJCK *chunk);
+        } view_unget_chunk;
+        struct {
+            unsigned char padding_put_chunk[32];
+            void (*put_chunk)(fn_12_C2C8_SJ_u0 *sj, int channel, fn_12_C2C8_SJCK *chunk);
+        } view_put_chunk;
+    } fields;
+};
+
+struct fn_12_C2C8_SJ_u0 {
+    union {
+        unsigned char padding_extent[4];
+        struct {
+            const fn_12_C2C8_SJInterface_u0 *interface;
+        } view_interface;
+    } fields;
+};
+
+typedef struct fn_12_B3E0_SJ_u0 fn_12_B3E0_SJ_u0;
+
+typedef struct fn_12_B3E0_SJCK {
+    union {
+        unsigned char padding_extent[8];
+        struct {
+            unsigned char *data;
+        } view_data;
+        struct {
+            unsigned char padding_len[4];
+            int len;
+        } view_len;
+    } fields;
+} fn_12_B3E0_SJCK;
+
+typedef struct fn_12_B3E0_SJInterface_u0 fn_12_B3E0_SJInterface_u0;
+
+struct fn_12_B3E0_SJInterface_u0 {
+    union {
+        unsigned char padding_extent[48];
+        struct {
+            unsigned char padding_get_chunk[24];
+            void (*get_chunk)(fn_12_B3E0_SJ_u0 *sj, int channel, int max_size, fn_12_B3E0_SJCK *chunk);
+        } view_get_chunk;
+        struct {
+            unsigned char padding_put_chunk[32];
+            void (*put_chunk)(fn_12_B3E0_SJ_u0 *sj, int channel, fn_12_B3E0_SJCK *chunk);
+        } view_put_chunk;
+    } fields;
+};
+
+struct fn_12_B3E0_SJ_u0 {
+    union {
+        unsigned char padding_extent[4];
+        struct {
+            const fn_12_B3E0_SJInterface_u0 *interface;
+        } view_interface;
+    } fields;
+};
+
+typedef struct MPVUserStream {
+    union {
+        unsigned char padding_extent[12];
+        struct {
+            fn_12_B3E0_SJ_u0 *stream;
+        } view_stream;
+        struct {
+            unsigned char padding_callback[4];
+            void (*callback)(void *argument, int index);
+        } view_callback;
+        struct {
+            unsigned char padding_callback_argument[8];
+            void *callback_argument;
+        } view_callback_argument;
+    } fields;
+} MPVUserStream;
+
+typedef struct fn_12_B3E0_MPVPictureUserBuffer {
+    union {
+        unsigned char padding_extent[12];
+        struct {
+            void *buffer;
+        } view_buffer;
+        struct {
+            unsigned char padding_capacity[4];
+            s32 capacity;
+        } view_capacity;
+        struct {
+            unsigned char padding_size[8];
+            s32 size;
+        } view_size;
+    } fields;
+} fn_12_B3E0_MPVPictureUserBuffer;
+
+typedef struct fn_12_B3E0_MPVContext_u0 fn_12_B3E0_MPVContext_u0;
+
+struct fn_12_B3E0_MPVContext_u0 {
+    union {
+        unsigned char padding_extent[4992];
+        struct {
+            unsigned char padding_user_data_index[0x1304];
+            s32 user_data_index;
+        } view_user_data_index;
+        struct {
+            unsigned char padding_user_streams[0x1308];
+            MPVUserStream user_streams[4];
+        } view_user_streams;
+        struct {
+            unsigned char padding_picture_user[0x1338];
+            fn_12_B3E0_MPVPictureUserBuffer picture_user;
+        } view_picture_user;
+    } fields;
+};
+
+typedef struct fn_12_B598_MovieObject_u1 fn_12_B598_MovieObject_u1;
+
+typedef struct fn_12_B598_MovieVTable {
+    u8 pad[0x18];
+    void (*method_0018)(fn_12_B598_MovieObject_u1 *, s32, s32, MovieBits *);
+    void (*method_001c)(fn_12_B598_MovieObject_u1 *, s32, void *);
+    void (*method_0020)(fn_12_B598_MovieObject_u1 *, s32, MovieBits *);
+} fn_12_B598_MovieVTable;
+
+struct fn_12_B598_MovieObject_u1 { fn_12_B598_MovieVTable *vtable; };
+
+struct fn_12_B9E8_Arg0 {
+    u8 pad_0[0x1ec];
+    u32 unk_1ec;
+    u32 unk_1f0;
+    u32 unk_1f4;
+    u32 unk_1f8;
+    u32 unk_1fc;
+    u32 unk_200;
+    u8 pad_204[0x80];
+    u32 unk_284;
+    u32 unk_288;
+    u8 pad_28c[0x103c];
+    u32 unk_12c8;
+    u32 unk_12cc;
+    u32 unk_12d0;
+    u8 pad_12d4[0x30];
+    u32 unk_1304;
+};
+
+typedef struct fn_12_BBC0_MPVContext {
+    u8 pad_0[0x1a8];
+    s32 unk_1a8;
+    u8 pad_1ac[0x24];
+    s32 unk_1d0;
+    s32 unk_1d4;
+    s32 unk_1d8;
+    s32 unk_1dc;
+    s32 unk_1e0;
+    u8 pad_1e4[0x90];
+    s32 unk_274;
+    s32 unk_278;
+    s32 unk_27c;
+    s32 unk_280;
+    u8 pad_284[0xc];
+    MPVFunc unk_290;
+    u8 pad_294[0x78];
+    s32 unk_30c;
+    u8 pad_310[0x930];
+    u8 unk_c40[0x40];
+    u8 unk_c80[0x40];
+    u8 pad_cc0[0x608];
+    SJCK unk_12c8;
+    s32 unk_12d0;
+    u8 pad_12d4[0x30];
+    s32 unk_1304;
+    u8 pad_1308[0x3c];
+    u8 unk_1344[0x654][2];
+} fn_12_BBC0_MPVContext;
 extern void fn_12_9730(Sig_fn_12_9730_MovieModule *);
-extern void fn_12_9744(Sig_fn_12_9744_MovieState *);
-extern u32 fn_800589BC(Sig_fn_12_ABDC_SJCK *, s32, Sig_fn_12_ABDC_SJCK *, Sig_fn_12_ABDC_SJCK *);
-void fn_12_ABDC(Sig_fn_12_ABDC_MPVContext *arg0, Sig_fn_12_ABDC_SJ *arg1, u32 arg2) {
+extern void fn_12_9744(MovieState *movie);
+extern u32 fn_800589BC(MovieBits *, s32, MovieBits *, void *);
+int fn_12_A660(fn_12_AE70_MPVContext *handle, int error);
+extern u8 *fn_12_A0D8(u8 *data, s32 size, u32 mask);
+extern u32 fn_12_A2C4(const u8 *data);
+extern void fn_12_ABDC();
+extern const f64 lbl_12_rodata_87C;
+extern const f64 lbl_12_rodata_884;
+extern int atoi(const char *str);
+extern s32 strncmp(const char *s1, const char *s2, size_t n);
+extern u8 *lbl_12_bss_6918;
+extern u8 *lbl_12_bss_6914;
+extern u8 *lbl_12_bss_6910;
+extern u8 *lbl_12_bss_690C;
+extern int MPVABDEC_IntraBlock(void *context, void *block);
+extern int MPVABDEC_IntraBlockDc11(void *context, void *block);
+extern int MPVABDEC_NintraBlock(void *context, void *block);
+void *memcpy(void *destination, const void *source, unsigned long size);
+extern int fn_12_B254(MPVContext_u1 *context, const u8 *data, int length);
+extern void MPVCDEC_IntraBlocks();
+extern void fn_12_72F4();
+extern u8 fn_12_11188__fzgx_offset_0[];
+extern u8 fn_12_11204__fzgx_offset_0[];
+extern u8 fn_12_11254__fzgx_offset_0[];
+extern u8 fn_12_11860__fzgx_offset_0[];
+extern u8 fn_12_120E4__fzgx_offset_0[];
+extern u8 fn_12_121BC__fzgx_offset_0[];
+extern u8 fn_12_12270__fzgx_offset_0[];
+extern u8 fn_12_124A0__fzgx_offset_0[];
+extern u8 fn_12_77F4__fzgx_offset_0[];
+extern u8 fn_12_7870__fzgx_offset_0[];
+extern u8 fn_12_78C0__fzgx_offset_0[];
+extern u8 fn_12_7940__fzgx_offset_0[];
+extern u8 fn_12_86B8__fzgx_offset_0[];
+extern u8 fn_12_873C__fzgx_offset_0[];
+extern u8 fn_12_879C__fzgx_offset_0[];
+extern u8 fn_12_87FC__fzgx_offset_0[];
+extern u8 fn_12_89D4__fzgx_offset_0[];
+extern u8 fn_12_8A10__fzgx_offset_0[];
+extern u8 fn_12_8BD8__fzgx_offset_0[];
+extern u8 fn_12_8F80__fzgx_offset_0[];
+extern u8 fn_12_975C__fzgx_offset_0[];
+extern u8 fn_12_9D08__fzgx_offset_0[];
+extern void fn_12_33364(u32 *dst, u32 *src, u32 size);
+extern void fn_12_33428(u32 *dst, u32 value, u32 count);
+extern u32 lbl_12_bss_4DC0[];
+extern s8 lbl_12_bss_4E00[];
+extern MPVFunc const lbl_12_rodata_7A4[];
+extern MPVFunc const lbl_12_rodata_7AC[];
+extern fn_12_C218_MovieObject_u1 *fn_80057B9C(u32 arg0, u32 arg1);
+extern int fn_12_C2C8(void *handle, fn_12_C2C8_SJ_u0 *stream);
+extern s32 fn_12_CAB4(u32 arg0);
+extern int fn_12_20170();
+extern int fn_12_B3E0(fn_12_B3E0_MPVContext_u0 *context, const u8 *data, int length);
+extern s32 fn_12_B598(MovieState *ctx, fn_12_B598_MovieObject_u1 *movie);
+extern s32 fn_12_B9E8(struct fn_12_B9E8_Arg0 *arg0, u32 arg1);
+extern int fn_12_BBC0(fn_12_BBC0_MPVContext *context, SJ *stream);
+
+/* fzgx:begin fn_12_ABDC */
+#pragma opt_propagation off
+
+/* --- rel/movie_module/fn_12_ABDC.c --- */
+void fn_12_ABDC(arg0, arg1, arg2)
+Sig_fn_12_ABDC_MPVContext *arg0;
+Sig_fn_12_ABDC_SJ *arg1;
+u32 arg2;
+{
  u32 v0;
  u32 v8;
  u32 v9;
@@ -120,8 +628,8 @@ void fn_12_ABDC(Sig_fn_12_ABDC_MPVContext *arg0, Sig_fn_12_ABDC_SJ *arg1, u32 ar
   *(u32 *)((u8 *)arg0 + 700) = v16;
   v2 += 5;
  }
- fn_12_9744((Sig_fn_12_9744_MovieState *)((u8 *)arg0 + 704));
- fn_12_9744((Sig_fn_12_9744_MovieState *)((u8 *)arg0 + 740));
+ fn_12_9744( (MovieState *)((Sig_fn_12_9744_MovieState *)((u8 *)arg0 + 704)));
+ fn_12_9744( (MovieState *)((Sig_fn_12_9744_MovieState *)((u8 *)arg0 + 740)));
  fn_12_9730((Sig_fn_12_9730_MovieModule *)arg0);
  for (;;) {
   if (!(v8 >> 31)) {
@@ -150,9 +658,8 @@ void fn_12_ABDC(Sig_fn_12_ABDC_MPVContext *arg0, Sig_fn_12_ABDC_SJ *arg1, u32 ar
  *(u32 *)((u8 *)arg0 + 4816) = v2 & 7;
  v20 = (u32)v1 + (((s32)(v2 - *(u32 *)((u8 *)arg0 + 4816)) + 7) >> 3);
  v18 = *(u32 *)((u8 *)arg0 + 4808);
- fn_800589BC(&arg0->fields.view_chunk.chunk,
- (s32)(v20 - 8 - v18),
- &arg0->fields.view_chunk.chunk, &chunk);
+ fn_800589BC( (MovieBits *)(Sig_fn_12_ABDC_SJCK *)(&arg0->fields.view_chunk.chunk),
+ (s32)(v20 - 8 - v18), (MovieBits *)(Sig_fn_12_ABDC_SJCK *)(&arg0->fields.view_chunk.chunk), (void *)(Sig_fn_12_ABDC_SJCK *)(&chunk));
  arg1->fields.view_interface.interface->fields.view_put_chunk.put_chunk(arg1, 0, &arg0->fields.view_chunk.chunk);
  arg1->fields.view_interface.interface->fields.view_unget_chunk.unget_chunk(arg1, 1, &chunk);
  (*(void (**)(Sig_fn_12_ABDC_MPVContext *, Sig_fn_12_ABDC_SJ *))((u8 *)arg0 + 660))(arg0, arg1);
@@ -160,7 +667,6 @@ void fn_12_ABDC(Sig_fn_12_ABDC_MPVContext *arg0, Sig_fn_12_ABDC_SJ *arg1, u32 ar
 /* fzgx:end fn_12_ABDC */
 
 /* fzgx:begin MPV_MoveChunk */
-
 /* --- rel/movie_module/MPV_MoveChunk.c --- */
 int MPV_MoveChunk(SJ *stream, int channel, int size) {
     SJCK chunk;
@@ -172,130 +678,46 @@ int MPV_MoveChunk(SJ *stream, int channel, int size) {
 }
 /* fzgx:end MPV_MoveChunk */
 
-/* fzgx:begin fn_12_AE70 noprologue */
+/* fzgx:begin fn_12_AE70 */
 
-#include "types.h"
+typedef struct fn_12_AE70_SJ fn_12_AE70_SJ;
 
-typedef struct SJCK {
-    union {
-        unsigned char padding_extent[8];
-        struct {
-            unsigned char *data;
-        } view_data;
-        struct {
-            unsigned char padding_len[4];
-            int len;
-        } view_len;
-    } fields;
-} SJCK;
+typedef struct fn_12_AE70_SJInterface fn_12_AE70_SJInterface;
 
-typedef struct SJ SJ;
-
-typedef struct SJInterface SJInterface;
-
-struct SJInterface {
+struct fn_12_AE70_SJInterface {
     union {
         unsigned char padding_extent[48];
         struct {
             unsigned char padding_get_chunk[24];
-            void (*get_chunk)(SJ *sj, int channel, int max_size, SJCK *chunk);
+            void (*get_chunk)(fn_12_AE70_SJ *sj, int channel, int max_size, fn_12_AE70_SJCK *chunk);
         } view_get_chunk;
         struct {
             unsigned char padding_unget_chunk[28];
-            void (*unget_chunk)(SJ *sj, int channel, SJCK *chunk);
+            void (*unget_chunk)(fn_12_AE70_SJ *sj, int channel, fn_12_AE70_SJCK *chunk);
         } view_unget_chunk;
         struct {
             unsigned char padding_put_chunk[32];
-            void (*put_chunk)(SJ *sj, int channel, SJCK *chunk);
+            void (*put_chunk)(fn_12_AE70_SJ *sj, int channel, fn_12_AE70_SJCK *chunk);
         } view_put_chunk;
     } fields;
 };
 
-struct SJ {
+struct fn_12_AE70_SJ {
     union {
         unsigned char padding_extent[4];
         struct {
-            const SJInterface *interface;
+            const fn_12_AE70_SJInterface *interface;
         } view_interface;
     } fields;
 };
 
-typedef struct MPVContext MPVContext;
 
-typedef struct MPVErrorInfo {
-    union {
-        unsigned char padding_extent[20];
-        struct {
-            unsigned char padding_field_0C[12];
-            int field_0C;
-        } view_field_0C;
-        struct {
-            unsigned char padding_field_10[16];
-            int field_10;
-        } view_field_10;
-    } fields;
-} MPVErrorInfo;
 
-typedef struct MPVDecoderFields {
-    union {
-        unsigned char padding_extent[168];
-        struct {
-            unsigned char padding_field_1AC[28];
-            s32 field_1AC;
-        } view_field_1AC;
-    } fields;
-} MPVDecoderFields;
 
-typedef union MPVConditionState {
-    union {
-        unsigned char padding_extent[168];
-        struct {
-            int conditions[17];
-        } view_conditions;
-        struct {
-            MPVDecoderFields decoder;
-        } view_decoder;
-    } fields;
-} MPVConditionState;
 
-struct MPVContext {
-    union {
-        unsigned char padding_extent[4992];
-        struct {
-            unsigned char padding_condition_state[400];
-            MPVConditionState condition_state;
-        } view_condition_state;
-        struct {
-            unsigned char padding_error_info[544];
-            MPVErrorInfo error_info;
-        } view_error_info;
-        struct {
-            unsigned char padding_field_1300[4800];
-            s32 field_1300;
-        } view_field_1300;
-        struct {
-            unsigned char padding_field_1304[4804];
-            s32 field_1304;
-        } view_field_1304;
-        struct {
-            unsigned char padding_field_1324[4852];
-            s32 field_1324;
-        } view_field_1324;
-    } fields;
-};
 
-void fn_800589BC(const SJCK *source, int nbyte, SJCK *first, SJCK *remainder);
-
-int fn_12_A660(MPVContext *handle, int error);
-
-const unsigned char *fn_12_A0D8(const unsigned char *data, int length, int mask);
-
-int fn_12_A2C4(const unsigned char *data);
-
-void fn_12_ABDC(MPVContext *context, SJ *stream);
-
-static inline int MPV_MoveChunk(SJ *stream, int channel, int size) {
-    SJCK chunk;
+static inline int fn_12_AE70_MPV_MoveChunk(fn_12_AE70_SJ *stream, int channel, int size) {
+    fn_12_AE70_SJCK chunk;
     int source_channel = channel;
     channel = channel == 0;
     stream->fields.view_interface.interface->fields.view_get_chunk.get_chunk(stream, source_channel,
@@ -309,11 +731,11 @@ static inline int mpvhdec_IsWantedDelim(int delimiter_type, int wanted_mask) {
     return (delimiter_type & wanted_mask) != 0;
 }
 
-int fn_12_AE70(MPVContext *context, SJ *stream) {
+int fn_12_AE70(fn_12_AE70_MPVContext *context, fn_12_AE70_SJ *stream) {
     unsigned char * fzgx_live;
-    SJCK header;
-    SJCK remainder;
-    SJCK chunk;
+    fn_12_AE70_SJCK header;
+    fn_12_AE70_SJCK remainder;
+    fn_12_AE70_SJCK chunk;
     const u8 *delimiter;
     struct { int value; } delimiter_type;
     int error;
@@ -348,18 +770,18 @@ int fn_12_AE70(MPVContext *context, SJ *stream) {
                 delimiter_type.value = 0;
             } else {
                 fzgx_live = chunk.fields.view_data.data;
-                delimiter = fn_12_A0D8(fzgx_live, chunk.fields.view_len.len, -1);
+                delimiter = ((const unsigned char *)fn_12_A0D8( (u8 *)(const unsigned char *)(fzgx_live), chunk.fields.view_len.len, -1));
                 if (delimiter == 0) {
-                    fn_800589BC(&chunk, chunk.fields.view_len.len - 3, &chunk, &remainder);
+                    fn_800589BC( (MovieBits *)(const fn_12_AE70_SJCK *)(&chunk), chunk.fields.view_len.len - 3, (MovieBits *)(fn_12_AE70_SJCK *)(&chunk), (void *)(fn_12_AE70_SJCK *)(&remainder));
                     (stream->fields.view_interface.interface)->fields.view_put_chunk.put_chunk(
                         stream, 0, &chunk);
                     stream->fields.view_interface.interface->fields.view_unget_chunk.unget_chunk(
                         stream, 1, &remainder);
                     continue;
                 }
-                delimiter_type.value = fn_12_A2C4(delimiter);
+                delimiter_type.value = ((int)fn_12_A2C4( (const u8 *)(const unsigned char *)(delimiter)));
                 fzgx_live = chunk.fields.view_data.data;
-                fn_800589BC(&chunk, delimiter - fzgx_live, &chunk, &remainder);
+                fn_800589BC( (MovieBits *)(const fn_12_AE70_SJCK *)(&chunk), delimiter - fzgx_live, (MovieBits *)(fn_12_AE70_SJCK *)(&chunk), (void *)(fn_12_AE70_SJCK *)(&remainder));
                 stream->fields.view_interface.interface->fields.view_put_chunk.put_chunk(
                     stream, 0, &chunk);
                 stream->fields.view_interface.interface->fields.view_unget_chunk.unget_chunk(
@@ -372,7 +794,7 @@ int fn_12_AE70(MPVContext *context, SJ *stream) {
                 error = 0;
                 break;
             }
-            if (MPV_MoveChunk(stream, 1, 4) != 4) {
+            if (fn_12_AE70_MPV_MoveChunk(stream, 1, 4) != 4) {
                 break;
             }
         }
@@ -385,26 +807,19 @@ int fn_12_AE70(MPVContext *context, SJ *stream) {
         stream->fields.view_interface.interface->fields.view_unget_chunk.unget_chunk(stream, 1,
                                                                                      &header);
         if (header.fields.view_len.len >= 4 &&
-            (fn_12_A2C4(header.fields.view_data.data) & 1) != 0) {
+            (((int)fn_12_A2C4( (const u8 *)(const unsigned char *)(header.fields.view_data.data))) & 1) != 0) {
             fn_12_ABDC(context, stream);
         } else {
             return 0;
         }
     }
 }
-
 /* fzgx:end fn_12_AE70 */
 
-/* fzgx:begin MPV_GoNextDelimSj noprologue */
-#include "sofdec/mpv.h"
-#include "types.h"
-
+/* fzgx:begin MPV_GoNextDelimSj */
 /* --- rel/movie_module/MPV_GoNextDelimSj.c --- */
-void fn_800589BC(const SJCK *source, int nbyte, SJCK *first, SJCK *remainder);
 
-const unsigned char *fn_12_A0D8(const unsigned char *data, int length, int mask);
 
-int fn_12_A2C4(const unsigned char *data);
 
 int MPV_GoNextDelimSj(SJ *stream) {
     SJCK chunk;
@@ -418,15 +833,15 @@ int MPV_GoNextDelimSj(SJ *stream) {
             delimiter_type = 0;
             break;
         }
-        delimiter = fn_12_A0D8(chunk.data, chunk.len, -1);
+        delimiter = ((const unsigned char *)fn_12_A0D8( (u8 *)(const unsigned char *)(chunk.data), chunk.len, -1));
         if (delimiter == 0) {
-            fn_800589BC(&chunk, chunk.len - 3, &chunk, &remainder);
+            fn_800589BC( (MovieBits *)(const SJCK *)(&chunk), chunk.len - 3, (MovieBits *)(SJCK *)(&chunk), (void *)(SJCK *)(&remainder));
             stream->interface->put_chunk(stream, 0, &chunk);
             stream->interface->unget_chunk(stream, 1, &remainder);
             continue;
         }
-        delimiter_type = fn_12_A2C4(delimiter);
-        fn_800589BC(&chunk, delimiter - chunk.data, &chunk, &remainder);
+        delimiter_type = ((int)fn_12_A2C4( (const u8 *)(const unsigned char *)(delimiter)));
+        fn_800589BC( (MovieBits *)(const SJCK *)(&chunk), delimiter - chunk.data, (MovieBits *)(SJCK *)(&chunk), (void *)(SJCK *)(&remainder));
         stream->interface->put_chunk(stream, 0, &chunk);
         stream->interface->unget_chunk(stream, 1, &remainder);
         break;
@@ -435,69 +850,17 @@ int MPV_GoNextDelimSj(SJ *stream) {
 }
 /* fzgx:end MPV_GoNextDelimSj */
 
-/* fzgx:begin fn_12_B254 noprologue */
-
+/* fzgx:begin fn_12_B254 */
 /* --- rel/movie_module/fn_12_B254.c --- */
-extern const f64 lbl_12_rodata_87C;
-extern const f64 lbl_12_rodata_884;
 
-typedef struct MPVContext_u1 MPVContext_u1;
 
-struct MPVContext_u1 {
-    union {
-        unsigned char padding_extent[4992];
-        struct {
-            unsigned char padding_stc_code_0[4824];
-            s32 stc_code_0;
-        } view_stc_code_0;
-        struct {
-            unsigned char padding_stc_code_1[4828];
-            s32 stc_code_1;
-        } view_stc_code_1;
-        struct {
-            unsigned char padding_stc_code_2[4832];
-            s32 stc_code_2;
-        } view_stc_code_2;
-        struct {
-            unsigned char padding_field_1314[4836];
-            s32 field_1314;
-        } view_field_1314;
-        struct {
-            unsigned char padding_decode_intra_block[4840];
-            int (*decode_intra_block)(void *, void *);
-        } view_decode_intra_block;
-        struct {
-            unsigned char padding_decode_nonintra_block[4844];
-            int (*decode_nonintra_block)(void *, void *);
-        } view_decode_nonintra_block;
-        struct {
-            unsigned char padding_y_dc_size[4856];
-            u8 *y_dc_size;
-        } view_y_dc_size;
-        struct {
-            unsigned char padding_chroma_dc_size[4860];
-            u8 *chroma_dc_size;
-        } view_chroma_dc_size;
-    } fields;
-};
 
-int atoi(const char *str);
 
-int strncmp(const char *lhs, const char *rhs, unsigned long count);
 
-extern u8 *lbl_12_bss_6918;
 
-extern u8 *lbl_12_bss_6914;
 
-extern u8 *lbl_12_bss_6910;
 
-extern u8 *lbl_12_bss_690C;
 
-extern int MPVABDEC_IntraBlock(void *context, void *block);
-
-extern int MPVABDEC_IntraBlockDc11(void *context, void *block);
-
-extern int MPVABDEC_NintraBlock(void *context, void *block);
 
 int fn_12_B254(MPVContext_u1 *context, const u8 *data, int length) {
     const u8 *current;
@@ -519,7 +882,7 @@ int fn_12_B254(MPVContext_u1 *context, const u8 *data, int length) {
             context->fields.view_stc_code_1.stc_code_1 = atoi((const char *)current + 0x18);
             context->fields.view_stc_code_2.stc_code_2 = atoi((const char *)current + 0x20);
         }
-        if (fn_12_A2C4(current) != 0) {
+        if (((int)fn_12_A2C4( (const u8 *)(const unsigned char *)(current))) != 0) {
             break;
         }
         offset++;
@@ -547,117 +910,20 @@ int fn_12_B254(MPVContext_u1 *context, const u8 *data, int length) {
 }
 /* fzgx:end fn_12_B254 */
 
-/* fzgx:begin fn_12_B3E0 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_B3E0 */
 /* --- rel/movie_module/fn_12_B3E0.c --- */
-typedef struct SJCK {
-    union {
-        unsigned char padding_extent[8];
-        struct {
-            unsigned char *data;
-        } view_data;
-        struct {
-            unsigned char padding_len[4];
-            int len;
-        } view_len;
-    } fields;
-} SJCK;
 
-typedef struct SJ_u0 SJ_u0;
 
-typedef struct SJInterface_u0 SJInterface_u0;
 
-struct SJInterface_u0 {
-    union {
-        unsigned char padding_extent[48];
-        struct {
-            unsigned char padding_get_chunk[24];
-            void (*get_chunk)(SJ_u0 *sj, int channel, int max_size, SJCK *chunk);
-        } view_get_chunk;
-        struct {
-            unsigned char padding_put_chunk[32];
-            void (*put_chunk)(SJ_u0 *sj, int channel, SJCK *chunk);
-        } view_put_chunk;
-    } fields;
-};
 
-struct SJ_u0 {
-    union {
-        unsigned char padding_extent[4];
-        struct {
-            const SJInterface_u0 *interface;
-        } view_interface;
-    } fields;
-};
-
-typedef struct MPVContext_u0 MPVContext_u0;
-
-typedef struct MPVUserStream {
-    union {
-        unsigned char padding_extent[12];
-        struct {
-            SJ_u0 *stream;
-        } view_stream;
-        struct {
-            unsigned char padding_callback[4];
-            void (*callback)(void *argument, int index);
-        } view_callback;
-        struct {
-            unsigned char padding_callback_argument[8];
-            void *callback_argument;
-        } view_callback_argument;
-    } fields;
-} MPVUserStream;
-
-typedef struct MPVPictureUserBuffer {
-    union {
-        unsigned char padding_extent[12];
-        struct {
-            void *buffer;
-        } view_buffer;
-        struct {
-            unsigned char padding_capacity[4];
-            s32 capacity;
-        } view_capacity;
-        struct {
-            unsigned char padding_size[8];
-            s32 size;
-        } view_size;
-    } fields;
-} MPVPictureUserBuffer;
-
-struct MPVContext_u0 {
-    union {
-        unsigned char padding_extent[4992];
-        struct {
-            unsigned char padding_user_data_index[0x1304];
-            s32 user_data_index;
-        } view_user_data_index;
-        struct {
-            unsigned char padding_user_streams[0x1308];
-            MPVUserStream user_streams[4];
-        } view_user_streams;
-        struct {
-            unsigned char padding_picture_user[0x1338];
-            MPVPictureUserBuffer picture_user;
-        } view_picture_user;
-    } fields;
-};
-
-int fn_12_A2C4(const unsigned char *data);
-
-void *memcpy(void *destination, const void *source, unsigned long size);
-
-int fn_12_B254(MPVContext_u0 *context, const u8 *data, int length);
 
 #pragma peephole on
 #pragma opt_propagation off
 #pragma opt_lifetimes off
-int fn_12_B3E0(MPVContext_u0 *context, const u8 *data, int length) {
-    SJ_u0 *user_sj;
-    SJCK first;
-    SJCK second;
+int fn_12_B3E0(fn_12_B3E0_MPVContext_u0 *context, const u8 *data, int length) {
+    fn_12_B3E0_SJ_u0 *user_sj;
+    fn_12_B3E0_SJCK first;
+    fn_12_B3E0_SJCK second;
     int delimiter_result;
     int sequence_result;
     int index;
@@ -670,7 +936,7 @@ int fn_12_B3E0(MPVContext_u0 *context, const u8 *data, int length) {
     scan_index = 4;
     index = context->fields.view_user_data_index.user_data_index;
     while (scan_index < delimiter_offset) {
-        if (fn_12_A2C4(data + scan_index) != 0) {
+        if (((int)fn_12_A2C4( (const u8 *)(const unsigned char *)(data + scan_index))) != 0) {
             break;
         }
         scan_index++;
@@ -680,7 +946,7 @@ int fn_12_B3E0(MPVContext_u0 *context, const u8 *data, int length) {
     }
     delimiter_offset = scan_index;
     if (index == 1) {
-        sequence_result = fn_12_B254(context, data, scan_index);
+        sequence_result = fn_12_B254( (MPVContext_u1 *)(fn_12_B3E0_MPVContext_u0 *)(context), data, scan_index);
     }
     user_sj = ((index)[context->fields.view_user_streams.user_streams]).fields.view_stream.stream;
     if (user_sj != 0) {
@@ -723,7 +989,7 @@ int fn_12_B3E0(MPVContext_u0 *context, const u8 *data, int length) {
 }
 /* fzgx:end fn_12_B3E0 */
 
-/* fzgx:begin fn_12_B598 noprologue */
+/* fzgx:begin fn_12_B598 */
 #pragma opt_lifetimes reset
 
 #pragma opt_propagation reset
@@ -731,82 +997,11 @@ int fn_12_B3E0(MPVContext_u0 *context, const u8 *data, int length) {
 #pragma peephole reset
 
 /* --- rel/movie_module/fn_12_B598.c --- */
-typedef struct MovieObject_u1 MovieObject_u1;
-typedef struct MovieBits { u32 address; s32 limit; s32 bit; } MovieBits;
-typedef struct MovieVTable {
-    u8 pad[0x18];
-    void (*method_0018)(MovieObject_u1 *, s32, s32, MovieBits *);
-    void (*method_001c)(MovieObject_u1 *, s32, void *);
-    void (*method_0020)(MovieObject_u1 *, s32, MovieBits *);
-} MovieVTable;
-struct MovieObject_u1 { MovieVTable *vtable; };
 
-typedef void (*MovieFn)();
 
-typedef struct MovieState {
-    u8 pad0[0x1a0];
-    s32 unk1a0;
-    u32 pad1a4;
-    s32 unk1a8;
-    u8 pad1ac[0x38];
-    u32 unk1e4;
-    s32 unk1e8;
-    u8 pad1ec[0xa0];
-    u32 unk28c;
-    u32 pad290;
-    MovieFn unk294;
-    MovieFn unk298;
-    MovieFn unk29c;
-    MovieFn unk2a0;
-    MovieFn unk2a4;
-    MovieFn unk2a8;
-    MovieFn unk2ac;
-    MovieFn unk2b0;
-    MovieFn unk2b4;
-    u8 pad2b8[8];
-    u32 unk2c0;
-    u32 unk2c4;
-    u32 unk2c8;
-    u32 unk2cc;
-    u8 pad2d0[0x14];
-    u32 unk2e4;
-    u32 unk2e8;
-    u32 unk2ec;
-    u32 unk2f0;
-    u8 pad2f4[0xfd4];
-    MovieBits bits;
-    u8 pad12d4[0x30];
-    u32 state;
-} MovieState;
-
-extern void MPVCDEC_IntraBlocks();
-extern void fn_12_72F4();
-extern u32 fn_800589BC(MovieBits *, s32, MovieBits *, void *);
 
 /* picture-type dispatch tables, indexed [non-intra?][picture type]; the
  * whole cluster is addressed off one section base in retail */
-extern u8 fn_12_11188__fzgx_offset_0[];
-extern u8 fn_12_11204__fzgx_offset_0[];
-extern u8 fn_12_11254__fzgx_offset_0[];
-extern u8 fn_12_11860__fzgx_offset_0[];
-extern u8 fn_12_120E4__fzgx_offset_0[];
-extern u8 fn_12_121BC__fzgx_offset_0[];
-extern u8 fn_12_12270__fzgx_offset_0[];
-extern u8 fn_12_124A0__fzgx_offset_0[];
-extern u8 fn_12_77F4__fzgx_offset_0[];
-extern u8 fn_12_7870__fzgx_offset_0[];
-extern u8 fn_12_78C0__fzgx_offset_0[];
-extern u8 fn_12_7940__fzgx_offset_0[];
-extern u8 fn_12_86B8__fzgx_offset_0[];
-extern u8 fn_12_873C__fzgx_offset_0[];
-extern u8 fn_12_879C__fzgx_offset_0[];
-extern u8 fn_12_87FC__fzgx_offset_0[];
-extern u8 fn_12_89D4__fzgx_offset_0[];
-extern u8 fn_12_8A10__fzgx_offset_0[];
-extern u8 fn_12_8BD8__fzgx_offset_0[];
-extern u8 fn_12_8F80__fzgx_offset_0[];
-extern u8 fn_12_975C__fzgx_offset_0[];
-extern u8 fn_12_9D08__fzgx_offset_0[];
 static const union { u32 w[5]; MovieFn const v[5]; } fzgx_pool_init_lbl_12_rodata_768 = {{  /* fzgx-allow: A1 retail data bytes and bindings */
     0x0, (u32)fn_12_9D08__fzgx_offset_0, (u32)fn_12_975C__fzgx_offset_0, (u32)fn_12_8F80__fzgx_offset_0, (u32)fn_12_8BD8__fzgx_offset_0
 }};
@@ -868,7 +1063,7 @@ static const union { u32 w[10]; MovieFn const v[2][5]; } fzgx_pool_init_fzgx_tbl
     }
 
 #pragma opt_propagation off
-s32 fn_12_B598(MovieState *ctx, MovieObject_u1 *movie) {
+s32 fn_12_B598(MovieState *ctx, fn_12_B598_MovieObject_u1 *movie) {
     u32 result[2];
     u32 word;
     s32 shift;
@@ -969,44 +1164,16 @@ s32 fn_12_B598(MovieState *ctx, MovieObject_u1 *movie) {
 }
 /* fzgx:end fn_12_B598 */
 
-/* fzgx:begin fn_12_B9E8 noprologue */
-#include "types.h"
-struct Sig_fn_800589BC_fn_800589BC_Arg2 {
-    u32 unk_0;
-    u32 unk_4;
-};
-struct Sig_fn_800589BC_fn_800589BC_Arg3 {
-    u32 unk_0;
-    u32 unk_4;
-};
+/* fzgx:begin fn_12_B9E8 */
 
 typedef u32 (*fn_12_B9E8_Fn0)(u32, u32, u32, u32);
 typedef u32 (*fn_12_B9E8_Fn1)(u32, u32, u32);
 typedef u32 (*fn_12_B9E8_Fn2)(u32, u32, void *);
-struct fn_12_B9E8_Arg0 {
-    u8 pad_0[0x1ec];
-    u32 unk_1ec;
-    u32 unk_1f0;
-    u32 unk_1f4;
-    u32 unk_1f8;
-    u32 unk_1fc;
-    u32 unk_200;
-    u8 pad_204[0x80];
-    u32 unk_284;
-    u32 unk_288;
-    u8 pad_28c[0x103c];
-    u32 unk_12c8;
-    u32 unk_12cc;
-    u32 unk_12d0;
-    u8 pad_12d4[0x30];
-    u32 unk_1304;
-};
 typedef struct MovieHdrView {
     u8 pad_0[0x12c8];
     u32 f_12c8;
 } MovieHdrView;
 
-extern u32 fn_800589BC(u32, u32, struct Sig_fn_800589BC_fn_800589BC_Arg2 *, struct Sig_fn_800589BC_fn_800589BC_Arg3 *);
 
 #pragma opt_lifetimes off
 s32 fn_12_B9E8(struct fn_12_B9E8_Arg0 *arg0, u32 arg1) {
@@ -1084,7 +1251,7 @@ s32 fn_12_B9E8(struct fn_12_B9E8_Arg0 *arg0, u32 arg1) {
     v8 = *(u32 *)((u8 *)arg0 + 4808);
     v9 = (v3 - *(u32 *)((u8 *)arg0 + 4816));
     v1 = (v1 + ((s32)(v9 + 7) >> 3));
-    fn_800589BC(((u32)arg0 + 4808), ((v1 - 8) - v8), (struct Sig_fn_800589BC_fn_800589BC_Arg2 *)((u32)arg0 + 4808), (struct Sig_fn_800589BC_fn_800589BC_Arg3 *)&loc_8);
+    fn_800589BC( (MovieBits *)(u32)(((u32)arg0 + 4808)), ((v1 - 8) - v8), (MovieBits *)((struct Sig_fn_800589BC_fn_800589BC_Arg2 *)((u32)arg0 + 4808)), (void *)((struct Sig_fn_800589BC_fn_800589BC_Arg3 *)&loc_8));
     v8 = *(u32 *)((u8 *)arg1 + 0);
     v10 = v8;
     ((fn_12_B9E8_Fn1)*(u32 *)((u8 *)v10 + 32))(arg1, 0, (u32)&((MovieHdrView *)(u32)arg0)->f_12c8);
@@ -1093,55 +1260,13 @@ s32 fn_12_B9E8(struct fn_12_B9E8_Arg0 *arg0, u32 arg1) {
     return 0;
 }
 #pragma opt_lifetimes reset
-
 /* fzgx:end fn_12_B9E8 */
 
-/* fzgx:begin fn_12_BBC0 noprologue */
-#include "types.h"
-#include "sofdec/sj.h"
-
+/* fzgx:begin fn_12_BBC0 */
 /* --- rel/movie_module/fn_12_BBC0.c --- */
 #pragma use_lmw_stmw on
 
-typedef void (*MPVFunc)();
 
-typedef struct MPVContext {
-    u8 pad_0[0x1a8];
-    s32 unk_1a8;
-    u8 pad_1ac[0x24];
-    s32 unk_1d0;
-    s32 unk_1d4;
-    s32 unk_1d8;
-    s32 unk_1dc;
-    s32 unk_1e0;
-    u8 pad_1e4[0x90];
-    s32 unk_274;
-    s32 unk_278;
-    s32 unk_27c;
-    s32 unk_280;
-    u8 pad_284[0xc];
-    MPVFunc unk_290;
-    u8 pad_294[0x78];
-    s32 unk_30c;
-    u8 pad_310[0x930];
-    u8 unk_c40[0x40];
-    u8 unk_c80[0x40];
-    u8 pad_cc0[0x608];
-    SJCK unk_12c8;
-    s32 unk_12d0;
-    u8 pad_12d4[0x30];
-    s32 unk_1304;
-    u8 pad_1308[0x3c];
-    u8 unk_1344[0x654][2];
-} MPVContext;
-
-extern void fn_800589BC(const SJCK *source, int nbyte, SJCK *first, SJCK *remainder);
-extern void fn_12_33364(u32 *dst, u32 *src, u32 size);
-extern void fn_12_33428(u32 *dst, u32 value, u32 count);
-extern u32 lbl_12_bss_4DC0[];
-extern s8 lbl_12_bss_4E00[];
-extern MPVFunc const lbl_12_rodata_7A4[];
-extern MPVFunc const lbl_12_rodata_7AC[];
 
 /* read n bits (n < 32) from the cached big-endian bit window */
 #define GET_BITS(n, dst)                                        \
@@ -1184,7 +1309,7 @@ extern MPVFunc const lbl_12_rodata_7AC[];
 
 /* as in fn_12_B598, the end-of-header byte count needs the explicit temporaries kept */
 #pragma opt_propagation off
-int fn_12_BBC0(MPVContext *context, SJ *stream) {
+int fn_12_BBC0(fn_12_BBC0_MPVContext *context, SJ *stream) {
     SJCK remainder;
     s32 width;
     s32 i;
@@ -1275,47 +1400,35 @@ int fn_12_BBC0(MPVContext *context, SJ *stream) {
     data = context->unk_12c8.data;
     whole = shift - context->unk_12d0;
     p = (u32 *)((u32)p + ((whole + 7) >> 3));
-    fn_800589BC(&context->unk_12c8, ((u32)p - 8) - (u32)data, &context->unk_12c8, &remainder);
+    fn_800589BC( (MovieBits *)(const SJCK *)(&context->unk_12c8), ((u32)p - 8) - (u32)data, (MovieBits *)(SJCK *)(&context->unk_12c8), (void *)(SJCK *)(&remainder));
     stream->interface->put_chunk(stream, 0, &context->unk_12c8);
     stream->interface->unget_chunk(stream, 1, &remainder);
     return 0;
 }
 /* fzgx:end fn_12_BBC0 */
 
-/* fzgx:begin fn_12_C218 noprologue */
+/* fzgx:begin fn_12_C218 */
 #pragma opt_propagation reset
 
 /* --- rel/movie_module/fn_12_C218.c --- */
-typedef struct MovieObject_u1 MovieObject_u1;
 typedef struct MovieArgs {
     u32 field_0000;
     u32 field_0004;
 } MovieArgs;
 
-typedef struct MovieVTable {
-    u8 pad_0000[0x0c];
-    void (*method_000c)(MovieObject_u1 *);
-    u8 pad_0010[0x14];
-    s32 (*method_0024)(MovieObject_u1 *, s32);
-} MovieVTable;
 
-struct MovieObject_u1 {
-    MovieVTable *vtable;
-};
 
-extern MovieObject_u1 *fn_80057B9C(u32 arg0, u32 arg1);
-extern s32 fn_12_C2C8(void *arg0, MovieObject_u1 *movie);
 
 s32 fn_12_C218(void *arg0, MovieArgs *args, s32 *result) {
     s32 status;
     s32 elapsed;
-    MovieObject_u1 *movie;
+    fn_12_C218_MovieObject_u1 *movie;
 
     movie = fn_80057B9C(args->field_0000, args->field_0004);
     if (movie == 0) {
         return -1;
     }
-    status = fn_12_C2C8(arg0, movie);
+    status = fn_12_C2C8(arg0, (fn_12_C2C8_SJ_u0 *)(fn_12_C218_MovieObject_u1 *)(movie));
     elapsed = movie->vtable->method_0024(movie, 1);
     *result = args->field_0004 - elapsed;
     movie->vtable->method_000c(movie);
@@ -1716,7 +1829,6 @@ int fn_12_C2C8(void *handle, SJ_u0 *stream) {
 /* fzgx:end fn_12_C2C8 */
 
 /* fzgx:begin fn_12_CA60 noprologue */
-
 /* --- rel/movie_module/fn_12_CA60.c --- */
 /* --- rel/movie_module/fn_12_CA60.c --- */
 /* --- rel/movie_module/fn_12_CA60.c --- */
@@ -1738,7 +1850,6 @@ void fn_12_CA60(MovieObject *self, u32 *value_1338, u32 *value_1340) {
 /* fzgx:end fn_12_CA60 */
 
 /* fzgx:begin fn_12_CA84 noprologue */
-
 /* --- rel/movie_module/fn_12_CA84.c --- */
 void fn_12_CA84(MovieObject *self, u32 value_1338, u32 value_133c) {
     self->field_1338 = value_1338;
@@ -1748,7 +1859,6 @@ void fn_12_CA84(MovieObject *self, u32 value_1338, u32 value_133c) {
 /* fzgx:end fn_12_CA84 */
 
 /* fzgx:begin fn_12_CA98 noprologue */
-
 /* --- rel/movie_module/fn_12_CA98.c --- */
 /* --- rel/movie_module/fn_12_CA98.c --- */
 typedef struct MovieEntry {

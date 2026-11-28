@@ -319,14 +319,20 @@ def hoist_private_types(tf: tufile.TuFile, truths: Dict[str, str], report: Dict[
             return
         text = b.body[span[0]:span[1]]
         for inner in dict.fromkeys(re.findall(r'[A-Za-z_]\w*', text)):
-            if inner != t and inner in private:
+            if inner == t:
+                continue
+            if inner in stack and re.search(r'\b' + re.escape(inner) + r'\s*\*', text):
+                # mutually recursive struct pointers (e.g. SJ <-> SJInterface): emit forward typedef
+                if not re.search(r'^typedef\s+struct\s+' + re.escape(inner) + r'\s+' + re.escape(inner) + r'\s*;', tf.prologue, re.M):
+                    tf.prologue = tf.prologue.rstrip('\n') + f'\n\ntypedef struct {inner} {inner};\n'
+            elif inner in private:
                 hoist(inner, stack + (t,))
-            elif inner != t:
-                # a forward typedef (`typedef struct X X;`) the definition relies on
-                fwd_ = re.search(r'^typedef\s+struct\s+' + re.escape(inner) + r'\s+' + re.escape(inner) + r'\s*;\s*\n?', b.body, re.M)
-                if fwd_ and not re.search(r'^typedef\s+struct\s+' + re.escape(inner) + r'\s+' + re.escape(inner) + r'\s*;', tf.prologue, re.M):
+            # a forward typedef (`typedef struct X X;`) the definition relies on
+            fwd_ = re.search(r'^typedef\s+struct\s+' + re.escape(inner) + r'\s+' + re.escape(inner) + r'\s*;\s*\n?', b.body, re.M)
+            if fwd_:
+                if not re.search(r'^typedef\s+struct\s+' + re.escape(inner) + r'\s+' + re.escape(inner) + r'\s*;', tf.prologue, re.M):
                     tf.prologue = tf.prologue.rstrip('\n') + '\n\n' + fwd_.group(0).strip() + '\n'
-                    b.body = b.body[:fwd_.start()] + b.body[fwd_.end():]
+                b.body = b.body[:fwd_.start()] + b.body[fwd_.end():]
         span = type_definition_span(b.body, t)  # offsets may have moved with an inner hoist
         text = b.body[span[0]:span[1]]
         b.body = b.body[:span[0]] + b.body[span[1]:]
@@ -650,13 +656,33 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
             span = type_definition_span(b.body, t)
             if span:
                 defs_by_type.setdefault(t, []).append((b.name, re.sub(r'\s+', ' ', b.body[span[0]:span[1]]).strip()))
+    colliding: set = {t for ts in block_renames.values() for t in ts}
+    shared_candidates: Dict[str, Tuple[str, List[Tuple[str, str]]]] = {}
+    for t, owners in defs_by_type.items():
+        if type_definition_span(tf.prologue, t) or len(owners) < 2:
+            continue
+        texts = {text for _, text in owners}
+        if len(texts) == 1:
+            shared_candidates[t] = (next(iter(texts)), owners)
+        else:
+            colliding.add(t)
+    # A shared type that mentions a colliding (per-block renamed) type cannot live in the
+    # shared prologue: each block's copy sees a different definition of that inner type.
+    changed = True
+    while changed:
+        changed = False
+        for t in list(shared_candidates):
+            text, _ = shared_candidates[t]
+            if (set(re.findall(r'[A-Za-z_]\w*', text)) - {t}) & colliding:
+                colliding.add(t)
+                del shared_candidates[t]
+                changed = True
     for t, owners in defs_by_type.items():
         if type_definition_span(tf.prologue, t):
             continue  # the prologue defines it: the block-vs-prologue rule above handled the copies
         if len(owners) < 2:
             continue
-        texts = {text for _, text in owners}
-        if len(texts) == 1:
+        if t in shared_candidates:
             first = True
             fwd_re = re.compile(r'^typedef\s+struct\s+' + re.escape(t) + r'\s+' + re.escape(t) + r'\s*;\s*\n?', re.M)
             for bname, _ in owners:
@@ -665,11 +691,19 @@ def resolve(p: Project, tu_source: str, apply: bool = True,
                 if not span:
                     continue
                 if first:
+                    def_text = b.body[span[0]:span[1]]
+                    # Hoist any forward typedef (`typedef struct X X;`) that this definition uses.
+                    for inner in dict.fromkeys(re.findall(r'[A-Za-z_]\w*', def_text)):
+                        if inner == t:
+                            continue
+                        ifwd_re = re.compile(r'^typedef\s+struct\s+' + re.escape(inner) + r'\s+' + re.escape(inner) + r'\s*;\s*\n?', re.M)
+                        if ifwd_re.search(b.body) and not ifwd_re.search(tf.prologue):
+                            tf.prologue = tf.prologue.rstrip('\n') + f'\n\ntypedef struct {inner} {inner};\n'
                     # the blocks' forward typedef (`typedef struct T T;`) moves with the definition:
                     # other hoisted types name `T *` (effect_car.c: Fn195158Data.unk_08)
                     if fwd_re.search(b.body) and not fwd_re.search(tf.prologue):
                         tf.prologue = tf.prologue.rstrip('\n') + f'\n\ntypedef struct {t} {t};\n'
-                    tf.prologue = tf.prologue.rstrip('\n') + '\n\n' + b.body[span[0]:span[1]].rstrip('\n') + '\n'
+                    tf.prologue = tf.prologue.rstrip('\n') + '\n\n' + def_text.rstrip('\n') + '\n'
                     first = False
                 b.body = b.body[:span[0]] + b.body[span[1]:]
                 b.body = fwd_re.sub('', b.body) if fwd_re.search(tf.prologue) else b.body

@@ -1,56 +1,6 @@
 #include "types.h"
 
-/* fzgx:begin fn_12_3A888 noprologue */
-#include "types.h"
-
-/* --- rel/movie_module/fn_12_3A888.c --- */
-typedef struct SJCK {
-    unsigned char *data;
-    long len;
-} SJCK;
-
-typedef struct SJ SJ;
-
-typedef struct SJInterface SJInterface;
-
-typedef void (*SJErrorCallback)(void *object, int error);
-
-struct SJInterface {
-    void *reserved[3];
-    void (*destroy)(SJ *sj);
-    const void *(*get_uuid)(SJ *sj);
-    void (*reset)(SJ *sj);
-    void (*get_chunk)(SJ *sj, long channel, long max_size, SJCK *chunk);
-    void (*unget_chunk)(SJ *sj, int channel, SJCK *chunk);
-    void (*put_chunk)(SJ *sj, int channel, SJCK *chunk);
-    int (*get_num_data)(SJ *sj, int channel);
-    int (*is_get_chunk)(SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(SJ *sj, SJErrorCallback callback, void *object);
-};
-
-struct SJ {
-    const SJInterface *interface;
-};
-
-typedef struct MwsStHandle {
-    int active;
-    unsigned char reserved_004[8];
-    SJ *stream;
-    int element_id;
-    void *backend;
-} MwsStHandle;
-
-typedef struct ADXStream ADXStream;
-
-typedef struct LSC LSC;
-
-typedef struct SfdHandle SfdHandle;
-
-typedef struct MwsPlayer MwsPlayer;
-
 typedef struct MwsSupply MwsSupply;
-
-typedef void (*MwsServerBorderCallback)(void *object);
 
 typedef struct MwsSupplyInterface {
     void *reserved[5];
@@ -61,7 +11,53 @@ struct MwsSupply {
     const MwsSupplyInterface *interface;
 };
 
-struct MwsPlayer {
+typedef void (*SJErrorCallback)(void *object, int error);
+
+typedef void (*MwsServerBorderCallback)(void *object);
+
+typedef struct SfdHandle SfdHandle;
+
+typedef struct ADXStream ADXStream;
+
+typedef struct LSC LSC;
+
+typedef struct fn_12_3A888_SJ fn_12_3A888_SJ;
+
+typedef struct fn_12_3A888_SJCK {
+    unsigned char *data;
+    long len;
+} fn_12_3A888_SJCK;
+
+typedef struct fn_12_3A888_SJInterface fn_12_3A888_SJInterface;
+
+struct fn_12_3A888_SJInterface {
+    void *reserved[3];
+    void (*destroy)(fn_12_3A888_SJ *sj);
+    const void *(*get_uuid)(fn_12_3A888_SJ *sj);
+    void (*reset)(fn_12_3A888_SJ *sj);
+    void (*get_chunk)(fn_12_3A888_SJ *sj, long channel, long max_size, fn_12_3A888_SJCK *chunk);
+    void (*unget_chunk)(fn_12_3A888_SJ *sj, int channel, fn_12_3A888_SJCK *chunk);
+    void (*put_chunk)(fn_12_3A888_SJ *sj, int channel, fn_12_3A888_SJCK *chunk);
+    int (*get_num_data)(fn_12_3A888_SJ *sj, int channel);
+    int (*is_get_chunk)(fn_12_3A888_SJ *sj, int channel, int size, int *available);
+    void (*entry_error_func)(fn_12_3A888_SJ *sj, SJErrorCallback callback, void *object);
+};
+
+struct fn_12_3A888_SJ {
+    const fn_12_3A888_SJInterface *interface;
+};
+
+typedef struct fn_12_3A888_MwsStHandle {
+    int active;
+    unsigned char reserved_004[8];
+    fn_12_3A888_SJ *stream;
+    int element_id;
+    void *backend;
+} fn_12_3A888_MwsStHandle;
+
+typedef struct fn_12_3A888_MwsPlayer fn_12_3A888_MwsPlayer;
+
+struct fn_12_3A888_MwsPlayer {
     int reserved_000;
     int active;
     int status;
@@ -88,7 +84,7 @@ struct MwsPlayer {
     int file_end_position;
     MwsSupply *supply;
     unsigned char reserved_1D4[0xC0];
-    MwsStHandle sound;
+    fn_12_3A888_MwsStHandle sound;
     unsigned char reserved_2AC[0x0C];
 };
 
@@ -113,28 +109,214 @@ typedef struct MwsLibraryWork {
     int vsync_lock;
     unsigned char reserved_060[0x08];
     int error_code;
-    MwsPlayer players[8];
+    fn_12_3A888_MwsPlayer players[8];
 } MwsLibraryWork;
 
+typedef struct fn_12_3A92C_MovieObject {
+    u8 pad[0x54];
+    u32 value;
+} fn_12_3A92C_MovieObject;
+
+typedef struct fn_12_3ABE0_MovieObject {
+    u8 pad[0x58];
+    s32 state;
+} fn_12_3ABE0_MovieObject;
+
+typedef struct fn_12_3AC70_MovieObject {
+    u8 _pad[0x10];
+    s32 value;
+} fn_12_3AC70_MovieObject;
+
+typedef struct fn_12_3ACD0_MovieObject {
+    u8 _pad[0x10];
+    s32 value;
+    u8 _pad2[0x44];
+    s32 state;
+} fn_12_3ACD0_MovieObject;
+
+typedef struct fn_12_3ADC4_MovieObject {
+    u8 pad[0x58];
+    s32 state;
+} fn_12_3ADC4_MovieObject;
+
+typedef struct fn_12_3AA58_MovieManager {
+    u8 pad24[0x24];
+    s32 value;
+} fn_12_3AA58_MovieManager;
+
+typedef struct fn_12_3AB00_MovieManager {
+    u8 pad40[0x40];
+    void (*callback0)(void *);
+    void *callback0_arg;
+    void (*callback1)(void *);
+    void *callback1_arg;
+    u8 pad50[0x4];
+    s32 state;
+} fn_12_3AB00_MovieManager;
+
+typedef struct Sig_fn_12_2CC24_MovieModuleState {
+    u8 _pad_0[0x44];
+    u32 field_44;
+} Sig_fn_12_2CC24_MovieModuleState;
+
+typedef struct Sig_fn_12_2CD44_MovieModuleState {
+    u8 _pad_0[0x44];
+    u32 field_44;
+    u32 field_48;
+} Sig_fn_12_2CD44_MovieModuleState;
+
+typedef struct fn_12_3AE84_SJ fn_12_3AE84_SJ;
+
+typedef struct fn_12_3AE84_SJCK {
+    unsigned char *data;
+    int len;
+} fn_12_3AE84_SJCK;
+
+typedef struct fn_12_3AE84_SJInterface fn_12_3AE84_SJInterface;
+
+struct fn_12_3AE84_SJInterface {
+    void *reserved[3];
+    void (*destroy)(fn_12_3AE84_SJ *sj);
+    const void *(*get_uuid)(fn_12_3AE84_SJ *sj);
+    void (*reset)(fn_12_3AE84_SJ *sj);
+    void (*get_chunk)(fn_12_3AE84_SJ *sj, int channel, int max_size, fn_12_3AE84_SJCK *chunk);
+    void (*unget_chunk)(fn_12_3AE84_SJ *sj, int channel, fn_12_3AE84_SJCK *chunk);
+    void (*put_chunk)(fn_12_3AE84_SJ *sj, int channel, fn_12_3AE84_SJCK *chunk);
+    int (*get_num_data)(fn_12_3AE84_SJ *sj, int channel);
+    int (*is_get_chunk)(fn_12_3AE84_SJ *sj, int channel, int size, int *available);
+    void (*entry_error_func)(fn_12_3AE84_SJ *sj, SJErrorCallback callback, void *object);
+};
+
+struct fn_12_3AE84_SJ {
+    const fn_12_3AE84_SJInterface *interface;
+};
+
+typedef struct fn_12_3AE84_MwsStHandle fn_12_3AE84_MwsStHandle;
+
+struct fn_12_3AE84_MwsStHandle {
+    int active;
+    unsigned char reserved_004[0x08];
+    fn_12_3AE84_SJ *stream;
+    int element_id;
+    void *backend;
+};
+
+typedef struct fn_12_3AE84_MwsPlayer fn_12_3AE84_MwsPlayer;
+
+struct fn_12_3AE84_MwsPlayer {
+    int reserved_000;
+    int active;
+    int status;
+    unsigned char reserved_00C[0x34];
+    SfdHandle *sfd;
+    void *stream;
+    unsigned char reserved_048[0x04];
+    LSC *loader;
+    unsigned char reserved_050[12];
+    int sleeping_server;
+    int in_mwply_server;
+    int in_sfd_server;
+    int decoder_server_active;
+    unsigned char reserved_070[0x04];
+    signed char concat_play;
+    signed char terminating_supply;
+    signed char paused;
+    unsigned char reserved_077[157];
+    const char *filename;
+    int filename_capacity;
+    int start_requested;
+    int file_offset;
+    int file_length;
+    int file_end_position;
+    MwsSupply *supply;
+    unsigned char reserved_1D4[0xC0];
+    fn_12_3AE84_MwsStHandle sound;
+    unsigned char reserved_2AC[0x0C];
+};
+
+typedef struct Sig_fn_12_3A9A0_MovieObject {
+    u8 pad04[0x4];
+    s32 state;
+    u8 pad08[0x58];
+    s32 value;
+} Sig_fn_12_3A9A0_MovieObject;
+
+typedef struct fn_12_3AA58_MovieObject {
+    u8 pad04[0x4];
+    s32 state;
+    u8 pad08[0x58];
+    s32 value;
+} fn_12_3AA58_MovieObject;
+
+struct mwsfdsvr____rodata_0 {
+    unsigned char padding_0[92];
+    const char start_failed[41];
+    unsigned char padding_133[3];
+    const char link_failed[42];
+    unsigned char padding_178[2];
+    const char terminate_failed[46];
+};
 extern void fn_8004EC14(void);
-
-extern MwsLibraryWork *fn_12_38DBC(void);
-
+extern u32 * fn_12_38DBC();
 extern void fn_12_34B64(void);
-
 extern void fn_12_341BC(void);
-
 extern void fn_12_341C0(void);
+extern int fn_12_2CC24(Sig_fn_12_2CC24_MovieModuleState *);
+extern u32 fn_12_2CD44(Sig_fn_12_2CD44_MovieModuleState *);
+extern int fn_12_3AE84(fn_12_3AE84_MwsPlayer *player);
+extern u32 lbl_12_bss_1CC60;
+extern s32 lbl_12_bss_1B9DC[52];
+extern u8 lbl_12_rodata_2D5C[180];
+extern void MWSFSVM_Error(const u8 *message, ...);
+extern u32 fn_12_3A9A0(Sig_fn_12_3A9A0_MovieObject * arg0);
+extern void fn_12_34C44();
+extern u32 fn_12_3AA58(fn_12_3AA58_MovieObject *self);
+extern int SFD_IsSvrWait(void);
+extern u32 lbl_12_bss_1CC58;
+extern u32 lbl_12_bss_1CC5C;
+extern void fn_12_2CD6C(void);
+extern u32 fn_8004E580();
+extern u32 fn_12_3AB00();
+extern int fn_12_34CC8(void);
+extern void fn_12_34CA8();
+extern struct mwsfdsvr____rodata_0 lbl_12_rodata_2D28;
+extern int fn_12_34C84(void);
+extern void fn_12_34C64();
+extern u32 fn_80056BE0(u32 arg0);
+extern s32 fn_12_38A0C(s32 arg);
+extern void fn_12_3858C(fn_12_3AE84_MwsPlayer *player);
+extern void fn_12_3500C();
+extern u32 fn_12_342B8();
+extern int MWSST_GetStat(fn_12_3AE84_MwsStHandle *sound);
+extern void MWSST_Pause(fn_12_3AE84_MwsStHandle *sound, int paused);
+extern void fn_12_34E90();
+extern u32 fn_12_34FD0();
+extern void fn_12_34EE4();
+extern void fn_12_34F04(u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4);
+extern int fn_12_23280(void *arg0);
+extern void fn_12_39A18(fn_12_3AE84_MwsPlayer *player);
+extern void mwSfdPause(fn_12_3AE84_MwsPlayer *player, int paused);
 
-static inline void mwsfd_SetSleepBdr(MwsPlayer *player, int value) {
-    MwsLibraryWork *work = fn_12_38DBC();
+/* fzgx:begin fn_12_3A888 */
+/* --- rel/movie_module/fn_12_3A888.c --- */
+
+
+
+
+
+
+
+
+
+static inline void mwsfd_SetSleepBdr(fn_12_3A888_MwsPlayer *player, int value) {
+    MwsLibraryWork *work = ((MwsLibraryWork *)fn_12_38DBC());
     player->sleeping_server = value;
     work->sleeping_server = value;
 }
 
-static inline void mwsfd_ClrSleepBdr(MwsPlayer *player) { mwsfd_SetSleepBdr(player, 0); }
+static inline void mwsfd_ClrSleepBdr(fn_12_3A888_MwsPlayer *player) { mwsfd_SetSleepBdr(player, 0); }
 
-static inline void mwsfd_SleepLoop(MwsPlayer *player) {
+static inline void mwsfd_SleepLoop(fn_12_3A888_MwsPlayer *player) {
     int i;
     for (i = 0; i < 10; i++) {
         mwsfd_SetSleepBdr(player, 1);
@@ -145,7 +327,7 @@ static inline void mwsfd_SleepLoop(MwsPlayer *player) {
     }
 }
 
-void fn_12_3A888(MwsPlayer *player) {
+void fn_12_3A888(fn_12_3A888_MwsPlayer *player) {
     fn_12_341C0();
     mwsfd_SetSleepBdr(player, 1);
     fn_12_34B64();
@@ -156,26 +338,17 @@ void fn_12_3A888(MwsPlayer *player) {
 }
 /* fzgx:end fn_12_3A888 */
 
-/* fzgx:begin fn_12_3A92C noprologue */
-#include "types.h"
-
-
+/* fzgx:begin fn_12_3A92C */
 /* --- rel/movie_module/fn_12_3A92C.c --- */
-typedef struct MovieObject {
-    u8 pad[0x54];
-    u32 value;
-} MovieObject;
 
-extern MovieObject *fn_12_38DBC(void);
 
 s32 fn_12_3A92C(void) {
-    MovieObject *object = fn_12_38DBC();
+    fn_12_3A92C_MovieObject *object = ((fn_12_3A92C_MovieObject *)fn_12_38DBC());
     return object->value != 1;
 }
 /* fzgx:end fn_12_3A92C */
 
-/* fzgx:begin fn_12_3A960 noprologue */
-
+/* fzgx:begin fn_12_3A960 */
 /* --- rel/movie_module/fn_12_3A960.c --- */
 typedef struct Fn12_3A960_Object {
     u8 _pad[0x64];
@@ -187,56 +360,32 @@ void fn_12_3A960(Fn12_3A960_Object *object, u32 value) {
 }
 /* fzgx:end fn_12_3A960 */
 
-/* fzgx:begin fn_12_3A968 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_3A968 */
 /* --- rel/movie_module/fn_12_3A968.c --- */
 /* --- rel/movie_module/fn_12_3A968.c --- */
-typedef struct MovieObject {
+typedef struct fn_12_3A968_MovieObject {
     u8 pad[0x60];
     s32 value;
-} MovieObject;
+} fn_12_3A968_MovieObject;
 
-void fn_12_3A968(MovieObject *self, s32 value) {
+void fn_12_3A968(fn_12_3A968_MovieObject *self, s32 value) {
     self->value = value;
 }
 /* fzgx:end fn_12_3A968 */
 
-/* fzgx:begin fn_12_3A970 noprologue */
-
+/* fzgx:begin fn_12_3A970 */
 /* --- rel/movie_module/fn_12_3A970.c --- */
-extern u32 fn_12_38DBC(u32);
 
 void fn_12_3A970(u32 arg0) {
     u32 t0;
-    t0 = fn_12_38DBC(arg0);
+    t0 = ((u32)fn_12_38DBC(arg0));
     *(u32 *)((u8 *)t0 + 84) = arg0;
 }
 /* fzgx:end fn_12_3A970 */
 
-/* fzgx:begin fn_12_3A9A0 noprologue */
-
+/* fzgx:begin fn_12_3A9A0 */
 /* --- rel/movie_module/fn_12_3A9A0.c --- */
-typedef struct Sig_fn_12_3A9A0_MovieObject {
-    u8 pad04[0x4];
-    s32 state;
-    u8 pad08[0x58];
-    s32 value;
-} Sig_fn_12_3A9A0_MovieObject;
-typedef struct Sig_fn_12_2CC24_MovieModuleState {
-    u8 _pad_0[0x44];
-    u32 field_44;
-} Sig_fn_12_2CC24_MovieModuleState;
-typedef struct Sig_fn_12_2CD44_MovieModuleState {
-    u8 _pad_0[0x44];
-    u32 field_44;
-    u32 field_48;
-} Sig_fn_12_2CD44_MovieModuleState;
 
-extern int fn_12_2CC24(Sig_fn_12_2CC24_MovieModuleState *);
-extern u32 fn_12_2CD44(Sig_fn_12_2CD44_MovieModuleState *);
-extern u32 fn_12_3AE84(u32);
-extern u32 lbl_12_bss_1CC60;
 
 #pragma opt_dead_assignments off
 #pragma opt_lifetimes off
@@ -265,7 +414,7 @@ u32 fn_12_3A9A0(Sig_fn_12_3A9A0_MovieObject * arg0) {
     } else {
     v1 = (u32)(arg0);
     *(u32 *)((u8 *)arg0 + 104) = 1;
-    t1 = fn_12_3AE84(v1);
+    t1 = ((u32)fn_12_3AE84( (fn_12_3AE84_MwsPlayer *)(u32)(v1)));
     v1 = t1;
     }
     v1 = v0;
@@ -281,28 +430,11 @@ u32 fn_12_3A9A0(Sig_fn_12_3A9A0_MovieObject * arg0) {
 #pragma opt_dead_assignments reset
 /* fzgx:end fn_12_3A9A0 */
 
-/* fzgx:begin fn_12_3AA58 noprologue */
-#include "types.h"
+/* fzgx:begin fn_12_3AA58 */
 
-typedef struct MovieObject {
-    u8 pad04[0x4];
-    s32 state;
-    u8 pad08[0x58];
-    s32 value;
-} MovieObject;
 
-typedef struct MovieManager {
-    u8 pad24[0x24];
-    s32 value;
-} MovieManager;
 
-extern s32 lbl_12_bss_1B9DC[52];
-extern u8 lbl_12_rodata_2D5C[180];
-extern void MWSFSVM_Error(const u8 *message, ...);
-extern MovieManager *fn_12_38DBC(void);
-extern u32 fn_12_3A9A0(MovieObject *self);
-
-u32 fn_12_3AA58(MovieObject *self) {
+u32 fn_12_3AA58(fn_12_3AA58_MovieObject *self) {
     if (lbl_12_bss_1B9DC[0] != 1) {
         return 0;
     }
@@ -316,10 +448,10 @@ u32 fn_12_3AA58(MovieObject *self) {
     if (self->value == 1) {
         return 0;
     }
-    if (fn_12_38DBC()->value == 1) {
+    if (((fn_12_3AA58_MovieManager *)fn_12_38DBC())->value == 1) {
         return 0;
     }
-    return fn_12_3A9A0(self);
+    return fn_12_3A9A0( (Sig_fn_12_3A9A0_MovieObject *)(fn_12_3AA58_MovieObject *)(self));
 }
 /* fzgx:end fn_12_3AA58 */
 
@@ -431,24 +563,15 @@ void fn_12_3ABE0(void) {
 }
 /* fzgx:end fn_12_3ABE0 */
 
-/* fzgx:begin fn_12_3AC70 noprologue */
-#include "types.h"
+/* fzgx:begin fn_12_3AC70 */
 
-typedef struct MovieObject {
-    u8 _pad[0x10];
-    s32 value;
-} MovieObject;
 
-extern s32 fn_8004E580(MovieObject *self);
-extern MovieObject *fn_12_38DBC(void);
-extern s32 fn_12_3AB00(MovieObject *self);
-
-s32 fn_12_3AC70(MovieObject *self) {
+s32 fn_12_3AC70(fn_12_3AC70_MovieObject *self) {
     s32 result = 0;
 
-    if (fn_8004E580(self) == 1) {
-        if (fn_12_38DBC()->value != 1) {
-            result = fn_12_3AB00(self);
+    if (((s32)fn_8004E580(self)) == 1) {
+        if (((fn_12_3AC70_MovieObject *)fn_12_38DBC())->value != 1) {
+            result = ((s32)fn_12_3AB00(self));
         }
     }
 
@@ -510,7 +633,6 @@ s32 fn_12_3ACD0(MovieObject *self) {
     return result;
 }
 #pragma opt_lifetimes reset
-
 /* fzgx:end fn_12_3ACD0 */
 
 /* fzgx:begin fn_12_3ADC4 noprologue */
@@ -558,7 +680,6 @@ s32 fn_12_3ADC4(MovieObject *self) {
 /* fzgx:end fn_12_3ADC4 */
 
 /* fzgx:begin fn_12_3AE84 noprologue */
-
 /* --- rel/movie_module/fn_12_3AE84.c --- */
 typedef struct SJCK {
     unsigned char *data;

@@ -1,28 +1,794 @@
 #include "types.h"
 
-/* fzgx:begin fn_12_35E34 noprologue */
-#include "types.h"
+typedef struct SJCK {
+    unsigned char *data;
+    int len;
+} SJCK;
 
-/* --- rel/movie_module/fn_12_35DDC.c --- */
-extern void MWSFSVM_Error(void*, ...);
+typedef struct SfdPtsEntry {
+    long long pts;
+    unsigned char *data;
+    int size;
+} SfdPtsEntry;
 
-/* --- rel/movie_module/fn_12_35E34.c --- */
-extern void* fn_12_38DBC(void*);
+typedef int SfdCallbackObject;
 
-void* fn_12_35E34(void* arg0, void* arg1, void* arg2) {
-    void* result;
+typedef struct SfdVideoFrameState SfdVideoFrameState;
 
-    result = fn_12_38DBC(arg0);
-    *(void**)((u8*)result + 0x28) = arg0;
-    *(void**)((u8*)result + 0x2C) = arg1;
-    *(void**)((u8*)result + 0x30) = arg2;
-    return result;
-}
-/* fzgx:end fn_12_35E34 */
+typedef struct SfdBufferLinearWork {
+    unsigned char *buffer;
+    int buffer_size;
+    int field_08;
+    int field_0C;
+    SfdVideoFrameState *video_frames;
+    int field_14;
+    int field_18;
+    int field_1C;
+    int field_20;
+    int field_24;
+    int field_28;
+    int field_2C;
+    int field_30;
+    int field_34;
+    int field_38;
+} SfdBufferLinearWork;
 
-/* fzgx:begin fn_12_35E84 noprologue */
+typedef struct SfdVideoFrameInfo {
+    int width, height, macroblocks_per_row, macroblock_rows;
+    int picture_type;
+    int display_time_value, display_time_scale;
+    int output_format;
+    void *frame_buffer;
+    int field_24, field_28, picture_order, field_30, field_34;
+    void *picture_user_buffer;
+    int field_3C, field_40, reserved_44, display_mode, reserved_4C;
+    int field_50, field_54, field_58, field_5C, field_60, field_64;
+    short field_68, field_6A;
+    unsigned char fields_6C[0x0F];
+    unsigned char reserved_7B[5];
+} SfdVideoFrameInfo;
 
-/* --- rel/movie_module/fn_12_35E84.c --- */
+struct SfdVideoFrameState {
+    int state;
+    int field_04;
+    union {
+        unsigned char payload[0x80];
+        SfdVideoFrameInfo info;
+    } data;
+};
+
+typedef struct SfdTimerTimeUnit {
+    int active;
+    int fields_04[7];
+    unsigned short field_20;
+    unsigned short field_22;
+    int value;
+    int scale;
+} SfdTimerTimeUnit;
+
+typedef void (*SJErrorCallback)(void *object, int error);
+
+typedef void (*SfdBufferObjectCallback)(SfdCallbackObject object, int stream_index);
+
+typedef int SfdConditionValue;
+
+typedef struct SfdTimerSummary {
+    long long total;
+    long long minimum;
+    long long maximum;
+    int count;
+    int field_1C;
+} SfdTimerSummary;
+
+typedef void (*SfdErrorCallback)(SfdCallbackObject object, int error);
+
+typedef struct SfdErrorInfo {
+    SfdErrorCallback callback;
+    SfdCallbackObject callback_object;
+    int first_error;
+    int field_0C;
+    int field_10;
+} SfdErrorInfo;
+
+typedef struct MwsPictureUserConfig {
+    void *buffer;
+    int buffer_size;
+    int element_size;
+} MwsPictureUserConfig;
+
+typedef struct SfdPlaybackRuntime {
+    int decoded_pictures;
+    int skipped_pictures;
+    int field_08;
+    int field_0C;
+    int field_10;
+    int field_14;
+    int frame_outstanding;
+    int field_1C;
+    int field_20;
+    int field_24;
+    int field_28;
+    int field_2C;
+    union {
+        long long time_values[12];
+        struct {
+            long long reserved_time_values[3];
+            struct {
+                int high;
+                unsigned int low;
+            } input_flow;
+            long long remaining_time_values[8];
+        } timing;
+    };
+    int tail_values[4];
+} SfdPlaybackRuntime;
+
+typedef struct SfdHeaderState {
+    int field_00;
+    int field_04;
+    int field_08;
+    int field_0C;
+    unsigned char unknown_0010[0x6C];
+    int field_7C;
+    unsigned char unknown_0080[0x10];
+    int field_90;
+} SfdHeaderState;
+
+typedef struct SfdPtsQueue {
+    SfdPtsEntry *entries;
+    int capacity;
+    int count;
+    int write_index;
+    int read_index;
+} SfdPtsQueue;
+
+typedef struct SfdTimerStreamTimeUnit {
+    int active;
+    int field_04;
+    int file_size;
+    int total_time_value;
+    int total_time_scale;
+    int byte_rate;
+    int seek_position;
+    int field_1C;
+    unsigned short field_20;
+    unsigned short field_22;
+    int value;
+    int scale;
+} SfdTimerStreamTimeUnit;
+
+typedef struct SfdTimerCompactTimeUnit {
+    int fields_00[6];
+    unsigned short field_18;
+    unsigned short field_1A;
+    int value;
+    int scale;
+} SfdTimerCompactTimeUnit;
+
+typedef struct SfdTimerSampleWindow {
+    int enabled;
+    int fields_04[3];
+    int samples[32];
+} SfdTimerSampleWindow;
+
+typedef int (*SfdExternalClockFn)(SfdCallbackObject object, int *value, int *scale);
+
+typedef struct SfdTimerSampleHistory {
+    int fields_00[3];
+    int samples[32];
+} SfdTimerSampleHistory;
+
+typedef struct SfdPlaybackSettings {
+    int values_00[5];
+    int frame_rate_code;
+    int values_18[10];
+} SfdPlaybackSettings;
+
+typedef int SfdTransportValue;
+
+typedef u32 (*FnAlloc)(void *, s32);
+
+typedef void (*FnFree)(void *, u32);
+
+typedef struct AllocCtx {
+    u8 pad_0[0x28];
+    FnAlloc alloc;
+    FnFree free_fn;
+    void *data;
+} AllocCtx;
+
+typedef void *(*fn_12_364CC_MwsMallocFn)(void *object, long size);
+
+typedef void (*fn_12_364CC_MwsFreeFn)(void *object, void *memory);
+
+typedef struct fn_12_364CC_MwsCreateParams {
+    int file_type;
+    int maximum_bps;
+    int width;
+    int height;
+    int frame_count;
+    int decoder_count;
+    void *work;
+    int work_size;
+    int composition_mode;
+    int buffer_format;
+    int field_28;
+    int field_2C;
+} fn_12_364CC_MwsCreateParams;
+
+typedef struct SfdHandle SfdHandle;
+
+typedef struct ADXStream ADXStream;
+
+typedef struct LSC LSC;
+
+typedef struct SFXHandle SFXHandle;
+
+typedef struct fn_12_364CC_SJ fn_12_364CC_SJ;
+
+typedef struct fn_12_364CC_SJInterface {
+    void *reserved[3];
+    void (*destroy)(fn_12_364CC_SJ *sj);
+} fn_12_364CC_SJInterface;
+
+struct fn_12_364CC_SJ {
+    const fn_12_364CC_SJInterface *interface;
+};
+
+typedef struct fn_12_364CC_MwsStHandle {
+    int active;
+    unsigned char reserved_004[8];
+    fn_12_364CC_SJ *stream;
+    int element_id;
+    void *backend;
+} fn_12_364CC_MwsStHandle;
+
+typedef struct fn_12_364CC_MwsPlayer {
+    const void *interface;
+    int active;
+    int status;
+    fn_12_364CC_MwsCreateParams create;
+    int playback_mode;
+    SfdHandle *sfd;
+    ADXStream *stream;
+    void *transport;
+    LSC *loader;
+    int field_050;
+    int field_054;
+    int flow_limit;
+    int field_05C;
+    unsigned char reserved_060[8];
+    int field_068;
+    int field_06C;
+    signed char concat_play;
+    signed char concat_stopped;
+    signed char paused;
+    unsigned char field_073;
+    int entry_count;
+    unsigned char reserved_078[12];
+    int field_084;
+    unsigned char reserved_088[0x20];
+    SFXHandle *sfx;
+    void *composition_work;
+    int composition_work_size;
+    unsigned char reserved_0B4[0x20];
+    MwsPictureUserConfig *picture_user;
+    unsigned char reserved_0D8[0x10];
+    fn_12_364CC_SJ *additional_info_sj;
+    unsigned char reserved_0EC[0x40];
+    fn_12_364CC_SJ *input_sj;
+    void *input_buffer;
+    int input_buffer_size;
+    int input_buffer_extra_size;
+    unsigned char reserved_13C[0x10];
+    fn_12_364CC_SJ *memory_sj;
+    unsigned char reserved_150[8];
+    void *arena;
+    unsigned int arena_size;
+    unsigned char *arena_cursor;
+    unsigned int arena_used;
+    int allocation_count;
+    void *allocations[32];
+    fn_12_364CC_MwsStHandle sound;
+    unsigned char reserved_204[0x24];
+} fn_12_364CC_MwsPlayer;
+
+typedef struct fn_12_364CC_MwsLibraryWork {
+    int field_00;
+    float frame_rate;
+    int video_frequency;
+    int frame_pool;
+    int field_10;
+    unsigned char reserved_014[0x14];
+    fn_12_364CC_MwsMallocFn malloc_fn;
+    fn_12_364CC_MwsFreeFn free_fn;
+    void *allocator_object;
+    unsigned char reserved_034[0x34];
+    fn_12_364CC_MwsPlayer players[8];
+} fn_12_364CC_MwsLibraryWork;
+
+typedef void *(*fn_12_3763C_MwsMallocFn)(void *object, long size);
+
+typedef void (*fn_12_3763C_MwsFreeFn)(void *object, void *memory);
+
+typedef struct fn_12_3763C_MwsCreateParams {
+    int file_type;
+    int maximum_bps;
+    int width;
+    int height;
+    int frame_count;
+    int decoder_count;
+    void *work;
+    int work_size;
+    int composition_mode;
+    int buffer_format;
+    int field_28;
+    int field_2C;
+} fn_12_3763C_MwsCreateParams;
+
+typedef struct fn_12_3763C_SJ fn_12_3763C_SJ;
+
+typedef struct fn_12_3763C_SJInterface {
+    void *reserved[3];
+    void (*destroy)(fn_12_3763C_SJ *sj);
+} fn_12_3763C_SJInterface;
+
+struct fn_12_3763C_SJ {
+    const fn_12_3763C_SJInterface *interface;
+};
+
+typedef struct fn_12_3763C_MwsStHandle {
+    int active;
+    unsigned char reserved_004[8];
+    fn_12_3763C_SJ *stream;
+    int element_id;
+    void *backend;
+} fn_12_3763C_MwsStHandle;
+
+typedef struct fn_12_3763C_MwsPlayer {
+    const void *interface;
+    int active;
+    int status;
+    fn_12_3763C_MwsCreateParams create;
+    int playback_mode;
+    SfdHandle *sfd;
+    ADXStream *stream;
+    void *transport;
+    LSC *loader;
+    int field_050;
+    int field_054;
+    int flow_limit;
+    int field_05C;
+    unsigned char reserved_060[8];
+    int field_068;
+    int field_06C;
+    signed char concat_play;
+    signed char concat_stopped;
+    signed char paused;
+    unsigned char field_073;
+    int entry_count;
+    unsigned char reserved_078[12];
+    int field_084;
+    unsigned char reserved_088[0x20];
+    SFXHandle *sfx;
+    void *composition_work;
+    int composition_work_size;
+    unsigned char reserved_0B4[8];
+    MwsPictureUserConfig internal_picture_user;
+    unsigned char reserved_0C8[12];
+    MwsPictureUserConfig *picture_user;
+    void *picture_user_work;
+    int picture_user_header_size;
+    int picture_user_write;
+    int picture_user_read;
+    fn_12_3763C_SJ *additional_info_sj;
+    unsigned char reserved_0EC[0x24];
+    char *filename;
+    int filename_capacity;
+    unsigned char reserved_118[0x14];
+    fn_12_3763C_SJ *input_sj;
+    void *input_buffer;
+    int input_buffer_size;
+    int input_buffer_extra_size;
+    unsigned char reserved_13C[0x10];
+    fn_12_3763C_SJ *memory_sj;
+    unsigned char reserved_150[8];
+    void *arena;
+    unsigned int arena_size;
+    unsigned char *arena_cursor;
+    unsigned int arena_used;
+    int allocation_count;
+    void *allocations[32];
+    fn_12_3763C_MwsStHandle sound;
+    unsigned char reserved_204[0x24];
+} fn_12_3763C_MwsPlayer;
+
+typedef struct fn_12_3763C_MwsLibraryWork {
+    int field_00;
+    float frame_rate;
+    int video_frequency;
+    int frame_pool;
+    int field_10;
+    unsigned char reserved_014[0x14];
+    fn_12_3763C_MwsMallocFn malloc_fn;
+    fn_12_3763C_MwsFreeFn free_fn;
+    void *allocator_object;
+    unsigned char reserved_034[0x34];
+    fn_12_3763C_MwsPlayer players[8];
+} fn_12_3763C_MwsLibraryWork;
+
+typedef void *(*mwSfdDestroy_MwsMallocFn)(void *, int);
+
+typedef void (*mwSfdDestroy_MwsFreeFn)(void *, void *);
+
+typedef struct mwSfdDestroy_SfdHandle mwSfdDestroy_SfdHandle;
+
+typedef int (*mwSfdDestroy_SfdTransportLifecycleFn)(mwSfdDestroy_SfdHandle *handle);
+
+typedef int (*mwSfdDestroy_SfdTransportPauseFn)(mwSfdDestroy_SfdHandle *handle, int state);
+
+typedef int (*mwSfdDestroy_SfdTransportBufferFn)(mwSfdDestroy_SfdHandle *handle, void *buffer);
+
+typedef int (*mwSfdDestroy_SfdTransportTransferFn)(mwSfdDestroy_SfdHandle *handle, SfdTransportValue parameter, int value);
+
+typedef struct mwSfdDestroy_SfdTransportInterface mwSfdDestroy_SfdTransportInterface;
+
+struct mwSfdDestroy_SfdTransportInterface {
+    mwSfdDestroy_SfdTransportLifecycleFn init;
+    mwSfdDestroy_SfdTransportLifecycleFn finish;
+    mwSfdDestroy_SfdTransportLifecycleFn exec_server;
+    mwSfdDestroy_SfdTransportLifecycleFn create;
+    mwSfdDestroy_SfdTransportLifecycleFn destroy;
+    mwSfdDestroy_SfdTransportLifecycleFn standby;
+    mwSfdDestroy_SfdTransportLifecycleFn start;
+    mwSfdDestroy_SfdTransportLifecycleFn stop;
+    mwSfdDestroy_SfdTransportPauseFn pause;
+    mwSfdDestroy_SfdTransportBufferFn get_write;
+    mwSfdDestroy_SfdTransportTransferFn add_write;
+    mwSfdDestroy_SfdTransportBufferFn get_read;
+    mwSfdDestroy_SfdTransportTransferFn add_read;
+    mwSfdDestroy_SfdTransportTransferFn seek;
+};
+
+typedef struct mwSfdDestroy_SfdTransportSetup mwSfdDestroy_SfdTransportSetup;
+
+struct mwSfdDestroy_SfdTransportSetup {
+    const mwSfdDestroy_SfdTransportInterface *entries[9];
+};
+
+typedef struct mwSfdDestroy_SfdBufferCreateConfig {
+    const mwSfdDestroy_SfdTransportSetup *transport_setup;
+    unsigned char *memory;
+    int buffer_sizes[7];
+    int field_24;
+    int ring_alignment;
+} mwSfdDestroy_SfdBufferCreateConfig;
+
+typedef struct mwSfdDestroy_SfdCreateConfig {
+    mwSfdDestroy_SfdBufferCreateConfig buffer;
+    int picture_user_buffer_minimum;
+    int maximum_width;
+    int maximum_height;
+    int video_output_format;
+    unsigned char *handle_memory;
+    int handle_memory_size;
+} mwSfdDestroy_SfdCreateConfig;
+
+typedef int (*mwSfdDestroy_SfdTimeSourceFn)(mwSfdDestroy_SfdHandle *handle, int *value, int *scale);
+
+typedef int (*mwSfdDestroy_SfdUserIsSkipFn)(mwSfdDestroy_SfdHandle *handle, int picture_type, int value, int scale);
+
+typedef struct mwSfdDestroy_SfdTimerSkipState {
+    mwSfdDestroy_SfdUserIsSkipFn callback;
+    int fields_04[7];
+    unsigned short field_20;
+    unsigned short field_22;
+    int value;
+    int scale;
+} mwSfdDestroy_SfdTimerSkipState;
+
+typedef struct mwSfdDestroy_SfdTimerState {
+    mwSfdDestroy_SfdTimeSourceFn time_sources[6];
+    mwSfdDestroy_SfdTimerSkipState skip_state;
+    SfdTimerCompactTimeUnit compact_time;
+    SfdTimerTimeUnit field_0068;
+    SfdTimerStreamTimeUnit stream_time;
+    SfdTimerTimeUnit field_00C0;
+    SfdTimerTimeUnit video_start_time;
+    SfdTimerTimeUnit elapsed_time;
+    int start_time_value;
+    int start_time_scale;
+    int field_014C;
+    long long field_0150;
+    long long audio_start_pts;
+    SfdTimerSampleHistory sample_history;
+    SfdTimerSampleWindow sample_window;
+    int video_end_time_value;
+    int video_end_time_scale;
+    int field_0284;
+    int field_0288;
+    int current_time_value;
+    int current_time_scale;
+    int interval_time_last;
+    int interval_time_estimate;
+    int interval_time_max;
+    int interval_time_min;
+    int field_02A4;
+    int video_clock_sample;
+    int speed;
+    int field_02B0;
+    int field_02B4;
+    int field_02B8;
+    int frame_time_repeat_count;
+    float previous_frame_time;
+    int previous_frame_ready;
+    float last_frame_time;
+    int field_02CC;
+    int previous_clock_sample;
+    SfdExternalClockFn external_clock_callback;
+    int previous_external_sample;
+    int current_clock_sample;
+    int clock_sample_scale;
+    int external_clock_wrap;
+    SfdCallbackObject external_clock_object;
+    unsigned char unknown_02EC[0x2C4];
+    unsigned int video_pts[3];
+    unsigned char unknown_05BC[0x24];
+} mwSfdDestroy_SfdTimerState;
+
+typedef struct mwSfdDestroy_SJ mwSfdDestroy_SJ;
+
+typedef struct mwSfdDestroy_SJInterface mwSfdDestroy_SJInterface;
+
+struct mwSfdDestroy_SJInterface {
+    void *reserved[3];
+    void (*destroy)(mwSfdDestroy_SJ *sj);
+    const void *(*get_uuid)(mwSfdDestroy_SJ *sj);
+    void (*reset)(mwSfdDestroy_SJ *sj);
+    void (*get_chunk)(mwSfdDestroy_SJ *sj, int channel, int max_size, SJCK *chunk);
+    void (*unget_chunk)(mwSfdDestroy_SJ *sj, int channel, SJCK *chunk);
+    void (*put_chunk)(mwSfdDestroy_SJ *sj, int channel, SJCK *chunk);
+    int (*get_num_data)(mwSfdDestroy_SJ *sj, int channel);
+    int (*is_get_chunk)(mwSfdDestroy_SJ *sj, int channel, int size, int *available);
+    void (*entry_error_func)(mwSfdDestroy_SJ *sj, SJErrorCallback callback, void *object);
+};
+
+struct mwSfdDestroy_SJ {
+    const mwSfdDestroy_SJInterface *interface;
+};
+
+typedef struct mwSfdDestroy_SfdBufferRingWork {
+    int field_00;
+    mwSfdDestroy_SJ *stream_joint;
+    unsigned char *buffer;
+    int buffer_size;
+    int field_10;
+    int field_14;
+    unsigned char *delimiter_position;
+    unsigned char *delimiter_end;
+    int write_total;
+    int read_total;
+    SfdPtsQueue pts_queue;
+} mwSfdDestroy_SfdBufferRingWork;
+
+typedef void (*mwSfdDestroy_SfdBufferHandleCallback)(mwSfdDestroy_SfdHandle *handle, int stream_index);
+
+typedef struct mwSfdDestroy_SfdBufferChannel {
+    mwSfdDestroy_SJ *stream_joint;
+    SfdCallbackObject object;
+    mwSfdDestroy_SfdBufferHandleCallback handle_callback;
+    SfdBufferObjectCallback object_callback;
+} mwSfdDestroy_SfdBufferChannel;
+
+typedef union mwSfdDestroy_SfdBufferWork {
+    mwSfdDestroy_SfdBufferRingWork ring;
+    SfdBufferLinearWork linear;
+    mwSfdDestroy_SfdBufferChannel user_channels[3];
+    unsigned char raw[0x3C];
+} mwSfdDestroy_SfdBufferWork;
+
+typedef struct mwSfdDestroy_SfdBufferState {
+    int storage_mode;
+    int active;
+    int prepared;
+    int terminated;
+    mwSfdDestroy_SfdBufferWork work;
+    int input_transport;
+    int output_transport;
+    unsigned char unknown_0054[0x20];
+} mwSfdDestroy_SfdBufferState;
+
+typedef struct mwSfdDestroy_SfdTransportState {
+    int prepared;
+    int terminated;
+    void *context;
+    const mwSfdDestroy_SfdTransportInterface *interface;
+    int parameter_10;
+    int parameter_14;
+    int parameter_18;
+    int parameter_1C;
+    int state;
+    unsigned char unknown_0024[0x20];
+} mwSfdDestroy_SfdTransportState;
+
+typedef struct mwSfdDestroy_SfdAudioOutputCallbacks mwSfdDestroy_SfdAudioOutputCallbacks;
+
+typedef void (*mwSfdDestroy_SfdAudioSetPanFn)(mwSfdDestroy_SfdHandle *, int, int, mwSfdDestroy_SfdAudioOutputCallbacks *);
+
+typedef int (*mwSfdDestroy_SfdAudioGetPanFn)(mwSfdDestroy_SfdHandle *, int, mwSfdDestroy_SfdAudioOutputCallbacks *);
+
+typedef void (*mwSfdDestroy_SfdAudioSetVolumeFn)(mwSfdDestroy_SfdHandle *, int, mwSfdDestroy_SfdAudioOutputCallbacks *);
+
+typedef int (*mwSfdDestroy_SfdAudioGetVolumeFn)(mwSfdDestroy_SfdHandle *, mwSfdDestroy_SfdAudioOutputCallbacks *);
+
+typedef void (*mwSfdDestroy_SfdAudioSetSpeedFn)(mwSfdDestroy_SfdHandle *, int);
+
+struct mwSfdDestroy_SfdAudioOutputCallbacks {
+    int reserved_00;
+    mwSfdDestroy_SfdAudioSetPanFn set_pan;
+    mwSfdDestroy_SfdAudioGetPanFn get_pan;
+    mwSfdDestroy_SfdAudioSetVolumeFn set_volume;
+    mwSfdDestroy_SfdAudioGetVolumeFn get_volume;
+    mwSfdDestroy_SfdAudioSetSpeedFn set_speed;
+    int reserved_18;
+};
+
+typedef struct mwSfdDestroy_SfdUserOutputWork {
+    int state;
+    mwSfdDestroy_SfdBufferChannel channels[3];
+} mwSfdDestroy_SfdUserOutputWork;
+
+typedef struct mwSfdDestroy_SfdSeekState {
+    mwSfdDestroy_SfdHandle *source_handle;
+    int field_04;
+    int field_08;
+    int field_0C;
+} mwSfdDestroy_SfdSeekState;
+
+struct mwSfdDestroy_SfdHandle {
+    mwSfdDestroy_SfdCreateConfig create_config;
+    int field_0044;
+    int playback_state;
+    int requested_state;
+    int field_0050;
+    int field_0054;
+    unsigned char unknown_0058[0x20];
+    SfdHeaderState header_state;
+    unsigned char unknown_010C[0x800];
+    SfdPlaybackSettings playback_settings;
+    int field_094C;
+    SfdPlaybackRuntime playback_runtime;
+    SfdErrorInfo error_info;
+    SfdConditionValue conditions_primary[100];
+    SfdConditionValue conditions_secondary[100];
+    int field_0D24;
+    mwSfdDestroy_SfdTimerState timer_state;
+    mwSfdDestroy_SfdBufferState buffers[8];
+    SfdVideoFrameState video_frames[16];
+    mwSfdDestroy_SfdTransportState transports[9];
+    unsigned char unknown_218C[4];
+    unsigned char mps_work_storage[0x168];
+    unsigned char unknown_22F8[0xA8];
+    unsigned char mpv_work_storage[0xF80];
+    unsigned char unknown_3320[0x154];
+    mwSfdDestroy_SfdAudioOutputCallbacks audio_output_callbacks;
+    mwSfdDestroy_SfdUserOutputWork user_output_work;
+    int field_34C4;
+    mwSfdDestroy_SfdSeekState seek_state;
+    SfdTimerSummary timer_summaries[6];
+};
+
+typedef struct mwSfdDestroy_MwsStHandle {
+    int active;
+    unsigned char reserved_004[8];
+    mwSfdDestroy_SJ *stream;
+    int element_id;
+    void *backend;
+} mwSfdDestroy_MwsStHandle;
+
+typedef struct mwSfdDestroy_MwsPlayer mwSfdDestroy_MwsPlayer;
+
+struct mwSfdDestroy_MwsPlayer {
+    const void *interface;
+    int active;
+    int status;
+    int file_type;
+    int maximum_bps;
+    int width;
+    int height;
+    int frame_count;
+    int decoder_count;
+    void *create_work;
+    int create_work_size;
+    int composition_mode;
+    int buffer_format;
+    int create_field_28;
+    int create_field_2C;
+    int playback_mode;
+    mwSfdDestroy_SfdHandle *sfd;
+    void *stream;
+    void *transport;
+    LSC *loader;
+    int field_050;
+    int field_054;
+    int field_058;
+    int flow_limit;
+    int field_060;
+    unsigned char reserved_064[8];
+    int field_06C;
+    int field_070;
+    signed char concat_play;
+    signed char concat_stopped;
+    signed char paused;
+    unsigned char field_077;
+    int entry_count;
+    unsigned char reserved_07C[12];
+    int field_088;
+    unsigned char reserved_08C[28];
+    SFXHandle *sfx;
+    void *composition_work;
+    int composition_work_size;
+    unsigned char reserved_0B8[8];
+    MwsPictureUserConfig internal_picture_user;
+    unsigned char reserved_170[12];
+    MwsPictureUserConfig *picture_user;
+    void *picture_user_work;
+    int picture_user_header_size;
+    int picture_user_write;
+    int picture_user_read;
+    mwSfdDestroy_SJ *additional_info_sj;
+    void *additional_info_buffer;
+    int additional_info_buffer_size;
+    unsigned char reserved_19C[0x1C];
+    char *filename;
+    int filename_capacity;
+    int start_requested;
+    int file_offset;
+    int file_length;
+    int file_end_position;
+    mwSfdDestroy_SJ *supply_sj;
+    mwSfdDestroy_SJ *input_sj;
+    void *input_buffer;
+    int input_buffer_size;
+    int input_buffer_extra_size;
+    int supply_mode;
+    void *supply_buffer;
+    int supply_buffer_size;
+    int supply_buffer_extra_size;
+    mwSfdDestroy_SJ *memory_sj;
+    void *memory_buffer;
+    int memory_buffer_size;
+    void *arena;
+    unsigned int arena_size;
+    unsigned char *arena_cursor;
+    unsigned int arena_used;
+    int allocation_count;
+    void *allocations[32];
+    mwSfdDestroy_MwsStHandle sound;
+    unsigned char reserved_2AC[32];
+    int sound_state;
+};
+
+typedef struct mwSfdDestroy_MwsLibraryWork {
+    int field_00;
+    float frame_rate;
+    int maximum_width;
+    int decoder_count;
+    int field_10;
+    unsigned char reserved_014[0x14];
+    mwSfdDestroy_MwsMallocFn malloc_fn;
+    mwSfdDestroy_MwsFreeFn free_fn;
+    void *allocator_object;
+    unsigned char reserved_034[4];
+    int use_picture_user_data;
+    int pause_border;
+    unsigned char reserved_040[0x1C];
+    int field_5C;
+    unsigned char reserved_060[8];
+    int error_code;
+    mwSfdDestroy_MwsPlayer players[8];
+} mwSfdDestroy_MwsLibraryWork;
+
 typedef struct Sig_fn_12_23E0C_MovieState {
     u8 unk_00;
     u8 unk_01;
@@ -33,6 +799,462 @@ typedef struct Sig_fn_12_23E0C_MovieState {
     s32 unk_14;
     s32 unk_18;
 } Sig_fn_12_23E0C_MovieState;
+
+typedef struct fn_12_364CC_MwsPlayerInterface {
+    void *reserved[3];
+} fn_12_364CC_MwsPlayerInterface;
+
+typedef struct mwSfdDestroy_MwsPlayerInterface {
+    void *reserved[3];
+    void (*vsync)(void);
+    int (*exec_server)(mwSfdDestroy_MwsPlayer *);
+    void (*destroy)(mwSfdDestroy_MwsPlayer *);
+    void (*start_filename)(mwSfdDestroy_MwsPlayer *, const char *);
+    void (*stop)(mwSfdDestroy_MwsPlayer *);
+    int (*get_status)(mwSfdDestroy_MwsPlayer *);
+    void (*get_time)(mwSfdDestroy_MwsPlayer *, int *, int *);
+    void (*pause)(mwSfdDestroy_MwsPlayer *, int);
+    void (*set_volume)(mwSfdDestroy_MwsPlayer *, int);
+    int (*get_volume)(mwSfdDestroy_MwsPlayer *);
+    void (*set_pan)(mwSfdDestroy_MwsPlayer *, int);
+    int (*get_pan)(mwSfdDestroy_MwsPlayer *);
+    void (*start_sj)(mwSfdDestroy_MwsPlayer *, mwSfdDestroy_SJ *);
+    void (*start_memory)(mwSfdDestroy_MwsPlayer *, void *, int);
+} mwSfdDestroy_MwsPlayerInterface;
+
+struct mwsfdcre____rodata_0 {
+    unsigned char padding_0[580];
+    const char picture_user_internal_error[54];
+    unsigned char padding_670[2];
+    const char create_picture_short_message[58];
+    unsigned char padding_730[162];
+    const char reset_stop_failed[49];
+    unsigned char padding_937[3];
+    const char reset_error_callback_failed[53];
+};
+
+typedef struct MovieState {
+    u8 pad_20[0x20];
+    s32 state;
+} MovieState;
+
+typedef struct MWSFCRE_ResetSfdHn_SfdHandle MWSFCRE_ResetSfdHn_SfdHandle;
+
+typedef int (*MWSFCRE_ResetSfdHn_SfdTransportLifecycleFn)(MWSFCRE_ResetSfdHn_SfdHandle *handle);
+
+typedef int (*MWSFCRE_ResetSfdHn_SfdTransportPauseFn)(MWSFCRE_ResetSfdHn_SfdHandle *handle, int state);
+
+typedef int (*MWSFCRE_ResetSfdHn_SfdTransportBufferFn)(MWSFCRE_ResetSfdHn_SfdHandle *handle, void *buffer);
+
+typedef int (*MWSFCRE_ResetSfdHn_SfdTransportTransferFn)(MWSFCRE_ResetSfdHn_SfdHandle *handle, SfdTransportValue parameter, int value);
+
+typedef struct MWSFCRE_ResetSfdHn_SfdTransportInterface MWSFCRE_ResetSfdHn_SfdTransportInterface;
+
+struct MWSFCRE_ResetSfdHn_SfdTransportInterface {
+    MWSFCRE_ResetSfdHn_SfdTransportLifecycleFn init;
+    MWSFCRE_ResetSfdHn_SfdTransportLifecycleFn finish;
+    MWSFCRE_ResetSfdHn_SfdTransportLifecycleFn exec_server;
+    MWSFCRE_ResetSfdHn_SfdTransportLifecycleFn create;
+    MWSFCRE_ResetSfdHn_SfdTransportLifecycleFn destroy;
+    MWSFCRE_ResetSfdHn_SfdTransportLifecycleFn standby;
+    MWSFCRE_ResetSfdHn_SfdTransportLifecycleFn start;
+    MWSFCRE_ResetSfdHn_SfdTransportLifecycleFn stop;
+    MWSFCRE_ResetSfdHn_SfdTransportPauseFn pause;
+    MWSFCRE_ResetSfdHn_SfdTransportBufferFn get_write;
+    MWSFCRE_ResetSfdHn_SfdTransportTransferFn add_write;
+    MWSFCRE_ResetSfdHn_SfdTransportBufferFn get_read;
+    MWSFCRE_ResetSfdHn_SfdTransportTransferFn add_read;
+    MWSFCRE_ResetSfdHn_SfdTransportTransferFn seek;
+};
+
+typedef struct MWSFCRE_ResetSfdHn_SfdTransportSetup MWSFCRE_ResetSfdHn_SfdTransportSetup;
+
+struct MWSFCRE_ResetSfdHn_SfdTransportSetup {
+    const MWSFCRE_ResetSfdHn_SfdTransportInterface *entries[9];
+};
+
+typedef struct MWSFCRE_ResetSfdHn_SfdBufferCreateConfig {
+    const MWSFCRE_ResetSfdHn_SfdTransportSetup *transport_setup;
+    unsigned char *memory;
+    int buffer_sizes[7];
+    int field_24;
+    int ring_alignment;
+} MWSFCRE_ResetSfdHn_SfdBufferCreateConfig;
+
+typedef struct MWSFCRE_ResetSfdHn_SfdCreateConfig {
+    MWSFCRE_ResetSfdHn_SfdBufferCreateConfig buffer;
+    int picture_user_buffer_minimum;
+    int maximum_width;
+    int maximum_height;
+    int video_output_format;
+    unsigned char *handle_memory;
+    int handle_memory_size;
+} MWSFCRE_ResetSfdHn_SfdCreateConfig;
+
+typedef int (*MWSFCRE_ResetSfdHn_SfdTimeSourceFn)(MWSFCRE_ResetSfdHn_SfdHandle *handle, int *value, int *scale);
+
+typedef int (*MWSFCRE_ResetSfdHn_SfdUserIsSkipFn)(MWSFCRE_ResetSfdHn_SfdHandle *handle, int picture_type, int value, int scale);
+
+typedef struct MWSFCRE_ResetSfdHn_SfdTimerSkipState {
+    MWSFCRE_ResetSfdHn_SfdUserIsSkipFn callback;
+    int fields_04[7];
+    unsigned short field_20;
+    unsigned short field_22;
+    int value;
+    int scale;
+} MWSFCRE_ResetSfdHn_SfdTimerSkipState;
+
+typedef struct MWSFCRE_ResetSfdHn_SfdTimerState {
+    MWSFCRE_ResetSfdHn_SfdTimeSourceFn time_sources[6];
+    MWSFCRE_ResetSfdHn_SfdTimerSkipState skip_state;
+    SfdTimerCompactTimeUnit compact_time;
+    SfdTimerTimeUnit field_0068;
+    SfdTimerStreamTimeUnit stream_time;
+    SfdTimerTimeUnit field_00C0;
+    SfdTimerTimeUnit video_start_time;
+    SfdTimerTimeUnit elapsed_time;
+    int start_time_value;
+    int start_time_scale;
+    int field_014C;
+    long long field_0150;
+    long long audio_start_pts;
+    SfdTimerSampleHistory sample_history;
+    SfdTimerSampleWindow sample_window;
+    int video_end_time_value;
+    int video_end_time_scale;
+    int field_0284;
+    int field_0288;
+    int current_time_value;
+    int current_time_scale;
+    int interval_time_last;
+    int interval_time_estimate;
+    int interval_time_max;
+    int interval_time_min;
+    int field_02A4;
+    int video_clock_sample;
+    int speed;
+    int field_02B0;
+    int field_02B4;
+    int field_02B8;
+    int frame_time_repeat_count;
+    float previous_frame_time;
+    int previous_frame_ready;
+    float last_frame_time;
+    int field_02CC;
+    int previous_clock_sample;
+    SfdExternalClockFn external_clock_callback;
+    int previous_external_sample;
+    int current_clock_sample;
+    int clock_sample_scale;
+    int external_clock_wrap;
+    SfdCallbackObject external_clock_object;
+    unsigned char unknown_02EC[0x2C4];
+    unsigned int video_pts[3];
+    unsigned char unknown_05BC[0x24];
+} MWSFCRE_ResetSfdHn_SfdTimerState;
+
+typedef struct MWSFCRE_ResetSfdHn_SJ MWSFCRE_ResetSfdHn_SJ;
+
+typedef struct MWSFCRE_ResetSfdHn_SJInterface MWSFCRE_ResetSfdHn_SJInterface;
+
+struct MWSFCRE_ResetSfdHn_SJInterface {
+    void *reserved[3];
+    void (*destroy)(MWSFCRE_ResetSfdHn_SJ *sj);
+    const void *(*get_uuid)(MWSFCRE_ResetSfdHn_SJ *sj);
+    void (*reset)(MWSFCRE_ResetSfdHn_SJ *sj);
+    void (*get_chunk)(MWSFCRE_ResetSfdHn_SJ *sj, int channel, int max_size, SJCK *chunk);
+    void (*unget_chunk)(MWSFCRE_ResetSfdHn_SJ *sj, int channel, SJCK *chunk);
+    void (*put_chunk)(MWSFCRE_ResetSfdHn_SJ *sj, int channel, SJCK *chunk);
+    int (*get_num_data)(MWSFCRE_ResetSfdHn_SJ *sj, int channel);
+    int (*is_get_chunk)(MWSFCRE_ResetSfdHn_SJ *sj, int channel, int size, int *available);
+    void (*entry_error_func)(MWSFCRE_ResetSfdHn_SJ *sj, SJErrorCallback callback, void *object);
+};
+
+struct MWSFCRE_ResetSfdHn_SJ {
+    const MWSFCRE_ResetSfdHn_SJInterface *interface;
+};
+
+typedef struct MWSFCRE_ResetSfdHn_SfdBufferRingWork {
+    int field_00;
+    MWSFCRE_ResetSfdHn_SJ *stream_joint;
+    unsigned char *buffer;
+    int buffer_size;
+    int field_10;
+    int field_14;
+    unsigned char *delimiter_position;
+    unsigned char *delimiter_end;
+    int write_total;
+    int read_total;
+    SfdPtsQueue pts_queue;
+} MWSFCRE_ResetSfdHn_SfdBufferRingWork;
+
+typedef void (*MWSFCRE_ResetSfdHn_SfdBufferHandleCallback)(MWSFCRE_ResetSfdHn_SfdHandle *handle, int stream_index);
+
+typedef struct MWSFCRE_ResetSfdHn_SfdBufferChannel {
+    MWSFCRE_ResetSfdHn_SJ *stream_joint;
+    SfdCallbackObject object;
+    MWSFCRE_ResetSfdHn_SfdBufferHandleCallback handle_callback;
+    SfdBufferObjectCallback object_callback;
+} MWSFCRE_ResetSfdHn_SfdBufferChannel;
+
+typedef union MWSFCRE_ResetSfdHn_SfdBufferWork {
+    MWSFCRE_ResetSfdHn_SfdBufferRingWork ring;
+    SfdBufferLinearWork linear;
+    MWSFCRE_ResetSfdHn_SfdBufferChannel user_channels[3];
+    unsigned char raw[0x3C];
+} MWSFCRE_ResetSfdHn_SfdBufferWork;
+
+typedef struct MWSFCRE_ResetSfdHn_SfdBufferState {
+    int storage_mode;
+    int active;
+    int prepared;
+    int terminated;
+    MWSFCRE_ResetSfdHn_SfdBufferWork work;
+    int input_transport;
+    int output_transport;
+    unsigned char unknown_0054[0x20];
+} MWSFCRE_ResetSfdHn_SfdBufferState;
+
+typedef struct MWSFCRE_ResetSfdHn_SfdTransportState {
+    int prepared;
+    int terminated;
+    void *context;
+    const MWSFCRE_ResetSfdHn_SfdTransportInterface *interface;
+    int parameter_10;
+    int parameter_14;
+    int parameter_18;
+    int parameter_1C;
+    int state;
+    unsigned char unknown_0024[0x20];
+} MWSFCRE_ResetSfdHn_SfdTransportState;
+
+typedef struct MWSFCRE_ResetSfdHn_SfdAudioOutputCallbacks MWSFCRE_ResetSfdHn_SfdAudioOutputCallbacks;
+
+typedef void (*MWSFCRE_ResetSfdHn_SfdAudioSetPanFn)(MWSFCRE_ResetSfdHn_SfdHandle *, int, int, MWSFCRE_ResetSfdHn_SfdAudioOutputCallbacks *);
+
+typedef int (*MWSFCRE_ResetSfdHn_SfdAudioGetPanFn)(MWSFCRE_ResetSfdHn_SfdHandle *, int, MWSFCRE_ResetSfdHn_SfdAudioOutputCallbacks *);
+
+typedef void (*MWSFCRE_ResetSfdHn_SfdAudioSetVolumeFn)(MWSFCRE_ResetSfdHn_SfdHandle *, int, MWSFCRE_ResetSfdHn_SfdAudioOutputCallbacks *);
+
+typedef int (*MWSFCRE_ResetSfdHn_SfdAudioGetVolumeFn)(MWSFCRE_ResetSfdHn_SfdHandle *, MWSFCRE_ResetSfdHn_SfdAudioOutputCallbacks *);
+
+typedef void (*MWSFCRE_ResetSfdHn_SfdAudioSetSpeedFn)(MWSFCRE_ResetSfdHn_SfdHandle *, int);
+
+struct MWSFCRE_ResetSfdHn_SfdAudioOutputCallbacks {
+    int reserved_00;
+    MWSFCRE_ResetSfdHn_SfdAudioSetPanFn set_pan;
+    MWSFCRE_ResetSfdHn_SfdAudioGetPanFn get_pan;
+    MWSFCRE_ResetSfdHn_SfdAudioSetVolumeFn set_volume;
+    MWSFCRE_ResetSfdHn_SfdAudioGetVolumeFn get_volume;
+    MWSFCRE_ResetSfdHn_SfdAudioSetSpeedFn set_speed;
+    int reserved_18;
+};
+
+typedef struct MWSFCRE_ResetSfdHn_SfdUserOutputWork {
+    int state;
+    MWSFCRE_ResetSfdHn_SfdBufferChannel channels[3];
+} MWSFCRE_ResetSfdHn_SfdUserOutputWork;
+
+typedef struct MWSFCRE_ResetSfdHn_SfdSeekState {
+    MWSFCRE_ResetSfdHn_SfdHandle *source_handle;
+    int field_04;
+    int field_08;
+    int field_0C;
+} MWSFCRE_ResetSfdHn_SfdSeekState;
+
+struct MWSFCRE_ResetSfdHn_SfdHandle {
+    MWSFCRE_ResetSfdHn_SfdCreateConfig create_config;
+    int field_0044;
+    int playback_state;
+    int requested_state;
+    int field_0050;
+    int field_0054;
+    unsigned char unknown_0058[0x20];
+    SfdHeaderState header_state;
+    unsigned char unknown_010C[0x800];
+    SfdPlaybackSettings playback_settings;
+    int field_094C;
+    SfdPlaybackRuntime playback_runtime;
+    SfdErrorInfo error_info;
+    SfdConditionValue conditions_primary[100];
+    SfdConditionValue conditions_secondary[100];
+    int field_0D24;
+    MWSFCRE_ResetSfdHn_SfdTimerState timer_state;
+    MWSFCRE_ResetSfdHn_SfdBufferState buffers[8];
+    SfdVideoFrameState video_frames[16];
+    MWSFCRE_ResetSfdHn_SfdTransportState transports[9];
+    unsigned char unknown_218C[4];
+    unsigned char mps_work_storage[0x168];
+    unsigned char unknown_22F8[0xA8];
+    unsigned char mpv_work_storage[0xF80];
+    unsigned char unknown_3320[0x154];
+    MWSFCRE_ResetSfdHn_SfdAudioOutputCallbacks audio_output_callbacks;
+    MWSFCRE_ResetSfdHn_SfdUserOutputWork user_output_work;
+    int field_34C4;
+    MWSFCRE_ResetSfdHn_SfdSeekState seek_state;
+    SfdTimerSummary timer_summaries[6];
+};
+
+typedef struct fn_12_36208_MovieModule {
+    u8 pad_0[0x14];
+    u32 field_14;
+    u32 field_18;
+    u8 pad_1c[0x90];
+    u32 field_ac;
+    u32 field_b0;
+    u8 pad_b4[0x38];
+    u32 field_ec;
+    u32 field_f0;
+    u8 pad_f4[0x64];
+    u32 field_158;
+    u32 field_15c;
+    u32 field_160;
+    u32 field_164;
+    s32 count;
+    u32 arr[32];
+} fn_12_36208_MovieModule;
+
+struct fn_12_38340_Arg0 {
+ u8 pad_0[0x158];
+ u32 arena;
+ u32 capacity;
+ u32 current;
+ u32 used;
+ s32 count;
+ u32 unk_16C[32];
+};
+
+struct fn_12_38340_Arg1 {
+ u8 pad_0[8];
+ s32 unk_8;
+ s32 unk_C;
+};
+
+typedef struct SfdMpvParameters {
+    s32 chroma_width;
+    s32 chroma_height;
+    s32 width;
+    s32 height;
+    s32 reference_buffer;
+    s32 maximum_width;
+    int maximum_height;
+    s32 frame_count;
+    s32 frame_buffer;
+} SfdMpvParameters;
+
+typedef struct SfdAdxtParameters {
+    int stream_buffer_size;
+    int stream_buffer_extra_size;
+    void *stream_buffer;
+    int maximum_channels;
+    int decoder_work_size;
+    int decoder_buffer_size;
+    void *decoder_buffer;
+} SfdAdxtParameters;
+
+typedef struct MovieRequest {
+    u32 flags;
+    void* movie;
+    u32 data;
+    u32 data_size;
+    u32 data_type;
+    u32 data_flags;
+} MovieRequest;
+
+typedef struct fn_12_38704_MwsCreateParams {
+    int file_type;
+    int maximum_bps;
+    int width;
+    int height;
+    int frame_count;
+    int decoder_count;
+    void *work;
+    int work_size;
+    int composition_mode;
+    int buffer_format;
+} fn_12_38704_MwsCreateParams;
+extern void MWSFSVM_Error(const char *format, ...);
+extern u32 * fn_12_38DBC();
+extern char lbl_12_rodata_1E18[40];
+extern char lbl_12_rodata_1E40[41];
+extern void *memset(void *, int, unsigned long);
+extern void fn_12_23E0C(void *, void *, Sig_fn_12_23E0C_MovieState *);
+extern void fn_12_336CC(const void *data, u32 size, void *out);
+extern int fn_12_2B6B0(u32 arg0);
+extern s32 fn_12_38A0C(s32 arg);
+extern void fn_12_390E4(fn_12_364CC_MwsPlayer *);
+extern void fn_12_35484(fn_12_364CC_MwsPlayer *);
+extern void fn_12_3B15C(fn_12_364CC_MwsStHandle *);
+extern void fn_12_35D74();
+extern void fn_12_34F64();
+extern u32 fn_80057114(u32 arg0);
+extern const char lbl_12_rodata_1E6C[0x20];
+extern const char lbl_12_rodata_1E8C[];
+extern fn_12_364CC_MwsPlayerInterface lbl_12_data_D38;
+extern char lbl_12_rodata_1D88[];
+extern int fn_12_35DB4();
+extern s32 fn_12_35548(void *);
+extern u32 fn_12_38AE0(void);
+extern int fn_12_2A434(MWSFCRE_ResetSfdHn_SfdHandle *, void *, int, int);
+extern int fn_12_2D888(u8 *base, int index, int value);
+extern fn_12_364CC_SJ *fn_80058498(void *, int, int);
+extern fn_12_364CC_SJ *fn_80057B9C(void *, int);
+extern s32 fn_12_2D500(u32 arg0, u32 arg1, u32 arg2);
+extern void fn_12_3A968(fn_12_364CC_MwsPlayer *, int);
+extern void fn_12_3A960(fn_12_364CC_MwsPlayer *, int);
+extern void fn_12_34F84(int arg);
+extern void fn_12_38DC8(fn_12_364CC_MwsPlayer *);
+extern s32 fn_12_36208(fn_12_36208_MovieModule *m);
+extern void fn_12_35D94();
+extern void fn_12_356E8(fn_12_364CC_MwsPlayer *, int);
+extern fn_12_364CC_SJ *fn_12_354BC(fn_12_364CC_MwsPlayer *);
+extern int fn_12_35418(fn_12_364CC_MwsPlayer *);
+extern void fn_12_353FC(fn_12_364CC_MwsPlayer *);
+int fn_12_249BC(MWSFCRE_ResetSfdHn_SfdHandle *handle, SfdErrorCallback callback, SfdCallbackObject object);
+extern s32 fn_12_2B358(u32 arg0);
+extern void fn_12_388C4(SfdCallbackObject object, int error);
+extern void fn_12_3ABE0(void);
+extern void fn_12_3AA58(void);
+extern void mwSfdDestroy(mwSfdDestroy_MwsPlayer *player);
+extern void fn_12_39930(void *object, void *argument);
+extern void fn_12_3901C(void);
+extern void fn_12_3A264(void);
+extern void fn_12_39F48(void);
+extern void mwSfdPause(void);
+extern void fn_12_39EF8(void);
+extern void fn_12_39EA4(void);
+extern void fn_12_39E54(void);
+extern void fn_12_39E00(void);
+extern void fn_12_3916C(void);
+extern void fn_12_393F0(void);
+extern s32 fn_12_38340(struct fn_12_38340_Arg0 *arg0, struct fn_12_38340_Arg1 *arg1, u32 *arg2);
+extern void fn_12_2A6FC(SfdMpvParameters *, void **, void **);
+extern void fn_12_2145C(SfdAdxtParameters *);
+extern char lbl_12_rodata_1DF4[33];
+extern void fn_12_2B188(void *arg0, void *arg1);
+extern char lbl_12_rodata_221C[33];
+extern char lbl_12_rodata_2240[45];
+extern int fn_12_38704();
+extern const char lbl_12_rodata_2184[];
+
+/* fzgx:begin fn_12_35E34 */
+/* --- rel/movie_module/fn_12_35DDC.c --- */
+
+/* --- rel/movie_module/fn_12_35E34.c --- */
+
+void* fn_12_35E34(void* arg0, void* arg1, void* arg2) {
+    void* result;
+
+    result = ((void*)fn_12_38DBC(arg0));
+    *(void**)((u8*)result + 0x28) = arg0;
+    *(void**)((u8*)result + 0x2C) = arg1;
+    *(void**)((u8*)result + 0x30) = arg2;
+    return result;
+}
+/* fzgx:end fn_12_35E34 */
+
+/* fzgx:begin fn_12_35E84 */
+/* --- rel/movie_module/fn_12_35E84.c --- */
 
 typedef struct OutBlock {
     s32 f0;
@@ -45,11 +1267,6 @@ typedef struct OutBlock {
     s32 f7;
 } OutBlock;
 
-extern char lbl_12_rodata_1E18[40];
-extern char lbl_12_rodata_1E40[41];
-extern void * memset(void *, int, u32);
-extern void fn_12_23E0C(void *, void *, Sig_fn_12_23E0C_MovieState *);
-extern void fn_12_336CC(const void *, u32, void *);
 
 void fn_12_35E84(u32 arg0, s32 arg1, void *arg2) {
     u32 x;
@@ -107,620 +1324,51 @@ void fn_12_35E84(u32 arg0, s32 arg1, void *arg2) {
 }
 /* fzgx:end fn_12_35E84 */
 
-/* fzgx:begin mwSfdDestroy noprologue */
-
-#include "types.h"
-
-typedef struct SJCK {
-    unsigned char *data;
-    int len;
-} SJCK;
-
-typedef struct SJ SJ;
-
-typedef struct SJInterface SJInterface;
-
-typedef void (*SJErrorCallback)(void *object, int error);
-
-struct SJInterface {
-    void *reserved[3];
-    void (*destroy)(SJ *sj);
-    const void *(*get_uuid)(SJ *sj);
-    void (*reset)(SJ *sj);
-    void (*get_chunk)(SJ *sj, int channel, int max_size, SJCK *chunk);
-    void (*unget_chunk)(SJ *sj, int channel, SJCK *chunk);
-    void (*put_chunk)(SJ *sj, int channel, SJCK *chunk);
-    int (*get_num_data)(SJ *sj, int channel);
-    int (*is_get_chunk)(SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(SJ *sj, SJErrorCallback callback, void *object);
-};
-
-struct SJ {
-    const SJInterface *interface;
-};
-
-typedef int SfdCallbackObject;
-
-typedef int SfdConditionValue;
-
-typedef int SfdTransportValue;
-
-typedef struct SfdHandle SfdHandle;
-
-typedef int (*SfdUserIsSkipFn)(SfdHandle *handle, int picture_type, int value, int scale);
-
-typedef int (*SfdTimeSourceFn)(SfdHandle *handle, int *value, int *scale);
-
-typedef struct SfdPlaybackSettings {
-    int values_00[5];
-    int frame_rate_code;
-    int values_18[10];
-} SfdPlaybackSettings;
-
-typedef struct SfdPlaybackRuntime {
-    int decoded_pictures;
-    int skipped_pictures;
-    int field_08;
-    int field_0C;
-    int field_10;
-    int field_14;
-    int frame_outstanding;
-    int field_1C;
-    int field_20;
-    int field_24;
-    int field_28;
-    int field_2C;
-    union {
-        long long time_values[12];
-        struct {
-            long long reserved_time_values[3];
-            struct {
-                int high;
-                unsigned int low;
-            } input_flow;
-            long long remaining_time_values[8];
-        } timing;
-    };
-    int tail_values[4];
-} SfdPlaybackRuntime;
-
-typedef struct SfdTimerTimeUnit {
-    int active;
-    int fields_04[7];
-    unsigned short field_20;
-    unsigned short field_22;
-    int value;
-    int scale;
-} SfdTimerTimeUnit;
-
-typedef struct SfdTimerSkipState {
-    SfdUserIsSkipFn callback;
-    int fields_04[7];
-    unsigned short field_20;
-    unsigned short field_22;
-    int value;
-    int scale;
-} SfdTimerSkipState;
-
-typedef struct SfdTimerCompactTimeUnit {
-    int fields_00[6];
-    unsigned short field_18;
-    unsigned short field_1A;
-    int value;
-    int scale;
-} SfdTimerCompactTimeUnit;
-
-typedef struct SfdTimerStreamTimeUnit {
-    int active;
-    int field_04;
-    int file_size;
-    int total_time_value;
-    int total_time_scale;
-    int byte_rate;
-    int seek_position;
-    int field_1C;
-    unsigned short field_20;
-    unsigned short field_22;
-    int value;
-    int scale;
-} SfdTimerStreamTimeUnit;
-
-typedef struct SfdTimerSampleHistory {
-    int fields_00[3];
-    int samples[32];
-} SfdTimerSampleHistory;
-
-typedef struct SfdTimerSampleWindow {
-    int enabled;
-    int fields_04[3];
-    int samples[32];
-} SfdTimerSampleWindow;
-
-typedef int (*SfdExternalClockFn)(SfdCallbackObject object, int *value, int *scale);
-
-typedef struct SfdTimerState {
-    SfdTimeSourceFn time_sources[6];
-    SfdTimerSkipState skip_state;
-    SfdTimerCompactTimeUnit compact_time;
-    SfdTimerTimeUnit field_0068;
-    SfdTimerStreamTimeUnit stream_time;
-    SfdTimerTimeUnit field_00C0;
-    SfdTimerTimeUnit video_start_time;
-    SfdTimerTimeUnit elapsed_time;
-    int start_time_value;
-    int start_time_scale;
-    int field_014C;
-    long long field_0150;
-    long long audio_start_pts;
-    SfdTimerSampleHistory sample_history;
-    SfdTimerSampleWindow sample_window;
-    int video_end_time_value;
-    int video_end_time_scale;
-    int field_0284;
-    int field_0288;
-    int current_time_value;
-    int current_time_scale;
-    int interval_time_last;
-    int interval_time_estimate;
-    int interval_time_max;
-    int interval_time_min;
-    int field_02A4;
-    int video_clock_sample;
-    int speed;
-    int field_02B0;
-    int field_02B4;
-    int field_02B8;
-    int frame_time_repeat_count;
-    float previous_frame_time;
-    int previous_frame_ready;
-    float last_frame_time;
-    int field_02CC;
-    int previous_clock_sample;
-    SfdExternalClockFn external_clock_callback;
-    int previous_external_sample;
-    int current_clock_sample;
-    int clock_sample_scale;
-    int external_clock_wrap;
-    SfdCallbackObject external_clock_object;
-    unsigned char unknown_02EC[0x2C4];
-    unsigned int video_pts[3];
-    unsigned char unknown_05BC[0x24];
-} SfdTimerState;
-
-typedef struct SfdSeekState {
-    SfdHandle *source_handle;
-    int field_04;
-    int field_08;
-    int field_0C;
-} SfdSeekState;
-
-typedef void (*SfdErrorCallback)(SfdCallbackObject object, int error);
-
-typedef struct SfdErrorInfo {
-    SfdErrorCallback callback;
-    SfdCallbackObject callback_object;
-    int first_error;
-    int field_0C;
-    int field_10;
-} SfdErrorInfo;
-
-typedef struct SfdHeaderState {
-    int field_00;
-    int field_04;
-    int field_08;
-    int field_0C;
-    unsigned char unknown_0010[0x6C];
-    int field_7C;
-    unsigned char unknown_0080[0x10];
-    int field_90;
-} SfdHeaderState;
-
-typedef struct SfdTimerSummary {
-    long long total;
-    long long minimum;
-    long long maximum;
-    int count;
-    int field_1C;
-} SfdTimerSummary;
-
-typedef struct SfdTransportInterface SfdTransportInterface;
-
-typedef struct SfdTransportSetup SfdTransportSetup;
-
-typedef struct SfdVideoFrameState SfdVideoFrameState;
-
-typedef void (*SfdBufferHandleCallback)(SfdHandle *handle, int stream_index);
-
-typedef void (*SfdBufferObjectCallback)(SfdCallbackObject object, int stream_index);
-
-typedef struct SfdBufferChannel {
-    SJ *stream_joint;
-    SfdCallbackObject object;
-    SfdBufferHandleCallback handle_callback;
-    SfdBufferObjectCallback object_callback;
-} SfdBufferChannel;
-
-typedef struct SfdPtsEntry {
-    long long pts;
-    unsigned char *data;
-    int size;
-} SfdPtsEntry;
-
-typedef struct SfdPtsQueue {
-    SfdPtsEntry *entries;
-    int capacity;
-    int count;
-    int write_index;
-    int read_index;
-} SfdPtsQueue;
-
-typedef struct SfdBufferRingWork {
-    int field_00;
-    SJ *stream_joint;
-    unsigned char *buffer;
-    int buffer_size;
-    int field_10;
-    int field_14;
-    unsigned char *delimiter_position;
-    unsigned char *delimiter_end;
-    int write_total;
-    int read_total;
-    SfdPtsQueue pts_queue;
-} SfdBufferRingWork;
-
-typedef struct SfdBufferLinearWork {
-    unsigned char *buffer;
-    int buffer_size;
-    int field_08;
-    int field_0C;
-    SfdVideoFrameState *video_frames;
-    int field_14;
-    int field_18;
-    int field_1C;
-    int field_20;
-    int field_24;
-    int field_28;
-    int field_2C;
-    int field_30;
-    int field_34;
-    int field_38;
-} SfdBufferLinearWork;
-
-typedef union SfdBufferWork {
-    SfdBufferRingWork ring;
-    SfdBufferLinearWork linear;
-    SfdBufferChannel user_channels[3];
-    unsigned char raw[0x3C];
-} SfdBufferWork;
-
-typedef int (*SfdTransportLifecycleFn)(SfdHandle *handle);
-
-typedef int (*SfdTransportPauseFn)(SfdHandle *handle, int state);
-
-typedef int (*SfdTransportTransferFn)(SfdHandle *handle, SfdTransportValue parameter, int value);
-
-typedef int (*SfdTransportBufferFn)(SfdHandle *handle, void *buffer);
-
-struct SfdTransportInterface {
-    SfdTransportLifecycleFn init;
-    SfdTransportLifecycleFn finish;
-    SfdTransportLifecycleFn exec_server;
-    SfdTransportLifecycleFn create;
-    SfdTransportLifecycleFn destroy;
-    SfdTransportLifecycleFn standby;
-    SfdTransportLifecycleFn start;
-    SfdTransportLifecycleFn stop;
-    SfdTransportPauseFn pause;
-    SfdTransportBufferFn get_write;
-    SfdTransportTransferFn add_write;
-    SfdTransportBufferFn get_read;
-    SfdTransportTransferFn add_read;
-    SfdTransportTransferFn seek;
-};
-
-typedef struct SfdBufferState {
-    int storage_mode;
-    int active;
-    int prepared;
-    int terminated;
-    SfdBufferWork work;
-    int input_transport;
-    int output_transport;
-    unsigned char unknown_0054[0x20];
-} SfdBufferState;
-
-typedef struct SfdVideoFrameInfo {
-    int width, height, macroblocks_per_row, macroblock_rows;
-    int picture_type;
-    int display_time_value, display_time_scale;
-    int output_format;
-    void *frame_buffer;
-    int field_24, field_28, picture_order, field_30, field_34;
-    void *picture_user_buffer;
-    int field_3C, field_40, reserved_44, display_mode, reserved_4C;
-    int field_50, field_54, field_58, field_5C, field_60, field_64;
-    short field_68, field_6A;
-    unsigned char fields_6C[0x0F];
-    unsigned char reserved_7B[5];
-} SfdVideoFrameInfo;
-
-struct SfdVideoFrameState {
-    int state;
-    int field_04;
-    union {
-        unsigned char payload[0x80];
-        SfdVideoFrameInfo info;
-    } data;
-};
-
-typedef struct SfdBufferCreateConfig {
-    const SfdTransportSetup *transport_setup;
-    unsigned char *memory;
-    int buffer_sizes[7];
-    int field_24;
-    int ring_alignment;
-} SfdBufferCreateConfig;
-
-typedef struct SfdCreateConfig {
-    SfdBufferCreateConfig buffer;
-    int picture_user_buffer_minimum;
-    int maximum_width;
-    int maximum_height;
-    int video_output_format;
-    unsigned char *handle_memory;
-    int handle_memory_size;
-} SfdCreateConfig;
-
-typedef struct SfdTransportState {
-    int prepared;
-    int terminated;
-    void *context;
-    const SfdTransportInterface *interface;
-    int parameter_10;
-    int parameter_14;
-    int parameter_18;
-    int parameter_1C;
-    int state;
-    unsigned char unknown_0024[0x20];
-} SfdTransportState;
-
-typedef struct SfdUserOutputWork {
-    int state;
-    SfdBufferChannel channels[3];
-} SfdUserOutputWork;
-
-struct SfdTransportSetup {
-    const SfdTransportInterface *entries[9];
-};
-
-typedef struct SfdAudioOutputCallbacks SfdAudioOutputCallbacks;
-
-typedef void (*SfdAudioSetPanFn)(SfdHandle *, int, int, SfdAudioOutputCallbacks *);
-
-typedef int (*SfdAudioGetPanFn)(SfdHandle *, int, SfdAudioOutputCallbacks *);
-
-typedef void (*SfdAudioSetVolumeFn)(SfdHandle *, int, SfdAudioOutputCallbacks *);
-
-typedef int (*SfdAudioGetVolumeFn)(SfdHandle *, SfdAudioOutputCallbacks *);
-
-typedef void (*SfdAudioSetSpeedFn)(SfdHandle *, int);
-
-struct SfdAudioOutputCallbacks {
-    int reserved_00;
-    SfdAudioSetPanFn set_pan;
-    SfdAudioGetPanFn get_pan;
-    SfdAudioSetVolumeFn set_volume;
-    SfdAudioGetVolumeFn get_volume;
-    SfdAudioSetSpeedFn set_speed;
-    int reserved_18;
-};
-
-struct SfdHandle {
-    SfdCreateConfig create_config;
-    int field_0044;
-    int playback_state;
-    int requested_state;
-    int field_0050;
-    int field_0054;
-    unsigned char unknown_0058[0x20];
-    SfdHeaderState header_state;
-    unsigned char unknown_010C[0x800];
-    SfdPlaybackSettings playback_settings;
-    int field_094C;
-    SfdPlaybackRuntime playback_runtime;
-    SfdErrorInfo error_info;
-    SfdConditionValue conditions_primary[100];
-    SfdConditionValue conditions_secondary[100];
-    int field_0D24;
-    SfdTimerState timer_state;
-    SfdBufferState buffers[8];
-    SfdVideoFrameState video_frames[16];
-    SfdTransportState transports[9];
-    unsigned char unknown_218C[4];
-    unsigned char mps_work_storage[0x168];
-    unsigned char unknown_22F8[0xA8];
-    unsigned char mpv_work_storage[0xF80];
-    unsigned char unknown_3320[0x154];
-    SfdAudioOutputCallbacks audio_output_callbacks;
-    SfdUserOutputWork user_output_work;
-    int field_34C4;
-    SfdSeekState seek_state;
-    SfdTimerSummary timer_summaries[6];
-};
-
-typedef struct LSC LSC;
-
-typedef struct SFXHandle SFXHandle;
-
-typedef struct MwsPlayer MwsPlayer;
-
-typedef void *(*MwsMallocFn)(void *, int);
-
-typedef void (*MwsFreeFn)(void *, void *);
-
-typedef struct MwsStHandle {
-    int active;
-    unsigned char reserved_004[8];
-    SJ *stream;
-    int element_id;
-    void *backend;
-} MwsStHandle;
-
-typedef struct MwsPictureUserConfig {
-    void *buffer;
-    int buffer_size;
-    int element_size;
-} MwsPictureUserConfig;
-
-struct MwsPlayer {
-    const void *interface;
-    int active;
-    int status;
-    int file_type;
-    int maximum_bps;
-    int width;
-    int height;
-    int frame_count;
-    int decoder_count;
-    void *create_work;
-    int create_work_size;
-    int composition_mode;
-    int buffer_format;
-    int create_field_28;
-    int create_field_2C;
-    int playback_mode;
-    SfdHandle *sfd;
-    void *stream;
-    void *transport;
-    LSC *loader;
-    int field_050;
-    int field_054;
-    int field_058;
-    int flow_limit;
-    int field_060;
-    unsigned char reserved_064[8];
-    int field_06C;
-    int field_070;
-    signed char concat_play;
-    signed char concat_stopped;
-    signed char paused;
-    unsigned char field_077;
-    int entry_count;
-    unsigned char reserved_07C[12];
-    int field_088;
-    unsigned char reserved_08C[28];
-    SFXHandle *sfx;
-    void *composition_work;
-    int composition_work_size;
-    unsigned char reserved_0B8[8];
-    MwsPictureUserConfig internal_picture_user;
-    unsigned char reserved_170[12];
-    MwsPictureUserConfig *picture_user;
-    void *picture_user_work;
-    int picture_user_header_size;
-    int picture_user_write;
-    int picture_user_read;
-    SJ *additional_info_sj;
-    void *additional_info_buffer;
-    int additional_info_buffer_size;
-    unsigned char reserved_19C[0x1C];
-    char *filename;
-    int filename_capacity;
-    int start_requested;
-    int file_offset;
-    int file_length;
-    int file_end_position;
-    SJ *supply_sj;
-    SJ *input_sj;
-    void *input_buffer;
-    int input_buffer_size;
-    int input_buffer_extra_size;
-    int supply_mode;
-    void *supply_buffer;
-    int supply_buffer_size;
-    int supply_buffer_extra_size;
-    SJ *memory_sj;
-    void *memory_buffer;
-    int memory_buffer_size;
-    void *arena;
-    unsigned int arena_size;
-    unsigned char *arena_cursor;
-    unsigned int arena_used;
-    int allocation_count;
-    void *allocations[32];
-    MwsStHandle sound;
-    unsigned char reserved_2AC[32];
-    int sound_state;
-};
-
-typedef struct MwsLibraryWork {
-    int field_00;
-    float frame_rate;
-    int maximum_width;
-    int decoder_count;
-    int field_10;
-    unsigned char reserved_014[0x14];
-    MwsMallocFn malloc_fn;
-    MwsFreeFn free_fn;
-    void *allocator_object;
-    unsigned char reserved_034[4];
-    int use_picture_user_data;
-    int pause_border;
-    unsigned char reserved_040[0x1C];
-    int field_5C;
-    unsigned char reserved_060[8];
-    int error_code;
-    MwsPlayer players[8];
-} MwsLibraryWork;
-
-typedef struct MwsPlayerInterface {
-    void *reserved[3];
-    void (*vsync)(void);
-    int (*exec_server)(MwsPlayer *);
-    void (*destroy)(MwsPlayer *);
-    void (*start_filename)(MwsPlayer *, const char *);
-    void (*stop)(MwsPlayer *);
-    int (*get_status)(MwsPlayer *);
-    void (*get_time)(MwsPlayer *, int *, int *);
-    void (*pause)(MwsPlayer *, int);
-    void (*set_volume)(MwsPlayer *, int);
-    int (*get_volume)(MwsPlayer *);
-    void (*set_pan)(MwsPlayer *, int);
-    int (*get_pan)(MwsPlayer *);
-    void (*start_sj)(MwsPlayer *, SJ *);
-    void (*start_memory)(MwsPlayer *, void *, int);
-} MwsPlayerInterface;
-
-void *memset(void *destination, int value, unsigned long size);
-
-int fn_12_2B6B0(SfdHandle *handle);
-
-extern MwsLibraryWork *fn_12_38DBC(void);
-
-extern int fn_12_38A0C(int);
-
-extern void MWSFSVM_Error(const char *, ...);
-
-extern void fn_12_390E4(MwsPlayer *);
-
-extern void fn_12_35484(MwsPlayer *);
-
-extern void fn_12_3B15C(MwsStHandle *);
-
-extern void fn_12_35D74(SFXHandle *);
-
-extern void fn_12_34F64(void *);
-
-extern void fn_80057114(LSC *);
-
-extern const char lbl_12_rodata_1E6C[0x20];
-
-extern const char lbl_12_rodata_1E8C[];
-
-extern MwsPlayerInterface lbl_12_data_D38;
-
-static inline void mwsfcre_FreeAll(MwsPlayer *player) {
-    MwsLibraryWork *work;
+/* fzgx:begin mwSfdDestroy */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+static inline void mwSfdDestroy_mwsfcre_FreeAll(mwSfdDestroy_MwsPlayer *player) {
+    mwSfdDestroy_MwsLibraryWork *work;
     int index;
     void *memory;
     for (index = 0; index < 32; index++) {
@@ -728,7 +1376,7 @@ static inline void mwsfcre_FreeAll(MwsPlayer *player) {
         memory = player->allocations[reverse_index];
         if (memory != 0) {
             if (player->arena == 0) {
-                work = fn_12_38DBC();
+                work = ((mwSfdDestroy_MwsLibraryWork *)fn_12_38DBC());
                 work->free_fn(work->allocator_object, memory);
             }
             player->allocation_count--;
@@ -737,86 +1385,48 @@ static inline void mwsfcre_FreeAll(MwsPlayer *player) {
     }
 }
 
-void mwSfdDestroy(MwsPlayer *player) {
+void mwSfdDestroy(mwSfdDestroy_MwsPlayer *player) {
     if (player != 0) {
-        fn_12_390E4(player);
+        fn_12_390E4( (fn_12_364CC_MwsPlayer *)(mwSfdDestroy_MwsPlayer *)(player));
         player->active = 0;
-        fn_12_35484(player);
+        fn_12_35484( (fn_12_364CC_MwsPlayer *)(mwSfdDestroy_MwsPlayer *)(player));
         if (player->sfx != 0)
             fn_12_35D74(player->sfx);
         if (player->loader != 0)
-            fn_80057114(player->loader);
+            fn_80057114( (u32)(LSC *)(player->loader));
         if (player->stream != 0)
             fn_12_34F64(player->stream);
         if (player->input_sj != 0)
             player->input_sj->interface->destroy(player->input_sj);
         if (player->memory_sj != 0)
             player->memory_sj->interface->destroy(player->memory_sj);
-        if (player->sfd != 0 && fn_12_2B6B0(player->sfd) != 0) {
+        if (player->sfd != 0 && fn_12_2B6B0( (u32)(mwSfdDestroy_SfdHandle *)(player->sfd)) != 0) {
             fn_12_38A0C(-0x132);
             MWSFSVM_Error(lbl_12_rodata_1E6C);
         }
-        fn_12_3B15C(&player->sound);
-        mwsfcre_FreeAll(player);
+        fn_12_3B15C( (fn_12_364CC_MwsStHandle *)(mwSfdDestroy_MwsStHandle *)(&player->sound));
+        mwSfdDestroy_mwsfcre_FreeAll(player);
         if (player->allocation_count != 0)
             MWSFSVM_Error(lbl_12_rodata_1E8C);
         memset(player, 0, sizeof(*player));
         player->active = 0;
-        player->interface = &lbl_12_data_D38;
+        player->interface = &(*((mwSfdDestroy_MwsPlayerInterface *)&lbl_12_data_D38));
     }
 }
 /* fzgx:end mwSfdDestroy */
 
-/* fzgx:begin fn_12_36208 noprologue */
-#include "types.h"
+/* fzgx:begin fn_12_36208 */
 
-extern char lbl_12_rodata_1D88[];
-extern void MWSFSVM_Error(const char *, ...);
 
-typedef u32 (*FnAlloc)(void *, s32);
-typedef void (*FnFree)(void *, u32);
 
-typedef struct AllocCtx {
-    u8 pad_0[0x28];
-    FnAlloc alloc;
-    FnFree free_fn;
-    void *data;
-} AllocCtx;
 
-typedef struct MovieState {
-    u8 pad_20[0x20];
-    s32 state;
-} MovieState;
-
-typedef struct MovieModule {
-    u8 pad_0[0x14];
-    u32 field_14;
-    u32 field_18;
-    u8 pad_1c[0x90];
-    u32 field_ac;
-    u32 field_b0;
-    u8 pad_b4[0x38];
-    u32 field_ec;
-    u32 field_f0;
-    u8 pad_f4[0x64];
-    u32 field_158;
-    u32 field_15c;
-    u32 field_160;
-    u32 field_164;
-    s32 count;
-    u32 arr[32];
-} MovieModule;
-
-typedef struct { MovieModule *value; } ModRef;
+typedef struct { fn_12_36208_MovieModule *value; } ModRef;
 typedef struct { const char *value; } MsgRef;
 
-extern s32 fn_12_35DB4(u32, u32);
-extern AllocCtx *fn_12_38DBC(void);
-extern s32 fn_12_35548(MovieState *);
 
 static inline FnFree fn_12_36208_read_pointer(AllocCtx * owner) { return owner->free_fn; }
 #pragma opt_dead_assignments off
-s32 fn_12_36208(MovieModule *m) {
+s32 fn_12_36208(fn_12_36208_MovieModule *m) {
     FnAlloc fzgx_live_;
     void * fzgx_live;
     MovieState *st;
@@ -855,7 +1465,7 @@ s32 fn_12_36208(MovieModule *m) {
                 mm.value->field_164 = mm.value->field_164 + off;
             }
         } else {
-            ctx = fn_12_38DBC();
+            ctx = ((AllocCtx *)fn_12_38DBC());
             fzgx_live_ = ctx->alloc;
             ptr = fzgx_live_((ctx->data), off);
         }
@@ -873,7 +1483,7 @@ s32 fn_12_36208(MovieModule *m) {
             p = *slot;
             if (((0) != (p))) {
                 if (mm.value->field_158 == 0) {
-                    ctx = fn_12_38DBC();
+                    ctx = ((AllocCtx *)fn_12_38DBC());
                     fzgx_live = ctx->data;
                     fn_12_36208_read_pointer(ctx)(fzgx_live, p);
                 }
@@ -887,7 +1497,7 @@ s32 fn_12_36208(MovieModule *m) {
     mm.value->field_ac = ptr;
     mm.value->field_b0 = off;
 
-    if (fn_12_35548(st) == 1) {
+    if (fn_12_35548( (void *)(MovieState *)(st)) == 1) {
         if (mm.value->count >= 32) {
             lab_t0 = msg.value + 0x6c;
             MWSFSVM_Error(lab_t0);
@@ -902,7 +1512,7 @@ s32 fn_12_36208(MovieModule *m) {
                     mm.value->field_164 = mm.value->field_164 + 0x20000;
                 }
             } else {
-                ctx = fn_12_38DBC();
+                ctx = ((AllocCtx *)fn_12_38DBC());
                 fzgx_live = ctx->data;
                 fzgx_live_ = ctx->alloc;
                 ptr2 = fzgx_live_(fzgx_live, 0x20000);
@@ -921,7 +1531,7 @@ s32 fn_12_36208(MovieModule *m) {
                 p = *slot_2;
                 if (((0) != (p))) {
                     if (mm.value->field_158 == 0) {
-                        ctx = fn_12_38DBC();
+                        ctx = ((AllocCtx *)fn_12_38DBC());
                         fzgx_live = ctx->data;
                         fn_12_36208_read_pointer(ctx)(fzgx_live, p);
                     }
@@ -942,8 +1552,6 @@ s32 fn_12_36208(MovieModule *m) {
     return 0;
 }
 #pragma opt_dead_assignments reset
-
-
 /* fzgx:end fn_12_36208 */
 
 /* fzgx:begin fn_12_364CC noprologue */
@@ -1415,468 +2023,49 @@ MwsPlayer *fn_12_364CC(MwsCreateParams *params) {
 }
 /* fzgx:end fn_12_364CC */
 
-/* fzgx:begin MWSFCRE_ResetSfdHn noprologue */
+/* fzgx:begin MWSFCRE_ResetSfdHn */
 
-#include "types.h"
 
-typedef struct SJCK {
-    unsigned char *data;
-    int len;
-} SJCK;
 
-typedef struct SJ SJ;
 
-typedef struct SJInterface SJInterface;
 
-typedef void (*SJErrorCallback)(void *object, int error);
 
-struct SJInterface {
-    void *reserved[3];
-    void (*destroy)(SJ *sj);
-    const void *(*get_uuid)(SJ *sj);
-    void (*reset)(SJ *sj);
-    void (*get_chunk)(SJ *sj, int channel, int max_size, SJCK *chunk);
-    void (*unget_chunk)(SJ *sj, int channel, SJCK *chunk);
-    void (*put_chunk)(SJ *sj, int channel, SJCK *chunk);
-    int (*get_num_data)(SJ *sj, int channel);
-    int (*is_get_chunk)(SJ *sj, int channel, int size, int *available);
-    void (*entry_error_func)(SJ *sj, SJErrorCallback callback, void *object);
-};
 
-struct SJ {
-    const SJInterface *interface;
-};
 
-typedef int SfdCallbackObject;
 
-typedef int SfdConditionValue;
 
-typedef int SfdTransportValue;
 
-typedef struct SfdHandle SfdHandle;
 
-typedef int (*SfdUserIsSkipFn)(SfdHandle *handle, int picture_type, int value, int scale);
 
-typedef int (*SfdTimeSourceFn)(SfdHandle *handle, int *value, int *scale);
 
-typedef struct SfdPlaybackSettings {
-    int values_00[5];
-    int frame_rate_code;
-    int values_18[10];
-} SfdPlaybackSettings;
 
-typedef struct SfdPlaybackRuntime {
-    int decoded_pictures;
-    int skipped_pictures;
-    int field_08;
-    int field_0C;
-    int field_10;
-    int field_14;
-    int frame_outstanding;
-    int field_1C;
-    int field_20;
-    int field_24;
-    int field_28;
-    int field_2C;
-    union {
-        long long time_values[12];
-        struct {
-            long long reserved_time_values[3];
-            struct {
-                int high;
-                unsigned int low;
-            } input_flow;
-            long long remaining_time_values[8];
-        } timing;
-    };
-    int tail_values[4];
-} SfdPlaybackRuntime;
 
-typedef struct SfdTimerTimeUnit {
-    int active;
-    int fields_04[7];
-    unsigned short field_20;
-    unsigned short field_22;
-    int value;
-    int scale;
-} SfdTimerTimeUnit;
 
-typedef struct SfdTimerSkipState {
-    SfdUserIsSkipFn callback;
-    int fields_04[7];
-    unsigned short field_20;
-    unsigned short field_22;
-    int value;
-    int scale;
-} SfdTimerSkipState;
 
-typedef struct SfdTimerCompactTimeUnit {
-    int fields_00[6];
-    unsigned short field_18;
-    unsigned short field_1A;
-    int value;
-    int scale;
-} SfdTimerCompactTimeUnit;
 
-typedef struct SfdTimerStreamTimeUnit {
-    int active;
-    int field_04;
-    int file_size;
-    int total_time_value;
-    int total_time_scale;
-    int byte_rate;
-    int seek_position;
-    int field_1C;
-    unsigned short field_20;
-    unsigned short field_22;
-    int value;
-    int scale;
-} SfdTimerStreamTimeUnit;
 
-typedef struct SfdTimerSampleHistory {
-    int fields_00[3];
-    int samples[32];
-} SfdTimerSampleHistory;
 
-typedef struct SfdTimerSampleWindow {
-    int enabled;
-    int fields_04[3];
-    int samples[32];
-} SfdTimerSampleWindow;
 
-typedef int (*SfdExternalClockFn)(SfdCallbackObject object, int *value, int *scale);
 
-typedef struct SfdTimerState {
-    SfdTimeSourceFn time_sources[6];
-    SfdTimerSkipState skip_state;
-    SfdTimerCompactTimeUnit compact_time;
-    SfdTimerTimeUnit field_0068;
-    SfdTimerStreamTimeUnit stream_time;
-    SfdTimerTimeUnit field_00C0;
-    SfdTimerTimeUnit video_start_time;
-    SfdTimerTimeUnit elapsed_time;
-    int start_time_value;
-    int start_time_scale;
-    int field_014C;
-    long long field_0150;
-    long long audio_start_pts;
-    SfdTimerSampleHistory sample_history;
-    SfdTimerSampleWindow sample_window;
-    int video_end_time_value;
-    int video_end_time_scale;
-    int field_0284;
-    int field_0288;
-    int current_time_value;
-    int current_time_scale;
-    int interval_time_last;
-    int interval_time_estimate;
-    int interval_time_max;
-    int interval_time_min;
-    int field_02A4;
-    int video_clock_sample;
-    int speed;
-    int field_02B0;
-    int field_02B4;
-    int field_02B8;
-    int frame_time_repeat_count;
-    float previous_frame_time;
-    int previous_frame_ready;
-    float last_frame_time;
-    int field_02CC;
-    int previous_clock_sample;
-    SfdExternalClockFn external_clock_callback;
-    int previous_external_sample;
-    int current_clock_sample;
-    int clock_sample_scale;
-    int external_clock_wrap;
-    SfdCallbackObject external_clock_object;
-    unsigned char unknown_02EC[0x2C4];
-    unsigned int video_pts[3];
-    unsigned char unknown_05BC[0x24];
-} SfdTimerState;
 
-typedef struct SfdSeekState {
-    SfdHandle *source_handle;
-    int field_04;
-    int field_08;
-    int field_0C;
-} SfdSeekState;
 
-typedef void (*SfdErrorCallback)(SfdCallbackObject object, int error);
-
-typedef struct SfdErrorInfo {
-    SfdErrorCallback callback;
-    SfdCallbackObject callback_object;
-    int first_error;
-    int field_0C;
-    int field_10;
-} SfdErrorInfo;
-
-typedef struct SfdHeaderState {
-    int field_00;
-    int field_04;
-    int field_08;
-    int field_0C;
-    unsigned char unknown_0010[0x6C];
-    int field_7C;
-    unsigned char unknown_0080[0x10];
-    int field_90;
-} SfdHeaderState;
-
-typedef struct SfdTimerSummary {
-    long long total;
-    long long minimum;
-    long long maximum;
-    int count;
-    int field_1C;
-} SfdTimerSummary;
-
-typedef struct SfdTransportInterface SfdTransportInterface;
-
-typedef struct SfdTransportSetup SfdTransportSetup;
-
-typedef struct SfdVideoFrameState SfdVideoFrameState;
-
-typedef void (*SfdBufferHandleCallback)(SfdHandle *handle, int stream_index);
-
-typedef void (*SfdBufferObjectCallback)(SfdCallbackObject object, int stream_index);
-
-typedef struct SfdBufferChannel {
-    SJ *stream_joint;
-    SfdCallbackObject object;
-    SfdBufferHandleCallback handle_callback;
-    SfdBufferObjectCallback object_callback;
-} SfdBufferChannel;
-
-typedef struct SfdPtsEntry {
-    long long pts;
-    unsigned char *data;
-    int size;
-} SfdPtsEntry;
-
-typedef struct SfdPtsQueue {
-    SfdPtsEntry *entries;
-    int capacity;
-    int count;
-    int write_index;
-    int read_index;
-} SfdPtsQueue;
-
-typedef struct SfdBufferRingWork {
-    int field_00;
-    SJ *stream_joint;
-    unsigned char *buffer;
-    int buffer_size;
-    int field_10;
-    int field_14;
-    unsigned char *delimiter_position;
-    unsigned char *delimiter_end;
-    int write_total;
-    int read_total;
-    SfdPtsQueue pts_queue;
-} SfdBufferRingWork;
-
-typedef struct SfdBufferLinearWork {
-    unsigned char *buffer;
-    int buffer_size;
-    int field_08;
-    int field_0C;
-    SfdVideoFrameState *video_frames;
-    int field_14;
-    int field_18;
-    int field_1C;
-    int field_20;
-    int field_24;
-    int field_28;
-    int field_2C;
-    int field_30;
-    int field_34;
-    int field_38;
-} SfdBufferLinearWork;
-
-typedef union SfdBufferWork {
-    SfdBufferRingWork ring;
-    SfdBufferLinearWork linear;
-    SfdBufferChannel user_channels[3];
-    unsigned char raw[0x3C];
-} SfdBufferWork;
-
-typedef int (*SfdTransportLifecycleFn)(SfdHandle *handle);
-
-typedef int (*SfdTransportPauseFn)(SfdHandle *handle, int state);
-
-typedef int (*SfdTransportTransferFn)(SfdHandle *handle, SfdTransportValue parameter, int value);
-
-typedef int (*SfdTransportBufferFn)(SfdHandle *handle, void *buffer);
-
-struct SfdTransportInterface {
-    SfdTransportLifecycleFn init;
-    SfdTransportLifecycleFn finish;
-    SfdTransportLifecycleFn exec_server;
-    SfdTransportLifecycleFn create;
-    SfdTransportLifecycleFn destroy;
-    SfdTransportLifecycleFn standby;
-    SfdTransportLifecycleFn start;
-    SfdTransportLifecycleFn stop;
-    SfdTransportPauseFn pause;
-    SfdTransportBufferFn get_write;
-    SfdTransportTransferFn add_write;
-    SfdTransportBufferFn get_read;
-    SfdTransportTransferFn add_read;
-    SfdTransportTransferFn seek;
-};
-
-typedef struct SfdBufferState {
-    int storage_mode;
-    int active;
-    int prepared;
-    int terminated;
-    SfdBufferWork work;
-    int input_transport;
-    int output_transport;
-    unsigned char unknown_0054[0x20];
-} SfdBufferState;
-
-typedef struct SfdVideoFrameInfo {
-    int width, height, macroblocks_per_row, macroblock_rows;
-    int picture_type;
-    int display_time_value, display_time_scale;
-    int output_format;
-    void *frame_buffer;
-    int field_24, field_28, picture_order, field_30, field_34;
-    void *picture_user_buffer;
-    int field_3C, field_40, reserved_44, display_mode, reserved_4C;
-    int field_50, field_54, field_58, field_5C, field_60, field_64;
-    short field_68, field_6A;
-    unsigned char fields_6C[0x0F];
-    unsigned char reserved_7B[5];
-} SfdVideoFrameInfo;
-
-struct SfdVideoFrameState {
-    int state;
-    int field_04;
-    union {
-        unsigned char payload[0x80];
-        SfdVideoFrameInfo info;
-    } data;
-};
-
-typedef struct SfdBufferCreateConfig {
-    const SfdTransportSetup *transport_setup;
-    unsigned char *memory;
-    int buffer_sizes[7];
-    int field_24;
-    int ring_alignment;
-} SfdBufferCreateConfig;
-
-typedef struct SfdCreateConfig {
-    SfdBufferCreateConfig buffer;
-    int picture_user_buffer_minimum;
-    int maximum_width;
-    int maximum_height;
-    int video_output_format;
-    unsigned char *handle_memory;
-    int handle_memory_size;
-} SfdCreateConfig;
-
-typedef struct SfdTransportState {
-    int prepared;
-    int terminated;
-    void *context;
-    const SfdTransportInterface *interface;
-    int parameter_10;
-    int parameter_14;
-    int parameter_18;
-    int parameter_1C;
-    int state;
-    unsigned char unknown_0024[0x20];
-} SfdTransportState;
-
-typedef struct SfdUserOutputWork {
-    int state;
-    SfdBufferChannel channels[3];
-} SfdUserOutputWork;
-
-struct SfdTransportSetup {
-    const SfdTransportInterface *entries[9];
-};
-
-typedef struct SfdAudioOutputCallbacks SfdAudioOutputCallbacks;
-
-typedef void (*SfdAudioSetPanFn)(SfdHandle *, int, int, SfdAudioOutputCallbacks *);
-
-typedef int (*SfdAudioGetPanFn)(SfdHandle *, int, SfdAudioOutputCallbacks *);
-
-typedef void (*SfdAudioSetVolumeFn)(SfdHandle *, int, SfdAudioOutputCallbacks *);
-
-typedef int (*SfdAudioGetVolumeFn)(SfdHandle *, SfdAudioOutputCallbacks *);
-
-typedef void (*SfdAudioSetSpeedFn)(SfdHandle *, int);
-
-struct SfdAudioOutputCallbacks {
-    int reserved_00;
-    SfdAudioSetPanFn set_pan;
-    SfdAudioGetPanFn get_pan;
-    SfdAudioSetVolumeFn set_volume;
-    SfdAudioGetVolumeFn get_volume;
-    SfdAudioSetSpeedFn set_speed;
-    int reserved_18;
-};
-
-struct SfdHandle {
-    SfdCreateConfig create_config;
-    int field_0044;
-    int playback_state;
-    int requested_state;
-    int field_0050;
-    int field_0054;
-    unsigned char unknown_0058[0x20];
-    SfdHeaderState header_state;
-    unsigned char unknown_010C[0x800];
-    SfdPlaybackSettings playback_settings;
-    int field_094C;
-    SfdPlaybackRuntime playback_runtime;
-    SfdErrorInfo error_info;
-    SfdConditionValue conditions_primary[100];
-    SfdConditionValue conditions_secondary[100];
-    int field_0D24;
-    SfdTimerState timer_state;
-    SfdBufferState buffers[8];
-    SfdVideoFrameState video_frames[16];
-    SfdTransportState transports[9];
-    unsigned char unknown_218C[4];
-    unsigned char mps_work_storage[0x168];
-    unsigned char unknown_22F8[0xA8];
-    unsigned char mpv_work_storage[0xF80];
-    unsigned char unknown_3320[0x154];
-    SfdAudioOutputCallbacks audio_output_callbacks;
-    SfdUserOutputWork user_output_work;
-    int field_34C4;
-    SfdSeekState seek_state;
-    SfdTimerSummary timer_summaries[6];
-};
 
 typedef struct LSC LSC;
 
 typedef struct SFXHandle SFXHandle;
 
-typedef struct MwsPlayer MwsPlayer;
+typedef struct MWSFCRE_ResetSfdHn_MwsPlayer MWSFCRE_ResetSfdHn_MwsPlayer;
 
-typedef struct MwsStHandle {
+typedef struct MWSFCRE_ResetSfdHn_MwsStHandle {
     int active;
     unsigned char reserved_004[8];
-    SJ *stream;
+    MWSFCRE_ResetSfdHn_SJ *stream;
     int element_id;
     void *backend;
-} MwsStHandle;
+} MWSFCRE_ResetSfdHn_MwsStHandle;
 
-typedef struct MwsPictureUserConfig {
-    void *buffer;
-    int buffer_size;
-    int element_size;
-} MwsPictureUserConfig;
 
-struct MwsPlayer {
+struct MWSFCRE_ResetSfdHn_MwsPlayer {
     const void *interface;
     int active;
     int status;
@@ -1893,7 +2082,7 @@ struct MwsPlayer {
     int create_field_28;
     int create_field_2C;
     int playback_mode;
-    SfdHandle *sfd;
+    MWSFCRE_ResetSfdHn_SfdHandle *sfd;
     void *stream;
     void *transport;
     LSC *loader;
@@ -1924,7 +2113,7 @@ struct MwsPlayer {
     int picture_user_header_size;
     int picture_user_write;
     int picture_user_read;
-    SJ *additional_info_sj;
+    MWSFCRE_ResetSfdHn_SJ *additional_info_sj;
     void *additional_info_buffer;
     int additional_info_buffer_size;
     unsigned char reserved_19C[0x1C];
@@ -1934,8 +2123,8 @@ struct MwsPlayer {
     int file_offset;
     int file_length;
     int file_end_position;
-    SJ *supply_sj;
-    SJ *input_sj;
+    MWSFCRE_ResetSfdHn_SJ *supply_sj;
+    MWSFCRE_ResetSfdHn_SJ *input_sj;
     void *input_buffer;
     int input_buffer_size;
     int input_buffer_extra_size;
@@ -1943,7 +2132,7 @@ struct MwsPlayer {
     void *supply_buffer;
     int supply_buffer_size;
     int supply_buffer_extra_size;
-    SJ *memory_sj;
+    MWSFCRE_ResetSfdHn_SJ *memory_sj;
     void *memory_buffer;
     int memory_buffer_size;
     void *arena;
@@ -1952,47 +2141,29 @@ struct MwsPlayer {
     unsigned int arena_used;
     int allocation_count;
     void *allocations[32];
-    MwsStHandle sound;
+    MWSFCRE_ResetSfdHn_MwsStHandle sound;
     unsigned char reserved_2AC[8];
     int sound_state;
 };
 
-int fn_12_249BC(SfdHandle *handle, SfdErrorCallback callback, SfdCallbackObject object);
 
-int fn_12_2B358(SfdHandle *handle);
 
-extern int fn_12_38A0C(int);
 
-extern void fn_12_388C4(SfdCallbackObject, int);
 
-extern void MWSFSVM_Error(const char *, ...);
 
-extern int fn_12_38AE0(void);
 
-extern int fn_12_2A434(SfdHandle *, void *, int, int);
 
-struct mwsfdcre____rodata_0 {
-    unsigned char padding_0[580];
-    const char picture_user_internal_error[54];
-    unsigned char padding_670[2];
-    const char create_picture_short_message[58];
-    unsigned char padding_730[162];
-    const char reset_stop_failed[49];
-    unsigned char padding_937[3];
-    const char reset_error_callback_failed[53];
-};
-extern struct mwsfdcre____rodata_0 lbl_12_rodata_1D88;
 
-int MWSFCRE_ResetSfdHn(MwsPlayer *player) {
-    struct mwsfdcre____rodata_0 *data = &lbl_12_rodata_1D88;
+int MWSFCRE_ResetSfdHn(MWSFCRE_ResetSfdHn_MwsPlayer *player) {
+    struct mwsfdcre____rodata_0 *data = &(*((struct mwsfdcre____rodata_0 *)&lbl_12_rodata_1D88));
 
     MwsPictureUserConfig *config;
     int frame_count;
     int element_size;
     void *buffer;
-    SfdHandle *sfd;
+    MWSFCRE_ResetSfdHn_SfdHandle *sfd;
     sfd = player->sfd;
-    if (fn_12_2B358(sfd) != 0) {
+    if (fn_12_2B358( (u32)(MWSFCRE_ResetSfdHn_SfdHandle *)(sfd)) != 0) {
         MWSFSVM_Error((data->reset_stop_failed));
         return -1;
     }
@@ -2010,7 +2181,7 @@ int MWSFCRE_ResetSfdHn(MwsPlayer *player) {
         buffer = config->buffer;
         if (config->buffer_size < (frame_count + 3) * element_size) {
             MWSFSVM_Error((data->create_picture_short_message));
-        } else if (fn_12_38AE0() == 1) {
+        } else if (((int)fn_12_38AE0()) == 1) {
             fn_12_2A434(player->sfd, buffer, frame_count + 3, element_size);
         }
     }
@@ -2671,7 +2842,6 @@ SfdHandle *fn_12_3763C(MwsPlayer *player, MwsCreateParams *params) {
     return sfd;
 }
 #pragma opt_dead_assignments reset
-
 /* fzgx:end fn_12_3763C */
 
 /* fzgx:begin fn_12_38340 noprologue */
@@ -2745,7 +2915,6 @@ s32 fn_12_38340(struct fn_12_38340_Arg0 *arg0, struct fn_12_38340_Arg1 *arg1, u3
 /* fzgx:end fn_12_38340 */
 
 /* fzgx:begin fn_12_3858C noprologue */
-
 /* --- rel/movie_module/fn_12_3858C.c --- */
 typedef struct MovieModule {
     u8 pad_0x00[0x40];
@@ -2817,7 +2986,6 @@ void fn_12_3858C(MovieModule* module) {
 /* fzgx:end fn_12_3858C */
 
 /* fzgx:begin fn_12_38680 noprologue */
-
 /* --- rel/movie_module/fn_12_38680.c --- */
 extern char lbl_12_rodata_2240[45];
 extern u32 fn_12_38704(void);
@@ -2853,27 +3021,11 @@ u32 fn_12_38680(MovieResource *movie) {
 }
 /* fzgx:end fn_12_38680 */
 
-/* fzgx:begin fn_12_38704 noprologue */
-#include "types.h"
+/* fzgx:begin fn_12_38704 */
+/* the create parameters fn_12_3763C reads (its fn_12_38704_MwsCreateParams); 0x24 is the buffer format its error string names */
 
-/* the create parameters fn_12_3763C reads (its MwsCreateParams); 0x24 is the buffer format its error string names */
-typedef struct MwsCreateParams {
-    int file_type;
-    int maximum_bps;
-    int width;
-    int height;
-    int frame_count;
-    int decoder_count;
-    void *work;
-    int work_size;
-    int composition_mode;
-    int buffer_format;
-} MwsCreateParams;
 
-extern void MWSFSVM_Error(const char *, ...);
-extern const char lbl_12_rodata_2184[];
-
-static inline int mwsfcre_CalcFrameSize(int source_width, int source_height) {
+static inline int fn_12_38704_mwsfcre_CalcFrameSize(int source_width, int source_height) {
     int height;
     int width;
     int luma_size;
@@ -2892,7 +3044,9 @@ static inline int mwsfcre_CalcFrameSize(int source_width, int source_height) {
 /* Adds up the sizes fn_12_3763C allocates for these parameters; work_<off> are the sizes fn_12_3763C keeps at
  * lbl_12_bss_1B9B0+<off>. MWCC folds a sum's constants only within one type, so the int, long and u32 terms keep
  * retail's three separate constants (0x20, 0x840, 0x4800). */
-int fn_12_38704(MwsCreateParams *params) {
+int fn_12_38704(params)
+fn_12_38704_MwsCreateParams *params;
+{
     int frame_count;
     long work_1C;
     int work_18;
@@ -2944,7 +3098,7 @@ int fn_12_38704(MwsCreateParams *params) {
     if (params->buffer_format >= 4 || params->buffer_format < 0) {
         MWSFSVM_Error(lbl_12_rodata_2184);
     }
-    frame_size = mwsfcre_CalcFrameSize(width, height);
+    frame_size = fn_12_38704_mwsfcre_CalcFrameSize(width, height);
     work_0C = frame_size * 2;
     work_08 = frame_count * frame_size;
     return work_18 + work_14 + work_10 + 0x20 + work_1C + 0x40 + 0x800 + work_0C + work_08 + work_00 + work_04 + 0x4000 +

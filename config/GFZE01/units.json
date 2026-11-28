@@ -4197,8 +4197,8 @@
     "tu": "rel/customize/toolkit_b.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_768",
-      "@5": "lbl_3_rodata_800",
-      "@10": "lbl_3_rodata_8F0"
+      "@23": "lbl_3_rodata_800",
+      "@28": "lbl_3_rodata_8F0"
     }
   },
   {
@@ -4316,7 +4316,7 @@
     ],
     "tu": "rel/customize/toolkit_b.c",
     "pool": {
-      "@26": "lbl_3_rodata_800"
+      "@44": "lbl_3_rodata_800"
     }
   },
   {
@@ -22493,77 +22493,19 @@
       "fn_1_3B34",
       "fn_1_3BB0",
       "fn_1_3BC0",
-      "fn_1_3BDC"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/_prolog_b.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/_prolog_b/fn_1_3C18.c",
-    "symbols": [
-      "fn_1_3C18"
-    ],
-    "status": "matching",
-    "tu": "rel/main_rel/_prolog_b.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/_prolog_b/fn_1_3C78.c",
-    "symbols": [
+      "fn_1_3BDC",
+      "fn_1_3C18",
       "fn_1_3C78",
       "fn_1_3C98",
-      "fn_1_3CC4"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/_prolog_b.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/_prolog_b/fn_1_3CF0.c",
-    "symbols": [
-      "fn_1_3CF0"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/_prolog_b.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/_prolog_b/fn_1_3F8C.c",
-    "symbols": [
+      "fn_1_3CC4",
+      "fn_1_3CF0",
       "fn_1_3F8C",
       "fn_1_4010",
       "fn_1_4030",
       "fn_1_4060",
       "fn_1_407C",
-      "fn_1_41A8"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/_prolog_b.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/_prolog_b/fn_1_426C.c",
-    "symbols": [
-      "fn_1_426C"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/_prolog_b.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/_prolog_b/fn_1_4310.c",
-    "symbols": [
+      "fn_1_41A8",
+      "fn_1_426C",
       "fn_1_4310",
       "fn_1_4324",
       "fn_1_4338",
@@ -22573,47 +22515,20 @@
       "fn_1_4374",
       "fn_1_43A4",
       "fn_1_43E8",
-      "fn_1_43F4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/main_rel/_prolog_b.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/_prolog_b/fn_1_4404.c",
-    "symbols": [
-      "fn_1_4404"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/_prolog_b.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/_prolog_b/fn_1_4438.c",
-    "symbols": [
-      "fn_1_4438"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/main_rel/_prolog_b.c"
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/_prolog_b/fn_1_446C.c",
-    "symbols": [
+      "fn_1_43F4",
+      "fn_1_4404",
+      "fn_1_4438",
       "fn_1_446C",
       "fn_1_44A4",
       "fn_1_44B4"
     ],
     "status": "matching",
+    "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
+    "extra_cflags": [
+      "-inline",
+      "on,noauto"
+    ],
     "tu": "rel/main_rel/_prolog_b.c"
   },
   {
@@ -70714,11 +70629,11 @@
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
     "tu": "rel/main_rel/sound.c",
+    "collapsed": true,
     "pool": {
       "...bss.0": "lbl_1_bss_6EA98",
-      "@89": "lbl_1_rodata_42F0"
-    },
-    "collapsed": true
+      "@119": "lbl_1_rodata_42F0"
+    }
   },
   {
     "module": "main_rel",
@@ -71237,7 +71152,7 @@
     "tu": "rel/main_rel/sound.c",
     "collapsed": true,
     "pool": {
-      "@73": "lbl_1_rodata_42F0"
+      "@79": "lbl_1_rodata_42F0"
     }
   },
   {
@@ -71778,8 +71693,11 @@
     "module": "movie_module",
     "source": "rel/movie_module/mpv_hdec/MPV_GoNextDelimSj.c",
     "symbols": [
+      "fn_12_AE70",
       "MPV_GoNextDelimSj",
-      "fn_12_B254"
+      "fn_12_B254",
+      "fn_12_B3E0",
+      "fn_12_B598"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -71788,7 +71706,10 @@
       "on"
     ],
     "collapsed": true,
-    "tu": "rel/movie_module/mpv_hdec.c"
+    "tu": "rel/movie_module/mpv_hdec.c",
+    "pool": {
+      "...rodata.0": "lbl_12_rodata_768"
+    }
   },
   {
     "module": "movie_module",
@@ -72064,18 +71985,6 @@
     "source": "rel/movie_module/data/lbl_12_bss_4C0.c",
     "symbols": [
       "lbl_12_bss_4C0"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/data/lbl_12_bss_4DB0.c",
-    "symbols": [
-      "lbl_12_bss_4DB0",
-      "lbl_12_bss_4DB4"
     ],
     "status": "matching",
     "data": true,
@@ -73223,54 +73132,21 @@
       "fn_12_21F38",
       "fn_12_21F48",
       "fn_12_21FA4",
-      "fn_12_22008"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on"
-    ],
-    "collapsed": true,
-    "tu": "rel/movie_module/sfd_buf.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/sfd_buf/fn_12_22254.c",
-    "symbols": [
-      "fn_12_22254"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on"
-    ],
-    "tu": "rel/movie_module/sfd_buf.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/sfd_buf/fn_12_22390.c",
-    "symbols": [
+      "fn_12_22008",
+      "fn_12_22254",
       "fn_12_22390",
       "fn_12_224FC",
       "fn_12_22668",
-      "fn_12_2269C"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "collapsed": true,
-    "tu": "rel/movie_module/sfd_buf.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/sfd_buf/fn_12_226D0.c",
-    "symbols": [
+      "fn_12_2269C",
       "fn_12_226D0",
       "fn_12_22888"
     ],
     "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ],
     "collapsed": true,
     "tu": "rel/movie_module/sfd_buf.c"
   },
@@ -74705,11 +74581,16 @@
     "source": "rel/movie_module/mwsfdcre/fn_12_35E34.c",
     "symbols": [
       "fn_12_35E34",
-      "fn_12_35E84"
+      "fn_12_35E84",
+      "mwSfdDestroy",
+      "fn_12_36208"
     ],
     "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [
+      "-use_lmw_stmw",
+      "on"
+    ],
     "collapsed": true,
     "tu": "rel/movie_module/mwsfdcre.c"
   },
@@ -74742,20 +74623,6 @@
       "@128": "lbl_12_rodata_4E8+0x74",
       "@209": "lbl_12_rodata_4E8+0x80"
     }
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/mwsfdcre/fn_12_36208.c",
-    "symbols": [
-      "fn_12_36208"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on"
-    ],
-    "tu": "rel/movie_module/mwsfdcre.c"
   },
   {
     "module": "movie_module",
@@ -75058,7 +74925,9 @@
     "module": "movie_module",
     "source": "rel/movie_module/mwsfdsvr/fn_12_3A888.c",
     "symbols": [
-      "fn_12_3A888"
+      "fn_12_3A888",
+      "fn_12_3A92C",
+      "fn_12_3A960"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
@@ -75075,40 +74944,21 @@
   },
   {
     "module": "movie_module",
-    "source": "rel/movie_module/mwsfdsvr/fn_12_3A92C.c",
-    "symbols": [
-      "fn_12_3A92C",
-      "fn_12_3A960"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "collapsed": true,
-    "tu": "rel/movie_module/mwsfdsvr.c"
-  },
-  {
-    "module": "movie_module",
     "source": "rel/movie_module/mwsfdsvr/fn_12_3A968.c",
     "symbols": [
       "fn_12_3A968",
       "fn_12_3A970",
-      "fn_12_3A9A0"
+      "fn_12_3A9A0",
+      "fn_12_3AA58"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
     "collapsed": true,
-    "tu": "rel/movie_module/mwsfdsvr.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/mwsfdsvr/fn_12_3AA58.c",
-    "symbols": [
-      "fn_12_3AA58"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/movie_module/mwsfdsvr.c"
+    "tu": "rel/movie_module/mwsfdsvr.c",
+    "extra_cflags": [
+      "-inline",
+      "on,noauto"
+    ]
   },
   {
     "module": "movie_module",
@@ -75681,58 +75531,15 @@
   },
   {
     "module": "movie_module",
-    "source": "rel/movie_module/mpv_hdec/fn_12_AE70.c",
-    "symbols": [
-      "fn_12_AE70"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on"
-    ],
-    "tu": "rel/movie_module/mpv_hdec.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/mpv_hdec/fn_12_B3E0.c",
-    "symbols": [
-      "fn_12_B3E0",
-      "fn_12_B598"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on"
-    ],
-    "collapsed": true,
-    "pool": {
-      "...rodata.0": "lbl_12_rodata_768"
-    },
-    "tu": "rel/movie_module/mpv_hdec.c"
-  },
-  {
-    "module": "movie_module",
     "source": "rel/movie_module/mpv_hdec/fn_12_B9E8.c",
     "symbols": [
-      "fn_12_B9E8"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
-    "tu": "rel/movie_module/mpv_hdec.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/mpv_hdec/fn_12_BBC0.c",
-    "symbols": [
+      "fn_12_B9E8",
       "fn_12_BBC0",
       "fn_12_C218"
     ],
     "status": "matching",
     "mw_version": "GC/1.3.2",
-    "collapsed": true,
+    "extra_cflags": [],
     "tu": "rel/movie_module/mpv_hdec.c"
   },
   {
@@ -75862,20 +75669,6 @@
       "@3192": "lbl_12_rodata_9F8",
       "@5660": "lbl_12_rodata_A00"
     }
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/mwsfdcre/mwSfdDestroy.c",
-    "symbols": [
-      "mwSfdDestroy"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "extra_cflags": [
-      "-use_lmw_stmw",
-      "on"
-    ],
-    "tu": "rel/movie_module/mwsfdcre.c"
   },
   {
     "module": "option",

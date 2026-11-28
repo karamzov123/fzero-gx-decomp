@@ -9,12 +9,6 @@ Sections:
 rel/main_rel/_prolog/fn_1_1280.c:
 	.text       start:0x00001280 end:0x00001304 align:4
 
-rel/main_rel/_prolog_b/fn_1_3F8C.c:
-	.text       start:0x00003F8C end:0x0000426C align:4
-
-rel/main_rel/_prolog_b/fn_1_446C.c:
-	.text       start:0x0000446C end:0x0000451C align:4
-
 rel/main_rel/alloc/fn_1_4928.c:
 	.text       start:0x00004928 end:0x00005948 align:4
 	.data       start:0x00003318 end:0x00003558 align:8
@@ -489,22 +483,10 @@ rel/main_rel/bg_win/fn_1_15E540.c:
 rel/main_rel/_prolog/fn_1_634.c:
 	.text       start:0x00000634 end:0x00000ECC align:4
 
-rel/main_rel/_prolog_b/fn_1_4404.c:
-	.text       start:0x00004404 end:0x00004438 align:4
-
-rel/main_rel/_prolog_b/fn_1_4438.c:
-	.text       start:0x00004438 end:0x0000446C align:4
-
 rel/main_rel/ranking_b/fn_1_1577D0.c:
 	.text       start:0x001577D0 end:0x001586A8 align:4
 	.data       start:0x0004C788 end:0x0004C7D0 align:8
 	.bss        start:0x0008F568 end:0x0008F588 align:8
-
-rel/main_rel/_prolog_b/fn_1_3C78.c:
-	.text       start:0x00003C78 end:0x00003CF0 align:4
-
-rel/main_rel/_prolog_b/fn_1_4310.c:
-	.text       start:0x00004310 end:0x00004404 align:4
 
 rel/main_rel/sel_static_disp/fn_1_141338.c:
 	.text       start:0x00141338 end:0x00141360 align:4
@@ -709,7 +691,7 @@ rel/main_rel/sel_static_disp/fn_1_13F72C.c:
 	.text       start:0x0013F72C end:0x0013FB24 align:4
 
 rel/main_rel/_prolog_b/fn_1_3B34.c:
-	.text       start:0x00003B34 end:0x00003C18 align:4
+	.text       start:0x00003B34 end:0x0000451C align:4
 
 rel/main_rel/camera/fn_1_681C.c:
 	.text       start:0x0000681C end:0x00006B48 align:4
@@ -1288,9 +1270,6 @@ rel/main_rel/sel_static_disp_c/fn_1_14F608.c:
 rel/main_rel/sel_static_disp_c/fn_1_14F6F8.c:
 	.text       start:0x0014F6F8 end:0x0014FC80 align:4
 
-rel/main_rel/_prolog_b/fn_1_426C.c:
-	.text       start:0x0000426C end:0x00004310 align:4
-
 
 rel/main_rel/data/lbl_1_data_67F0.c:
 	.data       start:0x000067F0 end:0x00006CA0 align:8
@@ -1565,9 +1544,6 @@ rel/main_rel/sound/fn_1_A3A1C.c:
 rel/main_rel/ghost/fn_1_E9BA8.c:
 	.text       start:0x000E9BA8 end:0x000E9CFC align:4
 
-rel/main_rel/_prolog_b/fn_1_3C18.c:
-	.text       start:0x00003C18 end:0x00003C78 align:4
-
 rel/main_rel/bg_win/fn_1_15EFEC.c:
 	.text       start:0x0015EFEC end:0x0015F62C align:4
 
@@ -1602,9 +1578,6 @@ rel/main_rel/bg_cas_c/fn_1_FDD7C.c:
 
 rel/main_rel/phys/fn_1_E733C.c:
 	.text       start:0x000E733C end:0x000E7E00 align:4
-
-rel/main_rel/_prolog_b/fn_1_3CF0.c:
-	.text       start:0x00003CF0 end:0x00003F8C align:4
 
 
 rel/main_rel/effect_car/fn_1_6CF3C.c:

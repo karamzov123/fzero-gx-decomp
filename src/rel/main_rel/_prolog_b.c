@@ -1,10 +1,187 @@
 #include "types.h"
+#include "dolphin/types.h"
 #include "rel/main_rel/globals.h"
+#include "dolphin/hw_regs.h"
 
-extern struct ArenaData lbl_1_data_8;
-extern u32 OSGetArenaLo(void);
-extern u32 OSGetArenaHi(void);
-extern void OSSetArenaLo(u32 arena_lo);
+
+
+typedef struct {
+    s8 x;
+    s8 y;
+} StickPoint;
+
+typedef struct InputAxes {
+    s8 stickX;
+    s8 stickY;
+    s8 substickX;
+    s8 substickY;
+    u8 triggerLeft;
+    u8 triggerRight;
+    u8 analogA;
+    u8 analogB;
+} InputAxes;
+
+typedef struct InputPortAxes {
+    InputAxes unk_0;
+    InputAxes unk_8;
+} InputPortAxes;
+
+typedef struct InputPad {
+    u16 button;
+    s8 stickX;
+    s8 stickY;
+    s8 substickX;
+    s8 substickY;
+    u8 triggerLeft;
+    u8 triggerRight;
+    u8 analogA;
+    u8 analogB;
+    s8 err;
+} InputPad;
+
+typedef struct InputButtons {
+    u16 button;
+    u16 unk_2;
+} InputButtons;
+
+typedef struct InputPortButtons {
+    InputButtons unk_0;
+    InputButtons unk_4;
+    InputButtons unk_8;
+    InputButtons unk_C;
+    InputButtons unk_10;
+} InputPortButtons;
+
+typedef struct InputControl {
+    u8 unk_0;
+    s8 unk_1;
+    s8 unk_2;
+    s8 unk_3;
+    u8 unk_4;
+    u8 unk_5;
+} InputControl;
+
+typedef struct Sig_fn_8001CF80_PADStatus {
+    u16 button;
+    s8 stickX;
+    s8 stickY;
+    s8 substickX;
+    s8 substickY;
+    u8 triggerLeft;
+    u8 triggerRight;
+    u8 analogA;
+    u8 analogB;
+    s8 err;
+} Sig_fn_8001CF80_PADStatus;
+
+typedef struct fn_1_426C_Node {
+    u32 field_0;
+    u32 field_4;
+    u8 pad_8[0x10];
+    void (*callback)(u32, u32);
+    u8 pad_1c[0x8];
+} fn_1_426C_Node;
+
+typedef struct fn_1_426C_Manager {
+    u32 field_0;
+    fn_1_426C_Node *nodes;
+} fn_1_426C_Manager;
+
+typedef struct fn_1_3CF0_Node fn_1_3CF0_Node;
+
+struct fn_1_3CF0_Node {
+    void (*func)(void);
+    u32 unk_4;
+    struct fn_1_3CF0_Node *next;
+    struct fn_1_3CF0_Node *prev;
+    u32 id;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1C;
+    void *data;
+};
+
+struct fn_1_3CF0_Mgr {
+    struct fn_1_3CF0_Node *free_list;
+    struct fn_1_3CF0_Node *fixed;
+    u32 unk_8;
+    u32 count;
+    u32 unk_10;
+    u32 unk_14;
+    struct fn_1_3CF0_Node *slots[32];
+    struct fn_1_3CF0_Node nodes[32];
+};
+
+struct fn_1_3C98_lbl_1_bss_DA5 {
+    u8 unk_0;
+};
+
+struct fn_1_48B0_lbl_801A6CF8 {
+    u32 unk_0;
+};
+
+struct fn_1_44B4_lbl_1_bss_DB8 {
+    u8 pad_0[0x8];
+    u32 unk_8;
+    u32 unk_C;
+    u32 unk_10;
+};
+
+struct fn_1_451C_lbl_1_bss_DB8 {
+    u8 pad_0[0x8];
+    u32 unk_8;
+    u32 unk_C;
+    u32 unk_10;
+};
+
+struct fn_1_4438_lbl_1_bss_DC4 {
+    u32 unk_0;
+};
+
+struct fn_1_1FE8_Arg1 {
+    s8 unk_0; s8 unk_1; s8 unk_2; s8 unk_3;
+    u8 unk_4; u8 unk_5; u8 unk_6; u8 unk_7;
+};
+
+struct fn_1_3CF0_lbl_1_data_2B80 {
+    u8 pad_0[0x18];
+    void *unk_18;
+    char message[0x28];
+    u8 unk_44[0xAC];
+};
+
+typedef struct fn_1_4374_Node fn_1_4374_Node;
+
+struct fn_1_4374_Node {
+    u32 field_0;
+    u32 field_4;
+    fn_1_4374_Node *next;
+    fn_1_4374_Node *prev;
+};
+
+struct fn_1_4404_lbl_1_bss_DC0 {
+    u32 unk_0;
+};
+
+typedef struct {
+    u32 unk_00;
+    u32 unk_04;
+    u32 unk_08;
+} Fn1_4730Entry;
+extern void fn_1_15665C(void *owner, s32 index);
+extern void fn_1_156730(s32 index);
+extern void fn_1_D332C(u16 *data);
+extern void fn_80008BA8(void *dst, void *src, u32 size);
+extern void PADRead(void *);
+extern u32 SIProbe(s32 chan);
+extern s32 fn_8006B294(s32 index, u32 *out);
+extern void fn_8006B470(void *);
+extern void fn_80008BEC(void *dest, int value, u32 size);
+extern BOOL PADRecalibrate(u32 mask);
+extern int PADReset(u32 mask);
+extern void *OSGetArenaLo(void);
+extern void *OSGetArenaHi(void);
+extern void OSSetArenaLo(void *addr);
 extern u16 lbl_1_bss_990[28];
 extern u8 lbl_1_bss_D78;
 extern u8 lbl_1_bss_DA6;
@@ -12,52 +189,76 @@ extern u32 lbl_1_bss_DB0[2];
 extern u32 lbl_1_bss_DA8;
 extern void fn_1_43A4(void);
 extern u32 lbl_1_data_2C70;
-extern void fn_80008E84(u32 value);
+extern int fn_80008E84();
 extern u32 lbl_1_bss_DAC;
-extern struct fn_1_634_lbl_1_bss_54 lbl_1_bss_54;
-extern u32 fn_8006FFC4(u32);
-extern u32 fn_1_48780(void);
+extern void fn_8006FFC4(u32 arg0);
+extern void fn_1_48780(void);
 extern u32 lbl_801A66B4;
 extern u32 lbl_801A66BC;
-extern struct fn_1_904_lbl_1_bss_4 lbl_1_bss_4;
-extern struct fn_1_914_lbl_1_bss_0 lbl_1_bss_0;
 extern u16 lbl_1_bss_96A;
-extern u32 fn_1_37E98(void);
+extern void fn_1_37E98(void);
 extern u32 lbl_1_bss_96C;
-extern u32 camera_set_state_flag(u32);
-extern u32 fn_1_D31E0(u32);
-extern struct fn_1_12B4_lbl_1_bss_962 lbl_1_bss_962;
+extern void camera_set_state_flag(u8 value);
+extern void fn_1_D31E0(void);
 extern u32 lbl_1_data_2A20;
 extern u32 lbl_1_data_7C0;
-extern u32 fn_1_15659C(u32);
-extern u32 fn_80008BEC(void *, u32, u32);
+extern void fn_1_15659C();
 extern u8 lbl_1_bss_978[];
 extern u32 lbl_1_data_2B78;
-extern u32 OSGetTick(u32);
+extern u32 OSGetTick();
 extern u32 lbl_1_bss_D7C;
 extern u8 lbl_1_bss_DA4;
 extern char lbl_1_data_2C9C[20];
 extern char lbl_1_data_2CB0[31];
-extern void OSPanic(const char *message, int line, const char *file, ...);
-extern void fn_80009AA8(u32 value, u32 count, const char *file, int line);
-extern u32 fn_1_156754(u32);
-extern u32 fn_1_A5864(void);
-extern u32 fn_1_F7578(void);
+extern void OSPanic(const char *file, int line, const char *msg, ...);
+extern void fn_80009AA8(int heap, void *ptr, const char *file, int line);
+extern void fn_1_156754(s32 index);
+extern void fn_1_A5864(void);
+extern void fn_1_F7578(void);
 extern struct fn_1_3C98_lbl_1_bss_DA5 lbl_1_bss_DA5;
-extern u32 fn_80008EC8(u32, u32, u32);
-extern u32 fn_800793D4(u32, u32, u32);
+extern void *fn_80008EC8(void *arenaStart, void *arenaEnd, int maxHeaps);
+extern u32 fn_800793D4(u8 *arg0, u32 arg1, u32 arg2);
 extern struct fn_1_48B0_lbl_801A6CF8 lbl_801A6CF8;
 extern u32 lbl_801A6CFC;
 extern struct fn_1_44B4_lbl_1_bss_DB8 lbl_1_bss_DB8;
 extern struct fn_1_4438_lbl_1_bss_DC4 lbl_1_bss_DC4;
 extern u8 lbl_1_bss_8E6B0[308];
-extern void fn_1_14FCE4(void *data, s32 value);
-extern struct fn_1_798_slot lbl_1_bss_8E7E4[];
+extern void fn_1_14FCE4(u32 arg0, s16 arg1);
 extern u8 lbl_1_bss_AA0[336];
 extern u8 lbl_1_rodata_108[88];
-extern u32 fn_80008BA8(void *, void *, u32);
 extern void fn_1_3BDC(u32 arg0);
 extern u32 fn_1_3C18(s32);
+extern u8 lbl_1_rodata_C4[60];
+extern s32 fn_1_3EFA8(void);
+extern u8 fn_1_3BB0(u32);
+extern u32 fn_1_1DF0(u16 *, s8 *, u32);
+extern s8 fn_1_1FE8(u16 *, struct fn_1_1FE8_Arg1 *, u32, s8);
+extern void fn_1_1304(Sig_fn_8001CF80_PADStatus *pads);
+extern void PADClamp(InputPad *pads);
+extern void fn_1_1C00(const u8 *values, u32 flags, u16 *result);
+extern u32 fn_1_3FC28(void);
+extern void fn_1_21E4(InputAxes *axes);
+extern void fn_1_F2820(InputControl *controls, u8 *newly, u8 *previous);
+extern void fn_1_2F04(void);
+extern u32 lbl_1_data_2B68[4];
+extern u8 lbl_1_data_2B64;
+extern u8 fn_1_D357C(void);
+extern struct fn_1_3CF0_lbl_1_data_2B80 lbl_1_data_2B80;
+extern void OSReport(const char *msg, ...);
+extern void fn_1_4370(void);
+extern void fn_1_4374(fn_1_4374_Node **list, fn_1_4374_Node *node);
+extern struct fn_1_4404_lbl_1_bss_DC0 lbl_1_bss_DC0;
+extern int fn_80008F60(void *start, void *end);
+extern void fn_1_481E8(int arg0);
+extern u32 fn_1_566DC(void);
+extern void fn_80009064(int heap);
+extern long fn_80009FA4(int heap);
+extern void fn_80077848(void);
+extern u32 fn_8007785C(u32 count, s32 useArena);
+extern long fn_800090A4(int heap);
+extern void * fn_80009830();
+extern u32 lbl_1_data_2C74;
+extern Fn1_4730Entry lbl_1_bss_DCC[32];
 
 /* fzgx:begin fn_1_1304 noprologue */
 #include "types.h"
@@ -303,71 +504,16 @@ void fn_1_1304(Sig_fn_8001CF80_PADStatus *pads) {
 
 /* fzgx:begin fn_1_17C8 */
 extern struct ArenaData lbl_1_data_8;
-extern u32 OSGetArenaLo(void);
-extern u32 OSGetArenaHi(void);
-extern void OSSetArenaLo(u32 arena_lo);
-extern u16 lbl_1_bss_990[28];
-extern u8 lbl_1_bss_D78;
-extern u8 lbl_1_bss_DA6;
-extern u32 lbl_1_bss_DB0[2];
-extern u32 lbl_1_bss_DA8;
-extern void fn_1_43A4(void);
-extern u32 lbl_1_data_2C70;
-extern void fn_80008E84(u32 value);
-extern u32 lbl_1_bss_DAC;
 extern struct fn_1_634_lbl_1_bss_54 lbl_1_bss_54;
-extern u32 fn_8006FFC4(u32);
-extern u32 fn_1_48780(void);
-extern u32 lbl_801A66B4;
-extern u32 lbl_801A66BC;
 extern struct fn_1_904_lbl_1_bss_4 lbl_1_bss_4;
 extern struct fn_1_914_lbl_1_bss_0 lbl_1_bss_0;
-extern u16 lbl_1_bss_96A;
-extern u32 fn_1_37E98(void);
-extern u32 lbl_1_bss_96C;
-extern u32 camera_set_state_flag(u32);
-extern u32 fn_1_D31E0(u32);
 extern struct fn_1_12B4_lbl_1_bss_962 lbl_1_bss_962;
-extern u32 lbl_1_data_2A20;
-extern u32 lbl_1_data_7C0;
-extern u32 fn_1_15659C(u32);
-extern u32 fn_80008BEC(void *, u32, u32);
-extern u8 lbl_1_bss_978[];
-extern u32 lbl_1_data_2B78;
-extern u32 OSGetTick(u32);
-extern u32 lbl_1_bss_D7C;
-extern u8 lbl_1_bss_DA4;
-extern char lbl_1_data_2C9C[20];
-extern char lbl_1_data_2CB0[31];
-extern void OSPanic(const char *message, int line, const char *file, ...);
-extern void fn_80009AA8(u32 value, u32 count, const char *file, int line);
-extern u32 fn_1_156754(u32);
-extern u32 fn_1_A5864(void);
-extern u32 fn_1_F7578(void);
-extern struct fn_1_3C98_lbl_1_bss_DA5 lbl_1_bss_DA5;
-extern u32 fn_80008EC8(u32, u32, u32);
-extern u32 fn_800793D4(u32, u32, u32);
-extern struct fn_1_48B0_lbl_801A6CF8 lbl_801A6CF8;
-extern u32 lbl_801A6CFC;
-extern struct fn_1_44B4_lbl_1_bss_DB8 lbl_1_bss_DB8;
-extern struct fn_1_4438_lbl_1_bss_DC4 lbl_1_bss_DC4;
-extern u8 lbl_1_bss_8E6B0[308];
-extern void fn_1_14FCE4(void *data, s32 value);
 extern struct fn_1_798_slot lbl_1_bss_8E7E4[];
-extern u8 lbl_1_bss_AA0[336];
-extern u8 lbl_1_rodata_108[88];
-extern u32 fn_80008BA8(void *, void *, u32);
-extern void fn_1_3BDC(u32 arg0);
-extern u32 fn_1_3C18(s32);
 
 
-typedef struct {
-    s8 x;
-    s8 y;
-} StickPoint;
 
 /* Ideal octagonal gate of the control stick. */
-static const StickPoint fzgx_pool_lbl_1_rodata_70[8] = {
+static const StickPoint fn_1_17C8_fzgx_pool_lbl_1_rodata_70[8] = {
     { 108, 0 }, { 108, 108 }, { 0, 108 }, { -108, 108 },
     { -108, 0 }, { -108, -108 }, { 0, -108 }, { 108, -108 },
 };
@@ -405,13 +551,13 @@ void fn_1_17C8(s8 *outX, s8 *outY, StickPoint *gate, u8 *dz) {
         if (s < 0.0f || t < 0.0f) {
             continue;
         }
-        n = (f32)(s * fzgx_pool_lbl_1_rodata_70[i].x) + (f32)(t * fzgx_pool_lbl_1_rodata_70[j].x);
+        n = (f32)(s * fn_1_17C8_fzgx_pool_lbl_1_rodata_70[i].x) + (f32)(t * fn_1_17C8_fzgx_pool_lbl_1_rodata_70[j].x);
         neg = (u32)n >> 31;
         q = ((__abs(n) - dz[0]) * 100) / (100 - dz[0]);
         c = q < 0 ? 0 : (q > 100 ? 100 : q);
         sign = neg ? -1 : 1;
         *outX = sign * c;
-        n = (f32)(s * fzgx_pool_lbl_1_rodata_70[i].y) + (f32)(t * fzgx_pool_lbl_1_rodata_70[j].y);
+        n = (f32)(s * fn_1_17C8_fzgx_pool_lbl_1_rodata_70[i].y) + (f32)(t * fn_1_17C8_fzgx_pool_lbl_1_rodata_70[j].y);
         neg = (u32)n >> 31;
         q = ((__abs(n) - dz[1]) * 100) / (100 - dz[1]);
         c = q < 0 ? 0 : (q > 100 ? 100 : q);
@@ -630,20 +776,12 @@ u32 fn_1_1DF0(u16 *state, s8 *values, u32 flags) {
 /* fzgx:end fn_1_1DF0 */
 
 /* fzgx:begin fn_1_1FE8 */
-#include "dolphin/types.h"
-#include "dolphin/hw_regs.h"
-
 #ifndef GAME_MAIN_REL__PROLOG_TYPES_H
 #define GAME_MAIN_REL__PROLOG_TYPES_H
 
 #endif  // GAME_MAIN_REL__PROLOG_TYPES_H
 
-extern u8 lbl_1_rodata_C4[60];
 
-struct fn_1_1FE8_Arg1 {
-    s8 unk_0; s8 unk_1; s8 unk_2; s8 unk_3;
-    u8 unk_4; u8 unk_5; u8 unk_6; u8 unk_7;
-};
 s8 fn_1_1FE8(u16 *arg0, struct fn_1_1FE8_Arg1 *arg1, u32 arg2, s8 arg3) {
     u32 v1 = (u16)arg2;
     s8 v5 = 0;
@@ -1366,7 +1504,68 @@ axes += 16;
 }
 /* fzgx:end fn_1_2F04 */
 
-/* fzgx:begin fn_1_3238 */
+/* fzgx:begin fn_1_3238 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+
+extern struct ArenaData lbl_1_data_8;
+extern u32 OSGetArenaLo(void);
+extern u32 OSGetArenaHi(void);
+extern void OSSetArenaLo(u32 arena_lo);
+extern u16 lbl_1_bss_990[28];
+extern u8 lbl_1_bss_D78;
+extern u8 lbl_1_bss_DA6;
+extern u32 lbl_1_bss_DB0[2];
+extern u32 lbl_1_bss_DA8;
+extern void fn_1_43A4(void);
+extern u32 lbl_1_data_2C70;
+extern void fn_80008E84(u32 value);
+extern u32 lbl_1_bss_DAC;
+extern struct fn_1_634_lbl_1_bss_54 lbl_1_bss_54;
+extern u32 fn_8006FFC4(u32);
+extern u32 fn_1_48780(void);
+extern u32 lbl_801A66B4;
+extern u32 lbl_801A66BC;
+extern struct fn_1_904_lbl_1_bss_4 lbl_1_bss_4;
+extern struct fn_1_914_lbl_1_bss_0 lbl_1_bss_0;
+extern u16 lbl_1_bss_96A;
+extern u32 fn_1_37E98(void);
+extern u32 lbl_1_bss_96C;
+extern u32 camera_set_state_flag(u32);
+extern u32 fn_1_D31E0(u32);
+extern struct fn_1_12B4_lbl_1_bss_962 lbl_1_bss_962;
+extern u32 lbl_1_data_2A20;
+extern u32 lbl_1_data_7C0;
+extern u32 fn_1_15659C(u32);
+extern u32 fn_80008BEC(void *, u32, u32);
+extern u8 lbl_1_bss_978[];
+extern u32 lbl_1_data_2B78;
+extern u32 OSGetTick(u32);
+extern u32 lbl_1_bss_D7C;
+extern u8 lbl_1_bss_DA4;
+extern char lbl_1_data_2C9C[20];
+extern char lbl_1_data_2CB0[31];
+extern void OSPanic(const char *message, int line, const char *file, ...);
+extern void fn_80009AA8(u32 value, u32 count, const char *file, int line);
+extern u32 fn_1_156754(u32);
+extern u32 fn_1_A5864(void);
+extern u32 fn_1_F7578(void);
+extern struct fn_1_3C98_lbl_1_bss_DA5 lbl_1_bss_DA5;
+extern u32 fn_80008EC8(u32, u32, u32);
+extern u32 fn_800793D4(u32, u32, u32);
+extern struct fn_1_48B0_lbl_801A6CF8 lbl_801A6CF8;
+extern u32 lbl_801A6CFC;
+extern struct fn_1_44B4_lbl_1_bss_DB8 lbl_1_bss_DB8;
+extern struct fn_1_4438_lbl_1_bss_DC4 lbl_1_bss_DC4;
+extern u8 lbl_1_bss_8E6B0[308];
+extern void fn_1_14FCE4(void *data, s32 value);
+extern struct fn_1_798_slot lbl_1_bss_8E7E4[];
+extern u8 lbl_1_bss_AA0[336];
+extern u8 lbl_1_rodata_108[88];
+extern u32 fn_80008BA8(void *, void *, u32);
+extern void fn_1_3BDC(u32 arg0);
+extern u32 fn_1_3C18(s32);
+
 void fn_1_3238(void) {
     u8 *p_lbl_1_bss_978;
     u32 t9;
@@ -1791,7 +1990,6 @@ void fn_1_3920(void) {
 /* fzgx:end fn_1_3920 */
 
 /* fzgx:begin fn_1_3B34 */
-extern u32 fn_80008BEC(void *, u32, u32);
 
 void fn_1_3B34(void) {
     u32 i;
@@ -1828,22 +2026,16 @@ void fn_1_3BDC(u32 arg0) {
 }
 /* fzgx:end fn_1_3BDC */
 
-/* fzgx:begin fn_1_3C18 noprologue */
-#include "dolphin/types.h"
-#include "dolphin/hw_regs.h"
-
-extern u8 lbl_1_bss_D7C[40];
-extern u32 OSGetTick(void);
+/* fzgx:begin fn_1_3C18 */
 
 /* Milliseconds elapsed since the tick stored in slot arg0. */
 u32 fn_1_3C18(volatile s32 arg0) /* volatile: retail spills the slot index to the frame across OSGetTick */
 {
-    return ((OSGetTick() - ((u32 *)lbl_1_bss_D7C)[arg0]) * 8) / (OS_TIMER_CLOCK / 125000);
+    return ((OSGetTick() - ((u32 *)(((u8 *)&lbl_1_bss_D7C)))[arg0]) * 8) / (OS_TIMER_CLOCK / 125000);
 }
 /* fzgx:end fn_1_3C18 */
 
 /* fzgx:begin fn_1_3C78 */
-extern u8 lbl_1_bss_D78;
 
 void fn_1_3C78(void) {
     if (lbl_1_bss_D78 == 0) { return; }
@@ -1852,11 +2044,7 @@ void fn_1_3C78(void) {
 /* fzgx:end fn_1_3C78 */
 
 /* fzgx:begin fn_1_3C98 */
-struct fn_1_3C98_lbl_1_bss_DA5 {
-    u8 unk_0;
-};
 
-extern u8 lbl_1_bss_D78;
 
 void fn_1_3C98(void) {
     if (lbl_1_bss_D78 == 0) { return; }
@@ -1876,44 +2064,11 @@ void fn_1_3CC4(void) {
 }
 /* fzgx:end fn_1_3CC4 */
 
-/* fzgx:begin fn_1_3CF0 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_1_3CF0 */
 /* 0x24-byte work node: 32 fixed nodes follow the manager, then `count` extra nodes */
-struct fn_1_3CF0_Node {
-    void (*func)(void);
-    u32 unk_4;
-    struct fn_1_3CF0_Node *next;
-    struct fn_1_3CF0_Node *prev;
-    u32 id;
-    u32 unk_14;
-    u32 unk_18;
-    u32 unk_1C;
-    void *data;
-};
 
-struct fn_1_3CF0_Mgr {
-    struct fn_1_3CF0_Node *free_list;
-    struct fn_1_3CF0_Node *fixed;
-    u32 unk_8;
-    u32 count;
-    u32 unk_10;
-    u32 unk_14;
-    struct fn_1_3CF0_Node *slots[32];
-    struct fn_1_3CF0_Node nodes[32];
-};
 
-struct fn_1_3CF0_lbl_1_data_2B80 {
-    u8 pad_0[0x18];
-    void *unk_18;
-    char message[0x28];
-    u8 unk_44[0xAC];
-};
 
-extern struct fn_1_3CF0_lbl_1_data_2B80 lbl_1_data_2B80;
-extern struct fn_1_3CF0_Mgr *lbl_1_bss_DAC;
-extern void OSReport(const char *, ...);
-extern void fn_1_4370(void);
 
 #pragma opt_propagation off
 static inline void fn_1_3CF0_init_fixed(struct fn_1_3CF0_Mgr *mgr, struct fn_1_3CF0_Node *nodes, struct fn_1_3CF0_lbl_1_data_2B80 *data, u32 j) {
@@ -1943,7 +2098,7 @@ void fn_1_3CF0(struct fn_1_3CF0_Mgr *buf, u32 count) {
     if (count == 0) {
         OSReport(data->message);
     }
-    lbl_1_bss_DAC = buf;
+    (*((struct fn_1_3CF0_Mgr * *)&lbl_1_bss_DAC)) = buf;
     mgr = buf;
     buf->unk_8 = 0;
     nodes = buf->nodes;
@@ -2043,10 +2198,6 @@ u32 fn_1_4010(u32 arg0, u32 arg1) {
 /* fzgx:end fn_1_4010 */
 
 /* fzgx:begin fn_1_4030 */
-#include "types.h"
-
-
-
 struct fn_1_4030_lbl_1_bss_DA8 {
     u32 unk_0;
 };
@@ -2081,8 +2232,6 @@ u32 fn_1_4060(void) {
 /* fzgx:end fn_1_4060 */
 
 /* fzgx:begin fn_1_407C */
-#include "types.h"
-
 typedef u32 (*fn_1_407C_Fn0)(u32);
 struct fn_1_407C_lbl_1_bss_DAC {
     s32 unk_0;
@@ -2091,7 +2240,6 @@ struct fn_1_407C_lbl_1_bss_DA8 {
     u32 unk_0;
 };
 
-extern void fn_1_43A4(void);
 
 void fn_1_407C(s32 arg_sp0) {
     u32 var_r31;
@@ -2142,11 +2290,11 @@ void fn_1_407C(s32 arg_sp0) {
 /* fzgx:end fn_1_407C */
 
 /* fzgx:begin fn_1_41A8 */
-typedef struct Node Node;
-struct Node {
+typedef struct fn_1_41A8_Node fn_1_41A8_Node;
+struct fn_1_41A8_Node {
     u32 field_0;
     void *field_4;
-    Node *next;
+    fn_1_41A8_Node *next;
     u32 field_c;
     u32 field_10;
     u32 field_14;
@@ -2157,27 +2305,27 @@ typedef struct List List;
 struct List {
     u32 field_0;
     u32 field_4;
-    Node *head;
+    fn_1_41A8_Node *head;
 };
 
-typedef struct Manager Manager;
-struct Manager {
+typedef struct fn_1_41A8_Manager fn_1_41A8_Manager;
+struct fn_1_41A8_Manager {
     u32 field_0;
     u32 field_4;
-    Node *head;
+    fn_1_41A8_Node *head;
 };
 
 void fn_1_41A8(void) {
-    Manager *entry;
-    Manager *manager;
+    fn_1_41A8_Manager *entry;
+    fn_1_41A8_Manager *manager;
     u32 *dac;
     u32 *da8;
     int i;
-    Node *node;
+    fn_1_41A8_Node *node;
     void (*callback)(void *, u32);
 
     dac = &lbl_1_bss_DAC;
-    manager = (Manager *)*dac;
+    manager = (fn_1_41A8_Manager *)*dac;
     if (manager != 0) {
         da8 = &lbl_1_bss_DA8;
         entry = manager;
@@ -2198,7 +2346,7 @@ void fn_1_41A8(void) {
                 fn_1_43A4();
             }
             i++;
-            entry = (Manager *)((u8 *)entry + 4);
+            entry = (fn_1_41A8_Manager *)((u8 *)entry + 4);
         }
         manager->head = 0;
         lbl_1_bss_DAC = (u32)manager;
@@ -2207,31 +2355,15 @@ void fn_1_41A8(void) {
 }
 /* fzgx:end fn_1_41A8 */
 
-/* fzgx:begin fn_1_426C noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_426C */
 
-typedef struct Node {
-    u32 field_0;
-    u32 field_4;
-    u8 pad_8[0x10];
-    void (*callback)(u32, u32);
-    u8 pad_1c[0x8];
-} Node;
 
-typedef struct Manager {
-    u32 field_0;
-    Node *nodes;
-} Manager;
 
-extern Manager *lbl_1_bss_DAC;
-extern Manager *lbl_1_bss_DA8;
-
-extern void fn_1_4374(Manager *, Node *);
 
 #pragma opt_propagation off
 void fn_1_426C(u32 arg0) {
-    Manager *mgr = lbl_1_bss_DAC;
-    Node *node = &mgr->nodes[arg0];
+    fn_1_426C_Manager *mgr = (*((fn_1_426C_Manager * *)&lbl_1_bss_DAC));
+    fn_1_426C_Node *node = &mgr->nodes[arg0];
     void (*callback)(u32, u32);
 
     if (arg0 < 32 || node->field_0 == 0) {
@@ -2240,13 +2372,13 @@ void fn_1_426C(u32 arg0) {
 
     callback = node->callback;
     if (callback != NULL) {
-        Manager *saved = lbl_1_bss_DA8;
-        lbl_1_bss_DA8 = mgr;
+        fn_1_426C_Manager *saved = (*((fn_1_426C_Manager * *)&lbl_1_bss_DA8));
+        (*((fn_1_426C_Manager * *)&lbl_1_bss_DA8)) = mgr;
         callback(node->field_4, 1);
-        lbl_1_bss_DAC = mgr;
-        lbl_1_bss_DA8 = saved;
+        (*((fn_1_426C_Manager * *)&lbl_1_bss_DAC)) = mgr;
+        (*((fn_1_426C_Manager * *)&lbl_1_bss_DA8)) = saved;
     }
-    fn_1_4374(mgr, node);
+    fn_1_4374( (fn_1_4374_Node **)(fn_1_426C_Manager *)(mgr), (fn_1_4374_Node *)(fn_1_426C_Node *)(node));
 }
 #pragma opt_propagation reset
 /* fzgx:end fn_1_426C */
@@ -2284,7 +2416,6 @@ u32 fn_1_4338(void) {
 /* fzgx:end fn_1_4338 */
 
 /* fzgx:begin fn_1_434C */
-extern u32 lbl_1_bss_DAC;
 
 // fn_1_434C returns the current main-rel state value.
 u32 fn_1_434C(void) {
@@ -2309,17 +2440,9 @@ void fn_1_4370(void) {
 /* fzgx:end fn_1_4370 */
 
 /* fzgx:begin fn_1_4374 */
-typedef struct Node Node;
-struct Node {
-    u32 field_0;
-    u32 field_4;
-    Node *next;
-    Node *prev;
-};
-
-void fn_1_4374(Node **list, Node *node) {
-    Node *prev;
-    Node *next;
+void fn_1_4374(fn_1_4374_Node **list, fn_1_4374_Node *node) {
+    fn_1_4374_Node *prev;
+    fn_1_4374_Node *next;
 
     next = node->next;
     prev = node->prev;
@@ -2334,8 +2457,6 @@ void fn_1_4374(Node **list, Node *node) {
 /* fzgx:end fn_1_4374 */
 
 /* fzgx:begin fn_1_43A4 */
-#include "types.h"
-
 typedef struct ListNode ListNode;
 
 struct ListNode {
@@ -2379,7 +2500,6 @@ void fn_1_43A4(void) {
 /* fzgx:end fn_1_43A4 */
 
 /* fzgx:begin fn_1_43E8 */
-extern u32 lbl_1_bss_DB0[2];
 
 // Store the incoming value in the shared startup state.
 void fn_1_43E8(u32 arg0) {
@@ -2388,7 +2508,6 @@ void fn_1_43E8(u32 arg0) {
 /* fzgx:end fn_1_43E8 */
 
 /* fzgx:begin fn_1_43F4 */
-extern u32 lbl_1_bss_DB0[2];
 
 // Clear the first startup word used by the main REL state.
 void fn_1_43F4(void) {
@@ -2396,38 +2515,22 @@ void fn_1_43F4(void) {
 }
 /* fzgx:end fn_1_43F4 */
 
-/* fzgx:begin fn_1_4404 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_4404 */
 
-extern struct fn_1_4404_lbl_1_bss_DC0 lbl_1_bss_DC0;
-extern u32 fn_80008E84(u32);
-extern u32 lbl_1_data_2C70;
-
-struct fn_1_4404_lbl_1_bss_DC0 {
-    u32 unk_0;
-};
 
 void fn_1_4404(void) {
     u32 t0;
-    t0 = fn_80008E84(lbl_1_bss_DC0.unk_0);
+    t0 = ((u32)fn_80008E84(lbl_1_bss_DC0.unk_0));
     lbl_1_data_2C70 = t0;
 }
 /* fzgx:end fn_1_4404 */
 
-/* fzgx:begin fn_1_4438 noprologue */
-#include "types.h"
+/* fzgx:begin fn_1_4438 */
 
-extern struct fn_1_4438_lbl_1_bss_DC4 lbl_1_bss_DC4;
-extern u32 fn_80008E84(u32);
-extern u32 lbl_1_data_2C70;
-
-struct fn_1_4438_lbl_1_bss_DC4 {
-    u32 unk_0;
-};
 
 void fn_1_4438(void) {
     u32 t0;
-    t0 = fn_80008E84(lbl_1_bss_DC4.unk_0);
+    t0 = ((u32)fn_80008E84(lbl_1_bss_DC4.unk_0));
     lbl_1_data_2C70 = t0;
 }
 /* fzgx:end fn_1_4438 */
@@ -2450,26 +2553,17 @@ u32 fn_1_44A4(void) {
 /* fzgx:end fn_1_44A4 */
 
 /* fzgx:begin fn_1_44B4 */
-extern u32 OSGetArenaHi(void);
-extern u32 OSGetArenaLo(void);
-extern u32 fn_80008F60(u32, u32);
 
-struct fn_1_44B4_lbl_1_bss_DB8 {
-    u8 pad_0[0x8];
-    u32 unk_8;
-    u32 unk_C;
-    u32 unk_10;
-};
 
 void fn_1_44B4(void) {
     struct fn_1_44B4_lbl_1_bss_DB8 *p_lbl_1_bss_DB8;
     u32 t0, t1, t2, t3;
     p_lbl_1_bss_DB8 = (struct fn_1_44B4_lbl_1_bss_DB8 *)&lbl_1_bss_DB8;
-    t0 = OSGetArenaHi();
-    t1 = OSGetArenaLo();
-    t2 = fn_80008EC8(t1, t0, 8);
+    t0 = ((u32)OSGetArenaHi());
+    t1 = ((u32)OSGetArenaLo());
+    t2 = ((u32)fn_80008EC8( (void *)(u32)(t1), (void *)(u32)(t0), 8));
     p_lbl_1_bss_DB8->unk_10 = t2;
-    t3 = fn_80008F60(t2, ((t2 + 0xE0000) - 2848));
+    t3 = ((u32)fn_80008F60( (void *)(u32)(t2), (void *)(u32)(((t2 + 0xE0000) - 2848))));
     p_lbl_1_bss_DB8->unk_C = t3;
     p_lbl_1_bss_DB8->unk_8 = -1;
 }
@@ -2545,7 +2639,68 @@ u32 fn_1_451C(void) {
 }
 /* fzgx:end fn_1_451C */
 
-/* fzgx:begin fn_1_45D0 */
+/* fzgx:begin fn_1_45D0 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+
+extern struct ArenaData lbl_1_data_8;
+extern u32 OSGetArenaLo(void);
+extern u32 OSGetArenaHi(void);
+extern void OSSetArenaLo(u32 arena_lo);
+extern u16 lbl_1_bss_990[28];
+extern u8 lbl_1_bss_D78;
+extern u8 lbl_1_bss_DA6;
+extern u32 lbl_1_bss_DB0[2];
+extern u32 lbl_1_bss_DA8;
+extern void fn_1_43A4(void);
+extern u32 lbl_1_data_2C70;
+extern void fn_80008E84(u32 value);
+extern u32 lbl_1_bss_DAC;
+extern struct fn_1_634_lbl_1_bss_54 lbl_1_bss_54;
+extern u32 fn_8006FFC4(u32);
+extern u32 fn_1_48780(void);
+extern u32 lbl_801A66B4;
+extern u32 lbl_801A66BC;
+extern struct fn_1_904_lbl_1_bss_4 lbl_1_bss_4;
+extern struct fn_1_914_lbl_1_bss_0 lbl_1_bss_0;
+extern u16 lbl_1_bss_96A;
+extern u32 fn_1_37E98(void);
+extern u32 lbl_1_bss_96C;
+extern u32 camera_set_state_flag(u32);
+extern u32 fn_1_D31E0(u32);
+extern struct fn_1_12B4_lbl_1_bss_962 lbl_1_bss_962;
+extern u32 lbl_1_data_2A20;
+extern u32 lbl_1_data_7C0;
+extern u32 fn_1_15659C(u32);
+extern u32 fn_80008BEC(void *, u32, u32);
+extern u8 lbl_1_bss_978[];
+extern u32 lbl_1_data_2B78;
+extern u32 OSGetTick(u32);
+extern u32 lbl_1_bss_D7C;
+extern u8 lbl_1_bss_DA4;
+extern char lbl_1_data_2C9C[20];
+extern char lbl_1_data_2CB0[31];
+extern void OSPanic(const char *message, int line, const char *file, ...);
+extern void fn_80009AA8(u32 value, u32 count, const char *file, int line);
+extern u32 fn_1_156754(u32);
+extern u32 fn_1_A5864(void);
+extern u32 fn_1_F7578(void);
+extern struct fn_1_3C98_lbl_1_bss_DA5 lbl_1_bss_DA5;
+extern u32 fn_80008EC8(u32, u32, u32);
+extern u32 fn_800793D4(u32, u32, u32);
+extern struct fn_1_48B0_lbl_801A6CF8 lbl_801A6CF8;
+extern u32 lbl_801A6CFC;
+extern struct fn_1_44B4_lbl_1_bss_DB8 lbl_1_bss_DB8;
+extern struct fn_1_4438_lbl_1_bss_DC4 lbl_1_bss_DC4;
+extern u8 lbl_1_bss_8E6B0[308];
+extern void fn_1_14FCE4(void *data, s32 value);
+extern struct fn_1_798_slot lbl_1_bss_8E7E4[];
+extern u8 lbl_1_bss_AA0[336];
+extern u8 lbl_1_rodata_108[88];
+extern u32 fn_80008BA8(void *, void *, u32);
+extern void fn_1_3BDC(u32 arg0);
+extern u32 fn_1_3C18(s32);
+
 extern u32 OSReport(u32, ...);
 extern u32 fn_800090A4(u32);
 extern u32 fn_80009830(u32);
@@ -2574,7 +2729,68 @@ s32 fn_1_45D0(u32 arg0, u32 arg1) {
 }
 /* fzgx:end fn_1_45D0 */
 
-/* fzgx:begin fn_1_4630 */
+/* fzgx:begin fn_1_4630 noprologue */
+#include "types.h"
+#include "rel/main_rel/globals.h"
+
+extern struct ArenaData lbl_1_data_8;
+extern u32 OSGetArenaLo(void);
+extern u32 OSGetArenaHi(void);
+extern void OSSetArenaLo(u32 arena_lo);
+extern u16 lbl_1_bss_990[28];
+extern u8 lbl_1_bss_D78;
+extern u8 lbl_1_bss_DA6;
+extern u32 lbl_1_bss_DB0[2];
+extern u32 lbl_1_bss_DA8;
+extern void fn_1_43A4(void);
+extern u32 lbl_1_data_2C70;
+extern void fn_80008E84(u32 value);
+extern u32 lbl_1_bss_DAC;
+extern struct fn_1_634_lbl_1_bss_54 lbl_1_bss_54;
+extern u32 fn_8006FFC4(u32);
+extern u32 fn_1_48780(void);
+extern u32 lbl_801A66B4;
+extern u32 lbl_801A66BC;
+extern struct fn_1_904_lbl_1_bss_4 lbl_1_bss_4;
+extern struct fn_1_914_lbl_1_bss_0 lbl_1_bss_0;
+extern u16 lbl_1_bss_96A;
+extern u32 fn_1_37E98(void);
+extern u32 lbl_1_bss_96C;
+extern u32 camera_set_state_flag(u32);
+extern u32 fn_1_D31E0(u32);
+extern struct fn_1_12B4_lbl_1_bss_962 lbl_1_bss_962;
+extern u32 lbl_1_data_2A20;
+extern u32 lbl_1_data_7C0;
+extern u32 fn_1_15659C(u32);
+extern u32 fn_80008BEC(void *, u32, u32);
+extern u8 lbl_1_bss_978[];
+extern u32 lbl_1_data_2B78;
+extern u32 OSGetTick(u32);
+extern u32 lbl_1_bss_D7C;
+extern u8 lbl_1_bss_DA4;
+extern char lbl_1_data_2C9C[20];
+extern char lbl_1_data_2CB0[31];
+extern void OSPanic(const char *message, int line, const char *file, ...);
+extern void fn_80009AA8(u32 value, u32 count, const char *file, int line);
+extern u32 fn_1_156754(u32);
+extern u32 fn_1_A5864(void);
+extern u32 fn_1_F7578(void);
+extern struct fn_1_3C98_lbl_1_bss_DA5 lbl_1_bss_DA5;
+extern u32 fn_80008EC8(u32, u32, u32);
+extern u32 fn_800793D4(u32, u32, u32);
+extern struct fn_1_48B0_lbl_801A6CF8 lbl_801A6CF8;
+extern u32 lbl_801A6CFC;
+extern struct fn_1_44B4_lbl_1_bss_DB8 lbl_1_bss_DB8;
+extern struct fn_1_4438_lbl_1_bss_DC4 lbl_1_bss_DC4;
+extern u8 lbl_1_bss_8E6B0[308];
+extern void fn_1_14FCE4(void *data, s32 value);
+extern struct fn_1_798_slot lbl_1_bss_8E7E4[];
+extern u8 lbl_1_bss_AA0[336];
+extern u8 lbl_1_rodata_108[88];
+extern u32 fn_80008BA8(void *, void *, u32);
+extern void fn_1_3BDC(u32 arg0);
+extern u32 fn_1_3C18(s32);
+
 extern u32 OSReport(u32, ...);
 extern u32 fn_800090A4(u32);
 extern u32 fn_80009830(void);
@@ -2611,7 +2827,7 @@ u32 fn_1_4630(u32 arg0, u32 arg1) {
 }
 /* fzgx:end fn_1_4630 */
 
-/* fzgx:begin fn_1_46B4 */
+/* fzgx:begin fn_1_46B4 noprologue */
 extern char lbl_1_data_2C9C[20];
 extern void OSPanic(const char *message, int line, const char *file, ...);
 extern void fn_80009AA8(u32 value, u32 count, const char *file, int line);
@@ -2624,7 +2840,7 @@ void fn_1_46B4(u32 arg0, u32 arg1, const char *arg2, int arg3) {
 }
 /* fzgx:end fn_1_46B4 */
 
-/* fzgx:begin fn_1_4730 */
+/* fzgx:begin fn_1_4730 noprologue */
 typedef struct {
     u32 unk_00;
     u32 unk_04;
@@ -2665,7 +2881,7 @@ void fn_1_4730(u32 value, u32 count, u32 size, const char *file, int line) {
 }
 /* fzgx:end fn_1_4730 */
 
-/* fzgx:begin fn_1_48B0 */
+/* fzgx:begin fn_1_48B0 noprologue */
 struct fn_1_48B0_lbl_801A6CF8 {
     u32 unk_0;
 };
@@ -2682,7 +2898,7 @@ s32 fn_1_48B0(u32 arg0, u32 arg1) {
 }
 /* fzgx:end fn_1_48B0 */
 
-/* fzgx:begin fn_1_48E8 */
+/* fzgx:begin fn_1_48E8 noprologue */
 #include "types.h"
 #include "rel/main_rel/globals.h"
 

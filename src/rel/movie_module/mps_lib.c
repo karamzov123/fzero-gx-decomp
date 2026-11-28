@@ -35,6 +35,17 @@ extern void fn_12_33428(u32 *dst, u32 value, u32 count);
 extern void fn_12_6704(void);
 extern void fn_12_6A88(void);
 
+extern u32 lbl_12_bss_4DB0;
+extern u8 lbl_12_bss_4DB4[4];
+
+
+/* Storage extent is known; element/field types are not recovered. */
+__declspec(section ".data") u8 lbl_12_bss_4DB4[4] __attribute__((aligned(4)));
+
+
+
+__declspec(section ".data") u32 lbl_12_bss_4DB0 __attribute__((aligned(16)));
+
 /* fzgx:begin fn_12_6A90 */
 /* --- rel/movie_module/fn_12_6A90.c --- */
 typedef struct fn_12_6A90_MovieModule_u1 {
@@ -294,8 +305,6 @@ s32 fn_12_6CA8(fn_12_6CA8_MovieModule_u1 *module, fn_12_6CA8_MovieCallback callb
 /* fzgx:end fn_12_6CA8 */
 
 /* fzgx:begin fn_12_6D5C */
-
-
 s32 fn_12_6D5C(fn_12_6D5C_MovieObject *movie, s32 value) {
     if (movie == 0) {
         movie = (*((fn_12_6D5C_MovieObject * *)&lbl_12_bss_4DB8));
@@ -318,8 +327,6 @@ s32 fn_12_6D5C(fn_12_6D5C_MovieObject *movie, s32 value) {
 /* fzgx:end fn_12_6D5C */
 
 /* fzgx:begin fn_12_6DE8 */
-
-
 typedef struct fn_12_6DE8_MovieError {
     void (*callback)(void *, s32);
     void *argument;
