@@ -74820,18 +74820,7 @@
       "fn_12_2E218",
       "fn_12_2E284",
       "fn_12_2E2DC",
-      "fn_12_2E334"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "collapsed": true,
-    "tu": "rel/movie_module/sfd_tim.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/sfd_tim/fn_12_2E374.c",
-    "symbols": [
+      "fn_12_2E334",
       "fn_12_2E374",
       "fn_12_2E41C",
       "fn_12_2E42C",
