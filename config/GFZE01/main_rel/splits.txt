@@ -1805,9 +1805,6 @@ rel/main_rel/ghost/fn_1_EF5E0.c:
 rel/main_rel/live_camera/fn_1_11748.c:
 	.text       start:0x00011748 end:0x0001189C align:4
 
-rel/main_rel/bg_common/fn_1_10688C.c:
-	.text       start:0x0010688C end:0x00106CAC align:4
-
 rel/main_rel/live_camera/fn_1_107B8.c:
 	.text       start:0x000107B8 end:0x00010AF0 align:4
 
@@ -7462,7 +7459,7 @@ rel/main_rel/camera_c/fn_1_B724.c:
 	.text       start:0x0000B724 end:0x0000B81C align:4
 
 rel/main_rel/bg_common/fn_1_106084.c:
-	.text       start:0x00106084 end:0x0010688C align:4
+	.text       start:0x00106084 end:0x00106CAC align:4
 
 rel/main_rel/sel_static_disp_c/fn_1_14C35C.c:
 	.text       start:0x0014C35C end:0x0014C6F8 align:4

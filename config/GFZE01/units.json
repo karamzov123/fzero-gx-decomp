@@ -24470,43 +24470,7 @@
     "source": "rel/main_rel/bg_common/fn_1_106084.c",
     "symbols": [
       "fn_1_106084",
-      "fn_1_1067A8"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/bg_common.c",
-    "pool": {
-      "...rodata.0": "lbl_1_rodata_78D0",
-      "@27": "lbl_1_rodata_78D0+0x8",
-      "@28": "lbl_1_rodata_78D0+0x10",
-      "@29": "lbl_1_rodata_78D0+0x14",
-      "@30": "lbl_1_rodata_78D0+0x18",
-      "@31": "lbl_1_rodata_78D0+0x1C",
-      "@40": "lbl_1_rodata_78D0+0x38",
-      "@41": "lbl_1_rodata_78D0+0x3C",
-      "@50": "lbl_1_rodata_78D0+0x4C",
-      "@59": "lbl_1_rodata_78D0+0x60",
-      "@68": "lbl_1_rodata_78D0+0x78",
-      "@77": "lbl_1_rodata_78D0+0x88",
-      "@86": "lbl_1_rodata_78D0+0x98",
-      "@95": "lbl_1_rodata_78D0+0x144",
-      "@96": "lbl_1_rodata_78D0+0x148",
-      "@97": "lbl_1_rodata_78D0+0x14C",
-      "@268": "lbl_1_rodata_78D0+0x150",
-      "@269": "lbl_1_rodata_78D0+0x154",
-      "@270": "lbl_1_rodata_78D0+0x158",
-      "@271": "lbl_1_rodata_78D0+0x15C",
-      "@272": "lbl_1_rodata_78D0+0x160",
-      "@273": "lbl_1_rodata_78D0+0x164",
-      "@274": "lbl_1_rodata_78D0+0x168",
-      "@275": "lbl_1_rodata_78D0+0x16C"
-    },
-    "collapsed": true
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/bg_common/fn_1_10688C.c",
-    "symbols": [
+      "fn_1_1067A8",
       "fn_1_10688C",
       "fn_1_106B68"
     ],
@@ -24515,16 +24479,12 @@
     "mw_version": "GC/1.3.2",
     "tu": "rel/main_rel/bg_common.c",
     "pool": {
+      "...rodata.0": "lbl_1_rodata_78D0",
       "...data.0": "lbl_1_data_3F188",
-      "...bss.0": "lbl_1_bss_85280",
-      "@51": "lbl_1_data_3F188+0x1F4",
-      "@52": "lbl_1_data_3F188+0x204",
-      "@53": "lbl_1_data_3F188+0x220",
-      "@54": "lbl_1_data_3F188+0x22C",
-      "@55": "lbl_1_data_3F188+0x23C",
-      "@56": "lbl_1_data_3F188+0x260"
+      "...bss.0": "lbl_1_bss_85280"
     },
-    "collapsed": true
+    "collapsed": true,
+    "extra_cflags": []
   },
   {
     "module": "main_rel",
