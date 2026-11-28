@@ -76,19 +76,10 @@ rel/movie_module/sfd_mem/fn_12_24D78.c:
 	.text       start:0x00024D78 end:0x00024E94 align:4
 
 rel/movie_module/sfd_mps/fn_12_24E94.c:
-	.text       start:0x00024E94 end:0x00024EA0 align:4
-
-rel/movie_module/sfd_mps/fn_12_250D0.c:
-	.text       start:0x000250D0 end:0x000250F0
+	.text       start:0x00024E94 end:0x000250F0 align:4
 
 rel/movie_module/sfd_mps/fn_12_26664.c:
 	.text       start:0x00026664 end:0x00026734 align:4
-
-rel/movie_module/sfd_mps/fn_12_2507C.c:
-	.text       start:0x0002507C end:0x000250D0 align:4
-
-rel/movie_module/sfd_mps/fn_12_24EA0.c:
-	.text       start:0x00024EA0 end:0x0002507C align:4
 
 rel/movie_module/sfd_mps/fn_12_26734.c:
 	.text       start:0x00026734 end:0x000267C0 align:4
