@@ -1587,5 +1587,23 @@
     "regional_split": [
       "\t.text       start:0x0014EEC4 end:0x0014F118 align:4"
     ]
+  },
+  {
+    "module": "customize",
+    "source": "rel/customize/_prolog/fn_3_33A0.c",
+    "symbols": [
+      "fn_3_33A0"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [],
+    "tu": "rel/customize/_prolog_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x000033A0 end:0x00003438"
+    ]
   }
 ]

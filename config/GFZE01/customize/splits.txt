@@ -15,9 +15,6 @@ rel/customize/_prolog/fn_3_8F8.c:
 rel/customize/_prolog/fn_3_AF8.c:
 	.text       start:0x00000AF8 end:0x00000E64 align:4
 
-rel/customize/_prolog/fn_3_33A0.c:
-	.text       start:0x000033A0 end:0x00003438
-
 rel/customize/_prolog/fn_3_41B0.c:
 	.text       start:0x000041B0 end:0x00004380 align:4
 
@@ -171,7 +168,7 @@ rel/customize/toolkit/fn_3_1AEE4.c:
 	.text       start:0x0001AEE4 end:0x0001B008 align:4
 
 rel/customize/_prolog/fn_3_15A0.c:
-	.text       start:0x000015A0 end:0x000033A0 align:4
+	.text       start:0x000015A0 end:0x00003438 align:4
 	.data       start:0x00000000 end:0x00001668 align:8
 
 rel/customize/_prolog/fn_3_381C.c:
