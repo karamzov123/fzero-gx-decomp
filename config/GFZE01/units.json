@@ -160,7 +160,8 @@
     "source": "rel/customize/_prolog/fn_3_131C.c",
     "symbols": [
       "fn_3_131C",
-      "fn_3_14C4"
+      "fn_3_14C4",
+      "fn_3_14E4"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -168,54 +169,10 @@
     "tu": "rel/customize/_prolog.c",
     "pool": {
       "...rodata.0": "lbl_3_rodata_0",
-      "@9": "lbl_3_rodata_0+0x4",
-      "@10": "lbl_3_rodata_0+0x8",
-      "@11": "lbl_3_rodata_0+0xC",
-      "@12": "lbl_3_rodata_0+0x10",
-      "@13": "lbl_3_rodata_0+0x14",
-      "@14": "lbl_3_rodata_0+0x18",
-      "@15": "lbl_3_rodata_0+0x1C",
-      "@16": "lbl_3_rodata_0+0x20",
-      "@25": "lbl_3_rodata_0+0x40",
-      "@26": "lbl_3_rodata_0+0x44",
-      "@35": "lbl_3_rodata_0+0x4C",
-      "@36": "lbl_3_rodata_0+0x50",
-      "@37": "lbl_3_rodata_0+0x54",
-      "@46": "lbl_3_rodata_0+0x5C",
-      "@47": "lbl_3_rodata_0+0x60",
-      "@48": "lbl_3_rodata_0+0x64",
-      "@49": "lbl_3_rodata_0+0x68",
-      "@50": "lbl_3_rodata_0+0x6C",
-      "@51": "lbl_3_rodata_0+0x70",
-      "@52": "lbl_3_rodata_0+0x74",
-      "@53": "lbl_3_rodata_0+0x78",
-      "@54": "lbl_3_rodata_0+0x7C",
-      "@55": "lbl_3_rodata_0+0x80"
+      "...bss.0": "lbl_3_bss_0"
     },
-    "collapsed": true
-  },
-  {
-    "module": "customize",
-    "source": "rel/customize/_prolog/fn_3_14E4.c",
-    "symbols": [
-      "fn_3_14E4"
-    ],
-    "status": "matching",
-    "matching_for": ["GFZE01"],
-    "mw_version": null,
-    "extra_cflags": [],
-    "tu": "rel/customize/_prolog.c",
-    "pool": {
-      "...bss.0": "lbl_3_bss_0",
-      "fzgx_obj_lbl_3_bss_0": "lbl_3_bss_0",
-      "fzgx_obj_lbl_3_bss_2084C": "lbl_3_bss_2084C",
-      "fzgx_obj_lbl_3_bss_20850": "lbl_3_bss_20850",
-      "fzgx_obj_lbl_3_bss_2437C": "lbl_3_bss_2437C",
-      "lbl_3_bss_2437C__fzgx_offset_1": "lbl_3_bss_2437C+0x1",
-      "lbl_3_bss_2437C__fzgx_offset_2": "lbl_3_bss_2437C+0x2",
-      "lbl_3_bss_2437C__fzgx_offset_4": "lbl_3_bss_2437C+0x4",
-      "lbl_3_bss_2437C__fzgx_offset_8": "lbl_3_bss_2437C+0x8"
-    }
+    "collapsed": true,
+    "extra_cflags": []
   },
   {
     "module": "customize",

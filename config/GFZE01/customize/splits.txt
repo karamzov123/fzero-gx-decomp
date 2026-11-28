@@ -138,7 +138,7 @@ rel/customize/toolkit_b/fn_3_1D338.c:
 	.text       start:0x0001D338 end:0x0001EC2C align:4
 
 rel/customize/_prolog/fn_3_131C.c:
-	.text       start:0x0000131C end:0x000014E4 align:4
+	.text       start:0x0000131C end:0x000015A0 align:4
 
 rel/customize/emb_paste_editor/fn_3_12FD4.c:
 	.text       start:0x00012FD4 end:0x0001304C align:4
@@ -338,9 +338,6 @@ rel/customize/toolkit/fn_3_1857C.c:
 
 rel/customize/_prolog/fn_3_7038.c:
 	.text       start:0x00007038 end:0x00007360 align:4
-
-rel/customize/_prolog/fn_3_14E4.c:
-	.text       start:0x000014E4 end:0x000015A0 align:4
 
 rel/customize/emb_paste_editor/fn_3_10260.c:
 	.text       start:0x00010260 end:0x000104C4 align:4
