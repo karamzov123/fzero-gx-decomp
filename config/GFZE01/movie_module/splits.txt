@@ -208,16 +208,7 @@ rel/movie_module/fn_12_3500C.c:
 	.text       start:0x0003500C end:0x00035060 align:4
 
 rel/movie_module/mwsfdsfx/fn_12_35060.c:
-	.text       start:0x00035060 end:0x0003530C align:4
-
-rel/movie_module/mwsfdsfx/fn_12_3530C.c:
-	.text       start:0x0003530C end:0x00035484 align:4
-
-rel/movie_module/mwsfdsfx/fn_12_35484.c:
-	.text       start:0x00035484 end:0x0003556C align:4
-
-rel/movie_module/mwsfdsfx/fn_12_3556C.c:
-	.text       start:0x0003556C end:0x00035694 align:4
+	.text       start:0x00035060 end:0x00035694 align:4
 
 rel/movie_module/mwsfdsfx/fn_12_3570C.c:
 	.text       start:0x0003570C end:0x000357BC

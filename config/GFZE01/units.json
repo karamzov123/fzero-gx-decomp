@@ -75565,47 +75565,14 @@
       "fn_12_35108",
       "fn_12_35138",
       "fn_12_3515C",
-      "mwsftag_GetAinfFromSj"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "collapsed": true,
-    "tu": "rel/movie_module/mwsfdsfx.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/mwsfdsfx/fn_12_3530C.c",
-    "symbols": [
+      "mwsftag_GetAinfFromSj",
       "fn_12_3530C",
       "fn_12_353C4",
       "fn_12_353FC",
-      "fn_12_35418"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "collapsed": true,
-    "tu": "rel/movie_module/mwsfdsfx.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/mwsfdsfx/fn_12_35484.c",
-    "symbols": [
+      "fn_12_35418",
       "fn_12_35484",
       "fn_12_354BC",
-      "fn_12_35548"
-    ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [],
-    "collapsed": true,
-    "tu": "rel/movie_module/mwsfdsfx.c"
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/mwsfdsfx/fn_12_3556C.c",
-    "symbols": [
+      "fn_12_35548",
       "fn_12_3556C",
       "fn_12_355DC",
       "fn_12_3564C",
