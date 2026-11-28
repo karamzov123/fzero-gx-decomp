@@ -15,9 +15,11 @@ from .project import ROOT, VERSIONS, load_json_retry, unit_matches
 def link_signature(path: Path, preserve=()) -> tuple:
     """Compare emitted sections, bindings, alignment and relocations, not debug paths."""
     raw = objsig.sig(path)
-    _, locals_by_location = objsig.canon(raw)
-    locations = {n: loc for n, loc in locals_by_location.items() if n not in preserve
-                 and any(row[0] == n and row[4] == 0 for row in raw['defs'])}
+    # Canonicalize all STB_LOCAL (bind == 0) symbol names not in `preserve` by their
+    # defining (section, offset) location so renaming colliding `static` helpers/primers
+    # does not register as a link difference while preserving exact section/reloc identity.
+    locations = {n: f'<{sec}+{v:#x}>' for n, sec, v, _sz, bind in raw['defs']
+                 if bind == 0 and n not in preserve}
     raw['defs'] = {(locations.get(n, n), *rest) for n, *rest in raw['defs']}
     raw['relocs'] = {s: sorted((o, t, locations.get(n, n), a) for o, t, n, a in rels)
                      for s, rels in raw['relocs'].items()}
