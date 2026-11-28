@@ -79,7 +79,7 @@ rel/interview/interview/fn_17_3C5C.c:
 	.text       start:0x00003C5C end:0x00003E08 align:4
 
 rel/interview/interview/fn_17_6B2C.c:
-	.text       start:0x00006B2C end:0x00006C30 align:4
+	.text       start:0x00006B2C end:0x00006D60 align:4
 
 rel/interview/interview/fn_17_802C.c:
 	.text       start:0x0000802C end:0x0000849C align:4
@@ -95,9 +95,6 @@ rel/interview/data/lbl_17_bss_150.c:
 
 rel/interview/interview/fn_17_7728.c:
 	.text       start:0x00007728 end:0x00007A74 align:4
-
-rel/interview/interview/fn_17_6C30.c:
-	.text       start:0x00006C30 end:0x00006D60 align:4
 
 rel/interview/interview/fn_17_3E08.c:
 	.text       start:0x00003E08 end:0x0000424C align:4
