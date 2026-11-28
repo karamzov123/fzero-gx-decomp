@@ -266,13 +266,7 @@ rel/main_rel/ghost/fn_1_EF924.c:
 	.text       start:0x000EF924 end:0x000EF978
 
 rel/main_rel/ghost/fn_1_EF978.c:
-	.text       start:0x000EF978 end:0x000EFA50 align:4
-
-rel/main_rel/ghost/ghost_reset.c:
-	.text       start:0x000EFA50 end:0x000EFA88
-
-rel/main_rel/ghost/fn_1_EFA88.c:
-	.text       start:0x000EFA88 end:0x000EFA8C
+	.text       start:0x000EF978 end:0x000EFA8C align:4
 
 rel/main_rel/ghost/fn_1_F0164.c:
 	.text       start:0x000F0164 end:0x000F0168
