@@ -174,10 +174,7 @@ rel/main_rel/sound/fn_1_9FE74.c:
 	.text       start:0x0009FE74 end:0x0009FFD8 align:4
 
 rel/main_rel/sound/fn_1_A2D84.c:
-	.text       start:0x000A2D84 end:0x000A2DF4 align:4
-
-rel/main_rel/sound/fn_1_A2E24.c:
-	.text       start:0x000A2E24 end:0x000A2E5C
+	.text       start:0x000A2D84 end:0x000A2E5C align:4
 
 rel/main_rel/sound/fn_1_A5590.c:
 	.text       start:0x000A5590 end:0x000A5864 align:4
@@ -533,9 +530,6 @@ rel/main_rel/ranking_b/fn_1_1577D0.c:
 
 rel/main_rel/_prolog_b/fn_1_3C78.c:
 	.text       start:0x00003C78 end:0x00003CF0 align:4
-
-rel/main_rel/sound/fn_1_A2DF4.c:
-	.text       start:0x000A2DF4 end:0x000A2E24 align:4
 
 rel/main_rel/_prolog_b/fn_1_4310.c:
 	.text       start:0x00004310 end:0x00004404 align:4
