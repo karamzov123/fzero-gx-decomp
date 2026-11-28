@@ -337,16 +337,16 @@ void fn_1_B870(void) {
 
 /* the camera TU's .rodata pool in retail order, ahead of this function's constants */
 #pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+__declspec(section ".fzgxpool") static void fn_1_BD54_fzgx_pool_prime1(void) {
     volatile f32 s;  /* fzgx-allow: S2 pool primer sink */
     s = 1.0f;
     s = 0.10000000149011612f;
     s = 0.009999999776482582f;
     s = 55.0f;
 }
-static const u32 fzgx_pool_table2[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+static const u32 fn_1_BD54_fzgx_pool_table2[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fn_1_BD54_fzgx_pool_keep2(void) { const u32 *volatile cp; cp = fn_1_BD54_fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fn_1_BD54_fzgx_pool_prime3(void) {
     volatile f32 s; volatile f64 d;  /* fzgx-allow: S2 pool primer sinks */
     d = 0.04000000000000001;
     d = 1.0;
@@ -404,7 +404,7 @@ u8 lbl_1_bss_104C__fzgx_offset_10[0x30];
 u8 lbl_1_bss_108C[52];
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_BD54_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_1010;
     s = *(u8 *)&fzgx_pool_gap_1014;
@@ -511,7 +511,7 @@ f32 lbl_1_bss_1044;
 u8 fzgx_obj_camera_flag_0;
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_BFA0_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_1010;
     s = lbl_1_bss_1014;
@@ -637,7 +637,7 @@ CameraPreset fzgx_obj_lbl_1_bss_10D8[1];
 u32 lbl_1_bss_10D8__fzgx_offset_24[19];
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_C10C_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_1010;
     s = lbl_1_bss_1014;
@@ -969,7 +969,7 @@ CamKey fzgx_obj_lbl_1_bss_10D8[2];
 CamKey lbl_1_bss_10D8__fzgx_offset_48;
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_C770_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_1010;
     s = lbl_1_bss_1014;
@@ -1319,7 +1319,7 @@ u8 lbl_1_bss_10D8__fzgx_offset_6D;
 u16 lbl_1_bss_10D8__fzgx_offset_6E;
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_CC5C_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_1010;
     s = lbl_1_bss_1014;
@@ -1350,16 +1350,16 @@ static void fzgx_bss_layout(void) {
 
 /* literal pool of the retail TU in retail order; this function's own
  * colour table and 2.0f follow the 0.0001 double. */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime1(void) {
+__declspec(section ".fzgxpool") static void fn_1_CC5C_fzgx_pool_prime1(void) {
     volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
     s = 1.0f;
     s = 0.10000000149011612f;
     s = 0.009999999776482582f;
     s = 55.0f;
 }
-static const unsigned long fzgx_pool_table2[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
-__declspec(section ".fzgxpool") static void fzgx_pool_keep2(void) { const unsigned long *volatile cp; cp = fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
-__declspec(section ".fzgxpool") static void fzgx_pool_prime3(void) {
+static const unsigned long fn_1_CC5C_fzgx_pool_table2[6] = {0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000};  /* fzgx-allow: A1 retail pool bytes */
+__declspec(section ".fzgxpool") static void fn_1_CC5C_fzgx_pool_keep2(void) { const unsigned long *volatile cp; cp = fn_1_CC5C_fzgx_pool_table2; }  /* fzgx-allow: S2 pool primer sink */
+__declspec(section ".fzgxpool") static void fn_1_CC5C_fzgx_pool_prime3(void) {
     volatile float s; volatile double d;  /* fzgx-allow: S2 pool primer sinks */
     d = 0.04000000000000001;
     d = 1.0;

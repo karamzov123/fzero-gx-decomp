@@ -314,7 +314,7 @@ s16 fzgx_pool_gap_1752;
 s16 lbl_1_bss_1160__fzgx_offset_5F4[44];
 
 #pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+__declspec(section ".fzgxpool") static void fn_1_DF74_fzgx_bss_prime(void) {
     volatile u32 s;  /* fzgx-allow: S2 primer sink */
     s = fzgx_obj_lbl_1_data_43B8[0];
     s = fzgx_pool_gap_43C4[0];
@@ -886,7 +886,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_prime(void) {
     s = 0.01f;
     s = 0.02f;
 }
-__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+__declspec(section ".fzgxpool") static void fn_1_E688_fzgx_bss_prime(void) {
     volatile u32 s;  /* fzgx-allow: S2 primer sink */
     s = fzgx_obj_lbl_1_data_43B8[0];
     s = fzgx_pool_gap_43C4[0];
@@ -3317,7 +3317,7 @@ __declspec(section ".fzgxpool") static void fzgx_pool_base(void) {
     s = 1.0f;
     s = 0.5f;
 }
-__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+__declspec(section ".fzgxpool") static void fn_1_10AF0_fzgx_bss_prime(void) {
     volatile u8 s;  /* fzgx-allow: S2 pool primer sink */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_1148;
     s = *(u8 *)&fzgx_pool_gap_115C;
@@ -4641,7 +4641,6 @@ void fn_1_12620(s32 arg0) {
     }
     fn_80006E10((base + 0x350));
 }
-
 /* fzgx:end fn_1_12620 */
 
 /* fzgx:begin fn_1_12850 */

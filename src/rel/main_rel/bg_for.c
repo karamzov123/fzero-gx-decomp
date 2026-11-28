@@ -522,11 +522,6 @@ void fn_1_DCFA4(u32 arg0) {
 /* fzgx:end fn_1_DCFA4 */
 
 /* fzgx:begin fn_1_DD4DC */
-
-
-
-
-
 typedef struct {
     u8 pad0[0x20];
     void *p20;
@@ -1018,7 +1013,7 @@ typedef struct {
 /* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 28 disassembly lines (bg_for/fn_1_DDF80.c) */
 #pragma opt_propagation off
 
-static inline void cross(Vec *a, Vec *b, Vec *out) {
+static inline void fn_1_DDF80_cross(Vec *a, Vec *b, Vec *out) {
     f32 ax;
     f32 ay;
     f32 az;
@@ -1047,7 +1042,7 @@ static inline void cross(Vec *a, Vec *b, Vec *out) {
     out->z = z;
 }
 
-static inline f32 dot(Vec *a, Vec *b) {
+static inline f32 fn_1_DDF80_dot(Vec *a, Vec *b) {
     f32 result;
     f32 ay;
     f32 az;
@@ -1068,7 +1063,7 @@ static inline f32 dot(Vec *a, Vec *b) {
 }
 
 /* a helper of its own gives the -1.0 and the final scale retail's register order */
-static inline void flip(const Pool *pool, Vec *v) {
+static inline void fn_1_DDF80_flip(const Pool *pool, Vec *v) {
     psvec_scale(v, pool->neg_one, v);
 }
 
@@ -1083,13 +1078,13 @@ void fn_1_DDF80(Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side
     fn_80008BA8(along, b, sizeof(Vec));
     lbl_8006D5F0(along, along, along_scale * c);
     fn_80008BA8(&pos, a, sizeof(Vec));
-    cross(&pos, b, side);
-    cross(side, b, side);
-    if (dot(side, side) > pool->zero) {
+    fn_1_DDF80_cross(&pos, b, side);
+    fn_1_DDF80_cross(side, b, side);
+    if (fn_1_DDF80_dot(side, side) > pool->zero) {
         lbl_8006D668(side);
     }
-    if (!(dot(&pos, side) > pool->zero)) {
-        flip(pool, side);
+    if (!(fn_1_DDF80_dot(&pos, side) > pool->zero)) {
+        fn_1_DDF80_flip(pool, side);
     }
     psvec_scale(side, side_scale * s, side);
 }
@@ -1234,10 +1229,6 @@ void fn_1_DE180(fn_1_DE180_Obj *obj, Vec3 *dir, f32 radius) {
 /* fzgx:end fn_1_DE180 */
 
 /* fzgx:begin fn_1_DE4B0 */
-
-
-
-
 typedef struct {
     u8 pad_0[0xC];
     s16 mode;
@@ -1291,7 +1282,7 @@ __declspec(section ".fzgxpool") void fzgx_pool_primer3(void) {
 #pragma section RX ".text"
 
 /* the vector helpers of fn_1_DDF80 / fn_1_DE180 in this TU, under the same
- * propagation setting; cross writes its result through an f32 pointer so a
+ * propagation setting; fn_1_DDF80_cross writes its result through an f32 pointer so a
  * local result stays in memory */
 /* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 108 disassembly lines (bg_for/fn_1_DE4B0.c) */
 #pragma opt_propagation off
@@ -1597,8 +1588,6 @@ void fn_1_DE9C4(struct fn_1_DE9C4_Arg0 *arg0) {
 /* fzgx:end fn_1_DE9C4 */
 
 /* fzgx:begin fn_1_DEDC4 */
-
-
 /* bg_for.c's literal pool up to the first half of the 0x98 table, so this function's literals and its
  * {0, 1, 0} initializer land at retail's offsets (0xA4-0xBC) */
 #pragma section code_type ".fzgxpool"
@@ -1682,7 +1671,7 @@ static inline f32 xz_sq(Vec3 *v) {
     return r;
 }
 
-static inline void flip(Vec3 *v) {
+static inline void fn_1_DEDC4_flip(Vec3 *v) {
     psvec_scale(v, -1.0f, v);
 }
 
@@ -1765,7 +1754,7 @@ s16 fn_1_DEDC4(Vec3 *a, Vec3 *b, void *mtx, Vec3 *point, Vec3 *normal, Vec3 *hit
         lbl_8006D668( (Vec *)(Vec3 *)(&nrm));
         psvec_scale(&nrm, radius, out);
         if (d * ((f32)(nrm.x * out->x) + (f32)(nrm.z * out->z) - d) > 0.0f) {
-            flip(out);
+            fn_1_DEDC4_flip(out);
         }
         lbl_8006E1C0( (void *)(Vec3 *)(out), (void *)(Vec3 *)(&pos));
         psvec_scale(normal, 0.0001f * plane_dist(&pos, point, normal), hit);
@@ -1778,10 +1767,10 @@ s16 fn_1_DEDC4(Vec3 *a, Vec3 *b, void *mtx, Vec3 *point, Vec3 *normal, Vec3 *hit
         psvec_scale(&nrm, radius, out);
         if (reach <= radius) {
             if (cross_d * ((f32)(nrm.x * out->x) + (f32)(nrm.z * out->z) - cross_d) <= 0.0f) {
-                flip(out);
+                fn_1_DEDC4_flip(out);
             }
         } else {
-            flip(out);
+            fn_1_DEDC4_flip(out);
         }
         lbl_8006E1C0( (void *)(Vec3 *)(out), (void *)(Vec3 *)(&pos));
         psvec_scale(normal, 0.0001f * plane_dist(&pos, point, normal), hit);
@@ -2007,10 +1996,6 @@ s16 fn_1_DF2A4(DF2A4Vec *pos, DF2A4Vec * __restrict prev, void *mtx, DF2A4Vec *p
 /* fzgx:end fn_1_DF2A4 */
 
 /* fzgx:begin fn_1_DF6AC */
-
-
-
-
 /* as in fn_1_DDF80 and fn_1_DE180, whose code this repeats: retail reloads each field at every use */
 /* WARNING: compiler-diff device, not original code: opt_common_subs off; removal changes 100 disassembly lines (bg_for/fn_1_DF6AC.c) */
 #pragma opt_common_subs off
@@ -2018,7 +2003,7 @@ s16 fn_1_DF2A4(DF2A4Vec *pos, DF2A4Vec * __restrict prev, void *mtx, DF2A4Vec *p
 /* WARNING: compiler-diff device, not original code: opt_dead_assignments off; removal changes 114 disassembly lines (bg_for/fn_1_DF6AC.c) */
 #pragma opt_dead_assignments off
 
-static inline void cross(Vec *a, Vec *b, Vec *out) {
+static inline void fn_1_DF6AC_cross(Vec *a, Vec *b, Vec *out) {
     f32 ax;
     f32 ay;
     f32 az;
@@ -2047,7 +2032,7 @@ static inline void cross(Vec *a, Vec *b, Vec *out) {
     out->z = z;
 }
 
-static inline f32 dot(Vec *a, Vec *b) {
+static inline f32 fn_1_DF6AC_dot(Vec *a, Vec *b) {
     f32 result;
     f32 ay;
     f32 az;
@@ -2067,26 +2052,26 @@ static inline f32 dot(Vec *a, Vec *b) {
     return result;
 }
 
-/* as fn_1_DE180's perp: retail sets up the normalise argument before the test */
-static inline void perp(const f32 *pool, Vec *a, Vec *b, Vec *out) {
+/* as fn_1_DE180's fn_1_DF6AC_perp: retail sets up the normalise argument before the test */
+static inline void fn_1_DF6AC_perp(const f32 *pool, Vec *a, Vec *b, Vec *out) {
     Vec *n = out;
 
-    cross(a, b, out);
-    cross(out, b, out);
-    if (dot(out, out) > pool[8]) {
+    fn_1_DF6AC_cross(a, b, out);
+    fn_1_DF6AC_cross(out, b, out);
+    if (fn_1_DF6AC_dot(out, out) > pool[8]) {
         lbl_8006D668(n);
     }
 }
 
 /* a helper of its own gives the -1.0 retail's register order (fn_1_DDF80) */
-static inline void flip(const f32 *pool, Vec *v) {
+static inline void fn_1_DF6AC_flip(const f32 *pool, Vec *v) {
     psvec_scale(v, pool[0], v);
 }
 
 /* fn_1_DDF80's body; retail inlines it twice, which needs a larger inline size limit */
 /* WARNING: compiler-diff device, not original code: inline_max_size(4096); removal changes 365 disassembly lines (bg_for/fn_1_DF6AC.c) */
 #pragma inline_max_size(4096)
-static inline void split(const f32 *pool, Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side_scale) {
+static inline void fn_1_DF6AC_split(const f32 *pool, Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side_scale) {
     Vec pos;
     f32 c;
     f32 s;
@@ -2096,9 +2081,9 @@ static inline void split(const f32 *pool, Vec *a, Vec *b, Vec *along, Vec *side,
     fn_80008BA8(along, b, sizeof(Vec));
     lbl_8006D5F0(along, along, along_scale * c);
     fn_80008BA8(&pos, a, sizeof(Vec));
-    perp(pool, &pos, b, side);
-    if (!(dot(&pos, side) > pool[8])) {
-        flip(pool, side);
+    fn_1_DF6AC_perp(pool, &pos, b, side);
+    if (!(fn_1_DF6AC_dot(&pos, side) > pool[8])) {
+        fn_1_DF6AC_flip(pool, side);
     }
     psvec_scale(side, side_scale * s, side);
 }
@@ -2116,20 +2101,20 @@ void fn_1_DF6AC(Vec *a, Vec *b, Vec *c, Vec *out_b, Vec *out_c, f32 scale_b, f32
     f32 weight;
     Vec *src;
 
-    split(pool, b, a, &along_b, &side_b, scale_b, scale_b);
-    split(pool, c, a, &along_c, &side_c, scale_c, scale_c);
-    len_b = lbl_8006D0B4(dot(&along_b, &along_b));
-    len_c = lbl_8006D0B4(dot(&along_c, &along_c));
+    fn_1_DF6AC_split(pool, b, a, &along_b, &side_b, scale_b, scale_b);
+    fn_1_DF6AC_split(pool, c, a, &along_c, &side_c, scale_c, scale_c);
+    len_b = lbl_8006D0B4(fn_1_DF6AC_dot(&along_b, &along_b));
+    len_c = lbl_8006D0B4(fn_1_DF6AC_dot(&along_c, &along_c));
     /* the (f32) casts keep each product a separate fmuls, as retail has no fmadds here */
     weight = pool[10] + k2;
     t = ((f32)(len_b * (weight * k0)) + (f32)(len_c * (k1 - (f32)(k0 * k2)))) / (k0 + k1);
     u = t + (f32)(-k2 * (len_b - len_c));
     src = &along_b;
-    if (dot(src, src) != pool[8]) {
+    if (fn_1_DF6AC_dot(src, src) != pool[8]) {
         fn_80008BA8(&dir, src, sizeof(Vec));
     } else {
         src = &along_c;
-        if (dot(src, src) != pool[8]) {
+        if (fn_1_DF6AC_dot(src, src) != pool[8]) {
             fn_80008BA8(&dir, src, sizeof(Vec));
         } else {
             fn_80008BEC(out_b, 0, sizeof(Vec));
@@ -2642,9 +2627,6 @@ s32 fn_1_DFBBC(DFBBCCar *car, DFBBCObj *obj) {
 /* fzgx:end fn_1_DFBBC */
 
 /* fzgx:begin fn_1_E07B8 */
-
-
-
 typedef struct {
     u8 pad_0[0xC];
     s16 mode;
@@ -2695,7 +2677,7 @@ typedef struct {
 /* WARNING: compiler-diff device, not original code: opt_propagation off; removal changes 122 disassembly lines (bg_for/fn_1_E07B8.c) */
 #pragma opt_propagation off
 
-static inline void cross(Vec *a, Vec *b, Vec *out) {
+static inline void fn_1_E07B8_cross(Vec *a, Vec *b, Vec *out) {
     f32 ax;
     f32 ay;
     f32 az;
@@ -2724,7 +2706,7 @@ static inline void cross(Vec *a, Vec *b, Vec *out) {
     out->z = z;
 }
 
-static inline f32 dot(Vec *a, Vec *b) {
+static inline f32 fn_1_E07B8_dot(Vec *a, Vec *b) {
     f32 result;
     f32 ay;
     f32 az;
@@ -2744,11 +2726,11 @@ static inline f32 dot(Vec *a, Vec *b) {
     return result;
 }
 
-static inline void perp(const f32 *pool, Vec *a, Vec *b, Vec *out) {
+static inline void fn_1_E07B8_perp(const f32 *pool, Vec *a, Vec *b, Vec *out) {
     Vec *n = out;
-    cross(a, b, out);
-    cross(out, b, out);
-    if (dot(out, out) > pool[8]) {
+    fn_1_E07B8_cross(a, b, out);
+    fn_1_E07B8_cross(out, b, out);
+    if (fn_1_E07B8_dot(out, out) > pool[8]) {
         lbl_8006D668(n);
     }
 }
@@ -2759,33 +2741,33 @@ static inline BOOL clamp(const f32 *pool, Vec *v, f32 r) {
         return FALSE;
     }
     p = v;
-    if (dot(v, v) <= r * r) {
+    if (fn_1_E07B8_dot(v, v) <= r * r) {
         fn_80008BEC(p, 0, sizeof(Vec));
         return TRUE;
     }
     return FALSE;
 }
 
-/* a helper of its own for the -1.0 flip, as in fn_1_DDF80 / fn_1_DF6AC */
-static inline void flip(const f32 *pool, Vec *v) {
+/* a helper of its own for the -1.0 fn_1_E07B8_flip, as in fn_1_DDF80 / fn_1_DF6AC */
+static inline void fn_1_E07B8_flip(const f32 *pool, Vec *v) {
     psvec_scale(v, pool[0], v);
 }
 
-static inline void split(const f32 *pool, Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side_scale, f32 c, f32 s) {
+static inline void fn_1_E07B8_split(const f32 *pool, Vec *a, Vec *b, Vec *along, Vec *side, f32 along_scale, f32 side_scale, f32 c, f32 s) {
     Vec pos;
 
     fn_80008BA8(along, b, sizeof(Vec));
     lbl_8006D5F0(along, along, along_scale * c);
     fn_80008BA8(&pos, a, sizeof(Vec));
-    perp(pool, &pos, b, side);
-    if (!(dot(&pos, side) > pool[8])) {
-        flip(pool, side);
+    fn_1_E07B8_perp(pool, &pos, b, side);
+    if (!(fn_1_E07B8_dot(&pos, side) > pool[8])) {
+        fn_1_E07B8_flip(pool, side);
     }
     psvec_scale(side, side_scale * s, side);
 }
 
-/* fn_1_DE180's body, which retail inlines here three times; split is fn_1_DDF80's body (as in fn_1_DF6AC)
- * taking the precomputed dot and sqrt */
+/* fn_1_DE180's body, which retail inlines here three times; fn_1_E07B8_split is fn_1_DDF80's body (as in fn_1_DF6AC)
+ * taking the precomputed fn_1_E07B8_dot and sqrt */
 /* WARNING: compiler-diff device, not original code: inline_max_size(4096); removal changes 363 disassembly lines (bg_for/fn_1_E07B8.c) */
 #pragma inline_max_size(4096)
 static inline void slide(const f32 *pool, Obj *obj, Vec *dir, f32 radius) {
@@ -2804,7 +2786,7 @@ static inline void slide(const f32 *pool, Obj *obj, Vec *dir, f32 radius) {
     }
     s = lbl_8006D0B4(pool[10] - (f32)(dist * dist));
     k = obj->unk_50;
-    split(pool, &obj->pos, dir, &push, &side, k * -obj->unk_18, k, dist, s);
+    fn_1_E07B8_split(pool, &obj->pos, dir, &push, &side, k * -obj->unk_18, k, dist, s);
     if (clamp(pool, &push, radius) == TRUE) {
         obj->flags |= 0x8000;
         if ((obj->flags & 0x8000000) == 0) {
@@ -2918,8 +2900,6 @@ s32 fn_1_E07B8(Obj *obj) {
 /* fzgx:end fn_1_E07B8 */
 
 /* fzgx:begin fn_1_E1408 */
-
-
 typedef struct {
     f32 unk_0;
     u8 pad4[0x1c];

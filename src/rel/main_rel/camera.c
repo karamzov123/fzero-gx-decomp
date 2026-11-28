@@ -492,7 +492,7 @@ u8 lbl_1_bss_F75;
 u8 lbl_1_bss_F76;
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_6A0C_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_F68;
     s = *(u8 *)&fzgx_obj_game_camera_entries;
@@ -989,7 +989,7 @@ u8 *fzgx_obj_game_camera_entries;
 u8 *fzgx_obj_live_camera;
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_707C_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_F68;
     s = *(u8 *)&fzgx_obj_game_camera_entries;

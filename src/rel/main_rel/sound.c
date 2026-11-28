@@ -402,7 +402,7 @@ u8 fzgx_obj_lbl_1_bss_6F1D8;
 u32 fzgx_obj_lbl_1_bss_6F1DC;
 
 #pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+__declspec(section ".fzgxpool") static void fn_1_A0214_fzgx_bss_prime(void) {
     volatile u32 s;  /* fzgx-allow: S2 primer sink */
     s = fzgx_obj_lbl_1_bss_6EA98;
     s = fzgx_obj_lbl_1_bss_6EA9C[0];
@@ -498,7 +498,7 @@ u32 lbl_1_bss_6EAC6__fzgx_offset_6;
 void **fzgx_obj_lbl_1_bss_6EAD0;
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_A02F0_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA9C;
@@ -759,7 +759,7 @@ u8 fzgx_pool_gap_6F247;
 u8 lbl_1_bss_6F244__fzgx_offset_4[4];
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_A0680_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA9C;
@@ -1000,7 +1000,7 @@ SoundPair lbl_1_bss_6F244__fzgx_offset_44[30];
 s8 fzgx_obj_lbl_1_bss_6F2C4;
 
 #pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+__declspec(section ".fzgxpool") static void fn_1_A0978_fzgx_bss_prime(void) {
     volatile u32 s;  /* fzgx-allow: S2 primer sink */
     s = fzgx_obj_lbl_1_bss_6EA98;
     s = fzgx_obj_lbl_1_bss_6EA9C;
@@ -1138,7 +1138,7 @@ u8 fzgx_pool_gap_6EAC8[0x8];
 void **fzgx_obj_lbl_1_bss_6EAD0;
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_A0AA4_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA9C;
@@ -1378,7 +1378,7 @@ u8 fzgx_obj_lbl_1_bss_6F317;
 s16 fzgx_pool_lbl_1_bss_6F316__fzgx_offset_2;
 
 #pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+__declspec(section ".fzgxpool") static void fn_1_A0D20_fzgx_bss_prime(void) {
     volatile u32 s;  /* fzgx-allow: S2 primer sink */
     s = fzgx_obj_lbl_1_bss_6EA98;
     s = fzgx_obj_lbl_1_bss_6EA9C;
@@ -1688,7 +1688,7 @@ u8 fzgx_obj_lbl_1_bss_6F317;
 s16 lbl_1_bss_6F318__fzgx_offset_0;
 
 #pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+__declspec(section ".fzgxpool") static void fn_1_A11EC_fzgx_bss_prime(void) {
     volatile u32 s;  /* fzgx-allow: S2 primer sink */
     s = fzgx_obj_lbl_1_bss_6EA98;
     s = fzgx_obj_lbl_1_bss_6EA9C;
@@ -1977,7 +1977,7 @@ f32 lbl_1_bss_6F31A__fzgx_offset_6;
 f32 lbl_1_bss_6F31A__fzgx_offset_A;
 u8 lbl_1_bss_6F31A__fzgx_offset_E;
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_A1588_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA9C;
@@ -2183,7 +2183,7 @@ f32 lbl_1_bss_6F31A__fzgx_offset_6;
 f32 lbl_1_bss_6F31A__fzgx_offset_A;
 u8 lbl_1_bss_6F31A__fzgx_offset_E;
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_A176C_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA9C;
@@ -2386,7 +2386,7 @@ f32 lbl_1_bss_6F31A__fzgx_offset_6;
 f32 lbl_1_bss_6F31A__fzgx_offset_A;
 u8 lbl_1_bss_6F31A__fzgx_offset_E;
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_A1964_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA9C;
@@ -2624,7 +2624,7 @@ f32 lbl_1_bss_6F31A__fzgx_offset_6;
 f32 lbl_1_bss_6F31A__fzgx_offset_A;
 u8 lbl_1_bss_6F31A__fzgx_offset_E;
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_A1DCC_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA9C;
@@ -4224,7 +4224,7 @@ u32 lbl_1_bss_6F244__fzgx_offset_10[28];
 s8 lbl_1_bss_6F2C4;
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_A2FC8_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA9C;
@@ -4617,7 +4617,7 @@ u32 fzgx_pool_lbl_1_bss_6F318_fill[5];
 s16 fzgx_pool_lbl_1_bss_6F32C[4];
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_A3654_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_6EA98;
     s = *(u8 *)&fzgx_pool_lbl_1_bss_6EA9C_pad;
@@ -4865,7 +4865,7 @@ SoundPair lbl_1_bss_6F244__fzgx_offset_44[30];
 s8 fzgx_obj_lbl_1_bss_6F2C4;
 
 #pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+__declspec(section ".fzgxpool") static void fn_1_A3BD8_fzgx_bss_prime(void) {
     volatile u32 s;  /* fzgx-allow: S2 primer sink */
     s = fzgx_obj_lbl_1_bss_6EA98;
     s = fzgx_obj_lbl_1_bss_6EA9C;

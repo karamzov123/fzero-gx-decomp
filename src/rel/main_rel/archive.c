@@ -182,7 +182,7 @@ u32 fzgx_obj_lbl_1_bss_8B2E0[48];
 u32 fzgx_obj_lbl_1_bss_8B3A0[83];
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_12A4B0_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_897A0;
     s = *(u8 *)&fzgx_obj_lbl_1_bss_897A4;
@@ -1151,7 +1151,7 @@ u32 lbl_1_bss_8B5CC[8];
 u32 fzgx_obj_lbl_1_bss_8B5EC;
 
 #pragma section code_type ".fzgxpool"
-static void fzgx_bss_layout(void) {
+static void fn_1_12B664_fzgx_bss_layout(void) {
     volatile u8 s;  /* fzgx-allow: S2 layout primer sink: MWCC emits .bss objects in first-access order */
     s = *(u8 *)&fzgx_obj_lbl_1_bss_8B3A0;
     s = *(u8 *)&lbl_1_bss_8B4EC;

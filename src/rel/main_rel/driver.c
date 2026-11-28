@@ -2020,7 +2020,6 @@ void fn_1_A89B0(fn_1_A89B0_Obj *obj, fn_1_A89B0_Arg1 *arg1, s32 side) {
 /* fzgx:end fn_1_A89B0 */
 
 /* fzgx:begin fn_1_A8D4C */
-
 u32 lbl_1_bss_6F640;
 
 void fn_1_A8D4C(u32 retraceCount) {
@@ -2318,7 +2317,7 @@ s32 lbl_1_bss_71658__fzgx_offset_4;
 s32 lbl_1_bss_71658__fzgx_offset_8;
 
 #pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+__declspec(section ".fzgxpool") static void fn_1_A948C_fzgx_bss_prime(void) {
     volatile u32 s;  /* fzgx-allow: S2 primer sink */
     s = fzgx_obj_lbl_1_data_35990[0];
     s = fzgx_obj_lbl_1_data_3599C;
@@ -2398,7 +2397,7 @@ u32 fzgx_obj_lbl_1_bss_70658[1024];
 u32 fzgx_obj_lbl_1_bss_71658[6];
 
 #pragma section code_type ".fzgxpool"
-__declspec(section ".fzgxpool") static void fzgx_bss_prime(void) {
+__declspec(section ".fzgxpool") static void fn_1_A96BC_fzgx_bss_prime(void) {
     volatile u32 s;  /* fzgx-allow: S2 primer sink */
     s = fzgx_obj_lbl_1_bss_6F648[0];
     s = lbl_1_bss_6F648__fzgx_offset_10[0];

@@ -1680,7 +1680,7 @@ typedef struct {
     f32 z;
 } Vec3;
 
-static inline Vec3 *cross(Vec3 *a, Vec3 *b, Vec3 *out) {
+static inline Vec3 *fn_1_44884_cross(Vec3 *a, Vec3 *b, Vec3 *out) {
     f32 ax;
     f32 ay;
     f32 az;
@@ -1719,8 +1719,8 @@ void fn_1_44884(Vec3 *dir) {
     pu->x = lbl_801A6D00[2];
     pu->y = lbl_801A6D00[6];
     pu->z = lbl_801A6D00[10];
-    lbl_8006D668(cross(pu, dir, &side));
-    cross(dir, &side, pu);
+    lbl_8006D668(fn_1_44884_cross(pu, dir, &side));
+    fn_1_44884_cross(dir, &side, pu);
     lbl_801A6D00[0] = dir->x;
     lbl_801A6D00[4] = dir->y;
     lbl_801A6D00[8] = dir->z;
@@ -1832,7 +1832,7 @@ typedef struct {
 
 #define LC_MTX ((f32 *)LC_BASE)
 
-static inline Vec3 *cross(Vec3 *a, Vec3 *b, Vec3 *out) {
+static inline Vec3 *fn_1_44A74_cross(Vec3 *a, Vec3 *b, Vec3 *out) {
     f32 ax;
     f32 ay;
     f32 az;
@@ -1871,8 +1871,8 @@ static inline void fn_1_44884_inlined(Vec3 *dir) {
     pu->x = lbl_801A6D00[2];
     pu->y = lbl_801A6D00[6];
     pu->z = lbl_801A6D00[10];
-    lbl_8006D668(cross(pu, dir, &side));
-    cross(dir, &side, pu);
+    lbl_8006D668(fn_1_44A74_cross(pu, dir, &side));
+    fn_1_44A74_cross(dir, &side, pu);
     lbl_801A6D00[0] = dir->x;
     lbl_801A6D00[4] = dir->y;
     lbl_801A6D00[8] = dir->z;

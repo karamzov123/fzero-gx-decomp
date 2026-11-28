@@ -501,10 +501,6 @@ void fn_12_A5C(Fn12_A5C_0 *param0, Fn12_A5C_1 *param1, s32 type, s32 param3) {
 /* fzgx:end fn_12_A5C */
 
 /* fzgx:begin fn_12_C60 */
-
-
-
-
 void fn_12_C60(MovieModule *module, MovieArg *arg1, s32 arg2, void *arg3) {
     u8 *table = (u8 *)((u8 *)&lbl_12_rodata_60);
 
@@ -532,7 +528,6 @@ void fn_12_C60(MovieModule *module, MovieArg *arg1, s32 arg2, void *arg3) {
 /* fzgx:end fn_12_C60 */
 
 /* fzgx:begin fn_12_D38 */
-
 void fn_12_D38(u32 arg0, u32 arg1, u32 arg2) {
     fn_12_C60( (MovieModule *)(u32)(arg0), (MovieArg *)(u32)(arg1), 0x20, (void *)(u32)(arg2));
 }
@@ -565,7 +560,7 @@ typedef struct fn_12_D88_Arg0 {
 
 #pragma force_active on
 #pragma section code_type ".fzgxpool"
-static f32 fzgx_pool_primer_before(s32 value) {
+static f32 fn_12_D88_fzgx_pool_primer_before(s32 value) {
     fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201312: sfxcnv_IsCnvUpHalf : compo is invalid."));
     fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E301282: CnvToRgb888 : compo is not support."));
     fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("COMPO"));
@@ -576,7 +571,7 @@ static f32 fzgx_pool_primer_before(s32 value) {
 }
 #pragma section code_type ".text"
 #pragma section code_type ".fzgxpool"
-static void fzgx_pool_primer_after(void) {
+static void fn_12_D88_fzgx_pool_primer_after(void) {
     fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201311: sfxcnv_MakeTable : compo is not support."));
     fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201313: sfxcnv_CnvZbitToCft : zbit is invalid."));
     fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201315: sfxcnv_CnvFrmZcmn : zclip is not set."));
@@ -660,9 +655,6 @@ void fn_12_D88(fn_12_D88_Arg0 *arg0, fn_12_D88_Arg1 *arg1, s32 arg2, s32 arg3) {
 /* fzgx:end fn_12_D88 */
 
 /* fzgx:begin fn_12_F70 */
-
-
-
 typedef struct {
     u32 a[6];
 } fn_12_F70_Loc24;
@@ -774,7 +766,6 @@ s32 arg4;
 /* fzgx:end fn_12_F70 */
 
 /* fzgx:begin fn_12_11A8 */
-
 void fn_12_11A8(Sig_fn_12_748_MovieModule *arg0, u32 arg1, void *arg2) {
     s32 temp_r0;
     s32 var_r0;
@@ -831,7 +822,6 @@ void fn_12_11A8(Sig_fn_12_748_MovieModule *arg0, u32 arg1, void *arg2) {
 /* fzgx:end fn_12_11A8 */
 
 /* fzgx:begin fn_12_132C */
-
 void fn_12_132C(void *arg0, void *arg1, void *arg2) {
     s32 value;
     value = *(s32 *)arg1;
@@ -851,8 +841,6 @@ void fn_12_132C(void *arg0, void *arg1, void *arg2) {
 /* fzgx:end fn_12_132C */
 
 /* fzgx:begin fn_12_13D0 */
-
-
 void fn_12_13D0(u32 arg0, struct fn_12_13D0_Arg1 *arg1, u32 arg2) {
     u32 v0;
     u32 v1;
@@ -1526,7 +1514,7 @@ void fn_12_1F84(MovieArg0 *arg0, MovieArg1 *arg1, s32 arg2)
 
 #pragma force_active on
 #pragma section code_type ".fzgxpool"
-static f32 fzgx_pool_primer_before(s32 value) {
+static f32 fn_12_21C8_fzgx_pool_primer_before(s32 value) {
     fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201312: sfxcnv_IsCnvUpHalf : compo is invalid."));
     fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E301282: CnvToRgb888 : compo is not support."));
     fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("COMPO"));
@@ -1537,7 +1525,7 @@ static f32 fzgx_pool_primer_before(s32 value) {
 }
 #pragma section code_type ".text"
 #pragma section code_type ".fzgxpool"
-static void fzgx_pool_primer_after(void) {
+static void fn_12_21C8_fzgx_pool_primer_after(void) {
     fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201311: sfxcnv_MakeTable : compo is not support."));
     fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201313: sfxcnv_CnvZbitToCft : zbit is invalid."));
     fn_12_309C( (u32)(void *)(0), (u32)(void *)(0), (u32)(const char *)("E201315: sfxcnv_CnvFrmZcmn : zclip is not set."));
@@ -1723,11 +1711,6 @@ void fn_12_21C8(SFXHandle *handle, SFXFrameInfo *frame, void *output)
 /* fzgx:end fn_12_21C8 */
 
 /* fzgx:begin fn_12_2F04 */
-
-
-
-
-
 void fn_12_2F04(state, data, arg)
 MovieState *state;
 MovieData *data;
