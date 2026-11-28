@@ -26531,30 +26531,19 @@
       "camera_set_entry_field_0xa8",
       "fn_1_715C",
       "camera_get_entry_field_0xa8",
-      "camera_get_entry_field_0xa4"
-    ],
-    "status": "matching",
-    "mw_version": "GC/1.3.2",
-    "tu": "rel/main_rel/camera.c",
-    "collapsed": true,
-    "pool": {
-      "...bss.0": "lbl_1_bss_F68"
-    }
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/camera/fn_1_727C.c",
-    "symbols": [
+      "camera_get_entry_field_0xa4",
       "fn_1_727C"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
     "mw_version": "GC/1.3.2",
-    "extra_cflags": [],
     "tu": "rel/main_rel/camera.c",
+    "collapsed": true,
     "pool": {
+      "...bss.0": "lbl_1_bss_F68",
       "lbl_1_bss_6EAB4__fzgx_offset_12": "lbl_1_bss_6EAB4+0x12"
-    }
+    },
+    "extra_cflags": []
   },
   {
     "module": "main_rel",

@@ -1242,9 +1242,6 @@ rel/main_rel/sound/fn_1_A0AA4.c:
 rel/main_rel/sound/fn_1_A02F0.c:
 	.text       start:0x000A02F0 end:0x000A04C4 align:4
 
-rel/main_rel/camera/fn_1_727C.c:
-	.text       start:0x0000727C end:0x0000739C align:4
-
 rel/main_rel/background/fn_1_9A958.c:
 	.text       start:0x0009A958 end:0x0009AA2C align:4
 
@@ -1368,7 +1365,7 @@ rel/main_rel/ghost/fn_1_F1B94.c:
 	.text       start:0x000F1B94 end:0x000F1C54 align:4
 
 rel/main_rel/camera/fn_1_6DD0.c:
-	.text       start:0x00006DD0 end:0x0000727C align:4
+	.text       start:0x00006DD0 end:0x0000739C align:4
 
 rel/main_rel/camera_b/fn_1_AEB8.c:
 	.text       start:0x0000AEB8 end:0x0000AFC8 align:4
