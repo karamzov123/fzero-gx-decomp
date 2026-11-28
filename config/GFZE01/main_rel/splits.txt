@@ -160,6 +160,7 @@ rel/main_rel/background/fn_1_9D77C.c:
 
 rel/main_rel/background_c/fn_1_9E14C.c:
 	.text       start:0x0009E14C end:0x0009F7DC align:4
+	.bss        start:0x0006EA80 end:0x0006EA88 align:8
 
 rel/main_rel/sound/fn_1_9FE74.c:
 	.text       start:0x0009FE74 end:0x0009FFD8 align:4
@@ -473,6 +474,7 @@ rel/main_rel/ranking_c/fn_1_1586A8.c:
 rel/main_rel/ranking_d/fn_1_159440.c:
 	.text       start:0x00159440 end:0x0015B70C align:4
 	.rodata     start:0x0000DAE8 end:0x0000DAF8 align:8
+	.bss        start:0x0008F588 end:0x0008F878 align:8
 
 rel/main_rel/bg_win/fn_1_15BE38.c:
 	.text       start:0x0015BE38 end:0x0015C4EC align:4
@@ -1025,6 +1027,7 @@ rel/main_rel/camera/fn_1_6BC0.c:
 
 rel/main_rel/bitmap/fn_1_47AD4.c:
 	.text       start:0x00047AD4 end:0x000487EC align:4
+	.bss        start:0x0003E000 end:0x0003E020 align:32
 
 rel/main_rel/driver/fn_1_A8270.c:
 	.text       start:0x000A8270 end:0x000A8FA0 align:4
@@ -1914,9 +1917,6 @@ rel/main_rel/data/lbl_1_bss_3DCD8.c:
 
 rel/main_rel/data/lbl_1_bss_3DD28.c:
 	.bss        start:0x0003DD28 end:0x0003E000 align:8
-
-rel/main_rel/data/lbl_1_bss_3E000.c:
-	.bss        start:0x0003E000 end:0x0003E020 align:32
 
 rel/main_rel/data/lbl_1_bss_3E020.c:
 	.bss        start:0x0003E020 end:0x0003E058 align:32
@@ -7366,9 +7366,6 @@ rel/main_rel/data/lbl_1_bss_8F420.c:
 rel/main_rel/data/lbl_1_bss_8F428.c:
 	.bss        start:0x0008F428 end:0x0008F568 align:8
 
-rel/main_rel/data/lbl_1_bss_8F588.c:
-	.bss        start:0x0008F588 end:0x0008F878 align:8
-
 rel/main_rel/data/lbl_1_bss_8F878.c:
 	.bss        start:0x0008F878 end:0x0008F8D0 align:8
 
@@ -7616,9 +7613,6 @@ rel/main_rel/data/lbl_1_bss_6EA68.c:
 
 rel/main_rel/data/lbl_1_bss_6EA78.c:
 	.bss        start:0x0006EA78 end:0x0006EA80 align:8
-
-rel/main_rel/data/lbl_1_bss_6EA80.c:
-	.bss        start:0x0006EA80 end:0x0006EA88 align:8
 
 rel/main_rel/data/lbl_1_bss_6EA88.c:
 	.bss        start:0x0006EA88 end:0x0006EA90 align:8

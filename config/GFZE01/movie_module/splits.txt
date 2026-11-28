@@ -68,6 +68,7 @@ rel/movie_module/sfd_buf/fn_12_21C00.c:
 
 rel/movie_module/sfd_con/fn_12_22FBC.c:
 	.text       start:0x00022FBC end:0x00023F00 align:4
+	.bss        start:0x000069B0 end:0x00007250 align:16
 
 rel/movie_module/sfd_hds/fn_12_23F34.c:
 	.text       start:0x00023F34 end:0x00024950 align:4
@@ -489,9 +490,11 @@ rel/movie_module/mwsfdcre/fn_12_38340.c:
 
 rel/movie_module/fn_12_A374.c:
 	.text       start:0x0000A374 end:0x0000A660 align:4
+	.data       start:0x00000068 end:0x000000B0 align:8
 
 rel/movie_module/mpv_err/fn_12_A660.c:
 	.text       start:0x0000A660 end:0x0000A7B0 align:4
+	.bss        start:0x00004E60 end:0x00004E78 align:32
 
 rel/movie_module/fn_12_29FF8.c:
 	.text       start:0x00029FF8 end:0x0002A308 align:4
@@ -730,9 +733,6 @@ rel/movie_module/data/lbl_12_bss_4E00.c:
 rel/movie_module/data/lbl_12_bss_4E40.c:
 	.bss        start:0x00004E40 end:0x00004E60 align:32
 
-rel/movie_module/data/lbl_12_bss_4E60.c:
-	.bss        start:0x00004E60 end:0x00004E78 align:32
-
 rel/movie_module/data/lbl_12_bss_4E78.c:
 	.bss        start:0x00004E78 end:0x00005280 align:8
 
@@ -829,9 +829,6 @@ rel/movie_module/data/lbl_12_bss_6988.c:
 rel/movie_module/data/lbl_12_bss_6990.c:
 	.bss        start:0x00006990 end:0x000069B0 align:16
 
-rel/movie_module/data/lbl_12_bss_69B0.c:
-	.bss        start:0x000069B0 end:0x00007250 align:16
-
 rel/movie_module/data/lbl_12_bss_7250.c:
 	.bss        start:0x00007250 end:0x00007A50 align:16
 
@@ -894,12 +891,7 @@ rel/movie_module/fn_12_28CC4.c:
 
 rel/movie_module/fn_12_4F3C.c:
 	.text       start:0x00004F3C end:0x000052E8 align:4
-
-rel/movie_module/data/lbl_12_data_0.c:
 	.data       start:0x00000000 end:0x00000030 align:8
-
-rel/movie_module/data/lbl_12_data_68.c:
-	.data       start:0x00000068 end:0x000000B0 align:8
 
 rel/movie_module/data/lbl_12_data_D38.c:
 	.data       start:0x00000D38 end:0x00000EE8 align:8

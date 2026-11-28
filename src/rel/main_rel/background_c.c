@@ -6,6 +6,17 @@ extern void GXPeekZ(u32, u32, void *);
 extern void GXPokeAlphaRead(u32);
 extern void fn_8003432C(u32, u32, u32 *);
 
+extern Obj_1_bss_6EA80_Target *lbl_1_bss_6EA80;
+extern u32 lbl_1_bss_6EA84;
+
+
+
+__declspec(section ".data") u32 lbl_1_bss_6EA84 __attribute__((aligned(4)));
+
+
+
+__declspec(section ".data") Obj_1_bss_6EA80_Target *lbl_1_bss_6EA80 __attribute__((aligned(32)));
+
 /* fzgx:begin fn_1_9E14C */
 f32 fn_1_9E14C(s32 count, BackgroundCurveKey *keys, f32 t) {
     return fn_1_9DDA8(count, keys, 0, t);

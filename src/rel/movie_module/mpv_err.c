@@ -34,6 +34,12 @@ extern u32 lbl_12_bss_4E60[6];
 int MPVERR_SetCode(MPVContext *handle, int error);
 extern s32 fn_12_CAB4(u32 arg0);
 
+extern u32 lbl_12_bss_4E60[6];
+
+
+
+__declspec(section ".data") u32 lbl_12_bss_4E60[6] __attribute__((aligned(32)));
+
 /* fzgx:begin fn_12_A660 */
 #define SKIP(n) do { bits += (n); if (bits >= 32) { bits -= 32; current = next << bits; next = *p++; } else current <<= (n); } while(0)
 #define PEEK(n, dst) do { dst = current >> (32-(n)); if (bits > 32-(n)) dst |= next >> (64-(n)-bits); } while(0)
@@ -122,7 +128,6 @@ void fn_12_A774(fn_12_A774_MovieState *movie) {
 /* fzgx:end fn_12_A774 */
 
 /* fzgx:begin fn_12_A790 */
-
 void fn_12_A790(void) {
     lbl_12_bss_4E60[0] = 0;
     lbl_12_bss_4E60[1] = 0;

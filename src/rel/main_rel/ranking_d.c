@@ -17,6 +17,12 @@ extern void fn_1_48004(s16 value, u32 arg);
 extern u32 lbl_1_rodata_DAF8[16];
 extern void fn_1_9A508(void);
 
+extern u8 lbl_1_bss_8F588[0x2F0];
+
+
+
+__declspec(section ".data") u8 lbl_1_bss_8F588[0x2F0] __attribute__((aligned(8)));
+
 /* fzgx:begin fn_1_159440 */
 // Preserve the current ranking entry before refreshing its state.
 void fn_1_159440(int index, int flag) {

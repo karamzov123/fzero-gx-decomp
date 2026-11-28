@@ -162,6 +162,17 @@ extern void *memset(void *, int, u32);
 extern int fn_12_2396C(u8 *arg0, s32 arg1, Sig_fn_12_2396C_MovieState *arg2);
 extern void fn_12_23BFC(u8 *data, s32 size, fn_12_23BFC_MovieState *movie);
 
+extern u8 lbl_12_bss_69B0[12];
+extern u32 lbl_12_bss_69BC[549];
+
+
+
+__declspec(section ".data") u32 lbl_12_bss_69BC[549] __attribute__((aligned(4)));
+
+
+
+__declspec(section ".data") u8 lbl_12_bss_69B0[12] __attribute__((aligned(16)));
+
 /* fzgx:begin fn_12_22FBC */
 /* --- rel/movie_module/fn_12_22FBC.c --- */
 
@@ -348,10 +359,6 @@ int fn_12_232DC(u8 *data, int size, MovieInfo *info) {
 /* fzgx:end fn_12_232DC */
 
 /* fzgx:begin fn_12_23410 */
-
-
-
-
 static inline int find_entry(u8 *data, s32 size, fn_12_23410_MovieState *st) {
     s32 n;
     u8 *p;
@@ -576,10 +583,6 @@ int fn_12_2396C(u8 *arg0, s32 arg1, Sig_fn_12_2396C_MovieState *arg2) {
 /* fzgx:end fn_12_2396C */
 
 /* fzgx:begin fn_12_23BFC */
-
-
-
-
 static inline u8 *findHeader(u8 *p, s32 size, FrameHeader *h) {
     for (; size >= 4; size--, p++) {
         if (p[0] != 0xff) {

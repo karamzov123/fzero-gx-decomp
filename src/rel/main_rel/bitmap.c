@@ -51,6 +51,12 @@ void fn_1_484CC(s32 index);
 void *fn_1_48730(u32 value);
 void fn_1_4877C(void);
 
+extern u8 lbl_1_bss_3E000[32];
+
+
+
+__declspec(section ".data") u8 lbl_1_bss_3E000[32] __attribute__((aligned(32)));
+
 /* fzgx:begin fn_1_47AD4 */
 typedef struct {
  u32 unk_0;

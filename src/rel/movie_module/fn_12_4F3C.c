@@ -1,6 +1,15 @@
 #include "types.h"
 #include "sofdec/mpvidct_ppc.h"
 
+extern f32 lbl_12_data_0[12];
+
+
+
+#pragma explicit_zero_data on
+__declspec(section ".data") f32 lbl_12_data_0[12] __attribute__((aligned(8))) = {
+    1.41421354f, 1.41421354f, 2.61312604f, 2.61312604f, 1.08239222f, 1.08239222f, 0.765366852f, 0.765366852f, 0.5f, 0.5f, -0.5f, -0.5f
+};
+#pragma explicit_zero_data reset
 
 /* --- rel/movie_module/fn_12_4F3C.c --- */
 typedef struct MPVBlockCtx {

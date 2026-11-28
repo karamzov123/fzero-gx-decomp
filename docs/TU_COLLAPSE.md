@@ -720,3 +720,15 @@ exact compiled/retail symbol extents, and `fzgx lint` (0 findings):
 
 - `rel/main_rel/accessory_b.c` absorbed `rel/main_rel/data/lbl_1_bss_897A0.c` (`.bss 0x89760..`, 2 symbols).
 - `rel/title/title.c` absorbed `rel/title/data/lbl_8_data_7E50.c` (`.data 0x0..0x7E60`, 2 symbols).
+
+A follow-up exclusive-consumer `rel_own_data.py` batch transferred seven more standalone `.bss`/`.data`
+imports into their owning one-unit REL TUs (`data_units` 3442 -> 3435), verified across
+`GFZP01`/`GFZJ01`/`GFZE01`, compiled/retail symbol extents, and `fzgx lint` (0 findings):
+
+- `rel/movie_module/mpv_err.c` <- `lbl_12_bss_4E60.c`
+- `rel/movie_module/fn_12_4F3C.c` <- `lbl_12_data_0.c`
+- `rel/movie_module/fn_12_A374.c` <- `lbl_12_data_68.c`
+- `rel/movie_module/sfd_con.c` <- `lbl_12_bss_69B0.c`
+- `rel/main_rel/background_c.c` <- `lbl_1_bss_6EA80.c`
+- `rel/main_rel/bitmap.c` <- `lbl_1_bss_3E000.c`
+- `rel/main_rel/ranking_d.c` <- `lbl_1_bss_8F588.c`
