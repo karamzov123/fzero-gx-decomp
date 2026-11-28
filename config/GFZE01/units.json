@@ -70520,7 +70520,12 @@
     "source": "rel/main_rel/sel_static_disp_c/fn_1_14ED00.c",
     "symbols": [
       "fn_1_14ED00",
-      "fn_1_14EE00"
+      "fn_1_14EE00",
+      "fn_1_14EEC4",
+      "fn_1_14EF40",
+      "fn_1_14F014",
+      "fn_1_14F01C",
+      "fn_1_14F090"
     ],
     "status": "matching",
     "matching_for": ["GFZE01"],
@@ -70529,29 +70534,11 @@
     "extra_cflags": [
       "-fp_contract",
       "off"
-    ]
-  },
-  {
-    "module": "main_rel",
-    "source": "rel/main_rel/sel_static_disp_c/fn_1_14EEC4.c",
-    "symbols": [
-      "fn_1_14EEC4",
-      "fn_1_14EF40",
-      "fn_1_14F014",
-      "fn_1_14F01C",
-      "fn_1_14F090"
     ],
-    "status": "matching",
-    "mw_version": null,
-    "extra_cflags": [
-      "-fp_contract",
-      "off"
-    ],
-    "tu": "rel/main_rel/sel_static_disp_c.c",
-    "collapsed": true,
     "pool": {
-      "@13": "lbl_1_rodata_B8D0"
-    }
+      "@33": "lbl_1_rodata_B8D0"
+    },
+    "mw_version": null
   },
   {
     "module": "main_rel",

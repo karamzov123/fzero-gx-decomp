@@ -1558,5 +1558,34 @@
     "regional_split": [
       "\t.text       start:0x000F1B94 end:0x000F1C54 align:4"
     ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/sel_static_disp_c/fn_1_14EEC4.c",
+    "symbols": [
+      "fn_1_14EEC4",
+      "fn_1_14EF40",
+      "fn_1_14F014",
+      "fn_1_14F01C",
+      "fn_1_14F090"
+    ],
+    "status": "matching",
+    "mw_version": null,
+    "extra_cflags": [
+      "-fp_contract",
+      "off"
+    ],
+    "collapsed": true,
+    "pool": {
+      "@13": "lbl_1_rodata_B8D0"
+    },
+    "tu": "rel/main_rel/sel_static_disp_c_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x0014EEC4 end:0x0014F118 align:4"
+    ]
   }
 ]

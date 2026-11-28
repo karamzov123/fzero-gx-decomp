@@ -456,9 +456,6 @@ rel/main_rel/sel_static_disp_c/fn_1_14E198.c:
 rel/main_rel/sel_static_disp_c/fn_1_14E8A4.c:
 	.text       start:0x0014E8A4 end:0x0014E9A8 align:4
 
-rel/main_rel/sel_static_disp_c/fn_1_14EEC4.c:
-	.text       start:0x0014EEC4 end:0x0014F118 align:4
-
 rel/main_rel/sel_static_disp_c/fn_1_14F118.c:
 	.text       start:0x0014F118 end:0x0014F19C
 
@@ -667,7 +664,7 @@ rel/main_rel/ghost/fn_1_EE3F4.c:
 	.text       start:0x000EE3F4 end:0x000EE530 align:4
 
 rel/main_rel/sel_static_disp_c/fn_1_14ED00.c:
-	.text       start:0x0014ED00 end:0x0014EEC4 align:4
+	.text       start:0x0014ED00 end:0x0014F118 align:4
 	.data       start:0x000462B8 end:0x00046300 align:8
 
 rel/main_rel/sel_static_disp_c/fn_1_151668.c:
