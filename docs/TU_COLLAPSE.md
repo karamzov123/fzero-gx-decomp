@@ -596,6 +596,14 @@ emit them at offsets `0x0`, `0x24`, `0x48`, `0x4C`, `0x50`, `0x54`, `0x154`
 and `0x254` respectively, filling the whole range. Retire the opaque import and
 BSS retarget only; the constant pool and existing ordering primer remain.
 
+Two more Sofdec code units now own their BSS. `mwsfdsvm.c` owns the error buffer
+and server state at `0x1B8A0..0x1B9B0`, formerly three standalone imports.
+`DCT_FsriInitSparseTbl.c` owns the `float[64][64]` table at `0xDB0..0x4DB0`;
+the neighboring `0xBA8..0xDB0` import was left alone. Both use ordinary BSS
+definitions with the existing alignment requirements, without the importer's
+section overrides. The compiled objects filled the transferred ranges, and
+every function in the two units matched retail in USA, Japan and PAL.
+
 In `movie_module/mpv_hdec.c`, `MPV_MoveChunk` now uses the shared Sofdec
 stream declarations in `sofdec/sj.h`. Removing its obsolete isolation marker
 leaves the existing group intact: both `MPV_MoveChunk` and `fn_12_ABDC` match

@@ -359,6 +359,7 @@ rel/movie_module/mpvabdec.c:
 
 rel/movie_module/mwsfdsvm/MWSFSVM_Error.c:
 	.text       start:0x00034B64 end:0x00034E90 align:4
+	.bss        start:0x0001B8A0 end:0x0001B9B0 align:32
 
 rel/movie_module/MWSST_StartSj.c:
 	.text       start:0x0003B5CC end:0x0003CB74 align:4
@@ -371,6 +372,7 @@ rel/movie_module/sfd_tim/SFTIM_GetTimeOneFrmVideo.c:
 
 rel/movie_module/DCT_FsriInitSparseTbl.c:
 	.text       start:0x000052F8 end:0x000057F0 align:4
+	.bss        start:0x00000DB0 end:0x00004DB0 align:16
 
 rel/movie_module/fn_12_57F0.c:
 	.text       start:0x000057F0 end:0x00005810 align:4
@@ -836,9 +838,6 @@ rel/movie_module/data/lbl_12_bss_BA0.c:
 rel/movie_module/data/lbl_12_bss_BA8.c:
 	.bss        start:0x00000BA8 end:0x00000DB0 align:8
 
-rel/movie_module/data/lbl_12_bss_DB0.c:
-	.bss        start:0x00000DB0 end:0x00004DB0 align:16
-
 rel/movie_module/data/lbl_12_bss_4DB0.c:
 	.bss        start:0x00004DB0 end:0x00004DB8 align:16
 
@@ -994,15 +993,6 @@ rel/movie_module/data/lbl_12_bss_1B778.c:
 
 rel/movie_module/data/lbl_12_bss_1B780.c:
 	.bss        start:0x0001B780 end:0x0001B8A0 align:32
-
-rel/movie_module/data/lbl_12_bss_1B8A0.c:
-	.bss        start:0x0001B8A0 end:0x0001B9A0 align:32
-
-rel/movie_module/data/lbl_12_bss_1B9A0.c:
-	.bss        start:0x0001B9A0 end:0x0001B9A8 align:32
-
-rel/movie_module/data/lbl_12_bss_1B9A8.c:
-	.bss        start:0x0001B9A8 end:0x0001B9B0 align:8
 
 rel/movie_module/data/lbl_12_bss_1B9B0.c:
 	.bss        start:0x0001B9B0 end:0x0001B9D8 align:16

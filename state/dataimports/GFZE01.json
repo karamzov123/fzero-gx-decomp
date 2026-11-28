@@ -305360,130 +305360,6 @@
     "unit_size": 288,
     "unit_start": 112512
   },
-  "movie_module:lbl_12_bss_1B8A0": {
-    "address": 112800,
-    "align": 32,
-    "declarations": [
-      {
-        "declaration": "char lbl_12_bss_1B8A0[256]",
-        "path": "src/rel/movie_module/MWSFSVM_Error.c"
-      },
-      {
-        "declaration": "struct fn_12_34E4C_lbl_12_bss_1B8A0 lbl_12_bss_1B8A0",
-        "path": "src/rel/movie_module/fn_12_34E4C.c"
-      }
-    ],
-    "definition": "char lbl_12_bss_1B8A0[256]",
-    "method": "declared-bss",
-    "module": "movie_module",
-    "references": [
-      "MWSFSVM_Error",
-      "fn_12_34E4C"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 256,
-    "sha256": "5341e6b2646979a70e57653007a1f310169421ec9bdd9f1a5648f75ade005af1",
-    "size": 256,
-    "source": "rel/movie_module/data/lbl_12_bss_1B8A0.c",
-    "symbol": "lbl_12_bss_1B8A0",
-    "unit_align": 32,
-    "unit_size": 256,
-    "unit_start": 112800
-  },
-  "movie_module:lbl_12_bss_1B9A0": {
-    "address": 113056,
-    "align": 32,
-    "declarations": [
-      {
-        "declaration": "struct fn_12_34CEC_lbl_12_bss_1B9A0 lbl_12_bss_1B9A0",
-        "path": "src/rel/movie_module/fn_12_34CEC.c"
-      },
-      {
-        "declaration": "u32 lbl_12_bss_1B9A0",
-        "path": "src/rel/movie_module/fn_12_34D1C.c"
-      }
-    ],
-    "definition": "u32 lbl_12_bss_1B9A0",
-    "method": "declared-bss",
-    "module": "movie_module",
-    "references": [
-      "fn_12_34CEC",
-      "fn_12_34D1C"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 8,
-    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
-    "size": 4,
-    "source": "rel/movie_module/data/lbl_12_bss_1B9A0.c",
-    "symbol": "lbl_12_bss_1B9A0",
-    "unit_align": 32,
-    "unit_size": 8,
-    "unit_start": 113056
-  },
-  "movie_module:lbl_12_bss_1B9A4": {
-    "address": 113060,
-    "align": 4,
-    "declarations": [
-      {
-        "declaration": "struct fn_12_34D50_lbl_12_bss_1B9A4 lbl_12_bss_1B9A4",
-        "path": "src/rel/movie_module/fn_12_34D50.c"
-      },
-      {
-        "declaration": "u32 lbl_12_bss_1B9A4",
-        "path": "src/rel/movie_module/fn_12_34D80.c"
-      }
-    ],
-    "definition": "u32 lbl_12_bss_1B9A4",
-    "method": "declared-bss",
-    "module": "movie_module",
-    "references": [
-      "fn_12_34D50",
-      "fn_12_34D80"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 8,
-    "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
-    "size": 4,
-    "source": "rel/movie_module/data/lbl_12_bss_1B9A0.c",
-    "symbol": "lbl_12_bss_1B9A4",
-    "unit_align": 32,
-    "unit_size": 8,
-    "unit_start": 113056
-  },
-  "movie_module:lbl_12_bss_1B9A8": {
-    "address": 113064,
-    "align": 8,
-    "declarations": [
-      {
-        "declaration": "struct fn_12_34DB4_lbl_12_bss_1B9A8 lbl_12_bss_1B9A8",
-        "path": "src/rel/movie_module/fn_12_34DB4.c"
-      },
-      {
-        "declaration": "u32 lbl_12_bss_1B9A8[2]",
-        "path": "src/rel/movie_module/fn_12_34DE4.c"
-      }
-    ],
-    "definition": "u32 lbl_12_bss_1B9A8[2]",
-    "method": "declared-bss",
-    "module": "movie_module",
-    "references": [
-      "fn_12_34DB4",
-      "fn_12_34DE4"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 8,
-    "sha256": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
-    "size": 8,
-    "source": "rel/movie_module/data/lbl_12_bss_1B9A8.c",
-    "symbol": "lbl_12_bss_1B9A8",
-    "unit_align": 8,
-    "unit_size": 8,
-    "unit_start": 113064
-  },
   "movie_module:lbl_12_bss_1B9B0": {
     "address": 113072,
     "align": 16,
@@ -307450,7 +307326,6 @@
     "unit_size": 2048,
     "unit_start": 29264
   },
-
   "movie_module:lbl_12_bss_7A50": {
     "address": 31312,
     "align": 16,
@@ -307901,32 +307776,6 @@
     "unit_align": 8,
     "unit_size": 8,
     "unit_start": 8
-  },
-  "movie_module:lbl_12_bss_DB0": {
-    "address": 3504,
-    "align": 16,
-    "declarations": [
-      {
-        "declaration": "float lbl_12_bss_DB0[64][64]",
-        "path": "src/rel/movie_module/DCT_FsriInitSparseTbl.c"
-      }
-    ],
-    "definition": "float lbl_12_bss_DB0[64][64]",
-    "method": "declared-bss",
-    "module": "movie_module",
-    "references": [
-      "DCT_FsriInitSparseTbl"
-    ],
-    "relocations": [],
-    "section": ".bss",
-    "section_size": 16384,
-    "sha256": "4fe7b59af6de3b665b67788cc2f99892ab827efae3a467342b3bb4e3bc8e5bfe",
-    "size": 16384,
-    "source": "rel/movie_module/data/lbl_12_bss_DB0.c",
-    "symbol": "lbl_12_bss_DB0",
-    "unit_align": 16,
-    "unit_size": 16384,
-    "unit_start": 3504
   },
   "movie_module:lbl_12_data_0": {
     "address": 0,

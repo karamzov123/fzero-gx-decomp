@@ -72698,40 +72698,6 @@
   },
   {
     "module": "movie_module",
-    "source": "rel/movie_module/data/lbl_12_bss_1B8A0.c",
-    "symbols": [
-      "lbl_12_bss_1B8A0"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/data/lbl_12_bss_1B9A0.c",
-    "symbols": [
-      "lbl_12_bss_1B9A0",
-      "lbl_12_bss_1B9A4"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/data/lbl_12_bss_1B9A8.c",
-    "symbols": [
-      "lbl_12_bss_1B9A8"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "movie_module",
     "source": "rel/movie_module/data/lbl_12_bss_1B9B0.c",
     "symbols": [
       "lbl_12_bss_1B9B0"
@@ -73353,17 +73319,6 @@
     "symbols": [
       "lbl_12_bss_BA8",
       "lbl_12_bss_BB0"
-    ],
-    "status": "matching",
-    "data": true,
-    "mw_version": null,
-    "extra_cflags": []
-  },
-  {
-    "module": "movie_module",
-    "source": "rel/movie_module/data/lbl_12_bss_DB0.c",
-    "symbols": [
-      "lbl_12_bss_DB0"
     ],
     "status": "matching",
     "data": true,

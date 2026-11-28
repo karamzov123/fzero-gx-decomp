@@ -1,4 +1,7 @@
 #include "types.h"
+
+float lbl_12_bss_DB0[64][64] __attribute__((aligned(16)));
+
 #pragma opt_loop_invariants off
 
 /* --- rel/movie_module/DCT_FsriInitSparseTbl.c --- */
@@ -7,8 +10,6 @@ void *memset(void *destination, int value, unsigned long size);
 void fn_12_4D14(void);
 
 void fn_12_4CEC(const double input[8][8], double output[8][8]);
-
-extern float lbl_12_bss_DB0[64][64];
 
 extern double lbl_12_bss_BB0[64];
 
@@ -129,4 +130,3 @@ void DCT_FsriInit(void) {
     if ((s32)v5 > 32 - (n)) { \
         (dst) |= v7 >> (64 - (n) - v5); \
     }
-

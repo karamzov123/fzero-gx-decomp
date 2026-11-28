@@ -23,20 +23,21 @@ struct fn_12_34DB4_lbl_12_bss_1B9A8 {
 extern void fn_80058FE4(int idx);
 void* memset(void* destination, int value, size_t size);
 extern void fn_800595A4(const char *msg);
-extern char lbl_12_bss_1B8A0[256];
 extern unsigned int fn_80058A40();
 extern void fn_800596D4(void);
 extern void fn_80059914(void);
 extern void fn_800597F4(void);
 extern void fn_800599E4(void);
-extern u32 lbl_12_bss_1B9A0;
 extern void fn_800592E0(int server_type, int id);
 extern u32 fn_80059428(u32, u32, u32);
-extern u32 lbl_12_bss_1B9A4;
-extern u32 lbl_12_bss_1B9A8[2];
 extern void fn_8005912C(u32, void *, void *, void *);
 extern void fn_80058B54(void);
 extern void fn_80058BFC(void);
+
+char lbl_12_bss_1B8A0[256] __attribute__((aligned(32)));
+u32 lbl_12_bss_1B9A4;
+u32 lbl_12_bss_1B9A0 __attribute__((aligned(32)));
+u32 lbl_12_bss_1B9A8[2] __attribute__((aligned(8)));
 
 /* fzgx:begin fn_12_34B64 */
 /* --- rel/movie_module/fn_12_34B64.c --- */
