@@ -742,3 +742,11 @@ extents, and `fzgx lint` (0 findings):
 - `rel/main_rel/ptclput.c` <- `lbl_1_bss_6EA88.c`
 - `rel/main_rel/custom_memcard.c` <- `lbl_1_data_41930.c`
 - `rel/main_rel/ranking_d.c` <- `lbl_1_bss_8F878.c`
+
+### `profile.c` block-format migration and initial merge (2026-11-27)
+
+`tools/consolidate/rel_tu_migrate.py profile --apply` migrated all 20 standalone `src/rel/profile/*.c`
+units (41 functions) into the canonical block-format TU `src/rel/profile/profile.c` (`rel_tu_files`
+145 -> 146). Running `fzgx tutruth rel/profile/profile.c --repair-budget 10` (prefixing 40 colliding
+static helpers) and `relmerge.py --keep` merged 2 contiguous units (`profile`: 20 -> 19 units,
+`code_units` 1339 -> 1338), verified across `GFZP01`, `GFZJ01`, `GFZE01`, and `fzgx lint` (0 findings).
