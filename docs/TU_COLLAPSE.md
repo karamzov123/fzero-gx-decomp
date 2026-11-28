@@ -770,3 +770,13 @@ verified across `GFZP01`, `GFZJ01`, `GFZE01`, and `fzgx lint` (0 findings):
 - `rel/movie_module/mpv_lib.c`: 4 -> 2 units
 - `rel/movie_module/mps_dec.c`: 4 -> 3 units
 - `rel/movie_module/sfh_main.c`: 3 -> 2 units
+
+Follow-up Sofdec collapses + DOL pragma cleanup (`code_units` 1312 -> 1306, `rel_tu_files_one_unit`
+93 -> 94, `devices` 523 -> 521, `pragma_setters` 626 -> 620), verified across `GFZP01`, `GFZJ01`,
+`GFZE01`, and `fzgx lint` (0 findings):
+
+- `rel/movie_module/mps_lib.c`: 2 -> 1 unit (full 1-unit collapse after renaming colliding `static inline fn_12_6C78`)
+- `rel/movie_module/dct_fsri.c`: 3 -> 2 units (under `GC/2.7`)
+- `rel/movie_module/mpv_umc.c`: 7 -> 5 units (forward-declared `MovieModule` in prologue)
+- `rel/movie_module/sfd_adxt.c`: 10 -> 8 units (forward-declared Sofdec handle structs in prologue)
+- `dol/gx/GXInit.c`: removed three redundant `#pragma peephole off` / `reset` pairs (`devprobe.py`: `SAME`)

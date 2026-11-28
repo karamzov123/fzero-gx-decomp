@@ -327,7 +327,7 @@ typedef struct fn_12_6DE8_MovieError {
 } fn_12_6DE8_MovieError;
 
 
-static inline s32 fn_12_6C78(MovieItem *item) {
+static inline s32 fn_12_6DE8_check_item(MovieItem *item) {
     lbl_12_bss_4DB0 = (u32)item;
     if (item == NULL) {
         return -1;
@@ -354,7 +354,7 @@ void fn_12_6DE8(void) {
     item = (*((fn_12_6DE8_MovieObject * *)&lbl_12_bss_4DB8))->items;
     for (i = 0; i < count; item++, i++) {
         if (item->state != 1) {
-            if (fn_12_6C78(item) != 0) {
+            if (fn_12_6DE8_check_item(item) != 0) {
                 fn_12_6DE8_report_error(0, 0xFF020103);
             } else {
                 item->state = 1;

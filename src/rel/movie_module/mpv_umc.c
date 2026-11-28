@@ -1,11 +1,15 @@
 #include "types.h"
+typedef struct MovieModule MovieModule;
 #include "sfxmc.h"
 #include "psvec_quant.h"
 
-/* fzgx:begin fn_12_112D4 noprologue */
-#include "types.h"
+typedef void (*MovieCallback)(MovieModule *, s32, void *, void *);
 
-/* --- rel/movie_module/fn_12_112D4.c --- */
+typedef struct Stride {
+    u32 off0;
+    u32 off1;
+} Stride;
+
 typedef struct Src {
     u8 *base0;
     u8 *base1;
@@ -20,10 +24,95 @@ typedef struct Dst {
     s16 count1;
 } Dst;
 
-typedef struct Stride {
-    u32 off0;
-    u32 off1;
-} Stride;
+typedef struct MPVMCContext MPVMCContext;
+
+typedef void (*MPVMCFunction)(MPVMCContext *context);
+
+struct MPVMCContext {
+    MPVMCFunction functions08[4];
+    u8 field_10[8];
+    u8 *destination;
+    u32 field_1c;
+    s32 reference_stride;
+    const u8 *reference0;
+    const u8 *reference1;
+};
+
+typedef struct MPVBlockOffsets {
+    s32 chroma;
+    s32 luma;
+} MPVBlockOffsets;
+
+typedef struct MPVPlaneSet {
+    u8 *planes[3];
+    s16 chroma_stride;
+    s16 luma_stride;
+} MPVPlaneSet;
+
+typedef struct MPVContext MPVContext;
+
+typedef void (*MPVOffsetFunction)(MPVContext *context, s32 arg, MPVBlockOffsets *offsets, const MPVPlaneSet *planes);
+
+struct MPVContext {
+    u8 field_000[0xcc];
+    MPVMCContext mc;
+    u8 field_0f8[0x19c - 0xf8];
+    s32 mc_table;
+    u8 field_1a0[0x290 - 0x1a0];
+    MPVOffsetFunction get_offsets;
+    u8 field_294[0x308 - 0x294];
+    s32 field_308;
+};
+
+typedef struct MPVMotionInfo {
+    u8 field_00[0x18];
+    s32 horizontal;
+    s32 vertical;
+} MPVMotionInfo;
+
+typedef struct McBiSrc {
+    u8 pad_0[4];
+    s16 *coef;
+    u8 *pred0;
+    u8 *pred1;
+} McBiSrc;
+
+typedef struct McBlock {
+    u8 *dst;
+    u32 stride;
+} McBlock;
+
+typedef struct McDst {
+    u8 pad_0[4];
+    McBlock blocks[6];
+} McDst;
+
+typedef struct McSrc {
+    u8 pad_0[4];
+    s16 *coef;
+    u8 *pred;
+} McSrc;
+extern void fn_12_112D4(Stride *stride, Src *src, Dst *dst);
+extern const f32 lbl_12_rodata_9E8[2];
+extern u32 lbl_12_bss_6968[8];
+extern u32 lbl_12_bss_6948[8];
+extern void fn_12_11F5C(MPVContext *context, u8 *destination, MPVBlockOffsets *offsets, const MPVPlaneSet *planes, const MPVMotionInfo *motion);
+extern void fn_12_118E8(McBiSrc *src, McDst *out, s32 cbp);
+extern u32 fn_12_11CE0(McSrc *src, McDst *out, s32 cbp);
+extern void fn_12_12324(u8 *src, u32 *table, void *unused);
+extern void fn_12_DC78(MPVMCContext *context);
+extern void fn_12_1FADC(MPVMCContext *context);
+extern void fn_12_D55C(MPVMCContext *context);
+extern void fn_12_D948(MPVMCContext *context);
+extern void fn_12_D42C(MPVMCContext *context);
+extern void fn_12_1F1AC(MPVMCContext *context);
+extern void fn_12_1F61C(MPVMCContext *context);
+extern void fn_12_1EF80(MPVMCContext *context);
+
+/* fzgx:begin fn_12_112D4 */
+/* --- rel/movie_module/fn_12_112D4.c --- */
+
+
 
 /* One 8x8 block row pair: two 8-byte rows a stride apart, then advance two rows. */
 #define ROW2_DCBZ(_n) \
@@ -138,7 +227,6 @@ void fn_12_11860(MovieModule *module, s32 count) {
 /* fzgx:end fn_12_11860 */
 
 /* fzgx:begin fn_12_118E8 noprologue */
-
 /* --- rel/movie_module/fn_12_118E8.c --- */
 typedef struct McBiSrc {
     u8 pad_0[4];
@@ -231,7 +319,6 @@ void fn_12_118E8(McBiSrc *src, McDst *out, s32 cbp) {
 /* fzgx:end fn_12_118E8 */
 
 /* fzgx:begin fn_12_11CE0 noprologue */
-
 /* --- rel/movie_module/fn_12_11CE0.c --- */
 typedef struct McSrc {
     u8 pad_0[4];
@@ -361,7 +448,6 @@ u32 fn_12_11CE0(McSrc *src, McDst *out, s32 cbp) {
 /* fzgx:end fn_12_11CE0 */
 
 /* fzgx:begin fn_12_11F5C noprologue */
-
 /* --- rel/movie_module/fn_12_11F5C.c --- */
 typedef struct MPVMCContext MPVMCContext;
 typedef void (*MPVMCFunction)(MPVMCContext *context);
@@ -467,18 +553,16 @@ void fn_12_11F5C(MPVContext *context, u8 *destination, MPVBlockOffsets *offsets,
 }
 /* fzgx:end fn_12_11F5C */
 
-/* fzgx:begin fn_12_120E4 noprologue */
-#include "types.h"
-
+/* fzgx:begin fn_12_120E4 */
 typedef struct MovieHeader MovieHeader;
-typedef struct MovieModule MovieModule;
+typedef struct fn_12_120E4_MovieModule fn_12_120E4_MovieModule;
 
 struct MovieHeader {
     u8 unk_00[0xc];
     void *unk_0c;
 };
 
-struct MovieModule {
+struct fn_12_120E4_MovieModule {
     u8 unk_000[0x110];
     u32 unk_110;
     u32 unk_114;
@@ -512,19 +596,16 @@ struct MovieModule {
     void *unk_314;
 };
 
-extern void fn_12_11F5C(void *, void *, void *, void *, void *);
-extern void fn_12_118E8(void *, void *, void *);
 
 #pragma opt_propagation off
-void fn_12_120E4(MovieModule *module) {
+void fn_12_120E4(fn_12_120E4_MovieModule *module) {
     u32 local[2];
     void *data = (u8 *)module + 0x234;
     MovieHeader *header = (MovieHeader *)((u8 *)module + 0x110);
     void *end = (u8 *)module + 0x2c0;
 
-    fn_12_11F5C(module, module->unk_118, local, data, end);
-    fn_12_11F5C(module, header->unk_0c, local,
-                (u8 *)data + 0x10, (u8 *)module + 0x2e4);
+    fn_12_11F5C( (MPVContext *)(void *)(module), (u8 *)(void *)(module->unk_118), (MPVBlockOffsets *)(void *)(local), (const MPVPlaneSet *)(void *)(data), (const MPVMotionInfo *)(void *)(end));
+    fn_12_11F5C( (MPVContext *)(void *)(module), (u8 *)(void *)(header->unk_0c), (MPVBlockOffsets *)(void *)(local), (const MPVPlaneSet *)(void *)((u8 *)data + 0x10), (const MPVMotionInfo *)(void *)((u8 *)module + 0x2e4));
 
     module->unk_124 = module->unk_264 + local[0];
     module->unk_12c = module->unk_268 + local[0];
@@ -535,18 +616,16 @@ void fn_12_120E4(MovieModule *module) {
 
     {
         u8 *p120 = (u8 *)module + 0x120;
-        fn_12_118E8(header, p120, module->unk_314);
+        fn_12_118E8( (McBiSrc *)(void *)(header), (McDst *)(void *)(p120), (s32)(void *)(module->unk_314));
     }
 }
 #pragma opt_propagation reset
 /* fzgx:end fn_12_120E4 */
 
-/* fzgx:begin fn_12_121BC noprologue */
-#include "types.h"
+/* fzgx:begin fn_12_121BC */
+typedef struct fn_12_121BC_MovieModule fn_12_121BC_MovieModule;
 
-typedef struct MovieModule MovieModule;
-
-struct MovieModule {
+struct fn_12_121BC_MovieModule {
     u8 unk_000[0x110];
     u8 unk_110[0x8];
     u8 unk_118[0x8];
@@ -574,17 +653,14 @@ struct MovieModule {
     u32 unk_314;
 };
 
-extern void fn_12_11F5C(MovieModule *, u32, u32 *, void *, void *);
-extern void fn_12_11CE0(void *, void *, u32);
 
 #pragma opt_propagation off
-void fn_12_121BC(MovieModule *module) {
+void fn_12_121BC(fn_12_121BC_MovieModule *module) {
     u32 local[2];
     u8 *base = (u8 *)module + 0x110;
 
     u8 *p120;
-    fn_12_11F5C(module, *(u32 *)((u8 *)module + 0x118), local,
-                (u8 *)module + 0x244, (u8 *)module + 0x2e4);
+    fn_12_11F5C( (MPVContext *)(fn_12_121BC_MovieModule *)(module), (u8 *)(u32)(*(u32 *)((u8 *)module + 0x118)), (MPVBlockOffsets *)(u32 *)(local), (const MPVPlaneSet *)(void *)((u8 *)module + 0x244), (const MPVMotionInfo *)(void *)((u8 *)module + 0x2e4));
     p120 = (u8 *)module + 0x120;
     module->unk_124 = module->unk_264 + local[0];
     module->unk_12c = module->unk_268 + local[0];
@@ -592,14 +668,11 @@ void fn_12_121BC(MovieModule *module) {
     module->unk_13c = module->unk_134 + 8;
     module->unk_144 = module->unk_134 + ((s32)module->unk_272 << 3);
     module->unk_14c = module->unk_144 + 8;
-    fn_12_11CE0(base, p120, module->unk_314);
+    fn_12_11CE0( (McSrc *)(void *)(base), (McDst *)(void *)(p120), module->unk_314);
 }
 /* fzgx:end fn_12_121BC */
 
-/* fzgx:begin fn_12_12270 noprologue */
-#include "types.h"
-#include "psvec_quant.h"
-
+/* fzgx:begin fn_12_12270 */
 /* --- rel/movie_module/fn_12_12270.c --- */
 typedef struct MovieModule_u0 MovieModule_u0;
 
@@ -631,8 +704,6 @@ struct MovieModule_u0 {
     u32 unk_314;
 };
 
-extern void fn_12_11F5C(MovieModule_u0 *, u32, u32 *, void *, void *);
-extern void fn_12_11CE0(void *, void *, u32);
 
 #pragma opt_dead_assignments off
 void fn_12_12270(MovieModule_u0 *module) {
@@ -642,7 +713,7 @@ void fn_12_12270(MovieModule_u0 *module) {
 
     base = (u8 *)module + 0x110;
     lab_t1 = module->unk_118;
-    fn_12_11F5C(module, lab_t1, local, (u8 *)module + 0x234, (u8 *)module + 0x2c0);
+    fn_12_11F5C( (MPVContext *)(MovieModule_u0 *)(module), (u8 *)(u32)(lab_t1), (MPVBlockOffsets *)(u32 *)(local), (const MPVPlaneSet *)(void *)((u8 *)module + 0x234), (const MPVMotionInfo *)(void *)((u8 *)module + 0x2c0));
     module->unk_124 = module->unk_264 + local[0];
     module->unk_12c = module->unk_268 + local[0];
     module->unk_134 = module->unk_26c + local[1];
@@ -651,12 +722,12 @@ void fn_12_12270(MovieModule_u0 *module) {
     module->unk_14c = module->unk_144 + 8;
     {
         u8 *p120 = (u8 *)module + 0x120;
-        fn_12_11CE0(base, p120, module->unk_314);
+        fn_12_11CE0( (McSrc *)(void *)(base), (McDst *)(void *)(p120), module->unk_314);
     }
 }
 /* fzgx:end fn_12_12270 */
 
-/* fzgx:begin fn_12_12324 noprologue */
+/* fzgx:begin fn_12_12324 */
 #pragma opt_dead_assignments reset
 
 /* --- rel/movie_module/fn_12_12324.c --- */
@@ -770,18 +841,14 @@ void fn_12_124A0(MovieModule *module) {
 }
 /* fzgx:end fn_12_124A0 */
 
-/* fzgx:begin fn_12_1258C noprologue */
-#include "types.h"
-
-
+/* fzgx:begin fn_12_1258C */
 /* --- rel/movie_module/fn_12_1258C.c --- */
 // fn_12_1258C: empty in retail (single blr).
 void fn_12_1258C(void) {
 }
 /* fzgx:end fn_12_1258C */
 
-/* fzgx:begin fn_12_12590 noprologue */
-
+/* fzgx:begin fn_12_12590 */
 /* --- rel/movie_module/fn_12_12590.c --- */
 typedef struct {
     u8 pad_00[0x1d0];
@@ -840,19 +907,8 @@ void fn_12_12590(MovieCtx *m, u32 lab_unused0) {
 }
 /* fzgx:end fn_12_12590 */
 
-/* fzgx:begin fn_12_12624 noprologue */
-
+/* fzgx:begin fn_12_12624 */
 /* --- rel/movie_module/fn_12_12624.c --- */
-extern void fn_12_DC78(void);
-extern void fn_12_1FADC(void);
-extern u32 lbl_12_bss_6968[8];
-extern void fn_12_D55C(void);
-extern void fn_12_D948(void);
-extern void fn_12_D42C(void);
-extern void fn_12_1F1AC(void);
-extern void fn_12_1F61C(void);
-extern void fn_12_1EF80(void);
-extern u32 lbl_12_bss_6948[8];
 
 void fn_12_12624(void) {
     lbl_12_bss_6968[0] = (u32)fn_12_DC78;

@@ -22,7 +22,8 @@ rel/movie_module/fn_12_4E14.c:
 	.text       start:0x00004E14 end:0x00004E28 align:4
 
 rel/movie_module/dct_fsri/DCT_FsriInitScanTbl.c:
-	.text       start:0x00004E28 end:0x00004F3C align:4
+	.text       start:0x00004E28 end:0x000052E8 align:4
+	.data       start:0x00000000 end:0x00000030 align:8
 
 rel/movie_module/mpv_cmc/fn_12_8AEC.c:
 	.text       start:0x00008AEC end:0x00008B4C align:4
@@ -43,13 +44,7 @@ rel/movie_module/mpv_umc/fn_12_1258C.c:
 	.text       start:0x0001258C end:0x000126B0 align:4
 
 rel/movie_module/sfd_adxt/fn_12_20284.c:
-	.text       start:0x00020284 end:0x000202AC
-
-rel/movie_module/sfd_adxt/fn_12_202AC.c:
-	.text       start:0x000202AC end:0x000206B8 align:4
-
-rel/movie_module/sfd_adxt/fn_12_213D8.c:
-	.text       start:0x000213D8 end:0x0002145C align:4
+	.text       start:0x00020284 end:0x000206B8 align:4
 
 rel/movie_module/sfd_adxt/fn_12_215A4.c:
 	.text       start:0x000215A4 end:0x0002166C align:4
@@ -243,7 +238,7 @@ rel/movie_module/mwsfdset/fn_12_39CA4.c:
 	.text       start:0x00039CA4 end:0x0003A69C align:4
 
 rel/movie_module/mps_lib/fn_12_6A90.c:
-	.text       start:0x00006A90 end:0x00006DE8 align:4
+	.text       start:0x00006A90 end:0x00006ECC align:4
 
 rel/movie_module/fn_12_30930.c:
 	.text       start:0x00030930 end:0x00032EAC align:4
@@ -298,7 +293,7 @@ rel/movie_module/fn_12_336CC.c:
 	.text       start:0x000336CC end:0x0003379C align:4
 
 rel/movie_module/sfd_adxt/fn_12_20F4C.c:
-	.text       start:0x00020F4C end:0x000213D8 align:4
+	.text       start:0x00020F4C end:0x0002145C align:4
 
 rel/movie_module/mwsfdsvr/fn_12_3ACD0.c:
 	.text       start:0x0003ACD0 end:0x0003ADC4 align:4
@@ -334,16 +329,13 @@ rel/movie_module/sfd_mpv/fn_12_26D24.c:
 	.text       start:0x00026D24 end:0x000270AC align:4
 
 rel/movie_module/mpv_umc/fn_12_120E4.c:
-	.text       start:0x000120E4 end:0x000121BC align:4
+	.text       start:0x000120E4 end:0x000124A0 align:4
 
 rel/movie_module/mpv_umc/fn_12_124A0.c:
 	.text       start:0x000124A0 end:0x00012564 align:4
 
 rel/movie_module/mpv_vlc/fn_12_11188.c:
 	.text       start:0x00011188 end:0x000112D4 align:4
-
-rel/movie_module/mpv_umc/fn_12_121BC.c:
-	.text       start:0x000121BC end:0x00012270 align:4
 
 rel/movie_module/fn_12_2A9DC.c:
 	.text       start:0x0002A9DC end:0x0002ACA8 align:4
@@ -369,9 +361,6 @@ rel/movie_module/fn_12_670C.c:
 
 rel/movie_module/sfd_tim/fn_12_2ED74.c:
 	.text       start:0x0002ED74 end:0x0002EDAC align:4
-
-rel/movie_module/mpv_umc/fn_12_12270.c:
-	.text       start:0x00012270 end:0x000124A0 align:4
 
 rel/movie_module/mwsfdsvr/fn_12_3AB00.c:
 	.text       start:0x0003AB00 end:0x0003ABE0 align:4
@@ -450,9 +439,6 @@ rel/movie_module/fn_12_39678.c:
 
 rel/movie_module/sfh_main/fn_12_32EAC.c:
 	.text       start:0x00032EAC end:0x000331A8 align:4
-
-rel/movie_module/mps_lib/fn_12_6DE8.c:
-	.text       start:0x00006DE8 end:0x00006ECC align:4
 
 rel/movie_module/mpv_frm.c:
 	.text       start:0x0000A7B0 end:0x0000A9C4 align:4
@@ -807,10 +793,6 @@ rel/movie_module/sfd_mpv/fn_12_284F8.c:
 
 rel/movie_module/sfd_mpv/fn_12_28CC4.c:
 	.text       start:0x00028CC4 end:0x00029524 align:4
-
-rel/movie_module/dct_fsri/fn_12_4F3C.c:
-	.text       start:0x00004F3C end:0x000052E8 align:4
-	.data       start:0x00000000 end:0x00000030 align:8
 
 rel/movie_module/data/lbl_12_data_D38.c:
 	.data       start:0x00000D38 end:0x00000EE8 align:8

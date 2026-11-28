@@ -77,8 +77,7 @@ extern u32 fn_80033EB0(void);
 extern u32 fn_80034378(u32);
 extern u32 fn_80034444(u32);
 
-/* WARNING: compiler-diff device, not original code: peephole off as above; opt_propagation off around fn_8003086C: without it 16 diff lines */
-#pragma peephole off
+/* WARNING: compiler-diff device, not original code: opt_propagation off around fn_8003086C: without it 16 diff lines */
 #pragma opt_propagation off
 s32 fn_8003086C(s32 arg0) {
     static u32 peCount;
@@ -152,9 +151,6 @@ s32 fn_8003086C(s32 arg0) {
 #pragma opt_propagation reset
 
 
-#pragma peephole reset
-/* WARNING: compiler-diff device, not original code: peephole off as above (re-armed after the reset) */
-#pragma peephole off
 void * GXInit(u32 arg0, u32 arg1, u32 arg2) {
     static u32 resetFuncRegistered;
     u8 *p_gxData_80177BA0;
@@ -295,11 +291,6 @@ void * GXInit(u32 arg0, u32 arg1, u32 arg2) {
     __GXInitGX();
     return ((u8 *)(u32)p_gxData_80177BA0 + 1272);
 }
-#pragma peephole reset
-/* WARNING: compiler-diff device, not original code: peephole off as above (re-armed after the reset) */
-#pragma peephole off
-
-
 
 
 typedef enum _GXZFmt16 {
