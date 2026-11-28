@@ -509,7 +509,7 @@ rel/main_rel/ranking_d/fn_1_159440.c:
 	.rodata     start:0x0000DAE8 end:0x0000DAF8 align:8
 
 rel/main_rel/bg_win/fn_1_15BE38.c:
-	.text       start:0x0015BE38 end:0x0015C36C align:4
+	.text       start:0x0015BE38 end:0x0015C4EC align:4
 
 rel/main_rel/bg_win/fn_1_15E1E8.c:
 	.text       start:0x0015E1E8 end:0x0015E44C align:4
@@ -1181,9 +1181,6 @@ rel/main_rel/bg_common/fn_1_105BD8.c:
 
 rel/main_rel/sound/fn_1_A33F0.c:
 	.text       start:0x000A33F0 end:0x000A358C align:4
-
-rel/main_rel/bg_win/fn_1_15C36C.c:
-	.text       start:0x0015C36C end:0x0015C4EC align:4
 
 rel/main_rel/screen_effect_b/fn_1_78EBC.c:
 	.text       start:0x00078EBC end:0x00079100 align:4

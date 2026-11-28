@@ -1484,5 +1484,26 @@
     "regional_split": [
       "\t.text       start:0x000DDF80 end:0x000DE4B0 align:4"
     ]
+  },
+  {
+    "module": "main_rel",
+    "source": "rel/main_rel/bg_win/fn_1_15BE38.c",
+    "symbols": [
+      "fn_1_15BE38",
+      "fn_1_15BEBC",
+      "fn_1_15C0AC",
+      "fn_1_15C35C"
+    ],
+    "status": "matching",
+    "mw_version": "GC/1.3.2",
+    "extra_cflags": [],
+    "tu": "rel/main_rel/bg_win_regional.c",
+    "matching_for": [
+      "GFZJ01",
+      "GFZP01"
+    ],
+    "regional_split": [
+      "\t.text       start:0x0015BE38 end:0x0015C36C align:4"
+    ]
   }
 ]
