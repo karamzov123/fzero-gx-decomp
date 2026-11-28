@@ -683,3 +683,13 @@ units (`code_units` 1395 -> 1356, `pool_remapped_units` 592 -> 590), all verifie
 - `rel/main_rel/bg_for.c`: 12 -> 11 units (Japan/PAL retained in `bg_for_regional.c`)
 - `rel/main_rel/bg_win.c`: 17 -> 16 units (Japan/PAL retained in `bg_win_regional.c`)
 - `rel/main_rel/sel_static_disp_c.c`: 53 -> 52 units (Japan/PAL retained in `sel_static_disp_c_regional.c`)
+
+A follow-up greedy maximal-sub-run sweep (plus canonicalizing all `STB_LOCAL` symbol names by
+`(section, offset)` in `tools/fzgx/tutruth_build.py`'s `link_signature`) eliminated 6 more code
+units (`code_units` 1356 -> 1350, `pool_remapped_units` 590 -> 588) across `GFZP01`/`GFZJ01`/`GFZE01`
+and `fzgx lint` (0 findings):
+
+- `rel/customize/_prolog.c`: 53 -> 51 units (Japan/PAL retained in `customize/_prolog_regional.c`)
+- `rel/main_rel/driver.c`: 8 -> 6 units (Japan/PAL retained in `driver_regional.c`)
+- `rel/main_rel/bg_common.c`: 14 -> 13 units (Japan/PAL retained in `bg_common_regional.c`)
+- `rel/interview/interview.c`: 52 -> 51 units
